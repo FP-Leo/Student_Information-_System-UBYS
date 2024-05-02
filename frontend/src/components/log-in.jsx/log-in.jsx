@@ -15,12 +15,16 @@ import Visibility from "@mui/icons-material/Visibility";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../store/user/user.action";
+
 const INITIAL_STATE = {
   id: "",
   password: "",
 };
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [userInput, setUserInput] = useState(INITIAL_STATE);
@@ -45,14 +49,14 @@ const Login = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(userInput);
+    dispatch(setCurrentUser(userInput));
     resetInputValue();
     navigate("/mainScreen");
   };
 
   const handleDevletButton = async (e) => {
     e.preventDefault();
-    console.log(userInput);
+    dispatch(setCurrentUser(userInput));
     resetInputValue();
     navigate("/mainScreen");
   };

@@ -1,10 +1,29 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { AuthBackground } from "./auth.styles";
+
+import Image from "../../assets/background-image.png";
+import Login from "../../components/log-in.jsx/log-in";
 
 const AuthPage = () => {
   return (
-    <div>
-      <Typography>Auth Page</Typography>
-    </div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        backgroundImage: `url(${Image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        width: 1,
+        height: "100vh",
+      }}
+    >
+      <AuthBackground>
+        <Box width={1}>
+          <Login />
+        </Box>
+      </AuthBackground>
+    </Box>
   );
 };
 

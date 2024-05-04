@@ -32,7 +32,7 @@ export default function ThemeCustomization({ children }) {
         },
       },
       direction: "ltr",
-
+      borderRadius: 10,
       mixins: {
         toolbar: {
           minHeight: 60,

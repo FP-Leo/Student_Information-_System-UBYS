@@ -51,14 +51,14 @@ const Login = () => {
     e.preventDefault();
     dispatch(setCurrentUser(userInput));
     resetInputValue();
-    navigate("/mainScreen");
+    navigate("/home");
   };
 
   const handleDevletButton = async (e) => {
     e.preventDefault();
     dispatch(setCurrentUser(userInput));
     resetInputValue();
-    navigate("/mainScreen");
+    navigate("/home");
   };
 
   const resetInputValue = () => {
@@ -100,7 +100,7 @@ const Login = () => {
                 type="id"
                 fullWidth={true}
                 style={{ marginBottom: "15px" }}
-                label="Kimlik numerası"
+                label="Kimlik numarası"
                 variant="filled"
                 onChange={handleInputChange}
                 value={id}

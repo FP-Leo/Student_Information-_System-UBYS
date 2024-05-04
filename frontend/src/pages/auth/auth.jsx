@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { AuthBackground } from "./auth.styles";
 
 import Image from "../../assets/background-image.png";

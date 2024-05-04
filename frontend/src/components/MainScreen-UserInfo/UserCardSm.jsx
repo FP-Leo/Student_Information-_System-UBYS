@@ -16,11 +16,11 @@ export default function UserCardSm({
 
   const ppSizeMap = {
     sm: "50px",
-    md: "100px",
+    md: "125px",
   };
   const cardSizeMap = {
     sm: "225px",
-    md: "450px",
+    md: "500px",
   };
   const ppWidthHeight = ppSizeMap[ppSize] || ppSizeMap["sm"]; // sm is default
   const cardWidth = cardSizeMap[cardSize] || cardSizeMap["sm"]; // Also sm is default

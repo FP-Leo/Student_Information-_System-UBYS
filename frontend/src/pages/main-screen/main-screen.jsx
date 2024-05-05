@@ -1,19 +1,15 @@
-import { Container } from "@mui/material";
-import MainScreenCategories from "../../components/MainScreen-Categories/MainScreenCategories";
-import Navbar from "../../components/Shared/Navbar";
+import { Box } from "@mui/material";
+import MainScreenCategories from "./MainScreenCategories";
+import Navbar from "./Navbar";
 
 const MainScreen = () => {
   return (
-    <div>
-      <>
-      <Navbar/>
-      <Container sx={{my:10}}>
-      <MainScreenCategories/>
-      </Container>
-
-      </>
-
-    </div>
+    <Box sx={{ backgroundColor: "background.custom" }}>
+      <Navbar />
+      <Box>
+        <MainScreenCategories />
+      </Box>
+    </Box>
   );
 };
 

@@ -1,9 +1,9 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
-import UserCardSm from "../../components/UserCardSm";
+import UserCardSm from "components/UserCardSm";
 import DerslerimIcon from "assets/derslerim-icon";
 import CalendarIcon from "assets/calendar-icon";
-import LinkCard from "../../components/link-card";
+import LinkCard from "components/link-card";
 import BelgeIcon from "assets/belge-icon";
 
 export default function MainScreenCategories() {

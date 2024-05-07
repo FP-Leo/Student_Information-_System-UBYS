@@ -1,1 +1,8 @@
-// attempt  if this config will be pushed or wont
+{
+  "compilerOptions": {
+      "baseUrl": "src"
+  },
+  "include": [
+      "src/**/*"
+  ]
+}

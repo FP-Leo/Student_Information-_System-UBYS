@@ -17,7 +17,7 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
-import Transitions from "components/Transitions";
+
 import avatar1 from "assets/avatar1.png";
 import SettingTab from "./SettingTab";
 import {
@@ -28,8 +28,9 @@ import {
 import ProfileTab from "./ProfileTab";
 
 //! ------ User ------ !//
-import { setCurrentUser } from "store/user/user.action";
 import { useDispatch } from "react-redux";
+import Transitions from "components/Transitions";
+import { setCurrentUser } from "store/user/user.action";
 
 function TabPanel({ children, value, index, ...other }) {
   return (

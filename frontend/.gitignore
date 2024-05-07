@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/jsconfig.json
 
 # testing
 /coverage
@@ -12,8 +13,7 @@
 /build
 
 
-#config
-/jsconfig.json
+
 
 # misc
 .DS_Store

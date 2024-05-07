@@ -1,9 +1,1 @@
-{
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "baseUrl": "src"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
-}
+// attempt  if this config will be pushed or wont

@@ -13,7 +13,6 @@ const MainScreen = () => {
     <Box sx={{ backgroundColor: "background.custom" }}>
       <Navbar />
         <MainScreenCategories />
-      </>
     </Box>
   );
 };

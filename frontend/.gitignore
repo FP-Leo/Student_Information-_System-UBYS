@@ -4,7 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-/jsconfig.json
+
+frontend/jsconfig.json
+
 
 # testing
 /coverage

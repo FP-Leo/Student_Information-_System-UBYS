@@ -3,6 +3,7 @@ import App from "../App"
 import Auth from "../pages/auth/auth.jsx"
 import MainScreen from "../pages/main-screen/main-screen.jsx";
 import NotFound from "../pages/404-notfound.jsx"
+import Derslerim from "pages/my-classes/Derslerim";
 
 
 export const router = createBrowserRouter([
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path:"/404",
                 Component:NotFound
+            },
+            {
+                path:"/derslerim",
+                Component:Derslerim
             }
         ]
     }

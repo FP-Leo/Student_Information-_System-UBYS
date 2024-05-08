@@ -51,6 +51,7 @@ const Palette = (mode) => {
       },
       divider: paletteColor.grey[200],
       background: {
+        headerFill: "D9D9D9",
         neutral: "#F4F6F8",
         custom: "#F9FAFB",
         paper: paletteColor.grey[0],

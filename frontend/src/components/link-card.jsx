@@ -11,7 +11,7 @@ const LinkCard = ({ children, title }) => {
       mx={2}
       width="200px"
       component={Link}
-      to={title}
+      to={title.toLowerCase()}
       variant="custom"
       sx={{
         backgroundColor: "background.neutral",

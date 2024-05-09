@@ -7,6 +7,35 @@ import { presetPalettes } from "@ant-design/colors";
 // project import
 import ThemeOption from "./theme";
 
+const INFO = {
+  lighter: "#C8FAF0",
+  light: "#CCEEFF",
+  main: "#0094A8",
+  dark: "#005778",
+  darker: "#002D50",
+};
+const SUCCESS = {
+  lighter: "#DAFBD5",
+  light: "#B0F7AD",
+  main: "#5BD26E",
+  dark: "#2db54f",
+  darker: "#168246",
+};
+const WARNING = {
+  lighter: "#FBF7CA",
+  light: "#FFFF99",
+  main: "#FFFF3F",
+  dark: "#DBDB00",
+  darker: "#B7B700",
+};
+const ERROR = {
+  lighter: "#FDE0D4",
+  light: "#F38B7F",
+  main: "#D82D3B",
+  dark: "#9B1639",
+  darker: "#670832",
+};
+
 // ==============================|| DEFAULT THEME - PALETTE  ||============================== //
 
 const Palette = (mode) => {
@@ -40,6 +69,10 @@ const Palette = (mode) => {
         white: "#fff",
       },
       ...paletteColor,
+      success: SUCCESS,
+      info: INFO,
+      warning: WARNING,
+      error: ERROR,
       text: {
         primary: paletteColor.grey[700],
         secondary: paletteColor.grey[500],
@@ -51,6 +84,7 @@ const Palette = (mode) => {
       },
       divider: paletteColor.grey[200],
       background: {
+        header: "D9D9D9",
         neutral: "#F4F6F8",
         custom: "#F9FAFB",
         paper: paletteColor.grey[0],

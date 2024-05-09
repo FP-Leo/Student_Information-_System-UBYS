@@ -7,6 +7,6 @@ namespace api.Models
 {
     public class Student : User
     {
-        
+        public int SSN {get; set;}
     }
 }

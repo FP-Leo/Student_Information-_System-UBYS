@@ -1,11 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Auth from "../pages/auth/auth.jsx";
+<<<<<<< HEAD
 import NotFound from "../pages/404-notfound.jsx";
 import Subjects from "pages/subjects/subjects";
 import MainLayout from "layout/main-layout";
 import MainScreenCategories from "pages/main-screen/MainScreenCategories";
 import SubjectsSelection from "pages/subjects-selection/SubjectsSelection";
+=======
+import MainScreen from "../pages/main-screen/main-screen.jsx";
+import NotFound from "../pages/404-notfound.jsx";
+import Derslerim from "pages/subjects/Derslerim";
+>>>>>>> frontend-main
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         // Main Page
+<<<<<<< HEAD
         path: "home",
         Component: MainLayout,
         children: [
@@ -36,6 +43,10 @@ export const router = createBrowserRouter([
             Component: SubjectsSelection,
           },
         ],
+=======
+        path: "/home",
+        Component: MainScreen,
+>>>>>>> frontend-main
       },
       {
         path: "*",
@@ -45,6 +56,13 @@ export const router = createBrowserRouter([
         path: "/404",
         Component: NotFound,
       },
+<<<<<<< HEAD
+=======
+      {
+        path: "/derslerim",
+        Component: Derslerim,
+      },
+>>>>>>> frontend-main
     ],
   },
 ]);

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { removeSpacesAndLowerCase } from "utils/helper-functions";
 
@@ -7,16 +7,23 @@ import { motion } from "framer-motion";
 
 const LinkCard = ({ children, title }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const navigatePath = title ?  "/" + title.toLowerCase() : "/404";
   return (
     <Box
       mx={2}
       width="200px"
       component={Link}
+<<<<<<< HEAD
       to={
         title === "Ders Seçimi"
           ? "ders-secimi"
           : removeSpacesAndLowerCase(title)
       }
+=======
+      onClick={()=>{navigate(navigatePath)}}
+>>>>>>> frontend-main
       variant="custom"
       sx={{
         backgroundColor: "background.neutral",

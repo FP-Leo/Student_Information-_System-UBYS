@@ -1,4 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
+import SendIcon from "assets/send-icon";
 
 const InfoHeader = () => {
   return (
@@ -101,11 +102,16 @@ const InfoHeader = () => {
         </Box>
       </Box>
       <Button
-        style={{ borderRadius: "10px", height: "40px" }}
+        style={{
+          color: "white",
+          borderRadius: "10px",
+          height: "40px",
+        }}
         variant="contained"
         color="success"
       >
-        Danışmanına Gönder
+        Danışmanına Gönder &nbsp;
+        <SendIcon />
       </Button>
     </Box>
   );

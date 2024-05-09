@@ -1,7 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import SecilmisDers from "./SecilmisDers";
+import { useTheme } from "@mui/material/styles";
 
 const SeciliDersler = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -11,6 +13,7 @@ const SeciliDersler = () => {
         backgroundColor: "white",
         height: "auto",
         width: "450px",
+        boxShadow: theme.customShadows.card,
       }}
     >
       <Box
@@ -97,6 +100,67 @@ const SeciliDersler = () => {
       <SecilmisDers state="success" />
       <SecilmisDers state="success" />
       <SecilmisDers state="error" />
+      <Box
+        mt={3}
+        sx={{
+          paddingX: "10px",
+          height: "90px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              marginX: "10px",
+              backgroundColor: "success.light",
+              height: "15px",
+              width: "15px",
+            }}
+          />
+          <Typography variant="body2">Seçilmiş Dersler</Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "5px",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              marginX: "10px",
+              backgroundColor: "error.light",
+              height: "15px",
+              width: "15px",
+            }}
+          />
+          <Typography variant="body2">Zorunlu Seçilmiş Dersler</Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            marginTop: "5px",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              marginX: "10px",
+              backgroundColor: "warning.light",
+              height: "15px",
+              width: "15px",
+            }}
+          />
+          <Typography variant="body2">Seçmeli Havuzlar</Typography>
+        </Box>
+      </Box>
     </Box>
   );
 };

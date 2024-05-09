@@ -9,7 +9,7 @@ import ThemeOption from "./theme";
 
 const INFO = {
   lighter: "#C8FAF0",
-  light: "#5BE4DF",
+  light: "#CCEEFF",
   main: "#0094A8",
   dark: "#005778",
   darker: "#002D50",
@@ -23,10 +23,10 @@ const SUCCESS = {
 };
 const WARNING = {
   lighter: "#FBF7CA",
-  light: "#EADB61",
-  main: "#BAA205",
-  dark: "#857002",
-  darker: "#594800",
+  light: "#FFFF99",
+  main: "#FFFF3F",
+  dark: "#DBDB00",
+  darker: "#B7B700",
 };
 const ERROR = {
   lighter: "#FDE0D4",

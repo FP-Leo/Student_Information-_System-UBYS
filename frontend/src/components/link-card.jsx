@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import { removeSpacesAndLowerCase } from "utils/helper-functions";
 
 import { motion } from "framer-motion";
 
@@ -11,7 +12,11 @@ const LinkCard = ({ children, title }) => {
       mx={2}
       width="200px"
       component={Link}
-      to={title.toLowerCase()}
+      to={
+        title === "Ders Seçimi"
+          ? "ders-secimi"
+          : removeSpacesAndLowerCase(title)
+      }
       variant="custom"
       sx={{
         backgroundColor: "background.neutral",

@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Auth from "../pages/auth/auth.jsx";
-import MainScreen from "../pages/main-screen/main-screen.jsx";
 import NotFound from "../pages/404-notfound.jsx";
 import Subjects from "pages/subjects/subjects";
 import MainLayout from "layout/main-layout";
 import MainScreenCategories from "pages/main-screen/MainScreenCategories";
+import SubjectsSelection from "pages/subjects-selection/SubjectsSelection";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
           {
             path: "derslerim",
             Component: Subjects,
+          },
+          {
+            path: "ders-secimi",
+            Component: SubjectsSelection,
           },
         ],
       },

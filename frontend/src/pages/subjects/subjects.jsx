@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import TableHeader from "components/TableHeader";
+import TableRow from "components/TableRow";
 
 const Subjects = () => {
   const theme = useTheme();
@@ -10,16 +11,21 @@ const Subjects = () => {
         width: "100%",
         height: "auto",
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
       }}
     >
       <Box
         sx={{
-          width: "auto",
+          width: "1200px",
+          minWidth: "1200px",
           marginTop: "50px",
           borderRadius: "10px",
           boxShadow: theme.customShadows.card,
           backgroundColor: "background.neutral",
+          paddingBottom: "30px",
+          marginBottom: "50px",
         }}
       >
         <Box
@@ -32,20 +38,42 @@ const Subjects = () => {
         </Box>
         <Box
           sx={{
-            width1: "100%",
-            display: "flex",
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "1.5fr 2fr 1fr 1fr 3fr 2fr 2fr 1fr 2fr",
+            borderLeft: "1px solid #B3B3B3",
+            borderRight: "1px solid #B3B3B3",
           }}
         >
-          <TableHeader title="Ders Kodu" />
-          <TableHeader title="Ders Adı" />
-          <TableHeader title="Kredi" />
-          <TableHeader title="AKTS" />
-          <TableHeader title="Dersin Koordinatörü" />
-          <TableHeader title="Devam Durumu" />
-          <TableHeader title="Geçme Notu" />
-          <TableHeader title="HBN" />
-          <TableHeader title="Başarı Durumu" />
+          <TableHeader left={false} right={true} title="Ders Kodu" />
+          <TableHeader left={false} right={false} title="Ders Adı" />
+          <TableHeader left={true} right={true} title="Kredi" />
+          <TableHeader left={false} right={true} title="AKTS" />
+          <TableHeader left={false} right={false} title="Dersin Koordinatörü" />
+          <TableHeader left={true} right={true} title="Devam Durumu" />
+          <TableHeader left={false} right={false} title="Geçme Notu" />
+          <TableHeader left={true} right={true} title="HBN" />
+          <TableHeader left={false} right={false} title="Başarı Durumu" />
         </Box>
+        <TableRow />
+        <TableRow />
+        <TableRow />
+        <TableRow />
+      </Box>
+      <Box sx={{ margin: "50px" }}>
+        <Button
+          type="submit"
+          size="large"
+          variant="contained"
+          style={{
+            height: "50px",
+            borderRadius: "12px",
+            marginTop: "60px",
+          }}
+          fullWidth={true}
+        >
+          Geçmiş Dönem Derslerini Göster
+        </Button>
       </Box>
     </Box>
   );

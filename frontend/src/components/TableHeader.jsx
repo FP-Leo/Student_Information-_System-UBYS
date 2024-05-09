@@ -1,16 +1,18 @@
 import { Box, Typography } from "@mui/material";
 
-const TableHeader = ({ title }) => {
+const TableHeader = ({ title, right, left }) => {
   return (
     <Box
       sx={{
-        border: "1px solid green",
-        backgroundColor: "background.headerFill",
+        borderTop: "1px solid #B3B3B3",
+        borderRight: right ? "1px solid #B3B3B3" : "none",
+        borderBottom: "1px solid #B3B3B3",
+        borderLeft: left ? "1px solid #B3B3B3" : "none",
         display: "flex",
-        justifyContent: "center",
+        height: "50px",
         alignItems: "center",
-        paddingY: "15px",
-        paddingX: "25px",
+        justifyContent: "center",
+        backgroundColor: "#EEEFF0",
       }}
     >
       <Typography variant="h6">{title}</Typography>

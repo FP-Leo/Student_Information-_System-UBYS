@@ -71,6 +71,11 @@ const Typography = (fontFamily) => ({
     fontWeight: 600,
     lineHeight: 1.57,
   },
+  cardSubheader: {
+    fontSize: "0.75rem",
+    fontWeight: 700,
+    lineHeight: 1.66,
+  },
 });
 
 export default Typography;

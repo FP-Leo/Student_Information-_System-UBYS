@@ -9,7 +9,7 @@ const TableRow = () => {
           display: "grid",
           height: "133px",
           gridTemplateRows: "1fr 1fr 1fr 1fr",
-          gridTemplateColumns: "1.5fr 2fr 1fr 1fr 3fr 2fr 2fr 1fr 2fr",
+          gridTemplateColumns: "1.5fr 2fr 1fr 1fr 3fr 2fr 2fr 1fr 2fr", // ne işe yarıyor
           borderBottom: "1px solid #B3B3B3",
           borderLeft: "1px solid #B3B3B3",
           borderRight: "1px solid #B3B3B3",

@@ -1,4 +1,4 @@
-import ClassComponent from "components/my-classes/ClassComponent";
+import ClassComponent from "components/ClassComponent";
 import React from "react";
 
 export default function Derslerim() {

@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+
 import { useTheme } from "@mui/material/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +27,7 @@ const SeciliDersler = () => {
       }
     }
   },[kalanAkts])
+
 
   const theme = useTheme();
   return (
@@ -73,7 +75,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">En Fazla AKTS</Typography>
           <Typography variant="body2" color="red">
+
             {maxAkts}
+
           </Typography>
         </Box>
         <Box
@@ -86,7 +90,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Seçili AKTS</Typography>
           <Typography variant="body2" color="red">
+
             {seciliAkts}
+
           </Typography>
         </Box>
         <Box
@@ -99,7 +105,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Kalan AKTS</Typography>
           <Typography variant="body2" color="red">
+
             {kalanAkts}
+
           </Typography>
         </Box>
       </Box>
@@ -120,6 +128,7 @@ const SeciliDersler = () => {
         <Typography variant="body2">Ders Adı</Typography>
         <Typography variant="body2">AKTS</Typography>
       </Box>
+
         {subjects.map((item)=>{
           let state;
           switch (item.type) {
@@ -201,7 +210,6 @@ const SeciliDersler = () => {
         </Box>
       </Box>
     </Box>
-
   );
 };
 

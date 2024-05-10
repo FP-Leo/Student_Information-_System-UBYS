@@ -1,3 +1,4 @@
+
 import { Box, Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -76,6 +77,7 @@ const SecilmisDers = ({ state, item }) => {
         </>
       )} {/* Sağ taraftaki dersler için ekstra bilgiler koyduk */}
       <ToastContainer />
+
     </Box>
   );
 };

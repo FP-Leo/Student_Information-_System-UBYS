@@ -9,13 +9,12 @@ const LinkCard = ({ children, title }) => {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const navigatePath = title ?  "/" + title.toLowerCase() : "/404";
+  const navigatePath = title ? "/" + title.toLowerCase() : "/404";
   return (
     <Box
       mx={2}
       width="200px"
       component={Link}
-
       to={
         title === "Ders Seçimi"
           ? "ders-secimi"

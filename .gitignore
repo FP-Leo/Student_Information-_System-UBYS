@@ -1,5 +1,5 @@
 
 frontend/jsconfig.json
 frontend/src/jsconfig.json
-
+backend/api/appsettings.json
 .fake

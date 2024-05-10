@@ -1,8 +1,34 @@
 import { Box, Typography } from "@mui/material";
-import SecilmisDers from "./SecilmisDers";
+
 import { useTheme } from "@mui/material/styles";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { change_enabled } from "store/subject/subject.reducer";
+import SecilmisDers from "./SecilmisDers";
+
+
 
 const SeciliDersler = () => {
+  
+
+  const subjects = useSelector((state)=>state.subject.selectedSubjects)
+  console.log(subjects);
+  const kalanAkts = useSelector((state)=>state.subject.kalanAkts)
+  const seciliAkts = useSelector((state)=>state.subject.seciliAkts)
+  const maxAkts =  useSelector((state)=>state.subject.maxAkts)
+  const dispatch = useDispatch();
+
+
+
+  useEffect(()=>{
+    if(kalanAkts < 0){
+      if(kalanAkts <0){
+        dispatch(change_enabled(false))
+      }
+    }
+  },[kalanAkts])
+
+
   const theme = useTheme();
   return (
     <Box
@@ -49,7 +75,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">En Fazla AKTS</Typography>
           <Typography variant="body2" color="red">
-            45
+
+            {maxAkts}
+
           </Typography>
         </Box>
         <Box
@@ -62,7 +90,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Seçili AKTS</Typography>
           <Typography variant="body2" color="red">
-            10
+
+            {seciliAkts}
+
           </Typography>
         </Box>
         <Box
@@ -75,7 +105,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Kalan AKTS</Typography>
           <Typography variant="body2" color="red">
-            35
+
+            {kalanAkts}
+
           </Typography>
         </Box>
       </Box>
@@ -96,10 +128,26 @@ const SeciliDersler = () => {
         <Typography variant="body2">Ders Adı</Typography>
         <Typography variant="body2">AKTS</Typography>
       </Box>
-      <SecilmisDers state="success" />
-      <SecilmisDers state="success" />
-      <SecilmisDers state="success" />
-      <SecilmisDers state="error" />
+
+        {subjects.map((item)=>{
+          let state;
+          switch (item.type) {
+            case -1:
+              state = "success";
+              break;
+            case 1:
+              state = "error"
+              break;
+            default:
+              state = "other"
+              break;
+          }
+          
+          return(
+            <SecilmisDers state={state} item={item} key={item.id}/>
+          )
+        })}
+
       <Box
         mt={3}
         sx={{

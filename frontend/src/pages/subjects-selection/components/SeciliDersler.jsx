@@ -4,27 +4,20 @@ import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import SecilmisDers from "./SecilmisDers";
 
-
+import { selectedSubjectsAkts } from "store/ders-secimi/ders-secimi.selector";
+import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
 const SeciliDersler = () => {
-  
-
-  const subjects = useSelector((state)=>state.subject.selectedSubjects)
-  console.log(subjects);
-  const kalanAkts = useSelector((state)=>state.subject.kalanAkts)
-  const seciliAkts = useSelector((state)=>state.subject.seciliAkts)
-  const maxAkts =  useSelector((state)=>state.subject.maxAkts)
-
+  const selectedSubjects = useSelector(selectSelectedSubjects);
+  const selectedAkts = useSelector(selectedSubjectsAkts);
 
   const theme = useTheme();
   return (
     <Box
       sx={{
-        marginLeft: "15px",
         marginTop: "15px",
         borderRadius: "10px",
         backgroundColor: "white",
-        height: "auto",
         width: "450px",
         boxShadow: theme.customShadows.card,
       }}
@@ -62,9 +55,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">En Fazla AKTS</Typography>
           <Typography variant="body2" color="red">
-
-            {maxAkts}
-
+            35
           </Typography>
         </Box>
         <Box
@@ -77,9 +68,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Seçili AKTS</Typography>
           <Typography variant="body2" color="red">
-
-            {seciliAkts}
-
+            {selectedAkts.toFixed(2)}
           </Typography>
         </Box>
         <Box
@@ -92,9 +81,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Kalan AKTS</Typography>
           <Typography variant="body2" color="red">
-
-            {kalanAkts}
-
+            {(35 - selectedAkts).toFixed(2)}
           </Typography>
         </Box>
       </Box>
@@ -115,24 +102,9 @@ const SeciliDersler = () => {
         <Typography variant="body2">Ders Adı</Typography>
         <Typography variant="body2">AKTS</Typography>
       </Box>
-        {subjects.map((item,index)=>{
-          let state;
-          switch (item.type) {
-            case -1:
-              state = "success";
-              break;
-            case 1:
-              state = "error"
-              break;
-            default:
-              state = "other"
-              break;
-          }
-          
-          return(
-            <SecilmisDers state={state} item={item} key={item.id} index={index+1}/>
-          )
-        })}
+      {selectedSubjects.map((item, index) => (
+        <SecilmisDers index={index} data={item} />
+      ))}
 
       <Box
         mt={3}

@@ -1,0 +1,8 @@
+export const selectSelectedSubjects = (state) =>
+  state.selectedSubjects.selectedSubjects;
+
+export const selectedSubjectsAkts = (state) =>
+  state.selectedSubjects.selectedSubjects.reduce(
+    (acc, item) => acc + Math.floor(item.akts),
+    0
+  );

@@ -1,3 +1,4 @@
+
 import { Box, Button, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
@@ -6,12 +7,7 @@ import SecilmisDers from "./SecilmisDers";
 
 const SecDersler = () => {
   const theme = useTheme();
-
-
-  
   const subjects = useSelector((state)=>state.subject.availableSubjects)
-
-
   return (
     <Box
       sx={{
@@ -26,6 +22,7 @@ const SecDersler = () => {
         alignItems: "center",
       }}
     >
+
       <Box sx={{ marginY: "5px", marginX: "15px" }}>
         <Button variant="headerButton">Aciklama</Button>
 
@@ -42,6 +39,7 @@ const SecDersler = () => {
       <Box
         sx={{
           marginY: "20px",
+
           height: "100%",
           width: "100%",
           borderRadius: "10px",

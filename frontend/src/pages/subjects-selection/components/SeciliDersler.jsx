@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import SecilmisDers from "./SecilmisDers";
@@ -61,7 +62,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">En Fazla AKTS</Typography>
           <Typography variant="body2" color="red">
+
             {maxAkts}
+
           </Typography>
         </Box>
         <Box
@@ -74,7 +77,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Seçili AKTS</Typography>
           <Typography variant="body2" color="red">
+
             {seciliAkts}
+
           </Typography>
         </Box>
         <Box
@@ -87,7 +92,9 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Kalan AKTS</Typography>
           <Typography variant="body2" color="red">
+
             {kalanAkts}
+
           </Typography>
         </Box>
       </Box>
@@ -189,7 +196,6 @@ const SeciliDersler = () => {
         </Box>
       </Box>
     </Box>
-
   );
 };
 

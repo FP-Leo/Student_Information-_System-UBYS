@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { removeSpacesAndLowerCase } from "utils/helper-functions";
 
@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 
 const LinkCard = ({ children, title }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const navigatePath = title ? "/" + title.toLowerCase() : "/404";
   return (
     <Box
       mx={2}

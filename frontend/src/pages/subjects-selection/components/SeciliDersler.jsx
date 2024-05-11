@@ -1,9 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { change_enabled } from "store/subject/subject.reducer";
+import { useSelector } from "react-redux";
 import SecilmisDers from "./SecilmisDers";
 
 
@@ -16,17 +14,6 @@ const SeciliDersler = () => {
   const kalanAkts = useSelector((state)=>state.subject.kalanAkts)
   const seciliAkts = useSelector((state)=>state.subject.seciliAkts)
   const maxAkts =  useSelector((state)=>state.subject.maxAkts)
-  const dispatch = useDispatch();
-
-
-
-  useEffect(()=>{
-    if(kalanAkts < 0){
-      if(kalanAkts <0){
-        dispatch(change_enabled(false))
-      }
-    }
-  },[kalanAkts])
 
 
   const theme = useTheme();
@@ -116,7 +103,7 @@ const SeciliDersler = () => {
           height: "40px",
           backgroundColor: "#E9E9EA",
           display: "grid",
-          gridTemplateColumns: "1fr 1.75fr 4fr 1fr",
+          gridTemplateColumns: "0.6fr 1.25fr 2.5fr 1.4fr",
           gridTemplateRows: "1fr",
           alignItems: "center",
           paddingLeft: 2,
@@ -128,8 +115,7 @@ const SeciliDersler = () => {
         <Typography variant="body2">Ders Adı</Typography>
         <Typography variant="body2">AKTS</Typography>
       </Box>
-
-        {subjects.map((item)=>{
+        {subjects.map((item,index)=>{
           let state;
           switch (item.type) {
             case -1:
@@ -144,7 +130,7 @@ const SeciliDersler = () => {
           }
           
           return(
-            <SecilmisDers state={state} item={item} key={item.id}/>
+            <SecilmisDers state={state} item={item} key={item.id} index={index+1}/>
           )
         })}
 

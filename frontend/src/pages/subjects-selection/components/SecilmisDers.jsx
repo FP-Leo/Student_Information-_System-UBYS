@@ -1,16 +1,18 @@
 
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  add_available_subject,
   add_selected_subject,
   remove_from_available,
+  remove_from_selected_subject,
 } from "store/subject/subject.reducer";
 
+import DeleteIcon from '@mui/icons-material/Delete';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SecilmisDers = ({ state, item }) => {
-  console.log(item);
+const SecilmisDers = ({ state, item ,index}) => {
   const dispatch = useDispatch();
   const isEnabled =
     useSelector((state) => state.subject.kalanAkts) === 0 ? false : true;
@@ -27,14 +29,23 @@ const SecilmisDers = ({ state, item }) => {
       try {
         dispatch(add_selected_subject(item));
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error.message,{
+          autoClose : 2500,
+        });
         return;
       }
       dispatch(remove_from_available(item.id));
     }
   };
 
+  const dersCikar = () => {
+    dispatch(remove_from_selected_subject(item))
+    dispatch(add_available_subject(item))
+  }
+
   return (
+    <>
+
     <Box
       sx={{
         backgroundColor: stateColorMap[state],
@@ -42,7 +53,7 @@ const SecilmisDers = ({ state, item }) => {
         width: "100%",
         display: "grid",
         gridTemplateColumns:
-        state === "info" ? "1.25fr 1fr 2.75fr 1fr 1fr 1fr" : "1fr 1.75fr 4fr 1fr",
+        state === "info" ? "1.25fr 1fr 2.75fr 1fr 1fr 1fr" : "1fr 1.75fr 4fr 1fr 1fr",
         gridTemplateRows: "1fr",
         alignItems: "center",
         paddingLeft: 2,
@@ -63,7 +74,7 @@ const SecilmisDers = ({ state, item }) => {
         </Button>
       )}  {/* Sağ tarafa ekle butonu koyduk */}
       {state !== "info" &&(
-      <Typography>{item.id}</Typography>
+      <Typography>{index}</Typography>
       )}
       <Typography color="info.main" variant="body2">
         BML2002
@@ -76,9 +87,17 @@ const SecilmisDers = ({ state, item }) => {
           <Typography variant="body2">Alabilir</Typography>
         </>
       )} {/* Sağ taraftaki dersler için ekstra bilgiler koyduk */}
-      <ToastContainer />
+      {state !== "info" && (
+      <IconButton 
+      onClick={dersCikar}
+      aria-label="delete" sx={{color:"#36454F"}}>
+        <DeleteIcon/>
+      </IconButton>
+      )}
 
     </Box>
+  <ToastContainer />
+  </>
   );
 };
 

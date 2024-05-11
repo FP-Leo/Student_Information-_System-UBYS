@@ -35,10 +35,18 @@ const subjectSlice = createSlice({
         remove_from_available : (state,action)=>{ // seçilebilir olan derslerden kaldırmak için olan fonksiyon
             state.availableSubjects = state.availableSubjects.filter((item)=>item.id !== action.payload)
         },
+        add_available_subject:(state,action)=>{
+            state.availableSubjects.push(action.payload)
+        },
+        remove_from_selected_subject : (state,action) =>{
+            state.selectedSubjects = state.selectedSubjects.filter((item)=>item.id !== action.payload.id)
+            state.seciliAkts -= action.payload.akts
+            state.kalanAkts += action.payload.akts
+        }
 
     }
 })
 
 
-export const {add_selected_subject,remove_from_available,change_enabled} = subjectSlice.actions;
+export const {add_selected_subject,remove_from_available,add_available_subject,remove_from_selected_subject} = subjectSlice.actions;
 export default subjectSlice.reducer;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lr6BjjvRpOiMLu4LQegXyNFAfbe2zOZokg1Aa+Xu3nkVn49Gl3MuVpAqniWHWUF0holBCkm9TDJ9Iud5Nj7kwQ==",
+  "dgSpecHash": "Eu/0ri5184J4mM7XM/SjrUUVGZaMf5fhQkO0NNwE+O152efVtHEj6EhuH4uQ7KSqRgO8mxNxhrgV5VoEz7cDXQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\leoni\\Desktop\\UBYS-NDAT-Proje\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\leoni\\Desktop\\UBYS-NDAT-Proje\\backend\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Leo\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Leo\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

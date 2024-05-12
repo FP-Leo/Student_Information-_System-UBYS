@@ -15,7 +15,7 @@ namespace api.Models
         public DateTime RegisterDate {get; set;}
         public string SchoolMail {get; set;} = string.Empty;
         public string Phone {get; set;} = string.Empty;
-        public int logInID {get; set;}
-        public LogInInfo logInInfo{get; set;}
+        public int? LogInID {get; set;}
+        public LogInInfo? LogInInfo{get; set;}
     }
 }

@@ -13,18 +13,11 @@ import {
   Paper,
   Popper,
   Stack,
-  Tab,
-  Tabs,
   Typography,
 } from "@mui/material";
 
 import avatar1 from "assets/avatar1.png";
-import SettingTab from "./SettingTab";
-import {
-  LogoutOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import ProfileTab from "./ProfileTab";
 
 //! ------ User ------ !//
@@ -51,13 +44,6 @@ TabPanel.propTypes = {
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
-
-function a11yProps(index) {
-  return {
-    id: `profile-tab-${index}`,
-    "aria-controls": `profile-tabpanel-${index}`,
-  };
-}
 
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
@@ -184,72 +170,15 @@ const Profile = () => {
                             </Stack>
                           </Stack>
                         </Grid>
-                        <Grid item>
-                          <IconButton
-                            size="large"
-                            color="secondary"
-                            onClick={handleLogout}
-                          >
-                            <LogoutOutlined />
-                          </IconButton>
-                        </Grid>
                       </Grid>
                     </CardContent>
                     {open && (
                       <>
-                        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                          <Tabs
-                            variant="fullWidth"
-                            value={value}
-                            onChange={handleChange}
-                            aria-label="profile tabs"
-                          >
-                            <Tab
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                textTransform: "capitalize",
-                              }}
-                              icon={
-                                <UserOutlined
-                                  style={{
-                                    marginBottom: 0,
-                                    marginRight: "10px",
-                                  }}
-                                />
-                              }
-                              label="Profile"
-                              {...a11yProps(0)}
-                            />
-                            <Tab
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                textTransform: "capitalize",
-                              }}
-                              icon={
-                                <SettingOutlined
-                                  style={{
-                                    marginBottom: 0,
-                                    marginRight: "10px",
-                                  }}
-                                />
-                              }
-                              label="Setting"
-                              {...a11yProps(1)}
-                            />
-                          </Tabs>
-                        </Box>
+                        <Box
+                          sx={{ borderBottom: 1, borderColor: "divider" }}
+                        ></Box>
                         <TabPanel value={value} index={0} dir={theme.direction}>
                           <ProfileTab handleLogout={handleLogout} />
-                        </TabPanel>
-
-                        <TabPanel value={value} index={1} dir={theme.direction}>
-                          <SettingTab />
                         </TabPanel>
                       </>
                     )}

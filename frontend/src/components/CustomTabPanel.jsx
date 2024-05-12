@@ -5,7 +5,7 @@ const CustomTabPanel = (props) => {
 
   return (
     <Box
-      width="100%"
+      width={"100%"}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}

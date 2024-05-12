@@ -1,43 +1,23 @@
 import { Box, Typography } from "@mui/material";
 
 import { useTheme } from "@mui/material/styles";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { change_enabled } from "store/subject/subject.reducer";
+import { useSelector } from "react-redux";
 import SecilmisDers from "./SecilmisDers";
 
-
+import { selectedSubjectsAkts } from "store/ders-secimi/ders-secimi.selector";
+import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
 const SeciliDersler = () => {
-  
-
-  const subjects = useSelector((state)=>state.subject.selectedSubjects)
-  console.log(subjects);
-  const kalanAkts = useSelector((state)=>state.subject.kalanAkts)
-  const seciliAkts = useSelector((state)=>state.subject.seciliAkts)
-  const maxAkts =  useSelector((state)=>state.subject.maxAkts)
-  const dispatch = useDispatch();
-
-
-
-  useEffect(()=>{
-    if(kalanAkts < 0){
-      if(kalanAkts <0){
-        dispatch(change_enabled(false))
-      }
-    }
-  },[kalanAkts])
-
+  const selectedSubjects = useSelector(selectSelectedSubjects);
+  const selectedAkts = useSelector(selectedSubjectsAkts);
 
   const theme = useTheme();
   return (
     <Box
       sx={{
-        marginLeft: "15px",
         marginTop: "15px",
         borderRadius: "10px",
         backgroundColor: "white",
-        height: "auto",
         width: "450px",
         boxShadow: theme.customShadows.card,
       }}
@@ -75,9 +55,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">En Fazla AKTS</Typography>
           <Typography variant="body2" color="red">
-
-            {maxAkts}
-
+            35
           </Typography>
         </Box>
         <Box
@@ -90,9 +68,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Seçili AKTS</Typography>
           <Typography variant="body2" color="red">
-
-            {seciliAkts}
-
+            {selectedAkts.toFixed(2)}
           </Typography>
         </Box>
         <Box
@@ -105,9 +81,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="body2">Kalan AKTS</Typography>
           <Typography variant="body2" color="red">
-
-            {kalanAkts}
-
+            {(35 - selectedAkts).toFixed(2)}
           </Typography>
         </Box>
       </Box>
@@ -116,7 +90,7 @@ const SeciliDersler = () => {
           height: "40px",
           backgroundColor: "#E9E9EA",
           display: "grid",
-          gridTemplateColumns: "1fr 1.75fr 4fr 1fr",
+          gridTemplateColumns: "0.6fr 1.25fr 2.5fr 1.4fr",
           gridTemplateRows: "1fr",
           alignItems: "center",
           paddingLeft: 2,
@@ -128,25 +102,9 @@ const SeciliDersler = () => {
         <Typography variant="body2">Ders Adı</Typography>
         <Typography variant="body2">AKTS</Typography>
       </Box>
-
-        {subjects.map((item)=>{
-          let state;
-          switch (item.type) {
-            case -1:
-              state = "success";
-              break;
-            case 1:
-              state = "error"
-              break;
-            default:
-              state = "other"
-              break;
-          }
-          
-          return(
-            <SecilmisDers state={state} item={item} key={item.id}/>
-          )
-        })}
+      {selectedSubjects.map((item, index) => (
+        <SecilmisDers index={index} data={item} />
+      ))}
 
       <Box
         mt={3}

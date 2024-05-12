@@ -1,7 +1,12 @@
 import { Box, Typography, Button } from "@mui/material";
 import SendIcon from "assets/send-icon";
+import laught from "assets/laugh.mp3";
 
 const InfoHeader = () => {
+  const audio = new Audio(laught);
+  const playAudio = () => {
+    audio.play();
+  };
   return (
     <Box
       sx={{
@@ -109,6 +114,7 @@ const InfoHeader = () => {
         }}
         variant="contained"
         color="success"
+        onClick={playAudio}
       >
         Danışmanına Gönder &nbsp;
         <SendIcon />

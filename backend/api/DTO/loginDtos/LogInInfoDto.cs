@@ -4,20 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.Models
+namespace api.DTO.loginDtos
 {
-    public class LogInInfo
+    public class LogInInfoDto
     {
-        public int Id { get; set; }
         [Required]
         [MinLength(11)]
         [MaxLength(11)]
-        public string TC { get; set; }
+        public String TC {get; set; }
         [Required]
         [MinLength(8)]
-        public string Password  { get; set; }
+        public String Password {get; set; }
         [Required]
+        [MinLength(8)]
         public int UserId { get; set; }
-        public User? User{ get; set; }
     }
 }

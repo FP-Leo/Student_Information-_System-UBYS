@@ -21,8 +21,8 @@ export default function UserCardSm({ ppSize, cardSize, isMenuCard, role }) {
         boxShadow: theme.customShadows.card,
         display: "flex",
         borderRadius: "10px",
-        alignItems: !isMenuCard ? "center" : "flex-start", // align to left if its for menu
-        backgroundColor: "background.custom",
+        alignItems: !isMenuCard ? "center" : "flex-start",
+        backgroundColor: "background.neutral",
         width: cardWidth,
         color: "black",
         py: 3,

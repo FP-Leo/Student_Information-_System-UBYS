@@ -13,6 +13,7 @@ export default function MainScreenCategories() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        marginTop: "50px",
       }}
     >
       <UserCardSm

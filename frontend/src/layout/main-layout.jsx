@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Navbar from "pages/main-screen/Navbar";
+import Navbar from "layout/Navbar";
 import { Outlet } from "react-router-dom";
 const MainLayout = () => {
   return (

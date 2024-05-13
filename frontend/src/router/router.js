@@ -6,6 +6,7 @@ import Subjects from "pages/subjects/subjects";
 import MainLayout from "layout/main-layout";
 import MainScreenCategories from "pages/main-screen/MainScreenCategories";
 import SubjectsSelection from "pages/subjects-selection/SubjectsSelection";
+import EditProfile from "pages/edit-profile/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             path: "ders-secimi",
             Component: SubjectsSelection,
           },
+          {
+            path: "edit-profile",
+            Component: EditProfile,
+          },
         ],
       },
       {
@@ -48,4 +53,3 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-

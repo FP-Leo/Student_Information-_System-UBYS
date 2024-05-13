@@ -6,9 +6,17 @@ export default function Tab(theme) {
       styleOverrides: {
         root: {
           minHeight: 46,
-          color: theme.palette.text.primary
-        }
-      }
-    }
+          color: theme.palette.text.primary,
+          '&[data-variant="settings"]': {
+            display: "flex",
+            marginTop: "20px",
+            justifyContent: "flex-start",
+            "& > svg": {
+              marginRight: "20px",
+            },
+          },
+        },
+      },
+    },
   };
 }

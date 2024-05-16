@@ -27,3 +27,8 @@ jsconfig.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+frontend/jsconfig.json
+frontend/src/jsconfig.json
+backend/api/appsettings.json
+backend/api/Migrations/

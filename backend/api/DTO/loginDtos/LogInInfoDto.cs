@@ -9,14 +9,13 @@ namespace api.DTO.loginDtos
     public class LogInInfoDto
     {
         [Required]
-        [MinLength(11)]
-        [MaxLength(11)]
-        public String TC {get; set; }
+        [MinLength(11, ErrorMessage = "TC must be 11 characters!")]
+        [MaxLength(11, ErrorMessage = "TC must be 11 characters!")]
+        public String? TC {get; set; }
         [Required]
-        [MinLength(8)]
-        public String Password {get; set; }
+        [MinLength(8, ErrorMessage = "Password must be atleast 8 characters!")]
+        public String? Password {get; set; }
         [Required]
-        [MinLength(8)]
         public int UserId { get; set; }
     }
 }

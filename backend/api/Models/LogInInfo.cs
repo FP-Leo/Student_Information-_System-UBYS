@@ -9,14 +9,8 @@ namespace api.Models
     public class LogInInfo
     {
         public int Id { get; set; }
-        [Required]
-        [MinLength(11)]
-        [MaxLength(11)]
-        public string TC { get; set; }
-        [Required]
-        [MinLength(8)]
-        public string Password  { get; set; }
-        [Required]
+        public string? TC { get; set; }
+        public string? Password  { get; set; }
         public int UserId { get; set; }
         public User? User{ get; set; }
     }

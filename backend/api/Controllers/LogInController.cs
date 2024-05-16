@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTO.loginDtos;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace api.Controllers
 {
@@ -13,10 +16,11 @@ namespace api.Controllers
     [ApiController]
     public class LogInController: ControllerBase
     {
-        private readonly ApplicationDBContext _context;
-        public LogInController(ApplicationDBContext context){
-            _context = context;
+        private readonly ILogInInfoRepository _logInInfoRepository;
+        public LogInController(ILogInInfoRepository logInInfoRepository){
+            _logInInfoRepository = logInInfoRepository;
         }
+        
         /*
         [HttpGet]
         public IActionResult GetAll(){
@@ -24,50 +28,77 @@ namespace api.Controllers
             return Ok(loginInfos);
         }
         */
-        [HttpGet("{UserId}")]
-        public IActionResult GetByUserId([FromRoute] int UserId){
-            var loginInfo = _context.LogInInfos.FirstOrDefault(l => l.UserId == UserId);
-            if(loginInfo==null){
+
+        [HttpGet("{UserId:int}")]
+        public async Task<IActionResult> GetByUserId([FromRoute] int UserId){
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+
+            var loginInfo = await _logInInfoRepository.GetLogInInfoAsyncByUserId(UserId);
+            
+            if(loginInfo == null){
                 return NotFound();
             }
+
             return Ok(loginInfo.ToLogInInfoDto());
         }
+        /*
         [HttpPost]
-        public IActionResult CreateLogIn([FromBody] LogInInfoPostDto LIIdtoModel){
+        public async Task<IActionResult> CreateLogIn([FromBody] LogInInfoPostDto LIIdtoModel){
             var loginInfoModel = LIIdtoModel.ToLogInInfo();
-            _context.Add(loginInfoModel);
-            _context.SaveChanges();
+
+            var result = await _logInInfoRepository.CreateLogInInfoAsync(loginInfoModel);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
             return CreatedAtAction(nameof(GetByUserId), new { UserId = loginInfoModel.UserId }, loginInfoModel.ToLogInInfoDto());
         }
-
+        */
         [HttpPut]
-        public IActionResult UpdatePassword([FromBody] LogInInfoPutDto LIIdtoModel){
-            var loginInfo = _context.LogInInfos.FirstOrDefault(l => l.UserId == LIIdtoModel.UserId && l.Password == LIIdtoModel.OldPassword );
+        public async Task<IActionResult> UpdatePassword([FromBody] LogInInfoPutDto LIIdtoModel){
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+            
+            var loginInfo = await _logInInfoRepository.GetLogInInfoAsyncByUserId(LIIdtoModel.UserId);
 
-            if(loginInfo==null){
+            if(loginInfo == null || loginInfo.Password != LIIdtoModel.OldPassword){
                 return NotFound();
             }
 
-            loginInfo.Password = LIIdtoModel.NewPassword;
+            if(LIIdtoModel.NewPassword == null){
+                return BadRequest();
+            }
 
-            _context.SaveChanges();
+            var result = await _logInInfoRepository.UpdatePasswordAsync(loginInfo, LIIdtoModel.NewPassword);
 
-            return Ok(loginInfo.ToLogInInfoDto());
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result);
         }
-
+        /*
         [HttpDelete]
         [Route("{UserId}")]
-        public IActionResult DeleteLogInInfo([FromRoute] int UserId){
-            var loginInfo = _context.LogInInfos.FirstOrDefault(l => l.UserId == UserId);
+        public async Task<IActionResult> DeleteLogInInfo([FromRoute] int UserId){
+            var loginInfo = await _logInInfoRepository.GetLogInInfoAsyncByUserId(UserId);
 
-            if(loginInfo==null){
+            if(loginInfo == null){
                 return NotFound();
             }
 
-            _context.LogInInfos.Remove(loginInfo);
-            _context.SaveChanges();
+            var deleted = await _logInInfoRepository.DeleteLogInInfoAsync(loginInfo);
+
+            if(deleted == null){
+                return StatusCode(500);
+            }
 
             return NoContent();
         }
+        */
     }
 }

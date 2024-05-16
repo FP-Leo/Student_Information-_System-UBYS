@@ -11,10 +11,10 @@ namespace api.DTO.loginDtos
         [Required]
         public int UserId {get; set; }
         [Required]
-        [MinLength(8)]
-        public String OldPassword {get; set; }
+        [MinLength(8, ErrorMessage = "Password must be atleast 8 characters!")]
+        public String? OldPassword {get; set; }
         [Required]
-        [MinLength(8)]
-        public String NewPassword {get; set; }
+        [MinLength(8, ErrorMessage = "Password must be atleast 8 characters!")]
+        public String? NewPassword {get; set; }
     }
 }

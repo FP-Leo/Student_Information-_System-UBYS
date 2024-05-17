@@ -9,5 +9,10 @@ namespace api.Data
         public DbSet<User> Users { get; set; }
         public DbSet<LogInInfo> LogInInfos { get; set; }
 
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseExplanation> CourseExplanations { get; set; }
+        public DbSet<CourseClass> CourseClasses { get; set; }
+
+
     }
 }

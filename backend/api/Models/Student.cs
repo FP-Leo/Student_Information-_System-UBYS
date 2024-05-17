@@ -8,5 +8,11 @@ namespace api.Models
     public class Student : User
     {
         public int SSN {get; set;}
+        public string CurrentType { get; set; }
+        public string CurrentStatus { get; set; }
+
+        //Navigation Property
+        public StudentDepDetail StudentDetails { get; set; } 
+
     }
 }

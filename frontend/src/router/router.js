@@ -1,55 +1,43 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
+import { useRoutes } from "react-router-dom";
+
 import Auth from "../pages/auth/auth.jsx";
 import NotFound from "../pages/404-notfound.jsx";
-import Subjects from "pages/subjects/subjects";
 import MainLayout from "layout/main-layout";
-import MainScreenCategories from "pages/main-screen/MainScreenCategories";
-import SubjectsSelection from "pages/subjects-selection/SubjectsSelection";
-import EditProfile from "pages/edit-profile/EditProfile";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: App,
-    children: [
-      {
-        // Auth Page
-        path: "/", // path info
-        Component: Auth, // which component related with this path
-        index: true, // This means this path is root's default url
-      },
-      {
-        // Main Page
-        path: "home",
-        Component: MainLayout,
-        children: [
-          {
-            path: "",
-            Component: MainScreenCategories,
-          },
-          {
-            path: "derslerim",
-            Component: Subjects,
-          },
-          {
-            path: "ders-secimi",
-            Component: SubjectsSelection,
-          },
-          {
-            path: "edit-profile",
-            Component: EditProfile,
-          },
-        ],
-      },
-      {
-        path: "*",
-        Component: NotFound,
-      },
-      {
-        path: "/404",
-        Component: NotFound,
-      },
-    ],
-  },
-]);
+import ProtectedRoute from "./ProtectedRoute";
+import StudentRoutes from "./role-based-routers/StudentRoutes.js";
+import ProfessorRoutes from "./role-based-routers/ProfessorRoutes.js";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "store/user/user.selector";
+
+export const Router = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const isStudent = currentUser?.role === "Student";
+  const isProfessor = currentUser?.role === "Professor";
+
+  return useRoutes([
+    {
+      path: "/",
+      element: <Auth />,
+      index: true,
+    },
+    {
+      path: "home",
+      element: (
+        <ProtectedRoute>
+          <MainLayout />
+        </ProtectedRoute>
+      ),
+      children: isStudent
+        ? StudentRoutes
+        : isProfessor
+        ? ProfessorRoutes
+        : null,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ]);
+};

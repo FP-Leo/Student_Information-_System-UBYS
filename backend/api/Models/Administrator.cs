@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Administrator : User
+    public class Administrator : UserAccount
     {
         public int AdministratorId {get; set;}
 

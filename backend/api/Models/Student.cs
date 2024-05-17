@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Student : User
+    public class Student : UserAccount
     {
         public int SSN {get; set;}
         public string CurrentType { get; set; }

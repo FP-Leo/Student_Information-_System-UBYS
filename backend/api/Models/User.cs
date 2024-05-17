@@ -1,22 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace api.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        public int Id {get; set;}
-        public string FirstName {get; set;} = string.Empty;
-        public string LastName {get; set;} = string.Empty;
-        public DateTime BirthDate {get; set;}
-        public DateTime RegisterDate {get; set;}
-        public string SchoolMail {get; set;} = string.Empty;
-        public string Phone {get; set;} = string.Empty;
-        // It will be removed on the next iteration
-        public int? LogInID {get; set;}
-        public LogInInfo? LogInInfo{get; set;}
+        
     }
 }

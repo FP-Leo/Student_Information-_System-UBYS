@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Lecturer : User
+    public class Lecturer : UserAccount
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public float TotalWorkHours { get; set; }
-        public string CurrentStatus { get; set; }
+        public string? CurrentStatus { get; set; }
     }
 }

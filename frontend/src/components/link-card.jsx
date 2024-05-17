@@ -7,9 +7,7 @@ import { motion } from "framer-motion";
 
 const LinkCard = ({ children, title }) => {
   const theme = useTheme();
-  const navigate = useNavigate();
 
-  const navigatePath = title ? "/" + title.toLowerCase() : "/404";
   return (
     <Box
       mx={2}

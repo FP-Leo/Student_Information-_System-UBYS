@@ -1,10 +1,11 @@
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button } from "@mui/material";
 
-import Logo from "../../assets/logo";
-import { ReactComponent as Line } from "../../assets/line.svg";
-import { ReactComponent as DevletLogo } from "../../assets/e-devlet-logo.svg";
+import Logo from "assets/logo";
+import { ReactComponent as Line } from "assets/line.svg";
+import { ReactComponent as DevletLogo } from "assets/e-devlet-logo.svg";
 
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
@@ -16,12 +17,14 @@ import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../../store/user/user.action";
+import { setCurrentUser } from "store/user/user.action";
 
 const INITIAL_STATE = {
   id: "",
   password: "",
 };
+
+const PORT = 7150; //!--- Change this to your port number
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -49,9 +52,16 @@ const Login = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setCurrentUser(userInput));
-    resetInputValue();
-    navigate("/home");
+    try {
+      const response = await axios.get(
+        `https://localhost:${PORT}/api/User/${id}`
+      );
+      dispatch(setCurrentUser(response.data));
+      resetInputValue();
+      navigate("/home");
+    } catch (error) {
+      alert("Giriş yaparken bir hata oluştu.");
+    }
   };
 
   const handleDevletButton = async (e) => {

@@ -5,7 +5,7 @@ import { alpha } from "@mui/material/styles";
 import { Box, Tabs, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import CustomTabPanel from "../../../components/CustomTabPanel";
+import CustomTabPanel from "components/CustomTabPanel";
 
 import Aciklama from "./tab-components/Aciklama";
 import SecmeliDersler from "./tab-components/SecmeliDersler";

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
@@ -9,7 +8,6 @@ import {
   CardContent,
   ClickAwayListener,
   Grid,
-  IconButton,
   Paper,
   Popper,
   Stack,
@@ -17,15 +15,14 @@ import {
 } from "@mui/material";
 
 import avatar1 from "assets/avatar1.png";
-import { LogoutOutlined } from "@ant-design/icons";
 import ProfileTab from "./ProfileTab";
 
 //! ------ User ------ !//
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Transitions from "components/Transitions";
 import { setCurrentUser } from "store/user/user.action";
 
-function TabPanel({ children, value, index, ...other }) {
+const TabPanel = ({ children, value, index, ...other }) => {
   return (
     <div
       role="tabpanel"
@@ -37,20 +34,16 @@ function TabPanel({ children, value, index, ...other }) {
       {value === index && children}
     </div>
   );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
 };
 
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const { firstName, lastName, role } = currentUser;
 
   const handleLogout = () => {
     try {
@@ -76,10 +69,6 @@ const Profile = () => {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   const iconBackColorOpen = "grey.300";
 
   return (
@@ -99,7 +88,7 @@ const Profile = () => {
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
           <Typography color="text.primary" variant="subtitle1">
-            Student Name
+            {firstName + " " + lastName}
           </Typography>
           <Avatar
             alt="profile user"
@@ -160,12 +149,14 @@ const Profile = () => {
                               sx={{ width: 40, height: 40 }}
                             />
                             <Stack>
-                              <Typography variant="h6">Student Name</Typography>
+                              <Typography variant="h6">
+                                {firstName + " " + lastName}
+                              </Typography>
                               <Typography
                                 color="text.secondary"
                                 variant="body2"
                               >
-                                Ogrenci
+                                {role}
                               </Typography>
                             </Stack>
                           </Stack>

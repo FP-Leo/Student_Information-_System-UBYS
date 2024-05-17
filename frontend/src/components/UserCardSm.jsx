@@ -3,7 +3,14 @@ import { useTheme } from "@mui/material/styles";
 import Image from "../assets/photo.svg";
 import React from "react";
 
-export default function UserCardSm({ ppSize, cardSize, isMenuCard, role }) {
+//!---------- With Data from API ----------!//
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "store/user/user.selector";
+//!----------------------------------------!//
+
+export default function UserCardSm({ ppSize, cardSize, isMenuCard }) {
+  const currentUser = useSelector(selectCurrentUser);
+  const { firstName, lastName, role } = currentUser;
   const theme = useTheme();
   const ppSizeMap = {
     sm: "30px",
@@ -36,14 +43,14 @@ export default function UserCardSm({ ppSize, cardSize, isMenuCard, role }) {
         sx={{ width: ppWidthHeight, height: ppWidthHeight }}
       />
       <Typography variant="subtitle1" sx={{ mt: 3, textDecoration: "none" }}>
-        Student Name
+        {currentUser ? firstName + " " + lastName : "User Name"}
       </Typography>
       <Typography
         variant="body2"
         color="text.secondary"
         sx={{ textDecoration: "none", fontSize: "14px" }}
       >
-        200401114
+        {role}
       </Typography>
     </Box>
   );

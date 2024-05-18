@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using api.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using api.DTO.Account;
 
 namespace api.Data
 {
@@ -15,8 +16,7 @@ namespace api.Data
         public DbSet<CourseClass> CourseClasses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().Property(x => x.UserName).HasMaxLength(11);
+        {    
             List<IdentityRole> roles = [
                 new IdentityRole{
                     Name = "Student",

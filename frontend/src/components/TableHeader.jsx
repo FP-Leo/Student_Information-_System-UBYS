@@ -15,7 +15,7 @@ const TableHeader = ({ title, right, left }) => {
         backgroundColor: "#EEEFF0",
       }}
     >
-      <Typography variant="h6">{title}</Typography>
+      <Typography variant="subtitle1">{title}</Typography>
     </Box>
   );
 };

@@ -45,7 +45,7 @@ const Password = () => {
         >
           <PasswordHeaderIcon />
         </Box>
-        <Typography variant="h5">Change Password</Typography>
+        <Typography variant="subtitle1">Change Password</Typography>
       </Box>
       <Box
         sx={{

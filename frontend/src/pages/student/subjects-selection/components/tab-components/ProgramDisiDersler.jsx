@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { Data } from "data";
 import { useTheme } from "@mui/material/styles";
 import Ders from "../Ders";
+import SelectSubjectsTableHeader from "components/SelectSubjectsTableHeader";
 
 const ProgramDisiDersler = () => {
   const theme = useTheme();
@@ -30,7 +31,7 @@ const ProgramDisiDersler = () => {
           sx={{
             textAlign: "center",
           }}
-          variant="body2"
+          variant="caption2"
           color="info.darker"
         >
           Burada da bölümünüzün kayıtabileceğiniz dersler bulunmaktadır. Kendi
@@ -38,78 +39,7 @@ const ProgramDisiDersler = () => {
           işlerine danışmadan dış birimden ders almayınız.
         </Typography>
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          height: "50px",
-          backgroundColor: "#E9E9EA",
-          display: "grid",
-          gridTemplateColumns: "1fr 2fr 5fr 1fr 4fr 2fr ",
-        }}
-      >
-        <Typography
-          variant="cardHeader"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Seç
-        </Typography>
-        <Typography
-          variant="cardHeader"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Ders Kodu
-        </Typography>
-        <Typography
-          variant="cardHeader"
-          sx={{
-            marginLeft: "20px",
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          Ders Adı
-        </Typography>
-        <Typography
-          variant="cardHeader"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          AKTS
-        </Typography>
-        <Typography
-          variant="cardHeader"
-          sx={{
-            marginLeft: "20px",
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          Şube
-        </Typography>
-        <Typography
-          variant="cardHeader"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Açıklama
-        </Typography>
-      </Box>
+      <SelectSubjectsTableHeader />
       <Box
         sx={{
           backgroundColor: "background.neutral",

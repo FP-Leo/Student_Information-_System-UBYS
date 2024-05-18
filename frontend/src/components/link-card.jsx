@@ -45,7 +45,7 @@ const LinkCard = ({ children, title }) => {
       </Box>
       <Typography
         textAlign="center"
-        variant="h6"
+        variant="subtitle2"
         color="text.primary"
         padding={2}
         backgroundColor="background.neutral"

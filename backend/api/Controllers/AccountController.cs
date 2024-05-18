@@ -35,7 +35,7 @@ namespace api.Controllers
                         return StatusCode(403, "Invalid TC. TC contains only int characters.");
                 }
             
-                if(registerDto.Role == null || (!registerDto.Role.Equals("Student")  && !registerDto.Role.Equals("Lecturer")  && !registerDto.Role.Equals("Advisor")  && !registerDto.Role.Equals("Administrator")))
+                if(registerDto.Role == null || (!registerDto.Role.Equals("Student")  && !registerDto.Role.Equals("Lecturer")  && !registerDto.Role.Equals("Advisor")  && !registerDto.Role.Equals("Administrator") && !registerDto.Role.Equals("Admin")))
                     return StatusCode(403,"Role doesn't exist." );
 
                 if(registerDto.Password == null)

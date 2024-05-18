@@ -25,9 +25,9 @@ namespace api.Repositories
 
         public async Task<LogInInfo?> GetLogInInfoAsyncByUserId(int UserId)
         {
-            var logInInfo = await _context.LogInInfos.FirstOrDefaultAsync((l => l.UserId == UserId));
+            //var logInInfo = await _context.LogInInfos.FirstOrDefaultAsync((l => l.UserId == UserId));
             
-            return logInInfo;
+            return null;
         }
         /*
         public async Task<LogInInfo?> CreateLogInInfoAsync(LogInInfo logInInfo)

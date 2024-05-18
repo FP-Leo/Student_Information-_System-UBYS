@@ -78,6 +78,7 @@ builder.Services.AddAuthentication(options =>{
 
 builder.Services.AddScoped<ILogInInfoRepository, LogInInfoRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IStudentAccountRepository, StudentAccountRepository>();
 
 var app = builder.Build();
 

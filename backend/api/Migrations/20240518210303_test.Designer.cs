@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240517235601_Test")]
-    partial class Test
+    [Migration("20240518210303_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,8 @@ namespace api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.HasSequence("UserAccountSequence");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -54,27 +56,33 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7db4ee9f-72ef-43ef-960f-19c43eac60e0",
+                            Id = "64c81218-7d88-4ee0-92a2-7939219702f2",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "1e316c0c-e198-44ad-b8d8-4e6a24e7e80b",
+                            Id = "7690c980-83ae-4b7c-9e82-943203d91c5d",
                             Name = "Lecturer",
                             NormalizedName = "LECTURER"
                         },
                         new
                         {
-                            Id = "14c67f0e-0c52-4efa-b9aa-f32786882afd",
+                            Id = "e8b4fe2f-ce16-4a5a-b672-839cb72849f8",
                             Name = "Advisor",
                             NormalizedName = "ADVISOR"
                         },
                         new
                         {
-                            Id = "cfa10dbd-153d-419c-b3c4-30fc6b42270e",
+                            Id = "3bea84ae-73fb-42ec-9027-030038e7c84e",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "27261a4b-cbb9-45d8-b602-188c7653532a",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 
@@ -276,13 +284,7 @@ namespace api.Migrations
                     b.Property<string>("TC")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("LogInInfos");
                 });
@@ -354,11 +356,12 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.UserAccount", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AccountId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("NEXT VALUE FOR [UserAccountSequence]");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("AccountId"));
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -371,9 +374,6 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LogInID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -385,9 +385,34 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("AccountId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("UserAccount");
+
+                    b.UseTpcMappingStrategy();
+                });
+
+            modelBuilder.Entity("api.Models.StudentAccount", b =>
+                {
+                    b.HasBaseType("api.Models.UserAccount");
+
+                    b.Property<string>("CurrentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SSN")
+                        .HasColumnType("int");
+
+                    b.ToTable("StudentAccounts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -463,11 +488,11 @@ namespace api.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("api.Models.LogInInfo", b =>
+            modelBuilder.Entity("api.Models.UserAccount", b =>
                 {
-                    b.HasOne("api.Models.UserAccount", "User")
-                        .WithOne("LogInInfo")
-                        .HasForeignKey("api.Models.LogInInfo", "UserId")
+                    b.HasOne("api.Models.User", "User")
+                        .WithOne("UserAccount")
+                        .HasForeignKey("api.Models.UserAccount", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -480,9 +505,9 @@ namespace api.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("api.Models.UserAccount", b =>
+            modelBuilder.Entity("api.Models.User", b =>
                 {
-                    b.Navigation("LogInInfo");
+                    b.Navigation("UserAccount");
                 });
 #pragma warning restore 612, 618
         }

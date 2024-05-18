@@ -11,7 +11,7 @@ namespace api.Models
         public int Id { get; set; }
         public string? TC { get; set; }
         public string? Password  { get; set; }
-        public int UserId { get; set; }
-        public UserAccount? User{ get; set; }
+        //public int UserId { get; set; }
+        //public UserAccount? User{ get; set; }
     }
 }

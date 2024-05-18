@@ -14,7 +14,7 @@ namespace api.Mappers
             return new LogInInfoDto{
                 TC = loginModel.TC,
                 Password = loginModel.Password,
-                UserId = loginModel.UserId,
+                //UserId = loginModel.UserId,
             };
         }
 
@@ -22,7 +22,7 @@ namespace api.Mappers
             return new LogInInfo{
                 TC = liiDtoModel.TC,
                 Password = liiDtoModel.Password,
-                UserId = liiDtoModel.UserId
+                //UserId = liiDtoModel.UserId
             };
         }
 

@@ -8,11 +8,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class Test : Migration
+    public partial class test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateSequence(
+                name: "UserAccountSequence");
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -64,22 +67,17 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAccount",
+                name: "LogInInfos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SchoolMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LogInID = table.Column<int>(type: "int", nullable: true)
+                    TC = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAccount", x => x.Id);
+                    table.PrimaryKey("PK_LogInInfos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,6 +187,57 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StudentAccounts",
+                columns: table => new
+                {
+                    AccountId = table.Column<int>(type: "int", nullable: false, defaultValueSql: "NEXT VALUE FOR [UserAccountSequence]"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SchoolMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SSN = table.Column<int>(type: "int", nullable: false),
+                    CurrentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CurrentStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentAccounts", x => x.AccountId);
+                    table.ForeignKey(
+                        name: "FK_StudentAccounts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAccount",
+                columns: table => new
+                {
+                    AccountId = table.Column<int>(type: "int", nullable: false, defaultValueSql: "NEXT VALUE FOR [UserAccountSequence]"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SchoolMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAccount", x => x.AccountId);
+                    table.ForeignKey(
+                        name: "FK_UserAccount_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CourseClasses",
                 columns: table => new
                 {
@@ -234,36 +283,16 @@ namespace api.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LogInInfos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TC = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LogInInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LogInInfos_UserAccount_UserId",
-                        column: x => x.UserId,
-                        principalTable: "UserAccount",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "14c67f0e-0c52-4efa-b9aa-f32786882afd", null, "Advisor", "ADVISOR" },
-                    { "1e316c0c-e198-44ad-b8d8-4e6a24e7e80b", null, "Lecturer", "LECTURER" },
-                    { "7db4ee9f-72ef-43ef-960f-19c43eac60e0", null, "Student", "STUDENT" },
-                    { "cfa10dbd-153d-419c-b3c4-30fc6b42270e", null, "Administrator", "ADMINISTRATOR" }
+                    { "27261a4b-cbb9-45d8-b602-188c7653532a", null, "Admin", "ADMIN" },
+                    { "3bea84ae-73fb-42ec-9027-030038e7c84e", null, "Administrator", "ADMINISTRATOR" },
+                    { "64c81218-7d88-4ee0-92a2-7939219702f2", null, "Student", "STUDENT" },
+                    { "7690c980-83ae-4b7c-9e82-943203d91c5d", null, "Lecturer", "LECTURER" },
+                    { "e8b4fe2f-ce16-4a5a-b672-839cb72849f8", null, "Advisor", "ADVISOR" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -317,8 +346,14 @@ namespace api.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_LogInInfos_UserId",
-                table: "LogInInfos",
+                name: "IX_StudentAccounts_UserId",
+                table: "StudentAccounts",
+                column: "UserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAccount_UserId",
+                table: "UserAccount",
                 column: "UserId",
                 unique: true);
         }
@@ -351,16 +386,22 @@ namespace api.Migrations
                 name: "LogInInfos");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "StudentAccounts");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "UserAccount");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "UserAccount");
+                name: "AspNetUsers");
+
+            migrationBuilder.DropSequence(
+                name: "UserAccountSequence");
         }
     }
 }

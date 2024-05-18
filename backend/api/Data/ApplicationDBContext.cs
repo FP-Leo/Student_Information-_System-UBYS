@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using api.DTO.Account;
 
+
 namespace api.Data
 {
     public class ApplicationDBContext: IdentityDbContext<User>
     {
         public ApplicationDBContext(DbContextOptions dbContextOptions) : base(dbContextOptions){}
-        public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<StudentAccount> StudentAccounts { get; set; }
         public DbSet<LogInInfo> LogInInfos { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseExplanation> CourseExplanations { get; set; }
@@ -33,9 +34,20 @@ namespace api.Data
                 new IdentityRole{
                     Name = "Administrator",
                     NormalizedName = "ADMINISTRATOR"
+                },
+                new IdentityRole{
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
                 }
             ];
             modelBuilder.Entity<IdentityRole>().HasData(roles);
+
+            modelBuilder.Entity<UserAccount>()
+                .HasOne(u => u.User)
+                .WithOne(ua => ua.UserAccount)
+                .HasForeignKey<UserAccount>(ua => ua.UserId)
+                .IsRequired();
+            modelBuilder.Entity<UserAccount>().UseTpcMappingStrategy();
             base.OnModelCreating(modelBuilder);
         }
     }

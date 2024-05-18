@@ -78,7 +78,7 @@ const Profile = () => {
           p: 0.25,
           bgcolor: open ? iconBackColorOpen : "transparent",
           borderRadius: 1,
-          "&:hover": { bgcolor: "secondary.lighter" },
+          "&:hover": { bgcolor: "action.hover" },
         }}
         aria-label="open profile"
         ref={anchorRef}
@@ -149,7 +149,7 @@ const Profile = () => {
                               sx={{ width: 40, height: 40 }}
                             />
                             <Stack>
-                              <Typography variant="h6">
+                              <Typography variant="subtitle1">
                                 {firstName + " " + lastName}
                               </Typography>
                               <Typography

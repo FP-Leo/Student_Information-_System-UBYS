@@ -30,12 +30,12 @@ const SecilmisDers = ({ data, value, index, item }) => {
       }}
     >
       {" "}
-      <Typography variant="body2">{index + 1}</Typography>
-      <Typography color="info.main" variant="body2">
+      <Typography variant="caption">{index + 1}</Typography>
+      <Typography color="info.main" variant="caption">
         {subjectCode}
       </Typography>
-      <Typography variant="body2">{subjectName}</Typography>
-      <Typography variant="body2">{akts}</Typography>
+      <Typography variant="caption">{subjectName}</Typography>
+      <Typography variant="caption">{akts}</Typography>
       <IconButton onClick={handleRemove}>
         <DeleteForeverRoundedIcon fontSize="small" color="error" />
       </IconButton>

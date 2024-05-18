@@ -53,8 +53,8 @@ const SeciliDersler = () => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="body2">En Fazla AKTS</Typography>
-          <Typography variant="body2" color="red">
+          <Typography variant="caption">En Fazla AKTS</Typography>
+          <Typography variant="caption" color="red">
             35
           </Typography>
         </Box>
@@ -66,8 +66,8 @@ const SeciliDersler = () => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="body2">Seçili AKTS</Typography>
-          <Typography variant="body2" color="red">
+          <Typography variant="caption">Seçili AKTS</Typography>
+          <Typography variant="caption" color="red">
             {selectedAkts.toFixed(2)}
           </Typography>
         </Box>
@@ -79,8 +79,8 @@ const SeciliDersler = () => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="body2">Kalan AKTS</Typography>
-          <Typography variant="body2" color="red">
+          <Typography variant="caption">Kalan AKTS</Typography>
+          <Typography variant="caption" color="red">
             {(35 - selectedAkts).toFixed(2)}
           </Typography>
         </Box>
@@ -97,10 +97,10 @@ const SeciliDersler = () => {
           borderBottom: "1px solid #B3B3B3",
         }}
       >
-        <Typography variant="body2">Sıra</Typography>
-        <Typography variant="body2">Ders Kodu</Typography>
-        <Typography variant="body2">Ders Adı</Typography>
-        <Typography variant="body2">AKTS</Typography>
+        <Typography variant="caption">Sıra</Typography>
+        <Typography variant="caption">Ders Kodu</Typography>
+        <Typography variant="caption">Ders Adı</Typography>
+        <Typography variant="caption">AKTS</Typography>
       </Box>
       {selectedSubjects.map((item, index) => (
         <SecilmisDers index={index} data={item} />
@@ -130,7 +130,7 @@ const SeciliDersler = () => {
               width: "15px",
             }}
           />
-          <Typography variant="body2">Seçilmiş Dersler</Typography>
+          <Typography variant="caption2">Seçilmiş Dersler</Typography>
         </Box>
         <Box
           sx={{
@@ -147,7 +147,7 @@ const SeciliDersler = () => {
               width: "15px",
             }}
           />
-          <Typography variant="body2">Zorunlu Seçilmiş Dersler</Typography>
+          <Typography variant="caption2">Zorunlu Seçilmiş Dersler</Typography>
         </Box>
         <Box
           sx={{
@@ -164,7 +164,7 @@ const SeciliDersler = () => {
               width: "15px",
             }}
           />
-          <Typography variant="body2">Seçmeli Havuzlar</Typography>
+          <Typography variant="caption2">Seçmeli Havuzlar</Typography>
         </Box>
       </Box>
     </Box>

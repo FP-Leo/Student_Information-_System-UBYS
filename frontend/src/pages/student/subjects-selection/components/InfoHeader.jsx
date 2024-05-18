@@ -29,12 +29,11 @@ const InfoHeader = () => {
             display: "flex",
           }}
         >
-          <Typography>Danışman: </Typography>
+          <Typography variant="subtitle1">Danışman: </Typography>
           <Typography
             style={{
               marginLeft: "10px",
             }}
-            variant="cardHeader"
           >
             Doç. Dr. Erlindi İsaj
           </Typography>
@@ -43,6 +42,7 @@ const InfoHeader = () => {
           style={{
             margin: "0 15px",
           }}
+          color={"text.disabled"}
         >
           /
         </Typography>
@@ -51,12 +51,12 @@ const InfoHeader = () => {
             display: "flex",
           }}
         >
-          <Typography>Sınıf: </Typography>
+          <Typography variant="subtitle1">Sınıf: </Typography>
           <Typography
             style={{
               marginLeft: "10px",
             }}
-            variant="cardHeader"
+            color={"text.disabled"}
           >
             2
           </Typography>
@@ -65,6 +65,7 @@ const InfoHeader = () => {
           style={{
             margin: "0 15px",
           }}
+          color={"text.disabled"}
         >
           /
         </Typography>
@@ -73,12 +74,11 @@ const InfoHeader = () => {
             display: "flex",
           }}
         >
-          <Typography>Ders Dönemi: </Typography>
+          <Typography variant="subtitle1">Ders Dönemi: </Typography>
           <Typography
             style={{
               marginLeft: "10px",
             }}
-            variant="cardHeader"
           >
             3
           </Typography>
@@ -87,6 +87,7 @@ const InfoHeader = () => {
           style={{
             margin: "0 15px",
           }}
+          color={"text.disabled"}
         >
           /
         </Typography>
@@ -95,7 +96,7 @@ const InfoHeader = () => {
             display: "flex",
           }}
         >
-          <Typography>Durum: </Typography>
+          <Typography variant="subtitle1">Durum: </Typography>
           <Typography
             style={{
               marginLeft: "10px",

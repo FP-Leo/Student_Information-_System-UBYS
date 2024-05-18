@@ -16,7 +16,7 @@ const GenelAyarlar = () => {
           src={avatar2}
           sx={{ width: "80px", height: "80px", marginRight: "20px" }}
         />
-        <Button sx={{ height: "40px" }} variant="custom">
+        <Button sx={{ height: "40px" }} variant="caption1">
           CHANGE
         </Button>
       </Box>

@@ -6,6 +6,7 @@ import { removeSpacesAndLowerCase } from "utils/helper-functions";
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import {
+  Typography,
   List,
   ListItemButton,
   ListItemIcon,
@@ -53,7 +54,9 @@ const ProfileTab = ({ handleLogout }) => {
         <ListItemIcon>
           <EditOutlined />
         </ListItemIcon>
-        <ListItemText primary="Edit Profile" />
+        <ListItemText
+          primary={<Typography variant="subtitle2">Edit Profile</Typography>}
+        />
       </ListItemButton>
       <ListItemButton
         selected={selectedIndex === 1}
@@ -62,13 +65,17 @@ const ProfileTab = ({ handleLogout }) => {
         <ListItemIcon>
           <UserOutlined />
         </ListItemIcon>
-        <ListItemText primary="View Profile" />
+        <ListItemText
+          primary={<Typography variant="subtitle2">View Profile</Typography>}
+        />
       </ListItemButton>
       <ListItemButton selected={selectedIndex === 2} onClick={handleLogout}>
         <ListItemIcon>
           <LogoutOutlined />
         </ListItemIcon>
-        <ListItemText primary="Logout" />
+        <ListItemText
+          primary={<Typography variant="subtitle2">Log Out</Typography>}
+        />
       </ListItemButton>
     </List>
   );

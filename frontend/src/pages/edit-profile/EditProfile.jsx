@@ -33,7 +33,7 @@ const EditProfile = () => {
     >
       <Box
         sx={{
-          backgroundColor: "background.paper",
+          backgroundColor: "background.neutral",
           borderRadius: 3,
           boxShadow: theme.customShadows.card,
           padding: "20px",

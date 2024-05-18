@@ -22,7 +22,7 @@ const InfoBox = ({ description, heading }) => {
           {heading}
         </Typography>
       )}
-      <Typography variant="body2" color="info.darker">
+      <Typography variant="caption2" color="info.darker">
         {description}
       </Typography>
     </Box>

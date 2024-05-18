@@ -7,14 +7,20 @@ import reportWebVitals from "./reportWebVitals";
 
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./store/root";
-import { router } from "./router/router";
+
+import ThemeProvider from "theme/theme";
+import { ThemeSettingProvider } from "context/theme-context/theme-settings";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ReduxProvider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeSettingProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </ThemeSettingProvider>
   </ReduxProvider>
 );
 

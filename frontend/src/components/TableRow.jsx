@@ -24,7 +24,7 @@ const TableRow = () => {
             borderRight: "1px solid #B3B3B3",
           }}
         >
-          <Typography>3003BML</Typography>
+          <Typography variant="subtitle2">3003BML</Typography>
         </Box>
         <Box
           sx={{
@@ -34,7 +34,7 @@ const TableRow = () => {
             gridRow: "1/5",
           }}
         >
-          <Typography sx={{ textAlign: "center" }}>
+          <Typography variant="body2" sx={{ textAlign: "center" }}>
             Progamlama Dilleri Prensipleri
           </Typography>
         </Box>
@@ -48,7 +48,7 @@ const TableRow = () => {
             borderLeft: "1px solid #B3B3B3",
           }}
         >
-          <Typography>3,00</Typography>
+          <Typography variant="body2">3,00</Typography>
         </Box>
         <Box
           sx={{
@@ -59,7 +59,7 @@ const TableRow = () => {
             borderRight: "1px solid #B3B3B3",
           }}
         >
-          <Typography>5,00</Typography>
+          <Typography variant="body2">5,00</Typography>
         </Box>
         <Box
           sx={{
@@ -69,7 +69,7 @@ const TableRow = () => {
             gridRow: "1/5",
           }}
         >
-          <Typography> Ahmet Yıldırım</Typography>
+          <Typography variant="body2"> Ahmet Yıldırım</Typography>
         </Box>
         <Box
           sx={{
@@ -82,7 +82,7 @@ const TableRow = () => {
             borderLeft: "1px solid #B3B3B3",
           }}
         >
-          <Typography>Devamlı</Typography>
+          <Typography variant="body2">Devamlı</Typography>
         </Box>
         <Box
           sx={{
@@ -93,7 +93,7 @@ const TableRow = () => {
             borderBottom: "1px solid #B3B3B3",
           }}
         >
-          <Typography>70</Typography>
+          <Typography variant="body2">70</Typography>
         </Box>
         <Box
           sx={{
@@ -106,7 +106,7 @@ const TableRow = () => {
             borderLeft: "1px solid #B3B3B3",
           }}
         >
-          <Typography>CB</Typography>
+          <Typography variant="subtitle2">CB</Typography>
         </Box>
         <Box
           sx={{
@@ -117,7 +117,7 @@ const TableRow = () => {
             borderBottom: "1px solid #B3B3B3",
           }}
         >
-          <Typography>Başarılı</Typography>
+          <Typography variant="body2">Başarılı</Typography>
         </Box>
         <Box
           sx={{
@@ -138,14 +138,14 @@ const TableRow = () => {
               marginRight: "10px",
             }}
           >
-            <Typography variant="cardHeader">Vize:</Typography>
+            <Typography variant="subtitle2">Vize:</Typography>
           </Box>
           <Box
             sx={{
               gridColumn: "2/3",
             }}
           >
-            <Typography>70</Typography>
+            <Typography variant="body2">70</Typography>
           </Box>
         </Box>
         <Box
@@ -167,14 +167,14 @@ const TableRow = () => {
               marginRight: "10px",
             }}
           >
-            <Typography variant="cardHeader">Final:</Typography>
+            <Typography variant="subtitle2">Final:</Typography>
           </Box>
           <Box
             sx={{
               gridColumn: "2/3",
             }}
           >
-            <Typography>70</Typography>
+            <Typography variant="body2">70</Typography>
           </Box>
         </Box>{" "}
         <Box
@@ -195,14 +195,14 @@ const TableRow = () => {
               marginRight: "10px",
             }}
           >
-            <Typography variant="cardHeader">Bütünleme:</Typography>
+            <Typography variant="subtitle2">Bütünleme:</Typography>
           </Box>
           <Box
             sx={{
               gridColumn: "2/3",
             }}
           >
-            <Typography>-</Typography>
+            <Typography variant="body2">-</Typography>
           </Box>
         </Box>
       </Box>

@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentUser } from "store/user/user.action";
 
 const INITIAL_STATE = {
-  id: "",
+  username: "",
   password: "",
 };
 
@@ -29,10 +29,9 @@ const PORT = 7150; //!--- Change this to your port number
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
   const [userInput, setUserInput] = useState(INITIAL_STATE);
-
-  const { id, password } = userInput;
+  const { username, password } = userInput;
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -53,14 +52,22 @@ const Login = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
+      //!------ Uncomment this part if you want to use MAIN PROJECT API
+      // const response = await axios.post(
+      //   `https://localhost:${PORT}/api/account/login`,
+      //   userInput
+      // );
+
+      //!------ Uncomment this part if you want to use PERSONAL PROJECT API
       const response = await axios.get(
-        `https://localhost:${PORT}/api/User/${id}`
+        `https://localhost:${PORT}/api/User/${username}`
       );
+
       dispatch(setCurrentUser(response.data));
       resetInputValue();
       navigate("/home");
     } catch (error) {
-      alert("Giriş yaparken bir hata oluştu.");
+      alert(error);
     }
   };
 
@@ -105,15 +112,15 @@ const Login = () => {
             <div>
               <TextField
                 required
-                id="id"
-                name="id"
-                type="id"
+                id="username"
+                name="username"
+                type="username"
                 fullWidth={true}
                 style={{ marginBottom: "15px" }}
                 label="Kimlik numarası"
                 variant="filled"
                 onChange={handleInputChange}
-                value={id}
+                value={username}
               />
               <FormControl
                 fullWidth={true}

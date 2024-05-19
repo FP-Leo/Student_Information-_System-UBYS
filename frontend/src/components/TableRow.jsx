@@ -1,6 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const TableRow = () => {
+  const navigate = useNavigate();
   return (
     <Box>
       <Box
@@ -24,7 +26,21 @@ const TableRow = () => {
             borderRight: "1px solid #B3B3B3",
           }}
         >
-          <Typography variant="subtitle2">3003BML</Typography>
+          <Typography
+            onClick={() => {
+              navigate("3003BML");
+            }}
+            color="primary"
+            sx={{
+              "&:hover": {
+                cursor: "pointer",
+                color: "primary.dark",
+              },
+            }}
+            variant="subtitle2"
+          >
+            3003BML
+          </Typography>
         </Box>
         <Box
           sx={{

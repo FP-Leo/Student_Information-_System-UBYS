@@ -7,6 +7,8 @@ import EditProfile from "pages/edit-profile/EditProfile";
 import Calendar from "pages/student/calendar/Calendar";
 
 import ProtectedRoute from "../ProtectedRoute";
+import BelgeTablebi from "pages/student/belge-talebi/BelgeTalebi";
+import SubjectDetails from "pages/student/subjects/SubjectDetails.jsx/SubjectDetails";
 
 // ==============================|| Student Routing ||============================== //
 
@@ -20,6 +22,10 @@ const StudentRoutes = [
     element: <Subjects />,
   },
   {
+    path: "derslerim/:id",
+    element: <SubjectDetails />,
+  },
+  {
     path: "ders-secimi",
     element: <SubjectsSelection />,
   },
@@ -30,6 +36,10 @@ const StudentRoutes = [
   {
     path: "takvim",
     element: <Calendar />,
+  },
+  {
+    path: "belgetalebi",
+    element: <BelgeTablebi />,
   },
 ];
 

@@ -22,6 +22,7 @@ namespace api.Mappers
                 CurrentType = studentAcc.CurrentType,
                 CurrentStatus = studentAcc.CurrentStatus,
                 SchoolMail = studentAcc.SchoolMail,
+                PersonalMail = studentAcc.PersonalMail,
                 Phone = studentAcc.Phone
             };
         }
@@ -36,6 +37,7 @@ namespace api.Mappers
                 CurrentType = studentAcc.CurrentType,
                 CurrentStatus = studentAcc.CurrentStatus,
                 SchoolMail = studentAcc.SchoolMail,
+                PersonalMail = studentAcc.PersonalMail,
                 Phone = studentAcc.Phone
             };
         }
@@ -49,6 +51,7 @@ namespace api.Mappers
                 CurrentType = newStudentAcc.CurrentType,
                 CurrentStatus = newStudentAcc.CurrentStatus,
                 SchoolMail = newStudentAcc.SchoolMail,
+                PersonalMail = newStudentAcc.PersonalMail,
                 Phone = newStudentAcc.Phone,
                 UserId = newStudentAcc.UserId
             };
@@ -61,12 +64,13 @@ namespace api.Mappers
                 FirstName = LecturerAcc.FirstName,
                 LastName = LecturerAcc.LastName,
                 BirthDate = LecturerAcc.BirthDate,
-                LecturerSSN = LecturerAcc.LecturerSSN,
+                LecturerId = LecturerAcc.LecturerId,
                 RegisterDate = LecturerAcc.RegisterDate,
                 Title = LecturerAcc.Title,
                 CurrentStatus = LecturerAcc.CurrentStatus,
                 TotalWorkHours = LecturerAcc.TotalWorkHours,
                 SchoolMail = LecturerAcc.SchoolMail,
+                PersonalMail = LecturerAcc.PersonalMail,
                 Phone = LecturerAcc.Phone
             };
         }
@@ -76,12 +80,13 @@ namespace api.Mappers
                 FirstName = LecturerAcc.FirstName,
                 LastName = LecturerAcc.LastName,
                 BirthDate = LecturerAcc.BirthDate,
-                LecturerSSN = LecturerAcc.LecturerSSN,
+                LecturerId = LecturerAcc.LecturerId,
                 RegisterDate = LecturerAcc.RegisterDate,
                 Title = LecturerAcc.Title,
                 CurrentStatus = LecturerAcc.CurrentStatus,
                 TotalWorkHours = LecturerAcc.TotalWorkHours,
                 SchoolMail = LecturerAcc.SchoolMail,
+                PersonalMail = LecturerAcc.PersonalMail,
                 Phone = LecturerAcc.Phone
             };
         }
@@ -91,12 +96,13 @@ namespace api.Mappers
                 FirstName = newLecturerAcc.FirstName,
                 LastName = newLecturerAcc.LastName,
                 BirthDate = newLecturerAcc.BirthDate,
-                LecturerSSN = newLecturerAcc.LecturerSSN,
+                LecturerId = newLecturerAcc.LecturerId,
                 RegisterDate = DateTime.Now,
                 Title = newLecturerAcc.Title,
                 CurrentStatus = newLecturerAcc.CurrentStatus,
                 TotalWorkHours = newLecturerAcc.TotalWorkHours,
                 SchoolMail = newLecturerAcc.SchoolMail,
+                PersonalMail = newLecturerAcc.PersonalMail,
                 Phone = newLecturerAcc.Phone,
                 UserId = newLecturerAcc.UserId
             };
@@ -108,11 +114,12 @@ namespace api.Mappers
                 FirstName = AdvisorAcc.FirstName,
                 LastName = AdvisorAcc.LastName,
                 BirthDate = AdvisorAcc.BirthDate,
-                AdvisorSSN = AdvisorAcc.AdvisorSSN,
+                AdvisorId = AdvisorAcc.AdvisorSSN,
                 RegisterDate = AdvisorAcc.RegisterDate,
                 //CurrentType = AdvisorAcc.CurrentType,
                 //CurrentStatus = AdvisorAcc.CurrentStatus,
                 SchoolMail = AdvisorAcc.SchoolMail,
+                PersonalMail = AdvisorAcc.PersonalMail,
                 Phone = AdvisorAcc.Phone
             };
         }
@@ -123,11 +130,12 @@ namespace api.Mappers
                 FirstName = AdvisorAcc.FirstName,
                 LastName = AdvisorAcc.LastName,
                 BirthDate = AdvisorAcc.BirthDate,
-                AdvisorSSN = AdvisorAcc.AdvisorSSN,
+                AdvisorId = AdvisorAcc.AdvisorSSN,
                 RegisterDate = AdvisorAcc.RegisterDate,
                 //CurrentType = AdvisorAcc.CurrentType,
                 //CurrentStatus = AdvisorAcc.CurrentStatus,
                 SchoolMail = AdvisorAcc.SchoolMail,
+                PersonalMail = AdvisorAcc.PersonalMail,
                 Phone = AdvisorAcc.Phone
             };
         }
@@ -137,11 +145,12 @@ namespace api.Mappers
                 FirstName = newAdvisorAcc.FirstName,
                 LastName = newAdvisorAcc.LastName,
                 BirthDate = newAdvisorAcc.BirthDate,
-                AdvisorSSN = newAdvisorAcc.AdvisorSSN,
+                AdvisorSSN = newAdvisorAcc.AdvisorId,
                 RegisterDate = DateTime.Now,
                 //CurrentType = newAdvisorAcc.CurrentType,
                 //CurrentStatus = newAdvisorAcc.CurrentStatus,
                 SchoolMail = newAdvisorAcc.SchoolMail,
+                PersonalMail = newAdvisorAcc.PersonalMail,
                 Phone = newAdvisorAcc.Phone,
                 UserId = newAdvisorAcc.UserId
             };
@@ -153,11 +162,12 @@ namespace api.Mappers
                 FirstName = AdministratorAcc.FirstName,
                 LastName = AdministratorAcc.LastName,
                 BirthDate = AdministratorAcc.BirthDate,
-                AdministratorSSN = AdministratorAcc.AdministratorSSN,
+                AdministratorId = AdministratorAcc.AdministratorId,
                 RegisterDate = AdministratorAcc.RegisterDate,
                 //CurrentType = AdministratorAcc.CurrentType,
                 //CurrentStatus = AdministratorAcc.CurrentStatus,
                 SchoolMail = AdministratorAcc.SchoolMail,
+                PersonalMail = AdministratorAcc.PersonalMail,
                 Phone = AdministratorAcc.Phone
             };
         }
@@ -168,11 +178,12 @@ namespace api.Mappers
                 FirstName = AdministratorAcc.FirstName,
                 LastName = AdministratorAcc.LastName,
                 BirthDate = AdministratorAcc.BirthDate,
-                AdministratorSSN = AdministratorAcc.AdministratorSSN,
+                AdministratorId = AdministratorAcc.AdministratorId,
                 RegisterDate = AdministratorAcc.RegisterDate,
                 //CurrentType = AdministratorAcc.CurrentType,
                 //CurrentStatus = AdministratorAcc.CurrentStatus,
                 SchoolMail = AdministratorAcc.SchoolMail,
+                PersonalMail = AdministratorAcc.PersonalMail,
                 Phone = AdministratorAcc.Phone
             };
         }
@@ -182,21 +193,16 @@ namespace api.Mappers
                 FirstName = newAdministratorAcc.FirstName,
                 LastName = newAdministratorAcc.LastName,
                 BirthDate = newAdministratorAcc.BirthDate,
-                AdministratorSSN = newAdministratorAcc.AdministratorSSN,
+                AdministratorId = newAdministratorAcc.AdministratorId,
                 RegisterDate = DateTime.Now,
                 //CurrentType = newAdministratorAcc.CurrentType,
                 //CurrentStatus = newAdministratorAcc.CurrentStatus,
                 SchoolMail = newAdministratorAcc.SchoolMail,
+                PersonalMail = newAdministratorAcc.PersonalMail,
                 Phone = newAdministratorAcc.Phone,
                 UserId = newAdministratorAcc.UserId
             };
         }
-
-
-
-
-
-
 
     }
 }

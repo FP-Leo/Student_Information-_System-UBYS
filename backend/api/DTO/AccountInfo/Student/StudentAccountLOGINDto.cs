@@ -26,6 +26,7 @@ namespace api.DTO.AccountInfo
         public string? CurrentStatus { get; set; }
         [Required]
         public string? SchoolMail {get; set;}
+        public string? PersonalMail {get; set;}
         [Required]
         public string? Phone {get; set;}
     }

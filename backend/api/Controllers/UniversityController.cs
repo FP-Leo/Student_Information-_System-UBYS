@@ -66,6 +66,7 @@ namespace api.Controllers
 
             university.Name = universityUpdateDto.Name;
             university.Address = universityUpdateDto.Address;
+            university.WebSite = universityUpdateDto.WebSite;
             university.Mail = universityUpdateDto.Mail;
             university.PhoneNumber = universityUpdateDto.PhoneNumber;
             university.CurrentSchoolYear = universityUpdateDto.CurrentSchoolYear;

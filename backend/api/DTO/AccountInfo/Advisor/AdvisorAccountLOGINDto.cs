@@ -6,24 +6,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.AccountInfo
 {
-    public class AdvisorAccountDto
+    public class AdvisorAccountLOGINDto
     {
         [Required]
-        public string FirstName {get; set;} = string.Empty;
+        public string? Role {get; set;}
         [Required]
-        public string LastName {get; set;} = string.Empty;
+        public string? FirstName {get; set;}
+        [Required]
+        public string? LastName {get; set;}
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
-        public int AdvisorSSN {get; set;}
+        public int AdvisorId {get; set;}
         [Required]
         public DateTime RegisterDate {get; set;}
-       //[Required]
-       // public string? CurrentType { get; set; }
-       //[Required]
-        //public string? CurrentStatus { get; set; }
         [Required]
         public string? SchoolMail {get; set;}
+        public string? PersonalMail {get; set;}
+        [Required]
         public string? Phone {get; set;}
     }
 }

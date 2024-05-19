@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.AccountInfo
 {
-    public class AdministratorAccountDto
+    public class LecturerAccountPOSTDto
     {
         [Required]
         public string FirstName {get; set;} = string.Empty;
@@ -15,15 +15,19 @@ namespace api.DTO.AccountInfo
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
-        public int AdministratorSSN {get; set;}
+        //[RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")] // conditions to be decided.
+        public int LecturerId {get; set;}
         [Required]
-        public DateTime RegisterDate {get; set;}
-       //[Required]
-       // public string? CurrentType { get; set; }
-       //[Required]
-        //public string? CurrentStatus { get; set; }
+        public string? Title { get; set; }
+        [Required]
+        public string? CurrentStatus { get; set; }
+        [Required]
+        public float TotalWorkHours { get; set; }
         [Required]
         public string? SchoolMail {get; set;}
+        public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
+        [Required]
+        public string? UserId {get; set;}
     }
 }

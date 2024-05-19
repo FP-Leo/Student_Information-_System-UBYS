@@ -6,10 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.AccountInfo
 {
-    public class AdvisorAccountLOGINDto
+    public class AdministratorAccountDto
     {
-        [Required]
-        public string? Role {get; set;}
         [Required]
         public string? FirstName {get; set;}
         [Required]
@@ -17,16 +15,12 @@ namespace api.DTO.AccountInfo
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
-        public int AdvisorSSN {get; set;}
+        public int AdministratorId {get; set;}
         [Required]
         public DateTime RegisterDate {get; set;}
-        //[Required]
-        //public string? CurrentType { get; set; }
-        //[Required]
-        //public string? CurrentStatus { get; set; }
         [Required]
         public string? SchoolMail {get; set;}
-        [Required]
+        public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
     }
 }

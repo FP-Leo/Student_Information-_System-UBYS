@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace api.DTO.University
+namespace api.DTO.Faculty
 {
-    public class UniversityPostDto
+    public class FacultyUpdateDto
     {
         [Required]
-        public string? Name { get; set; }
+        public int FacultyID { get; set; }
         [Required]
         public string? Address { get; set; }
         [Required]
@@ -19,8 +19,6 @@ namespace api.DTO.University
         [Required]
         public string? PhoneNumber { get; set; }
         [Required]
-        public int CurrentSchoolYear { get; set; }
-        [Required]
-        public string? RectorId { get; set; }
+        public string? DeanId { get; set; }
     }
 }

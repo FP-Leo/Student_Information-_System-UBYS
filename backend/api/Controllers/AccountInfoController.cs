@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.DTO.AccountInfo;
 using api.Interfaces;
 using api.Mappers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -107,6 +102,7 @@ namespace api.Controllers
             accInfo.CurrentType = studentAccountPOSTDto.CurrentType;
             accInfo.CurrentStatus = studentAccountPOSTDto.CurrentStatus;
             accInfo.SchoolMail = studentAccountPOSTDto.SchoolMail;
+            accInfo.PersonalMail = studentAccountPOSTDto.PersonalMail;
             accInfo.Phone = studentAccountPOSTDto.Phone;
 
             var result = await _studentAccRepo.UpdateStudentAccountAsync(accInfo);
@@ -124,6 +120,12 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            if(studentAccountUpdateDto.UserId == null)
+            {
+                return BadRequest(ModelState);
+            }
+
             var accInfo = await _studentAccRepo.GetStudentAccountByUIDAsync(studentAccountUpdateDto.UserId); 
 
             if(accInfo == null){
@@ -131,6 +133,7 @@ namespace api.Controllers
             }
 
             accInfo.Phone = studentAccountUpdateDto.Phone;
+            accInfo.PersonalMail =studentAccountUpdateDto.PersonalMail;
 
            var result = await _studentAccRepo.UpdateStudentAccountAsync(accInfo);
 
@@ -178,7 +181,6 @@ namespace api.Controllers
             return NoContent();
         }
         */
-
 
         // Lecturer 
         [HttpGet("Lecturer/AccountInfo/UserId/{UID}")]
@@ -237,6 +239,9 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            if(lecturerAccountPOSTDto.UserId == null)
+                return BadRequest(ModelState);
             
             var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(lecturerAccountPOSTDto.UserId); 
 
@@ -247,11 +252,12 @@ namespace api.Controllers
             accInfo.FirstName = lecturerAccountPOSTDto.FirstName;
             accInfo.LastName = lecturerAccountPOSTDto.LastName;
             accInfo.BirthDate = lecturerAccountPOSTDto.BirthDate;
-            accInfo.LecturerSSN = lecturerAccountPOSTDto.LecturerSSN;
+            accInfo.LecturerId = lecturerAccountPOSTDto.LecturerId;
             accInfo.CurrentStatus = lecturerAccountPOSTDto.CurrentStatus;
             accInfo.Title = lecturerAccountPOSTDto.Title;
             accInfo.TotalWorkHours = lecturerAccountPOSTDto.TotalWorkHours;
             accInfo.SchoolMail = lecturerAccountPOSTDto.SchoolMail;
+            accInfo.PersonalMail = lecturerAccountPOSTDto.PersonalMail;
             accInfo.Phone = lecturerAccountPOSTDto.Phone;
 
             var result = await _lecturerAccRepo.UpdateLecturerAccountAsync(accInfo);
@@ -269,6 +275,12 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            if(lecturerAccountPOSTDto.UserId == null)
+            {
+                return BadRequest(ModelState);
+            }
+
             var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(lecturerAccountPOSTDto.UserId);
 
             if(accInfo == null){
@@ -276,6 +288,7 @@ namespace api.Controllers
             }
 
             accInfo.Phone = lecturerAccountPOSTDto.Phone;
+            accInfo.PersonalMail = lecturerAccountPOSTDto.PersonalMail;
 
             var result = await _lecturerAccRepo.UpdateLecturerAccountAsync(accInfo);
 

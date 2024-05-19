@@ -38,7 +38,7 @@ namespace api.Repositories
 
         public async Task<AdministratorAccount?> GetAdministratorAccountBySSNAsync(int AdministratorSSN)
         {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.AdministratorSSN == AdministratorSSN);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.AdministratorId == AdministratorSSN);
 
             return account;
         }

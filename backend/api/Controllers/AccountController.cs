@@ -4,9 +4,7 @@ using api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using api.DTO.AccountInfo;
 using api.Mappers;
-using Microsoft.AspNetCore.Mvc.Diagnostics;
 
 namespace api.Controllers
 {
@@ -108,19 +106,9 @@ namespace api.Controllers
                     {
                         var id = await _userManager.GetUserIdAsync(appUser);
 
-                        var newStudentAccPost = new StudentAccountPOSTDto{
-                            FirstName = registerStudentDto.FirstName,
-                            LastName = registerStudentDto.LastName,
-                            BirthDate = registerStudentDto.BirthDate,
-                            SSN = registerStudentDto.SSN,
-                            CurrentType = registerStudentDto.CurrentType,
-                            CurrentStatus = registerStudentDto.CurrentStatus,
-                            SchoolMail = registerStudentDto.SchoolMail,
-                            Phone = registerStudentDto.Phone,
-                            UserId = id
-                        };
+                        var newStudentAccPost = registerStudentDto.ToStudentAccount(id);
 
-                        var newStudentAcc = await _studentAccountRepository.CreateStudentAccountAsync(newStudentAccPost.POSTToStudentAccount());
+                        var newStudentAcc = await _studentAccountRepository.CreateStudentAccountAsync(newStudentAccPost);
 
                         if (newStudentAcc == null){
                             return StatusCode(500, "Error creating the account!");
@@ -167,20 +155,9 @@ namespace api.Controllers
                     {
                         var id = await _userManager.GetUserIdAsync(appUser);
 
-                        var newLecturerAccPost = new LecturerAccountPOSTDto{
-                            FirstName = registerLecturerDto.FirstName,
-                            LastName = registerLecturerDto.LastName,
-                            BirthDate = registerLecturerDto.BirthDate,
-                            LecturerSSN = registerLecturerDto.LecturerSSN,
-                            Title = registerLecturerDto.Title,
-                            TotalWorkHours = 0,
-                            CurrentStatus = registerLecturerDto.CurrentStatus,
-                            SchoolMail = registerLecturerDto.SchoolMail,
-                            Phone = registerLecturerDto.Phone,
-                            UserId = id
-                        };
+                        var newLecturerAccPost = registerLecturerDto.ToLecturerAccount(id);
 
-                        var newLecturerAcc = await _lecturerAccountRepository.CreateLecturerAccountAsync(newLecturerAccPost.POSTToLecturerAccount());
+                        var newLecturerAcc = await _lecturerAccountRepository.CreateLecturerAccountAsync(newLecturerAccPost);
 
                         if (newLecturerAcc == null){
                             return StatusCode(500, "Error creating the account!");

@@ -1,29 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.AccountInfo
 {
-    public class StudentAccountDto
+    public class AdministratorAccountLOGINDto
     {
         [Required]
-        public string FirstName {get; set;} = string.Empty;
+        public string? Role {get; set;}
         [Required]
-        public string LastName {get; set;} = string.Empty;
+        public string? FirstName {get; set;}
+        [Required]
+        public string? LastName {get; set;}
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
-        public int SSN {get; set;}
+        public int AdministratorId {get; set;}
         [Required]
         public DateTime RegisterDate {get; set;}
         [Required]
-        public string? CurrentType { get; set; }
-        [Required]
-        public string? CurrentStatus { get; set; }
-        [Required]
         public string? SchoolMail {get; set;}
+        public string? PersonalMail {get; set;}
+        [Required]
         public string? Phone {get; set;}
     }
 }

@@ -10,7 +10,7 @@ namespace api.DTO.AccountInfo
     {
         [Required]
         public string? UserId { get; set; }
-        //Personal Email will be added later.
         public string? Phone {get; set;}
+        public string? PersonalMail {get; set;}
     }
 }

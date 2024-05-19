@@ -15,14 +15,12 @@ namespace api.DTO.AccountInfo
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
-        [RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")]
-        public int AdministratorSSN {get; set;}
-        //[Required]
-        //public string? CurrentType { get; set; }
-        //[Required]
-        //public string? CurrentStatus { get; set; }
+        //[RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")] // conditions to be decided.
+        public int AdministratorId {get; set;}
         [Required]
         public string? SchoolMail {get; set;}
+        [Required]
+        public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
         [Required]
         public string? UserId {get; set;}

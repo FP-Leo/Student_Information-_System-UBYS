@@ -14,6 +14,9 @@ namespace api.Data
         public DbSet<AdvisorAccount> AdvisorAccounts { get; set; }
         public DbSet<StudentAccount> StudentAccounts { get; set; }
         public DbSet<LecturerAccount> LecturerAccounts { get; set; }
+        public DbSet<University> Universities{ get; set; }
+        public DbSet<Faculty> Faculties{ get; set; }
+        public DbSet<Department> Departments{ get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseExplanation> CourseExplanations { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }
@@ -51,6 +54,12 @@ namespace api.Data
                 .IsRequired();
 
             modelBuilder.Entity<UserAccount>().UseTpcMappingStrategy();
+
+            modelBuilder.Entity<University>()
+                .HasOne(u => u.Rector)
+                .WithOne(uni => uni.University)
+                .HasForeignKey<University>(uni => uni.RectorId)
+                .IsRequired();
             
             base.OnModelCreating(modelBuilder);
         }

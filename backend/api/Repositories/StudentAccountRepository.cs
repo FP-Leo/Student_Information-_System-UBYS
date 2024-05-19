@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
+using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +17,23 @@ namespace api.Repositories
         public StudentAccountRepository(ApplicationDBContext context){
             _context = context;
         }
-        public Task<StudentAccount?> CreateStudentAccountAsync(StudentAccount studentAccount)
+        public async Task<StudentAccount?> CreateStudentAccountAsync(StudentAccount studentAccount)
         {
-            throw new NotImplementedException();
+            await _context.AddAsync(studentAccount);
+            var result = await _context.SaveChangesAsync();
+            if (result <= 0)
+                return null;
+            return studentAccount;
         }
 
-        public Task<StudentAccount?> DeleteStudentAccountByIdAsync(int id)
+        public async Task<StudentAccount?> DeleteStudentAccountAsync(StudentAccount studentAccount)
         {
-            throw new NotImplementedException();
+            _context.StudentAccounts.Remove(studentAccount);
+            var res = await _context.SaveChangesAsync();
+            if(res > 0){
+                return studentAccount;
+            }
+            return null;
         }
 
         public async Task<StudentAccount?> GetStudentAccountBySSNAsync(int SSN)
@@ -40,9 +50,20 @@ namespace api.Repositories
             return account;
         }
 
-        public Task<StudentAccount?> UpdateStudentAccountAsync(StudentAccount studentAccount)
+        public async Task<StudentAccount?> GetStudentAccountByUIDAsync(string UserId)
         {
-            throw new NotImplementedException();
+            var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.UserId == UserId);
+
+            return account;
+        }
+
+        public async Task<StudentAccount?> UpdateStudentAccountAsync(StudentAccount studentAccount)
+        {
+            var result = await _context.SaveChangesAsync();
+            if(result > 0){
+                return studentAccount;
+            }
+            return null;
         }
     }
 }

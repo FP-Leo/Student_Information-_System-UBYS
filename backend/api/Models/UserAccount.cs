@@ -16,6 +16,7 @@ namespace api.Models
         public DateTime BirthDate {get; set;}
         public DateTime RegisterDate {get; set;}
         public string SchoolMail {get; set;} = string.Empty;
+        //public string PersonalMail {get; set;} = string.Empty; To be added tomorrow
         public string Phone {get; set;} = string.Empty;
         public string UserId {get; set;}
         public User User {get; set;}

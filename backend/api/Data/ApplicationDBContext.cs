@@ -47,7 +47,9 @@ namespace api.Data
                 .WithOne(ua => ua.UserAccount)
                 .HasForeignKey<UserAccount>(ua => ua.UserId)
                 .IsRequired();
+
             modelBuilder.Entity<UserAccount>().UseTpcMappingStrategy();
+            
             base.OnModelCreating(modelBuilder);
         }
     }

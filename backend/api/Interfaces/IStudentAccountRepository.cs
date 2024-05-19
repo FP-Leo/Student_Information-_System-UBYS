@@ -8,10 +8,11 @@ namespace api.Interfaces
 {
     public interface IStudentAccountRepository
     {
+        Task<StudentAccount?> GetStudentAccountByUIDAsync(string UserId);
         Task<StudentAccount?> GetStudentAccountByTCAsync(string TC);
         Task<StudentAccount?> GetStudentAccountBySSNAsync(int SSN);
         Task<StudentAccount?> CreateStudentAccountAsync(StudentAccount studentAccount);
         Task<StudentAccount?> UpdateStudentAccountAsync(StudentAccount studentAccount);
-        Task<StudentAccount?> DeleteStudentAccountByIdAsync(int id);
+        Task<StudentAccount?> DeleteStudentAccountAsync(StudentAccount studentAccount);
     }
 }

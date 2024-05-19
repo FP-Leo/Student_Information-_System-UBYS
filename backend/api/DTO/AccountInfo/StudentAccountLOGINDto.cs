@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace api.DTO.AccountInfo
 {
-    public class StudentAccountDto
+    public class StudentAccountLOGINDto
     {
         [Required]
-        public string FirstName {get; set;} = string.Empty;
+        public string? Role {get; set;}
         [Required]
-        public string LastName {get; set;} = string.Empty;
+        public string? FirstName {get; set;}
+        [Required]
+        public string? LastName {get; set;}
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
@@ -24,6 +26,7 @@ namespace api.DTO.AccountInfo
         public string? CurrentStatus { get; set; }
         [Required]
         public string? SchoolMail {get; set;}
+        [Required]
         public string? Phone {get; set;}
     }
 }

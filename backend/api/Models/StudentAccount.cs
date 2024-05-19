@@ -7,8 +7,9 @@ namespace api.Models
 {
     public class StudentAccount : UserAccount
     {
-        public int SSN {get; set;}
+        public int SSN { get; set; }
         public string? CurrentType { get; set; }
         public string? CurrentStatus { get; set; }
+        //public ICollection<StudentDepDetail>? StudentDepDetails { get; set;}
     }
 }

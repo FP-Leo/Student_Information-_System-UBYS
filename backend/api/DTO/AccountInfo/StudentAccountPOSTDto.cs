@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace api.DTO.AccountInfo
 {
-    public class StudentAccountDto
+    public class StudentAccountPOSTDto
     {
         [Required]
         public string FirstName {get; set;} = string.Empty;
@@ -15,9 +15,8 @@ namespace api.DTO.AccountInfo
         [Required]
         public DateTime BirthDate {get; set;}
         [Required]
+        [RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")]
         public int SSN {get; set;}
-        [Required]
-        public DateTime RegisterDate {get; set;}
         [Required]
         public string? CurrentType { get; set; }
         [Required]
@@ -25,5 +24,7 @@ namespace api.DTO.AccountInfo
         [Required]
         public string? SchoolMail {get; set;}
         public string? Phone {get; set;}
+        [Required]
+        public string? UserId {get; set;}
     }
 }

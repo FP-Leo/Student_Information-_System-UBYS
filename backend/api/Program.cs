@@ -80,6 +80,17 @@ builder.Services.AddScoped<ILogInInfoRepository, LogInInfoRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IStudentAccountRepository, StudentAccountRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+           builder =>
+           {
+               builder.WithOrigins("http://localhost:3000") // Allow your frontend's origin
+                       .AllowAnyMethod() // Allow any HTTP method (GET, POST, PUT, DELETE)
+                       .AllowAnyHeader(); // Allow all headers
+           });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -88,6 +99,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 

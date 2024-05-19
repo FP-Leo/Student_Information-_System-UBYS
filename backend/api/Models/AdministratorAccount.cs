@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Administrator : UserAccount
+    public class AdministratorAccount : UserAccount
     {
-        public int AdministratorId {get; set;}
+        public int AdministratorSSN {get; set;}
 
     }
 }

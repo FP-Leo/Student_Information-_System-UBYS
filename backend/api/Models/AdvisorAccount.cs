@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace api.Models
 {
-    public class Advisor : UserAccount
+    public class AdvisorAccount : UserAccount
     {
-        public int AdvisorId { get; set; }
+        public int AdvisorSSN { get; set; }
 
     }
 }

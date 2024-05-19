@@ -10,7 +10,10 @@ namespace api.Data
     public class ApplicationDBContext: IdentityDbContext<User>
     {
         public ApplicationDBContext(DbContextOptions dbContextOptions) : base(dbContextOptions){}
+        public DbSet<AdministratorAccount> AdministratorAccounts { get; set; }
+        public DbSet<AdvisorAccount> AdvisorAccounts { get; set; }
         public DbSet<StudentAccount> StudentAccounts { get; set; }
+        public DbSet<LecturerAccount> LecturerAccounts { get; set; }
         public DbSet<LogInInfo> LogInInfos { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseExplanation> CourseExplanations { get; set; }

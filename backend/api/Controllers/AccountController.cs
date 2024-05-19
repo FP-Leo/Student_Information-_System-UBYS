@@ -18,12 +18,14 @@ namespace api.Controllers
         private readonly ITokenService _tokenService;
         private readonly SignInManager<User> _signinManager;
         private readonly IStudentAccountRepository _studentAccountRepository;
-        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository)
+        private readonly ILecturerAccountRepository _lecturerAccountRepository;
+        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository)
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signinManager = signInManager;
             _studentAccountRepository = studentAccountRepository;
+            _lecturerAccountRepository = lecturerAccountRepository;
         }
         //Function to register any type of user.
         [HttpPost("register")]
@@ -85,11 +87,11 @@ namespace api.Controllers
             try{
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
+                
+                if(registerStudentDto.Username == null || registerStudentDto.Password == null)
+                    return BadRequest();
 
                 if(InvalidTC(registerStudentDto.Username))
-                    return BadRequest();
-                
-                if(registerStudentDto.Password == null)
                     return BadRequest();
 
                 var appUser = new User
@@ -139,15 +141,73 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
+        [HttpPost("register/lecturer")]
+        public async Task<IActionResult> RegisterLecturer([FromBody] RegisterLecturerDto registerLecturerDto){
+            try{
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-        //[HttpPost("register/lecturer")]
+                if(registerLecturerDto.Username == null || registerLecturerDto.Password == null)
+                    return BadRequest();
+
+                if(InvalidTC(registerLecturerDto.Username))
+                    return BadRequest();
+
+                var appUser = new User
+                {
+                    UserName = registerLecturerDto.Username,
+                };
+
+                var createdUser = await _userManager.CreateAsync(appUser, registerLecturerDto.Password);
+
+                if (createdUser.Succeeded)
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(appUser, "Lecturer");
+                    if (roleResult.Succeeded)
+                    {
+                        var id = await _userManager.GetUserIdAsync(appUser);
+
+                        var newLecturerAccPost = new LecturerAccountPOSTDto{
+                            FirstName = registerLecturerDto.FirstName,
+                            LastName = registerLecturerDto.LastName,
+                            BirthDate = registerLecturerDto.BirthDate,
+                            LecturerSSN = registerLecturerDto.LecturerSSN,
+                            Title = registerLecturerDto.Title,
+                            TotalWorkHours = 0,
+                            CurrentStatus = registerLecturerDto.CurrentStatus,
+                            SchoolMail = registerLecturerDto.SchoolMail,
+                            Phone = registerLecturerDto.Phone,
+                            UserId = id
+                        };
+
+                        var newLecturerAcc = await _lecturerAccountRepository.CreateLecturerAccountAsync(newLecturerAccPost.POSTToLecturerAccount());
+
+                        if (newLecturerAcc == null){
+                            return StatusCode(500, "Error creating the account!");
+                        }
+                        return Ok(newLecturerAcc.ToLecturerAccountLOGINDto());
+                    }
+                    else
+                    {
+                        return StatusCode(500, roleResult.Errors);
+                    }
+                }
+                else
+                {
+                    return StatusCode(500, createdUser.Errors);
+                }
+            }
+            catch (Exception e){
+                return StatusCode(500, e);
+            }
+        }
         //[HttpPost("register/advisor")]
         //[HttpPost("register/administrator")]
         //After the above HttpPosts are implemented the [HttpPost("register")] can be deleted
         
         // Function to validate TC.
         private bool InvalidTC(string TC){
-            if( TC == null || TC.Length != 11)
+            if(TC.Length != 11)
                 return true;
 
             foreach(char c in TC){
@@ -164,6 +224,10 @@ namespace api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            if(loginDto == null || loginDto.Username == null || loginDto.Password == null){
+                return BadRequest();
+            }
+
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
             if (user == null) return Unauthorized("Invalid username!");
@@ -177,10 +241,22 @@ namespace api.Controllers
             if(userRoles[0] == "Student"){
                 var acc = await _studentAccountRepository.GetStudentAccountByTCAsync(loginDto.Username);
 
+                if(acc == null){
+                    return StatusCode(500, "Account not found!");
+                }
+
                 return Ok(acc.ToStudentAccountLOGINDto());
             }
 
-            //if(userRoles[0] == "Lecturer"){}
+            if(userRoles[0] == "Lecturer"){
+                var acc = await _lecturerAccountRepository.GetLecturerAccountByTCAsync(loginDto.Username);
+
+                if(acc == null){
+                    return StatusCode(500, "Account not found!");
+                }
+
+                return Ok(acc.ToLecturerAccountLOGINDto());
+            }
 
             //if(userRoles[0] == "Advisor"){}
 

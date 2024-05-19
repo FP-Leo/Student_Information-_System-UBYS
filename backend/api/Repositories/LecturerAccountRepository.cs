@@ -13,7 +13,7 @@ namespace api.Repositories
 {
     public class LecturerAccountRepository : ILecturerAccountRepository
     {
-                ApplicationDBContext _context;
+        ApplicationDBContext _context;
         public LecturerAccountRepository(ApplicationDBContext context){
             _context = context;
         }
@@ -29,30 +29,29 @@ namespace api.Repositories
         public async Task<LecturerAccount?> DeleteLecturerAccountAsync(LecturerAccount LecturerAccount)
         {
             _context.LecturerAccounts.Remove(LecturerAccount);
-            var res = await _context.SaveChangesAsync();
-            if(res > 0){
-                return LecturerAccount;
-            }
-            return null;
+            var result = await _context.SaveChangesAsync();
+            if (result <= 0)
+                return null;
+            return LecturerAccount;
         }
 
         public async Task<LecturerAccount?> GetLecturerAccountBySSNAsync(int LecturerSSN)
         {
-            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(sa => sa.LecturerSSN == LecturerSSN);
+            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.LecturerSSN == LecturerSSN);
 
             return account;
         }
 
         public async Task<LecturerAccount?> GetLecturerAccountByTCAsync(string TC)
         {
-            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(sa => sa.User.UserName == TC);
+            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.User.UserName == TC);
 
             return account;
         }
 
         public async Task<LecturerAccount?> GetLecturerAccountByUIDAsync(string UserId)
         {
-            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(sa => sa.UserId == UserId);
+            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.UserId == UserId);
 
             return account;
         }
@@ -60,10 +59,9 @@ namespace api.Repositories
         public async Task<LecturerAccount?> UpdateLecturerAccountAsync(LecturerAccount LecturerAccount)
         {
             var result = await _context.SaveChangesAsync();
-            if(result > 0){
-                return LecturerAccount;
-            }
-            return null;
+            if (result <= 0)
+                return null;
+            return LecturerAccount;
         }
     }
 }

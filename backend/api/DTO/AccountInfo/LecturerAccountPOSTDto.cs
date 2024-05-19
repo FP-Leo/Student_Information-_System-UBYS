@@ -22,6 +22,8 @@ namespace api.DTO.AccountInfo
         [Required]
         public string? CurrentStatus { get; set; }
         [Required]
+        public float TotalWorkHours { get; set; }
+        [Required]
         public string? SchoolMail {get; set;}
         public string? Phone {get; set;}
         [Required]

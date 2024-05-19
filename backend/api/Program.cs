@@ -76,9 +76,11 @@ builder.Services.AddAuthentication(options =>{
 #pragma warning restore CS8604 // Possible null reference argument.
 });
 
-builder.Services.AddScoped<ILogInInfoRepository, LogInInfoRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IStudentAccountRepository, StudentAccountRepository>();
+builder.Services.AddScoped<ILecturerAccountRepository, LecturerAccountRepository>();
+builder.Services.AddScoped<IAdvisorAccountRepository, AdvisorAccountRepository>();
+builder.Services.AddScoped<IAdministratorAccountRepository, AdministratorAccountRepository>();
 
 builder.Services.AddCors(options =>
 {

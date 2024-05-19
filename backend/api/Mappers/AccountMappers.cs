@@ -25,8 +25,7 @@ namespace api.Mappers
                 Phone = studentAcc.Phone
             };
         }
-
-         public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc){
+        public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc){
             return new StudentAccountLOGINDto{
                 Role = "Student",
                 FirstName = studentAcc.FirstName,
@@ -40,7 +39,6 @@ namespace api.Mappers
                 Phone = studentAcc.Phone
             };
         }
-
         public static StudentAccount POSTToStudentAccount(this StudentAccountPOSTDto newStudentAcc){
             return new StudentAccount{
                 FirstName = newStudentAcc.FirstName,
@@ -67,6 +65,7 @@ namespace api.Mappers
                 RegisterDate = LecturerAcc.RegisterDate,
                 Title = LecturerAcc.Title,
                 CurrentStatus = LecturerAcc.CurrentStatus,
+                TotalWorkHours = LecturerAcc.TotalWorkHours,
                 SchoolMail = LecturerAcc.SchoolMail,
                 Phone = LecturerAcc.Phone
             };
@@ -81,6 +80,7 @@ namespace api.Mappers
                 RegisterDate = LecturerAcc.RegisterDate,
                 Title = LecturerAcc.Title,
                 CurrentStatus = LecturerAcc.CurrentStatus,
+                TotalWorkHours = LecturerAcc.TotalWorkHours,
                 SchoolMail = LecturerAcc.SchoolMail,
                 Phone = LecturerAcc.Phone
             };
@@ -95,6 +95,7 @@ namespace api.Mappers
                 RegisterDate = DateTime.Now,
                 Title = newLecturerAcc.Title,
                 CurrentStatus = newLecturerAcc.CurrentStatus,
+                TotalWorkHours = newLecturerAcc.TotalWorkHours,
                 SchoolMail = newLecturerAcc.SchoolMail,
                 Phone = newLecturerAcc.Phone,
                 UserId = newLecturerAcc.UserId

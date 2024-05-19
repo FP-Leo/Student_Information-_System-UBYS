@@ -15,13 +15,30 @@ namespace api.Controllers
     public class AccountInfoController: ControllerBase
     {
         private readonly IStudentAccountRepository _studentAccRepo;
+        private readonly ILecturerAccountRepository _lecturerAccRepo;
+        private readonly IAdvisorAccountRepository _advisorAccRepo;
+        private readonly IAdministratorAccountRepository _adminAccountRepo;
 
-        public AccountInfoController(IStudentAccountRepository studentAccRepo){
+        public AccountInfoController(IStudentAccountRepository studentAccRepo, ILecturerAccountRepository lecturerAccRepository, IAdvisorAccountRepository advisorAccRepository, IAdministratorAccountRepository administratorAccRepository){
             _studentAccRepo = studentAccRepo;
+            _lecturerAccRepo = lecturerAccRepository;
+            _advisorAccRepo = advisorAccRepository;
+            _adminAccountRepo = administratorAccRepository;
+        }
+        private bool InvalidTC(string TC){
+            if( TC == null || TC.Length != 11)
+                return true;
+
+            foreach(char c in TC){
+                if(!System.Char.IsDigit(c))
+                    return true;
+            }
+
+            return false;
         }
 
         [HttpGet("Student/AccountInfo/UserId/{UID}")]
-        public async Task<IActionResult> GetByUID(string UID){
+        public async Task<IActionResult> GetStudentByUID(string UID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -34,23 +51,16 @@ namespace api.Controllers
 
             return Ok(accInfo.ToStudentAccountDto());
         }
-
         [HttpGet("Student/AccountInfo/TC/{TC}")]
-        public async Task<IActionResult> GetByTc(string TC){
+        public async Task<IActionResult> GetStudentByTc(string TC){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(TC.Length != 11)
+            if(InvalidTC(TC))
             {
-                return BadRequest("TC must be 11 characters long.");
-            }
-
-            foreach(char c in TC){
-                if(!System.Char.IsDigit(c)){
-                    return BadRequest("TC can only contain integers.");
-                }
+                return BadRequest(ModelState);
             }
 
             var accInfo = await _studentAccRepo.GetStudentAccountByTCAsync(TC); 
@@ -61,9 +71,8 @@ namespace api.Controllers
 
             return Ok(accInfo.ToStudentAccountDto());
         }
-        
         [HttpGet("Student/AccountInfo/SSN/{SSN:int}")]
-        public async Task<IActionResult> GetBySsn(int SSN){
+        public async Task<IActionResult> GetStudentBySsn(int SSN){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -77,7 +86,7 @@ namespace api.Controllers
 
             return Ok(accInfo.ToStudentAccountDto());
         }
-        // Function that will be used for an admin to change data of an account if the data entered was invalid/outdated.
+        // Function that will be used for an admin to change data of a student account if the data entered was invalid/outdated.
         [HttpPut("Admin/Student/Update/AccountInfo/")]
         public async Task<IActionResult> UpdateStudentAccount([FromBody] StudentAccountPOSTDto studentAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -108,7 +117,7 @@ namespace api.Controllers
 
             return Ok(result.ToStudentAccountDto());
         }
-        //Function that will be used by the user to update its info, the [authorize] will be done later.
+        // Function that will be used by the student to update its info, the [authorize] will be done later.
         [HttpPut("Student/Update/AccountInfo/")]
         public async Task<IActionResult> UpdateSettingsStudent([FromBody] StudentAccountUpdateDto studentAccountUpdateDto){
             if(!ModelState.IsValid)
@@ -169,5 +178,113 @@ namespace api.Controllers
             return NoContent();
         }
         */
+
+
+        // Lecturer 
+        [HttpGet("Lecturer/AccountInfo/UserId/{UID}")]
+        public async Task<IActionResult> GetLecturerByUID(string UID){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(UID);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToLecturerAccountDto());
+        }
+        [HttpGet("Lecturer/AccountInfo/TC/{TC}")]
+        public async Task<IActionResult> GetLecturerByTc(string TC){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(InvalidTC(TC))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByTCAsync(TC);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToLecturerAccountDto());
+        }
+        [HttpGet("Lecturer/AccountInfo/SSN/{SSN:int}")]
+        public async Task<IActionResult> GetLecturerBySsn(int SSN){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountBySSNAsync(SSN);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToLecturerAccountDto());
+        }
+        // Function that will be used by an admin to change data of the lecturer account if the data entered was invalid/outdated.
+        [HttpPut("Admin/Lecturer/Update/AccountInfo/")]
+        public async Task<IActionResult> UpdateLecturerAccount([FromBody] LecturerAccountPOSTDto lecturerAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(lecturerAccountPOSTDto.UserId); 
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.FirstName = lecturerAccountPOSTDto.FirstName;
+            accInfo.LastName = lecturerAccountPOSTDto.LastName;
+            accInfo.BirthDate = lecturerAccountPOSTDto.BirthDate;
+            accInfo.LecturerSSN = lecturerAccountPOSTDto.LecturerSSN;
+            accInfo.CurrentStatus = lecturerAccountPOSTDto.CurrentStatus;
+            accInfo.Title = lecturerAccountPOSTDto.Title;
+            accInfo.TotalWorkHours = lecturerAccountPOSTDto.TotalWorkHours;
+            accInfo.SchoolMail = lecturerAccountPOSTDto.SchoolMail;
+            accInfo.Phone = lecturerAccountPOSTDto.Phone;
+
+            var result = await _lecturerAccRepo.UpdateLecturerAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToLecturerAccountDto());
+        }
+        // Function that will be used by the lecturer to update its info, the [authorize] will be done later.
+        [HttpPut("Lecturer/Update/AccountInfo/")]
+        public async Task<IActionResult> UpdateSettingsLecturer([FromBody] LecturerAccountUpdateDto lecturerAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(lecturerAccountPOSTDto.UserId);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = lecturerAccountPOSTDto.Phone;
+
+            var result = await _lecturerAccRepo.UpdateLecturerAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToLecturerAccountDto());
+        }
+
     }
 }

@@ -33,29 +33,29 @@ namespace api.Repositories
         {
             _context.AdvisorAccounts.Remove(AdvisorAccount);
             var res = await _context.SaveChangesAsync();
-            if(res > 0){
-                return AdvisorAccount;
+            if(res <= 0){
+                return null;
             }
-            return null;
+            return AdvisorAccount;
         }
 
         public async Task<AdvisorAccount?> GetAdvisorAccountBySSNAsync(int AdvisorSSN)
         {
-            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(sa => sa.AdvisorSSN == AdvisorSSN);
+            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(a => a.AdvisorSSN == AdvisorSSN);
 
             return account;
         }
 
         public async Task<AdvisorAccount?> GetAdvisorAccountByTCAsync(string TC)
         {
-            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(sa => sa.User.UserName == TC);
+            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(a => a.User.UserName == TC);
 
             return account;
         }
 
         public async Task<AdvisorAccount?> GetAdvisorAccountByUIDAsync(string UserId)
         {
-            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(sa => sa.UserId == UserId);
+            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(a => a.UserId == UserId);
 
             return account;
         }
@@ -63,10 +63,10 @@ namespace api.Repositories
         public async Task<AdvisorAccount?> UpdateAdvisorAccountAsync(AdvisorAccount AdvisorAccount)
         {
             var result = await _context.SaveChangesAsync();
-            if(result > 0){
-                return AdvisorAccount;
+            if(result <= 0){
+                return null;
             }
-            return null;
+            return AdvisorAccount;
         }
     }
 }

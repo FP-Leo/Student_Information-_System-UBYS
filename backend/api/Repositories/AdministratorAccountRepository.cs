@@ -13,7 +13,7 @@ namespace api.Repositories
 {
     public class AdministratorAccountRepository : IAdministratorAccountRepository
     {
-                ApplicationDBContext _context;
+        ApplicationDBContext _context;
         public AdministratorAccountRepository(ApplicationDBContext context){
             _context = context;
         }
@@ -30,29 +30,29 @@ namespace api.Repositories
         {
             _context.AdministratorAccounts.Remove(AdministratorAccount);
             var res = await _context.SaveChangesAsync();
-            if(res > 0){
-                return AdministratorAccount;
+            if(res <= 0){
+                return null;
             }
-            return null;
+            return AdministratorAccount;
         }
 
         public async Task<AdministratorAccount?> GetAdministratorAccountBySSNAsync(int AdministratorSSN)
         {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(sa => sa.AdministratorSSN == AdministratorSSN);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.AdministratorSSN == AdministratorSSN);
 
             return account;
         }
 
         public async Task<AdministratorAccount?> GetAdministratorAccountByTCAsync(string TC)
         {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(sa => sa.User.UserName == TC);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.User.UserName == TC);
 
             return account;
         }
 
         public async Task<AdministratorAccount?> GetAdministratorAccountByUIDAsync(string UserId)
         {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(sa => sa.UserId == UserId);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.UserId == UserId);
 
             return account;
         }
@@ -60,10 +60,9 @@ namespace api.Repositories
         public async Task<AdministratorAccount?> UpdateAdministratorAccountAsync(AdministratorAccount AdministratorAccount)
         {
             var result = await _context.SaveChangesAsync();
-            if(result > 0){
-                return AdministratorAccount;
-            }
-            return null;
+             if (result <= 0)
+                return null;
+            return AdministratorAccount;
         }
     }
 }

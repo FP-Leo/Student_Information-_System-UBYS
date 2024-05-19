@@ -14,7 +14,6 @@ namespace api.Data
         public DbSet<AdvisorAccount> AdvisorAccounts { get; set; }
         public DbSet<StudentAccount> StudentAccounts { get; set; }
         public DbSet<LecturerAccount> LecturerAccounts { get; set; }
-        public DbSet<LogInInfo> LogInInfos { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseExplanation> CourseExplanations { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }

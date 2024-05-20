@@ -83,6 +83,7 @@ builder.Services.AddScoped<IAdvisorAccountRepository, AdvisorAccountRepository>(
 builder.Services.AddScoped<IAdministratorAccountRepository, AdministratorAccountRepository>();
 builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 builder.Services.AddCors(options =>
 {

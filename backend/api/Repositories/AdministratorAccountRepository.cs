@@ -45,7 +45,9 @@ namespace api.Repositories
 
         public async Task<AdministratorAccount?> GetAdministratorAccountByTCAsync(string TC)
         {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.User.UserName == TC);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             return account;
         }

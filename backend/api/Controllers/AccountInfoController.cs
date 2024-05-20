@@ -88,6 +88,10 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            if(studentAccountPOSTDto.UserId == null){
+                return BadRequest(ModelState);
+            }
             
             var accInfo = await _studentAccRepo.GetStudentAccountByUIDAsync(studentAccountPOSTDto.UserId); 
 

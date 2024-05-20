@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
+    [Index(nameof(FacultyID), nameof(FacultyName), IsUnique = true)]
     [Index(nameof(Address), IsUnique = true)]
     [Index(nameof(Mail), IsUnique = true)]
     [Index(nameof(WebSite), IsUnique = true)]
@@ -32,5 +33,6 @@ namespace api.Models
         // Navigation Properties
         public University? University { get; set; }   //One-to-Many relationship
         public User? Dean { get; set; } // One-to-One relationship 
+        public ICollection<Department>? Departments { get; set; }
     }
 }

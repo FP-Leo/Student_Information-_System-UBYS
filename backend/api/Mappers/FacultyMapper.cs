@@ -21,7 +21,6 @@ namespace api.Mappers
                 DeanId = faculty.DeanId
             };
         }
-
         public static Faculty ToFaculty(this FacultyPostDto facultyPost){
             return new Faculty{
                 FacultyName = facultyPost.FacultyName,

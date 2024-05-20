@@ -78,6 +78,19 @@ namespace api.Data
                 .WithOne(e => e.Faculty)
                 .HasForeignKey<Faculty>(e => e.DeanId)
                 .IsRequired();
+            // One to Many Faculty - Departments
+            modelBuilder.Entity<Department>()
+                .HasOne(e => e.Faculty)
+                .WithMany(e => e.Departments)
+                .HasForeignKey(e => e.FacultyId)
+                .IsRequired();
+            // One to One Department - User for HeadOfDepartment
+            modelBuilder.Entity<Department>()
+                .HasOne(e => e.HeadOfDepartment)
+                .WithOne(e => e.Department)
+                .HasForeignKey<Department>(e => e.HeadOfDepartmentId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
             
             base.OnModelCreating(modelBuilder);
         }

@@ -29,7 +29,7 @@ namespace api.Controllers
             return Ok(faculty.ToFacultyDto());
         }
         [HttpPost("Faculty")]
-        public async Task<IActionResult> AddUniversity([FromBody] FacultyPostDto facultyPostDto){
+        public async Task<IActionResult> AddFaculty([FromBody] FacultyPostDto facultyPostDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

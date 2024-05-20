@@ -26,8 +26,9 @@ namespace api.Mappers
                 Phone = studentAcc.Phone
             };
         }
-        public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc){
+        public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc, String token){
             return new StudentAccountLOGINDto{
+                Token = token,
                 Role = "Student",
                 FirstName = studentAcc.FirstName,
                 LastName = studentAcc.LastName,
@@ -74,8 +75,9 @@ namespace api.Mappers
                 Phone = LecturerAcc.Phone
             };
         }
-        public static LecturerAccountLOGINDto ToLecturerAccountLOGINDto(this LecturerAccount LecturerAcc){
+        public static LecturerAccountLOGINDto ToLecturerAccountLOGINDto(this LecturerAccount LecturerAcc, String token){
             return new LecturerAccountLOGINDto{
+                Token = token,
                 Role = "Lecturer",
                 FirstName = LecturerAcc.FirstName,
                 LastName = LecturerAcc.LastName,
@@ -124,8 +126,9 @@ namespace api.Mappers
             };
         }
 
-         public static AdvisorAccountLOGINDto ToAdvisorAccountLOGINDto(this AdvisorAccount AdvisorAcc){
+         public static AdvisorAccountLOGINDto ToAdvisorAccountLOGINDto(this AdvisorAccount AdvisorAcc, String token){
             return new AdvisorAccountLOGINDto{
+                Token = token,
                 Role = "Advisor",
                 FirstName = AdvisorAcc.FirstName,
                 LastName = AdvisorAcc.LastName,
@@ -172,8 +175,9 @@ namespace api.Mappers
             };
         }
 
-         public static AdministratorAccountLOGINDto ToAdministratorAccountLOGINDto(this AdministratorAccount AdministratorAcc){
+         public static AdministratorAccountLOGINDto ToAdministratorAccountLOGINDto(this AdministratorAccount AdministratorAcc, String token){
             return new AdministratorAccountLOGINDto{
+                Token = token,
                 Role = "Administrator",
                 FirstName = AdministratorAcc.FirstName,
                 LastName = AdministratorAcc.LastName,

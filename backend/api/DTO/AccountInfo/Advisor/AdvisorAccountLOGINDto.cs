@@ -5,6 +5,8 @@ namespace api.DTO.AccountInfo
     public class AdvisorAccountLOGINDto
     {
         [Required]
+        public string? Token { get; set; }
+        [Required]
         public string? Role {get; set;}
         [Required]
         public string? FirstName {get; set;}

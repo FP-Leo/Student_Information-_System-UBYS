@@ -117,7 +117,7 @@ namespace api.Controllers
                         if (newStudentAcc == null){
                             return StatusCode(500, "Error creating the account!");
                         }
-                        return Ok(newStudentAcc.ToStudentAccountDto());
+                        return Ok(newStudentAcc.ToStudentAccountLOGINDto(_tokenService.CreateToken(appUser)));
                     }
                     else
                     {
@@ -166,7 +166,7 @@ namespace api.Controllers
                         if (newLecturerAcc == null){
                             return StatusCode(500, "Error creating the account!");
                         }
-                        return Ok(newLecturerAcc.ToLecturerAccountLOGINDto());
+                        return Ok(newLecturerAcc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(appUser)));
                     }
                     else
                     {
@@ -217,7 +217,7 @@ namespace api.Controllers
                         if (newAdvisorAcc == null){
                             return StatusCode(500, "Error creating the account!");
                         }
-                        return Ok(newAdvisorAcc.ToAdvisorAccountLOGINDto());
+                        return Ok(newAdvisorAcc.ToAdvisorAccountLOGINDto(_tokenService.CreateToken(appUser)));
                     }
                     else
                     {
@@ -234,8 +234,8 @@ namespace api.Controllers
             }
         }
         
-          // administrator controller
-         [HttpPost("register/administrator")]
+        // administrator controller
+        [HttpPost("register/administrator")]
         public async Task<IActionResult> RegisterAdministrator([FromBody] RegisterAdministratorDto registerAdministratorDto){
             try{
                 if (!ModelState.IsValid)
@@ -268,7 +268,7 @@ namespace api.Controllers
                         if (newAdministratorAcc == null){
                             return StatusCode(500, "Error creating the account!");
                         }
-                        return Ok(newAdministratorAcc.ToAdministratorAccountLOGINDto());
+                        return Ok(newAdministratorAcc.ToAdministratorAccountLOGINDto(_tokenService.CreateToken(appUser)));
                     }
                     else
                     {
@@ -284,7 +284,6 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-        //After the above HttpPosts are implemented the [HttpPost("register")] can be deleted
         
         // Function to validate TC.
         private bool InvalidTC(string TC){
@@ -318,7 +317,9 @@ namespace api.Controllers
             if (!result.Succeeded) return Unauthorized("Username not found and/or password incorrect");
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
+
             //Check current user's role and return the appropriate info to the front end.
+
             if(userRoles[0] == "Student"){
                 var acc = await _studentAccountRepository.GetStudentAccountByTCAsync(loginDto.Username);
 
@@ -326,7 +327,7 @@ namespace api.Controllers
                     return StatusCode(500, "Account not found!");
                 }
 
-                return Ok(acc.ToStudentAccountLOGINDto());
+                return Ok(acc.ToStudentAccountLOGINDto(_tokenService.CreateToken(user)));
             }
 
             if(userRoles[0] == "Lecturer"){
@@ -336,10 +337,9 @@ namespace api.Controllers
                     return StatusCode(500, "Account not found!");
                 }
 
-                return Ok(acc.ToLecturerAccountLOGINDto());
+                return Ok(acc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(user)));
             }
 
-            //if(userRoles[0] == "Advisor"){}
             if(userRoles[0] == "Advisor"){
                 var acc = await _advisorAccountRepository.GetAdvisorAccountByTCAsync(loginDto.Username);
 
@@ -347,11 +347,9 @@ namespace api.Controllers
                     return StatusCode(500, "Account not found!");
                 }
 
-                return Ok(acc.ToAdvisorAccountLOGINDto());
+                return Ok(acc.ToAdvisorAccountLOGINDto(_tokenService.CreateToken(user)));
             }
 
-
-            //if(userRoles[0] == "Administrator"){}
             if(userRoles[0] == "Administrator"){
                 var acc = await _administratorAccountRepository.GetAdministratorAccountByTCAsync(loginDto.Username);
 
@@ -359,20 +357,10 @@ namespace api.Controllers
                     return StatusCode(500, "Account not found!");
                 }
 
-                return Ok(acc.ToAdministratorAccountLOGINDto());
+                return Ok(acc.ToAdministratorAccountLOGINDto(_tokenService.CreateToken(user)));
             }
 
-
-            //After the above ifs are implemented the below return Ok can be deleted.
-
-            return Ok(
-                new NewUserDto
-                {
-                    UserName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
-                }
-            );
+            return StatusCode(500, "Account not found!");
         }
-
     }
 }

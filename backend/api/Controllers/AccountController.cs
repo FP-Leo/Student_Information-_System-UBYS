@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -31,6 +32,7 @@ namespace api.Controllers
         }
         //Function to register any type of user.
         [HttpPost("register")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto){
             try{
                 if (!ModelState.IsValid)
@@ -85,6 +87,7 @@ namespace api.Controllers
         }
         //Function to register students only, for backend admins.
         [HttpPost("register/student")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentDto registerStudentDto){
             try{
                 if (!ModelState.IsValid)
@@ -134,6 +137,7 @@ namespace api.Controllers
             }
         }
         [HttpPost("register/lecturer")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterLecturer([FromBody] RegisterLecturerDto registerLecturerDto){
             try{
                 if (!ModelState.IsValid)
@@ -184,6 +188,7 @@ namespace api.Controllers
         }
         // Advisor controller
         [HttpPost("register/advisor")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterAdvisor([FromBody] RegisterAdvisorDto registerAdvisorDto){
             try{
                 if (!ModelState.IsValid)
@@ -234,6 +239,7 @@ namespace api.Controllers
         }
         // administrator controller
         [HttpPost("register/administrator")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterAdministrator([FromBody] RegisterAdministratorDto registerAdministratorDto){
             try{
                 if (!ModelState.IsValid)

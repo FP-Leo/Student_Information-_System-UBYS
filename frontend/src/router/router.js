@@ -6,15 +6,17 @@ import MainLayout from "layout/main-layout";
 
 import ProtectedRoute from "./ProtectedRoute";
 import StudentRoutes from "./role-based-routers/StudentRoutes.js";
-import ProfessorRoutes from "./role-based-routers/ProfessorRoutes.js";
+import LecturerRoutes from "./role-based-routers/LecturerRoutes.js";
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "store/user/user.selector";
 
+import { ROLE_TYPES } from "./role.types.js";
+
 export const Router = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const isStudent = currentUser?.role === "Student";
-  const isProfessor = currentUser?.role === "Professor";
+  const isStudent = currentUser?.role === ROLE_TYPES.STUDENT;
+  const isLecturer = currentUser?.role === ROLE_TYPES.LECTURER;
 
   return useRoutes([
     {
@@ -29,11 +31,7 @@ export const Router = () => {
           <MainLayout />
         </ProtectedRoute>
       ),
-      children: isStudent
-        ? StudentRoutes
-        : isProfessor
-        ? ProfessorRoutes
-        : null,
+      children: isStudent ? StudentRoutes : isLecturer ? LecturerRoutes : null,
     },
     {
       path: "*",

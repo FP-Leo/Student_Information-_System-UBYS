@@ -12,13 +12,13 @@ namespace api.Controllers
         private readonly IStudentAccountRepository _studentAccRepo;
         private readonly ILecturerAccountRepository _lecturerAccRepo;
         private readonly IAdvisorAccountRepository _advisorAccRepo;
-        private readonly IAdministratorAccountRepository _adminAccountRepo;
+        private readonly IAdministratorAccountRepository _adminAccRepo;
 
         public AccountInfoController(IStudentAccountRepository studentAccRepo, ILecturerAccountRepository lecturerAccRepository, IAdvisorAccountRepository advisorAccRepository, IAdministratorAccountRepository administratorAccRepository){
             _studentAccRepo = studentAccRepo;
             _lecturerAccRepo = lecturerAccRepository;
             _advisorAccRepo = advisorAccRepository;
-            _adminAccountRepo = administratorAccRepository;
+            _adminAccRepo = administratorAccRepository;
         }
         private bool InvalidTC(string TC){
             if( TC == null || TC.Length != 11)
@@ -301,6 +301,241 @@ namespace api.Controllers
             }
 
             return Ok(result.ToLecturerAccountDto());
+        }
+        
+        //Advisor 
+ 
+        [HttpGet("Advisor/AccountInfo/UserId/{UID}")]
+        public async Task<IActionResult> GetAdvisorByUID(string UID){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByUIDAsync(UID);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToAdvisorAccountDto());
+        }
+        [HttpGet("Advisor/AccountInfo/TC/{TC}")]
+        public async Task<IActionResult> GetAdvisorByTc(string TC){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(InvalidTC(TC))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByTCAsync(TC);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToAdvisorAccountDto());
+        }
+        [HttpGet("Advisor/AccountInfo/SSN/{SSN:int}")]
+        public async Task<IActionResult> GetAdvisorBySsn(int SSN){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountBySSNAsync(SSN);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToAdvisorAccountDto());
+        }
+        // Function that will be used by an admin to change data of the Advisor account if the data entered was invalid/outdated.
+        [HttpPut("Admin/Advisor/Update/AccountInfo/")]
+        public async Task<IActionResult> UpdateAdvisorAccount([FromBody] AdvisorAccountPOSTDto advisorAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(advisorAccountPOSTDto.UserId == null)
+                return BadRequest(ModelState);
+            
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByUIDAsync(advisorAccountPOSTDto.UserId); 
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.FirstName = advisorAccountPOSTDto.FirstName;
+            accInfo.LastName = advisorAccountPOSTDto.LastName;
+            accInfo.BirthDate = advisorAccountPOSTDto.BirthDate;
+            accInfo.AdvisorSSN = advisorAccountPOSTDto.AdvisorId;
+            //accInfo.CurrentStatus = advisorAccountPOSTDto.CurrentStatus;
+            //accInfo.Title = advisorAccountPOSTDto.Title;
+            //accInfo.TotalWorkHours = advisorAccountPOSTDto.TotalWorkHours;
+            accInfo.SchoolMail = advisorAccountPOSTDto.SchoolMail;
+            accInfo.PersonalMail = advisorAccountPOSTDto.PersonalMail;
+            accInfo.Phone = advisorAccountPOSTDto.Phone;
+
+            var result = await _advisorAccRepo.UpdateAdvisorAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToAdvisorAccountDto());
+        }
+        // Function that will be used by the advisor to update its info, the [authorize] will be done later.
+        [HttpPut("Advisor/Update/AccountInfo/")]
+        public async Task<IActionResult> UpdateSettingsAdvisor([FromBody] AdvisorAccountUpdateDto advisorAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(advisorAccountPOSTDto.UserId == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByUIDAsync(advisorAccountPOSTDto.UserId);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = advisorAccountPOSTDto.Phone;
+            accInfo.PersonalMail = advisorAccountPOSTDto.PersonalMail;
+
+            var result = await _advisorAccRepo.UpdateAdvisorAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToAdvisorAccountDto());
+        }
+
+        // Administrator 
+        [HttpGet("Administrator/AccountInfo/UserId/{UID}")]
+        public async Task<IActionResult> GetAdministratorByUID(string UID){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByUIDAsync(UID);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToAdministratorAccountDto());
+        }
+        [HttpGet("Administrator/AccountInfo/TC/{TC}")]
+        public async Task<IActionResult> GetAdministratorByTc(string TC){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(InvalidTC(TC))
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByTCAsync(TC);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToAdministratorAccountDto());
+        }
+        [HttpGet("Administrator/AccountInfo/SSN/{SSN:int}")]
+        public async Task<IActionResult> GetAdministratorBySsn(int SSN){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _adminAccRepo.GetAdministratorAccountBySSNAsync(SSN);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            return Ok(accInfo.ToAdministratorAccountDto());
+        }
+        // Function that will be used by an admin to change data of the Administrator account if the data entered was invalid/outdated.
+        [HttpPut("Admin/Administrator/Update/AccountInfo/")]
+        public async Task<IActionResult> UpdateAdministratorAccount([FromBody] AdministratorAccountPOSTDto administratorAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(administratorAccountPOSTDto.UserId == null)
+                return BadRequest(ModelState);
+            
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByUIDAsync(administratorAccountPOSTDto.UserId); 
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.FirstName = administratorAccountPOSTDto.FirstName;
+            accInfo.LastName = administratorAccountPOSTDto.LastName;
+            accInfo.BirthDate = administratorAccountPOSTDto.BirthDate;
+            accInfo.AdministratorId = administratorAccountPOSTDto.AdministratorId;
+            //accInfo.CurrentStatus = administratorAccountPOSTDto.CurrentStatus;
+            //accInfo.Title = administratorAccountPOSTDto.Title;
+            //accInfo.TotalWorkHours = administratorAccountPOSTDto.TotalWorkHours;
+            accInfo.SchoolMail = administratorAccountPOSTDto.SchoolMail;
+            accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
+            accInfo.Phone = administratorAccountPOSTDto.Phone;
+
+            var result = await _adminAccRepo.UpdateAdministratorAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToAdministratorAccountDto());
+        }
+        // Function that will be used by the administrator to update its info, the [authorize] will be done later.
+        [HttpPut("Administrator/Update/AccountInfo/")]
+        public async Task<IActionResult> UpdateSettingsAdministrator([FromBody] AdministratorAccountUpdateDto administratorAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(administratorAccountPOSTDto.UserId == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByUIDAsync(administratorAccountPOSTDto.UserId);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = administratorAccountPOSTDto.Phone;
+            accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
+
+            var result = await _adminAccRepo.UpdateAdministratorAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToAdministratorAccountDto());
         }
 
     }

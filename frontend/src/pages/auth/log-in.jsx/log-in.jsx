@@ -59,12 +59,14 @@ const Login = () => {
       // );
 
       //!------ Uncomment this part if you want to use PERSONAL PROJECT API
+      /*
       const response = await axios.get(
         `https://localhost:${PORT}/api/User/${username}`
       );
 
       dispatch(setCurrentUser(response.data));
       resetInputValue();
+      */
       navigate("/home");
     } catch (error) {
       alert(error);

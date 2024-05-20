@@ -182,7 +182,6 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-
         // Advisor controller
         [HttpPost("register/advisor")]
         public async Task<IActionResult> RegisterAdvisor([FromBody] RegisterAdvisorDto registerAdvisorDto){
@@ -233,7 +232,6 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-        
         // administrator controller
         [HttpPost("register/administrator")]
         public async Task<IActionResult> RegisterAdministrator([FromBody] RegisterAdministratorDto registerAdministratorDto){
@@ -284,7 +282,6 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-        
         // Function to validate TC.
         private bool InvalidTC(string TC){
             if(TC.Length != 11)

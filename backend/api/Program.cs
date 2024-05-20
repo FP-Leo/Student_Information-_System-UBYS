@@ -56,8 +56,10 @@ builder.Services.AddIdentity<User, IdentityRole>(options => {
     options.User.RequireUniqueEmail = false;
 }).AddEntityFrameworkStores<ApplicationDBContext>();
 
-builder.Services.AddAuthentication(options =>{
-    options.DefaultAuthenticateScheme = 
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme =
     options.DefaultChallengeScheme =
     options.DefaultForbidScheme =
     options.DefaultScheme =
@@ -105,12 +107,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowSpecificOrigin");
-
 app.UseHttpsRedirection();
 
+app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthentication();
-app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

@@ -24,7 +24,7 @@ const INITIAL_STATE = {
   password: "",
 };
 
-const PORT = 7150; //!--- Change this to your port number
+const PORT = 5158; //!--- Change this to your port number
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -53,20 +53,19 @@ const Login = () => {
     e.preventDefault();
     try {
       //!------ Uncomment this part if you want to use MAIN PROJECT API
-      // const response = await axios.post(
-      //   `https://localhost:${PORT}/api/account/login`,
-      //   userInput
-      // );
+      const response = await axios.post(
+        `http://localhost:${PORT}/api/account/login`,
+        userInput
+      );
 
       //!------ Uncomment this part if you want to use PERSONAL PROJECT API
       /*
       const response = await axios.get(
         `https://localhost:${PORT}/api/User/${username}`
       );
-
+      */
       dispatch(setCurrentUser(response.data));
       resetInputValue();
-      */
       navigate("/home");
     } catch (error) {
       alert(error);

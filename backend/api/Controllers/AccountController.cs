@@ -17,13 +17,17 @@ namespace api.Controllers
         private readonly SignInManager<User> _signinManager;
         private readonly IStudentAccountRepository _studentAccountRepository;
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
-        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository)
+        private readonly IAdvisorAccountRepository _advisorAccountRepository;
+        private readonly IAdministratorAccountRepository _administratorAccountRepository;
+        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository,IAdvisorAccountRepository advisorAccountRepository,IAdministratorAccountRepository administratorAccountRepository)
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signinManager = signInManager;
             _studentAccountRepository = studentAccountRepository;
             _lecturerAccountRepository = lecturerAccountRepository;
+            _advisorAccountRepository = advisorAccountRepository;
+            _administratorAccountRepository  = administratorAccountRepository;
         }
         //Function to register any type of user.
         [HttpPost("register")]
@@ -178,8 +182,108 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-        //[HttpPost("register/advisor")]
-        //[HttpPost("register/administrator")]
+
+        // Advisor controller
+        [HttpPost("register/advisor")]
+        public async Task<IActionResult> RegisterAdvisor([FromBody] RegisterAdvisorDto registerAdvisorDto){
+            try{
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                if(registerAdvisorDto.Username == null || registerAdvisorDto.Password == null)
+                    return BadRequest();
+
+                if(InvalidTC(registerAdvisorDto.Username))
+                    return BadRequest();
+
+                var appUser = new User
+                {
+                    UserName = registerAdvisorDto.Username,
+                };
+
+                var createdUser = await _userManager.CreateAsync(appUser, registerAdvisorDto.Password);
+
+                if (createdUser.Succeeded)
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(appUser, "Advisor");
+                    if (roleResult.Succeeded)
+                    {
+                        var id = await _userManager.GetUserIdAsync(appUser);
+
+                        var newAdvisorAccPost = registerAdvisorDto.ToAdvisorAccount(id);
+
+                        var newAdvisorAcc = await _advisorAccountRepository.CreateAdvisorAccountAsync(newAdvisorAccPost);
+
+                        if (newAdvisorAcc == null){
+                            return StatusCode(500, "Error creating the account!");
+                        }
+                        return Ok(newAdvisorAcc.ToAdvisorAccountLOGINDto());
+                    }
+                    else
+                    {
+                        return StatusCode(500, roleResult.Errors);
+                    }
+                }
+                else
+                {
+                    return StatusCode(500, createdUser.Errors);
+                }
+            }
+            catch (Exception e){
+                return StatusCode(500, e);
+            }
+        }
+        
+          // administrator controller
+         [HttpPost("register/administrator")]
+        public async Task<IActionResult> RegisterAdministrator([FromBody] RegisterAdministratorDto registerAdministratorDto){
+            try{
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                if(registerAdministratorDto.Username == null || registerAdministratorDto.Password == null)
+                    return BadRequest();
+
+                if(InvalidTC(registerAdministratorDto.Username))
+                    return BadRequest();
+
+                var appUser = new User
+                {
+                    UserName = registerAdministratorDto.Username,
+                };
+
+                var createdUser = await _userManager.CreateAsync(appUser, registerAdministratorDto.Password);
+
+                if (createdUser.Succeeded)
+                {
+                    var roleResult = await _userManager.AddToRoleAsync(appUser, "Administrator");
+                    if (roleResult.Succeeded)
+                    {
+                        var id = await _userManager.GetUserIdAsync(appUser);
+
+                        var newAdministratorAccPost = registerAdministratorDto.ToAdministratorAccount(id);
+
+                        var newAdministratorAcc = await _administratorAccountRepository.CreateAdministratorAccountAsync(newAdministratorAccPost);
+
+                        if (newAdministratorAcc == null){
+                            return StatusCode(500, "Error creating the account!");
+                        }
+                        return Ok(newAdministratorAcc.ToAdministratorAccountLOGINDto());
+                    }
+                    else
+                    {
+                        return StatusCode(500, roleResult.Errors);
+                    }
+                }
+                else
+                {
+                    return StatusCode(500, createdUser.Errors);
+                }
+            }
+            catch (Exception e){
+                return StatusCode(500, e);
+            }
+        }
         //After the above HttpPosts are implemented the [HttpPost("register")] can be deleted
         
         // Function to validate TC.
@@ -236,8 +340,28 @@ namespace api.Controllers
             }
 
             //if(userRoles[0] == "Advisor"){}
+            if(userRoles[0] == "Advisor"){
+                var acc = await _advisorAccountRepository.GetAdvisorAccountByTCAsync(loginDto.Username);
+
+                if(acc == null){
+                    return StatusCode(500, "Account not found!");
+                }
+
+                return Ok(acc.ToAdvisorAccountLOGINDto());
+            }
+
 
             //if(userRoles[0] == "Administrator"){}
+            if(userRoles[0] == "Administrator"){
+                var acc = await _administratorAccountRepository.GetAdministratorAccountByTCAsync(loginDto.Username);
+
+                if(acc == null){
+                    return StatusCode(500, "Account not found!");
+                }
+
+                return Ok(acc.ToAdministratorAccountLOGINDto());
+            }
+
 
             //After the above ifs are implemented the below return Ok can be deleted.
 

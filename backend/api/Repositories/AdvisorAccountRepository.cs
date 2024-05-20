@@ -16,7 +16,7 @@ namespace api.Repositories
 {
     public class AdvisorAccountRepository : IAdvisorAccountRepository
     {
-                ApplicationDBContext _context;
+        ApplicationDBContext _context;
         public AdvisorAccountRepository(ApplicationDBContext context){
             _context = context;
         }

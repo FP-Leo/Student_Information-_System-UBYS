@@ -41,5 +41,38 @@ namespace api.Mappers
                 UserId = id
             };
         }
+        public static AdvisorAccount ToAdvisorAccount(this RegisterAdvisorDto registerAdvisorDto, string id){
+            return new AdvisorAccount{
+                FirstName = registerAdvisorDto.FirstName,
+                LastName = registerAdvisorDto.LastName,
+                BirthDate = registerAdvisorDto.BirthDate,
+                AdvisorSSN = registerAdvisorDto.AdvisorId,
+                RegisterDate = DateTime.Now,
+                //Title = registerAdvisorDto.Title,
+                //TotalWorkHours = 0,
+                //CurrentStatus = registerAdvisorDto.CurrentStatus,
+                SchoolMail = registerAdvisorDto.SchoolMail,
+                PersonalMail = registerAdvisorDto.PersonalMail,
+                Phone = registerAdvisorDto.Phone,
+                UserId = id
+            };
+        }
+         public static AdministratorAccount ToAdministratorAccount(this RegisterAdministratorDto registerAdministratorDto, string id){
+            return new AdministratorAccount{
+                FirstName = registerAdministratorDto.FirstName,
+                LastName = registerAdministratorDto.LastName,
+                BirthDate = registerAdministratorDto.BirthDate,
+                AdministratorId = registerAdministratorDto.AdministratorId,
+                RegisterDate = DateTime.Now,
+                //Title = registerAdministratorDto.Title,
+                //TotalWorkHours = 0,
+                //CurrentStatus = registerAdministratorDto.CurrentStatus,
+                SchoolMail = registerAdministratorDto.SchoolMail,
+                PersonalMail = registerAdministratorDto.PersonalMail,
+                Phone = registerAdministratorDto.Phone,
+                UserId = id
+            };
+        }
+
     }
 }

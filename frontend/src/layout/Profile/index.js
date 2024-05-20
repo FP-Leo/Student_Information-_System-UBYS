@@ -47,8 +47,9 @@ const Profile = () => {
 
   const handleLogout = () => {
     try {
-      navigate("/");
       dispatch(setCurrentUser(null));
+      localStorage.removeItem("user");
+      navigate("/");
     } catch (err) {
       alert(err);
     }

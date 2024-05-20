@@ -65,6 +65,7 @@ const Login = () => {
       );
       */
       dispatch(setCurrentUser(response.data));
+      localStorage.setItem("user", JSON.stringify(response.data));
       resetInputValue();
       navigate("/home");
     } catch (error) {
@@ -99,7 +100,7 @@ const Login = () => {
         alignItems: "center",
       }}
     >
-      <Logo width="250px" height={"auto"} />
+      <Logo width="250px" />
       <Box>
         <Box
           width={"300px"}

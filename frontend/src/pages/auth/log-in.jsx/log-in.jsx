@@ -100,7 +100,7 @@ const Login = () => {
         alignItems: "center",
       }}
     >
-      <Logo />
+      <Logo width="250px" height={"auto"} />
       <Box>
         <Box
           width={"300px"}

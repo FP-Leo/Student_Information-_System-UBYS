@@ -12,7 +12,7 @@ const TEST_STATE = {
 };
 
 const INITIAL_STATE = {
-  currentUser: "",
+  currentUser: null,
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {

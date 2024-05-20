@@ -8,9 +8,7 @@ const ProtectedRoute = ({ children }) => {
   const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    if (currentUser === null) {
-      navigate("/", { replace: true });
-    }
+    if (currentUser === null) navigate("/", { replace: true });
   }, [currentUser, navigate]);
 
   return children;

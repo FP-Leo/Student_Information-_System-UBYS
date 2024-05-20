@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
 import { ROLE_TYPES } from "router/role.types";
-import { selectCurrentUser } from "store/user/user.selector";
 
 import DerslerimIcon from "assets/derslerim-icon";
 import CalendarIcon from "assets/calendar-icon";
@@ -13,6 +11,7 @@ const STUDENT_PAGES = [
   { title: "Belge Talebi", icon: <BelgeIcon /> },
 ];
 
+//!~ --------------------- This Needs to be updated --------------------- ~!//
 const PROFESSOR_PAGES = [
   { title: "My Courses", icon: <DerslerimIcon /> },
   { title: "My Calendar", icon: <CalendarIcon /> },

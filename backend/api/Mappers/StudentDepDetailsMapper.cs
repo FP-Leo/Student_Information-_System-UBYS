@@ -7,7 +7,33 @@ namespace api.Mappers
     {
         public static StudentDepDetailsDto ToStudentDepDetailsDto(this StudentDepDetail studentDepDetails){
             return new StudentDepDetailsDto{
-                Id = studentDepDetails.Id,
+                StudentType = studentDepDetails.StudentType,
+                StudentStatus = studentDepDetails.StudentStatus,
+                CurrentSchoolYear = studentDepDetails.CurrentSchoolYear,
+                CurrentSemester = studentDepDetails.CurrentSemester,
+                CurrentAKTS = studentDepDetails.CurrentAKTS,
+                TotalAKTS = studentDepDetails.TotalAKTS,
+                Gno = studentDepDetails.Gno,
+                DepartmentId = studentDepDetails.DepartmentId,
+                TC = studentDepDetails.TC,
+            };
+        }
+        public static StudentDepDetail ToStudentDepDetails(this StudentDepDetailsPostDto studentDepDetails){
+            return new StudentDepDetail{
+                StudentType = studentDepDetails.StudentType,
+                StudentStatus = studentDepDetails.StudentStatus,
+                CurrentSchoolYear = studentDepDetails.CurrentSchoolYear,
+                CurrentSemester = studentDepDetails.CurrentSemester,
+                CurrentAKTS = studentDepDetails.CurrentAKTS,
+                TotalAKTS = studentDepDetails.TotalAKTS,
+                Gno = studentDepDetails.Gno,
+                DepartmentId = studentDepDetails.DepartmentId,
+                TC = studentDepDetails.TC,
+            };
+        }
+
+        public static StudentDepDetail ToStudentDepDetails(this StudentDepDetailsUpdateDto studentDepDetails){
+            return new StudentDepDetail{
                 StudentType = studentDepDetails.StudentType,
                 StudentStatus = studentDepDetails.StudentStatus,
                 CurrentSchoolYear = studentDepDetails.CurrentSchoolYear,

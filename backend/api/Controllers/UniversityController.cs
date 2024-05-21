@@ -1,6 +1,7 @@
 using api.DTO.University;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -29,6 +30,7 @@ namespace api.Controllers
             return Ok(university.ToUniversityDto());
         }
         [HttpPost("University")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddUniversity([FromBody] UniversityPostDto universityPostDto){
             if(!ModelState.IsValid)
             {
@@ -44,6 +46,7 @@ namespace api.Controllers
             return Ok(university.ToUniversityDto());
         }
         [HttpPut("University/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateUniversity(int Id, [FromBody] UniversityUpdateDto universityUpdateDto){
             if(!ModelState.IsValid)
             {
@@ -78,6 +81,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("University/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUniversity(int Id){
             if(!ModelState.IsValid)
             {

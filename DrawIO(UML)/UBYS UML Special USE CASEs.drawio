@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-21T11:09:14.489Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="a_svLke0TKAAipVIIDEM" version="24.4.4" type="device">
+<mxfile host="app.diagrams.net" modified="2024-05-21T12:59:29.400Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="bVBzCzydVnQNoiPPJKAd" version="24.4.4" type="device">
   <diagram name="Page-1" id="fTKjgP6uOuTwVel11UvE">
-    <mxGraphModel dx="1373" dy="699" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2300" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="2353" dy="1199" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2300" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -36,7 +36,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="160" y="320" />
-              <mxPoint x="160" y="740" />
+              <mxPoint x="160" y="735" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -140,7 +140,7 @@
         <mxCell id="cw1IKXQ9Q6lSXiEhojzN-25" value="Belge Sun" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
           <mxGeometry x="210" y="560" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cw1IKXQ9Q6lSXiEhojzN-28" value="Görüntüleme işlemleri&lt;br&gt;(Ders Programı, Danışma, vs)" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
+        <mxCell id="cw1IKXQ9Q6lSXiEhojzN-28" value="Görüntüleme işlemleri&lt;br&gt;(Ders Programı, Danışman Bilgileri)" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
           <mxGeometry x="210" y="830" width="200" height="50" as="geometry" />
         </mxCell>
         <mxCell id="cw1IKXQ9Q6lSXiEhojzN-37" value="Hesap Ayarları" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
@@ -174,7 +174,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="750" y="320" />
-              <mxPoint x="750" y="500" />
+              <mxPoint x="750" y="600" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -182,7 +182,15 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="750" y="320" />
-              <mxPoint x="750" y="567" />
+              <mxPoint x="750" y="715" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="krm63TdpSaGYyWai_A7V-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#f5f5f5;strokeColor=#7894a3;" edge="1" parent="1" source="cw1IKXQ9Q6lSXiEhojzN-46" target="krm63TdpSaGYyWai_A7V-31">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="320" />
+              <mxPoint x="750" y="510" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -215,11 +223,6 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="cw1IKXQ9Q6lSXiEhojzN-72" value="Hata" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#46495D;" parent="cw1IKXQ9Q6lSXiEhojzN-71" vertex="1" connectable="0">
-          <mxGeometry x="0.8235" y="-4" relative="1" as="geometry">
-            <mxPoint x="-4" as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="cw1IKXQ9Q6lSXiEhojzN-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#788AA3;fontColor=default;" parent="1" source="cw1IKXQ9Q6lSXiEhojzN-57" target="cw1IKXQ9Q6lSXiEhojzN-78" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -235,7 +238,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1020" y="320" />
-              <mxPoint x="1020" y="500" />
+              <mxPoint x="1020" y="600" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -243,7 +246,7 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1020" y="320" />
-              <mxPoint x="1020" y="567" />
+              <mxPoint x="1020" y="715" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -262,19 +265,14 @@
             <mxPoint x="925" y="180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cw1IKXQ9Q6lSXiEhojzN-61" value="Doğru ise" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#46495D;" parent="cw1IKXQ9Q6lSXiEhojzN-60" vertex="1" connectable="0">
-          <mxGeometry x="0.2565" y="-2" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="cw1IKXQ9Q6lSXiEhojzN-62" value="Bildirim" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
           <mxGeometry x="865" y="20" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="cw1IKXQ9Q6lSXiEhojzN-69" value="Hesap Ayarları" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
-          <mxGeometry x="830" y="480" width="120" height="40" as="geometry" />
+          <mxGeometry x="830" y="580" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cw1IKXQ9Q6lSXiEhojzN-74" value="Görüntüle işlemler&lt;br&gt;(Ders Programı vs)" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
-          <mxGeometry x="830" y="547" width="120" height="40" as="geometry" />
+        <mxCell id="cw1IKXQ9Q6lSXiEhojzN-74" value="Görüntüleme işlemleri&lt;br&gt;(Ders Programı,Sonıf Listesi)" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
+          <mxGeometry x="830" y="690" width="130" height="50" as="geometry" />
         </mxCell>
         <mxCell id="cw1IKXQ9Q6lSXiEhojzN-78" value="Not İlan" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" parent="1" vertex="1">
           <mxGeometry x="830" y="300" width="120" height="40" as="geometry" />
@@ -615,8 +613,25 @@
         <mxCell id="krm63TdpSaGYyWai_A7V-15" value="&lt;font data-sider-select-id=&quot;9ffdf959-0390-42ec-95c9-d1d7eab46e6e&quot; style=&quot;font-size: 9px;&quot;&gt;AKTS&amp;gt;45&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="340" y="70" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="krm63TdpSaGYyWai_A7V-20" value="Dersleri Görüntüle" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" vertex="1" parent="1">
-          <mxGeometry x="210" y="720" width="120" height="40" as="geometry" />
+        <mxCell id="krm63TdpSaGYyWai_A7V-20" value="Dersleri Ve Detayları Görüntüle" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" vertex="1" parent="1">
+          <mxGeometry x="240" y="710" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="krm63TdpSaGYyWai_A7V-27" value="Sistemde Kayıtlı Değil" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#46495D;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="925" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="krm63TdpSaGYyWai_A7V-28" value="&lt;font data-sider-select-id=&quot;b931d6f9-3d9f-44d7-993a-e6d818dae66e&quot; style=&quot;font-size: 10px;&quot;&gt;Sistemde Kayıtlı&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="890" y="137" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="krm63TdpSaGYyWai_A7V-31" value="Ders Detaylarını Düzenle" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;" vertex="1" parent="1">
+          <mxGeometry x="830" y="490" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="krm63TdpSaGYyWai_A7V-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#788aa3;" edge="1" parent="1" source="cw1IKXQ9Q6lSXiEhojzN-57" target="krm63TdpSaGYyWai_A7V-31">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="320" />
+              <mxPoint x="1020" y="510" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

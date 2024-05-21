@@ -13,6 +13,6 @@ namespace api.DTO.Department
         [Required]
         public int FacultyId { get; set; }
         [Required]
-        public string? HeadOfDepartmentId { get; set; }
+        public string? HeadOfDepartmentTC { get; set; }
     }
 }

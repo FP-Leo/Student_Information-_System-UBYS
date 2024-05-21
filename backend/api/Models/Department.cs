@@ -19,10 +19,11 @@ namespace api.Models
         [Required] 
         public int FloorNumber { get; set; }
         public int FacultyId { get; set; }
-        public string? HeadOfDepartmentId { get; set; }
+        public string? HeadOfDepartmentTC { get; set; }
 
         // Navigation Properties
         public Faculty? Faculty { get; set; } 
         public User? HeadOfDepartment { get; set; } // One-to-One 
+        public ICollection<StudentDepDetail>? StudentDepDetails { get; set;}
     }
 }

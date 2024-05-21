@@ -51,7 +51,7 @@ export default function Navbar() {
           borderBottom: `1px solid ${theme.palette.divider}`,
         }}
       >
-        <Logo width="50px" height="auto" />
+        <Logo width="50px" />
         <Typography
           sx={{
             marginLeft: 2,

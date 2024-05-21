@@ -27,6 +27,9 @@ const LinkCard = ({ children, title }) => {
         transition: "ease .25s",
         "&:hover": {
           backgroundColor: theme.palette.action.hover,
+          "& h6": {
+            color: theme.palette.primary.main,
+          },
         },
       }}
     >

@@ -5,7 +5,11 @@ namespace api.DTO.AccountInfo
     public class AdministratorAccountLOGINDto
     {
         [Required]
+        public string? Token {get; set;}
+        [Required]
         public string? Role {get; set;}
+        [Required]
+        public string? TC {get; set;}
         [Required]
         public string? FirstName {get; set;}
         [Required]

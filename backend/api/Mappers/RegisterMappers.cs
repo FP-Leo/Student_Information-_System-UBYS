@@ -21,7 +21,7 @@ namespace api.Mappers
                 SchoolMail = registerStudentDto.SchoolMail,
                 PersonalMail = registerStudentDto.PersonalMail,
                 Phone = registerStudentDto.Phone,
-                UserId = id
+                TC = id
             };
         }
 
@@ -38,7 +38,7 @@ namespace api.Mappers
                 SchoolMail = registerLecturerDto.SchoolMail,
                 PersonalMail = registerLecturerDto.PersonalMail,
                 Phone = registerLecturerDto.Phone,
-                UserId = id
+                TC = id
             };
         }
         public static AdvisorAccount ToAdvisorAccount(this RegisterAdvisorDto registerAdvisorDto, string id){
@@ -46,15 +46,12 @@ namespace api.Mappers
                 FirstName = registerAdvisorDto.FirstName,
                 LastName = registerAdvisorDto.LastName,
                 BirthDate = registerAdvisorDto.BirthDate,
-                AdvisorSSN = registerAdvisorDto.AdvisorId,
+                AdvisorId = registerAdvisorDto.AdvisorId,
                 RegisterDate = DateTime.Now,
-                //Title = registerAdvisorDto.Title,
-                //TotalWorkHours = 0,
-                //CurrentStatus = registerAdvisorDto.CurrentStatus,
                 SchoolMail = registerAdvisorDto.SchoolMail,
                 PersonalMail = registerAdvisorDto.PersonalMail,
                 Phone = registerAdvisorDto.Phone,
-                UserId = id
+                TC = id
             };
         }
          public static AdministratorAccount ToAdministratorAccount(this RegisterAdministratorDto registerAdministratorDto, string id){
@@ -64,13 +61,10 @@ namespace api.Mappers
                 BirthDate = registerAdministratorDto.BirthDate,
                 AdministratorId = registerAdministratorDto.AdministratorId,
                 RegisterDate = DateTime.Now,
-                //Title = registerAdministratorDto.Title,
-                //TotalWorkHours = 0,
-                //CurrentStatus = registerAdministratorDto.CurrentStatus,
                 SchoolMail = registerAdministratorDto.SchoolMail,
                 PersonalMail = registerAdministratorDto.PersonalMail,
                 Phone = registerAdministratorDto.Phone,
-                UserId = id
+                TC = id
             };
         }
 

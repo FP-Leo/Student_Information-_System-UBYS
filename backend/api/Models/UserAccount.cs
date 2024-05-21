@@ -27,7 +27,7 @@ namespace api.Models
         public string? SchoolMail {get; set;}
         public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
-        public string? UserId {get; set;}
+        public string? TC {get; set;}
         public User? User {get; set;}
     }
 }

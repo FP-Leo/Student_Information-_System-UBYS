@@ -28,7 +28,7 @@ namespace api.Models
         public string? PhoneNumber { get; set; }
         [Required]
         public int CurrentSchoolYear { get; set; }
-        public string? RectorId { get; set; }
+        public string? RectorTC { get; set; }
         
         // Navigation Properties  
         public ICollection<Faculty>? Faculties { get; set; } // One-to-Many relationship

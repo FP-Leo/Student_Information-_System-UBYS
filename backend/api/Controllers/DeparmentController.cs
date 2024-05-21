@@ -2,6 +2,7 @@
 using api.DTO.Department;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -30,6 +31,7 @@ namespace api.Controllers
             return Ok(department.ToDepartmentDto());
         }
         [HttpPost("Department")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddDepartment([FromBody] DepartmentPostDto departmentPostDto){
             if(!ModelState.IsValid)
             {
@@ -45,6 +47,7 @@ namespace api.Controllers
             return Ok(department.ToDepartmentDto());
         }
         [HttpPut("Department/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateDepartment(int Id, [FromBody] DepartmentUpdateDto departmentUpdateDto){
             if(!ModelState.IsValid)
             {
@@ -63,7 +66,7 @@ namespace api.Controllers
 
             department.BuildingNumber = departmentUpdateDto.BuildingNumber;
             department.FloorNumber = departmentUpdateDto.FloorNumber;
-            department.HeadOfDepartmentId = departmentUpdateDto.HeadOfDepartmentId;
+            department.HeadOfDepartmentTC = departmentUpdateDto.HeadOfDepartmentTC;
             
             var updatedDepartment = await _departmentRepository.UpdateDepartmentAsync(department);
             
@@ -74,6 +77,7 @@ namespace api.Controllers
             return Ok(updatedDepartment.ToDepartmentDto());
         }
         [HttpDelete("Department/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteDepartment(int Id){
             if(!ModelState.IsValid)
             {

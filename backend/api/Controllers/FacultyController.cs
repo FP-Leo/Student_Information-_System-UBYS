@@ -1,6 +1,7 @@
 using api.DTO.Faculty;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -29,6 +30,7 @@ namespace api.Controllers
             return Ok(faculty.ToFacultyDto());
         }
         [HttpPost("Faculty")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddFaculty([FromBody] FacultyPostDto facultyPostDto){
             if(!ModelState.IsValid)
             {
@@ -44,6 +46,7 @@ namespace api.Controllers
             return Ok(faculty.ToFacultyDto());
         }
         [HttpPut("Faculty/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateFaculty(int Id, [FromBody] FacultyUpdateDto facultyUpdateDto){
             if(!ModelState.IsValid)
             {
@@ -64,7 +67,7 @@ namespace api.Controllers
             faculty.WebSite = facultyUpdateDto.WebSite;
             faculty.Mail = facultyUpdateDto.Mail;
             faculty.PhoneNumber = facultyUpdateDto.PhoneNumber;
-            faculty.DeanId = facultyUpdateDto.DeanId;
+            faculty.DeanTC = facultyUpdateDto.DeanTC;
             
             var updatedFaculty = await _facultyRepository.UpdateFacultyAsync(faculty);
             
@@ -74,8 +77,8 @@ namespace api.Controllers
 
             return Ok(updatedFaculty.ToFacultyDto());
         }
-
         [HttpDelete("Faculty/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteFaculty(int Id){
             if(!ModelState.IsValid)
             {

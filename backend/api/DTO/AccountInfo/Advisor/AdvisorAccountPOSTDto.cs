@@ -18,6 +18,6 @@ namespace api.DTO.AccountInfo
         public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
         [Required]
-        public string? UserId {get; set;}
+        public string? TC {get; set;}
     }
 }

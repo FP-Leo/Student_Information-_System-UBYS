@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.DTO.University;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -33,6 +30,7 @@ namespace api.Controllers
             return Ok(university.ToUniversityDto());
         }
         [HttpPost("University")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddUniversity([FromBody] UniversityPostDto universityPostDto){
             if(!ModelState.IsValid)
             {
@@ -48,6 +46,7 @@ namespace api.Controllers
             return Ok(university.ToUniversityDto());
         }
         [HttpPut("University/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateUniversity(int Id, [FromBody] UniversityUpdateDto universityUpdateDto){
             if(!ModelState.IsValid)
             {
@@ -70,7 +69,7 @@ namespace api.Controllers
             university.Mail = universityUpdateDto.Mail;
             university.PhoneNumber = universityUpdateDto.PhoneNumber;
             university.CurrentSchoolYear = universityUpdateDto.CurrentSchoolYear;
-            university.RectorId = universityUpdateDto.RectorId;
+            university.RectorTC = universityUpdateDto.RectorTC;
             
             var updatedUniversity = await _universityRepo.UpdateUniversityAsync(university);
             
@@ -82,6 +81,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("University/{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUniversity(int Id){
             if(!ModelState.IsValid)
             {

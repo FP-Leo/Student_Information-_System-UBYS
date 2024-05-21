@@ -9,7 +9,7 @@ namespace api.Models
     public class AdvisorAccount : UserAccount
     {
         [Required]
-        public int AdvisorSSN { get; set; }
+        public int AdvisorId { get; set; }
 
     }
 }

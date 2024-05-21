@@ -26,7 +26,7 @@ namespace api.Service
             
             var claims = new List<Claim>
             {
-                new(JwtRegisteredClaimNames.GivenName, user.UserName)
+                new(JwtRegisteredClaimNames.Name, user.UserName)
             };
             
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));

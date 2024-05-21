@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using api.DTO.AccountInfo;
 using api.Interfaces;
@@ -27,17 +28,17 @@ namespace api.Controllers
             return false;
         }
         // Administrator 
-        [HttpGet("Administrator/AccountInfo/UserId/")]
+        [HttpGet("Administrator/AccountInfo/")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> GetAdministratorByUID(){
+        public async Task<IActionResult> GetAdministratorData(){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
-            var accInfo = await _adminAccRepo.GetAdministratorAccountByUIDAsync(userId);
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByTCAsync(TC);
 
             if(accInfo == null){
                 return NotFound();
@@ -45,7 +46,36 @@ namespace api.Controllers
 
             return Ok(accInfo.ToAdministratorAccountDto());
         }
-        [HttpGet("Administrator/AccountInfo/TC/{TC}")]
+        // Function that will be used by the administrator to update its info, the [authorize] will be done later.
+        [HttpPut("Administrator/AccountInfo/Update")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> UpdateSettingsAdministrator([FromBody] AdministratorAccountUpdateDto administratorAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByTCAsync(TC);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = administratorAccountPOSTDto.Phone;
+            accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
+
+            var result = await _adminAccRepo.UpdateAdministratorAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToAdministratorAccountDto());
+        }
+        // Function that will be used by an admin to get data of an Administrator account.
+        [HttpGet("Admin/Administrator/AccountInfo/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdministratorByTc(string TC){
             if(!ModelState.IsValid)
@@ -84,7 +114,7 @@ namespace api.Controllers
         }
         */
         // Function that will be used by an admin to change data of the Administrator account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Administrator/Update/AccountInfo/")]
+        [HttpPut("Admin/Administrator/AccountInfo/Update")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAdministratorAccount([FromBody] AdministratorAccountPOSTDto administratorAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -92,10 +122,10 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if(administratorAccountPOSTDto.UserId == null)
+            if(administratorAccountPOSTDto.TC == null)
                 return BadRequest(ModelState);
             
-            var accInfo = await _adminAccRepo.GetAdministratorAccountByUIDAsync(administratorAccountPOSTDto.UserId); 
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByTCAsync(administratorAccountPOSTDto.TC); 
 
             if(accInfo == null){
                 return NotFound();
@@ -108,34 +138,6 @@ namespace api.Controllers
             accInfo.SchoolMail = administratorAccountPOSTDto.SchoolMail;
             accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
             accInfo.Phone = administratorAccountPOSTDto.Phone;
-
-            var result = await _adminAccRepo.UpdateAdministratorAccountAsync(accInfo);
-
-            if(result == null){
-                return StatusCode(500);
-            }
-
-            return Ok(result.ToAdministratorAccountDto());
-        }
-        // Function that will be used by the administrator to update its info, the [authorize] will be done later.
-        [HttpPut("Administrator/Update/AccountInfo/")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UpdateSettingsAdministrator([FromBody] AdministratorAccountUpdateDto administratorAccountPOSTDto){
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var accInfo = await _adminAccRepo.GetAdministratorAccountByUIDAsync(userId);
-
-            if(accInfo == null){
-                return NotFound();
-            }
-
-            accInfo.Phone = administratorAccountPOSTDto.Phone;
-            accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
 
             var result = await _adminAccRepo.UpdateAdministratorAccountAsync(accInfo);
 

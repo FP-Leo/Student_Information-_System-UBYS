@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using api.DTO.AccountInfo;
 using api.Interfaces;
@@ -29,17 +30,17 @@ namespace api.Controllers
         }
         
         //Advisor 
-        [HttpGet("Advisor/AccountInfo/UserId/")]
+        [HttpGet("Advisor/AccountInfo/")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> GetAdvisorByUID(){
+        public async Task<IActionResult> GetAdvisorData(){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
-            var accInfo = await _advisorAccRepo.GetAdvisorAccountByUIDAsync(userId);
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByTCAsync(TC);
 
             if(accInfo == null){
                 return NotFound();
@@ -47,7 +48,36 @@ namespace api.Controllers
 
             return Ok(accInfo.ToAdvisorAccountDto());
         }
-        [HttpGet("Advisor/AccountInfo/TC/{TC}")]
+         // Function that will be used by the advisor to update its info, the [authorize] will be done later.
+        [HttpPut("Advisor/AccountInfo/Update")]
+        [Authorize(Roles = "Advisor")]
+        public async Task<IActionResult> UpdateSettingsAdvisor([FromBody] AdvisorAccountUpdateDto advisorAccountPOSTDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByTCAsync(TC);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = advisorAccountPOSTDto.Phone;
+            accInfo.PersonalMail = advisorAccountPOSTDto.PersonalMail;
+
+            var result = await _advisorAccRepo.UpdateAdvisorAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToAdvisorAccountDto());
+        }
+        // Function that will be used by an admin to get data of an Advisor account.
+        [HttpGet("Admin/Advisor/AccountInfo/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdvisorByTc(string TC){
             if(!ModelState.IsValid)
@@ -86,7 +116,7 @@ namespace api.Controllers
         }
         */
         // Function that will be used by an admin to change data of the Advisor account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Advisor/Update/AccountInfo/")]
+        [HttpPut("Admin/Advisor/AccountInfo/Update")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAdvisorAccount([FromBody] AdvisorAccountPOSTDto advisorAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -94,10 +124,10 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if(advisorAccountPOSTDto.UserId == null)
+            if(advisorAccountPOSTDto.TC == null)
                 return BadRequest(ModelState);
             
-            var accInfo = await _advisorAccRepo.GetAdvisorAccountByUIDAsync(advisorAccountPOSTDto.UserId); 
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByTCAsync(advisorAccountPOSTDto.TC); 
 
             if(accInfo == null){
                 return NotFound();
@@ -106,7 +136,7 @@ namespace api.Controllers
             accInfo.FirstName = advisorAccountPOSTDto.FirstName;
             accInfo.LastName = advisorAccountPOSTDto.LastName;
             accInfo.BirthDate = advisorAccountPOSTDto.BirthDate;
-            accInfo.AdvisorSSN = advisorAccountPOSTDto.AdvisorId;
+            accInfo.AdvisorId = advisorAccountPOSTDto.AdvisorId;
             accInfo.SchoolMail = advisorAccountPOSTDto.SchoolMail;
             accInfo.PersonalMail = advisorAccountPOSTDto.PersonalMail;
             accInfo.Phone = advisorAccountPOSTDto.Phone;
@@ -119,34 +149,5 @@ namespace api.Controllers
 
             return Ok(result.ToAdvisorAccountDto());
         }
-        // Function that will be used by the advisor to update its info, the [authorize] will be done later.
-        [HttpPut("Advisor/Update/AccountInfo/")]
-        [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> UpdateSettingsAdvisor([FromBody] AdvisorAccountUpdateDto advisorAccountPOSTDto){
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var accInfo = await _advisorAccRepo.GetAdvisorAccountByUIDAsync(userId);
-
-            if(accInfo == null){
-                return NotFound();
-            }
-
-            accInfo.Phone = advisorAccountPOSTDto.Phone;
-            accInfo.PersonalMail = advisorAccountPOSTDto.PersonalMail;
-
-            var result = await _advisorAccRepo.UpdateAdvisorAccountAsync(accInfo);
-
-            if(result == null){
-                return StatusCode(500);
-            }
-
-            return Ok(result.ToAdvisorAccountDto());
-        }
-
     }
 }

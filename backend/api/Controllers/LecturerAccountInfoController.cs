@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using api.DTO.AccountInfo;
 using api.Interfaces;
@@ -28,16 +29,16 @@ namespace api.Controllers
         }
         
         // Lecturer 
-        [HttpGet("Lecturer/AccountInfo/UserId/")]
+        [HttpGet("Lecturer/AccountInfo/")]
         [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> GetLecturerByUID(){
+        public async Task<IActionResult> GetLecturerData(){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
-            var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(userId);
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByTCAsync(TC);
 
             if(accInfo == null){
                 return NotFound();
@@ -45,7 +46,36 @@ namespace api.Controllers
 
             return Ok(accInfo.ToLecturerAccountDto());
         }
-        [HttpGet("Lecturer/AccountInfo/TC/{TC}")]
+        // Function that will be used by the lecturer to update its info, the [authorize] will be done later.
+        [HttpPut("Lecturer/AccountInfo/Update")]
+        [Authorize(Roles = "Lecturer")]
+        public async Task<IActionResult> UpdateSettingsLecturer([FromBody] LecturerAccountUpdateDto lecturerAccountUpdateDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByTCAsync(TC);
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = lecturerAccountUpdateDto.Phone;
+            accInfo.PersonalMail = lecturerAccountUpdateDto.PersonalMail;
+
+            var result = await _lecturerAccRepo.UpdateLecturerAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToLecturerAccountDto());
+        } 
+        // Function that will be used by an admin to get data of a lecturer account.
+        [HttpGet("Admin/Lecturer/AccountInfo/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetLecturerByTc(string TC){
             if(!ModelState.IsValid)
@@ -83,7 +113,7 @@ namespace api.Controllers
             return Ok(accInfo.ToLecturerAccountDto());
         }*/
         // Function that will be used by an admin to change data of the lecturer account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Lecturer/Update/AccountInfo/")]
+        [HttpPut("Admin/Lecturer/AccountInfo/Update")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateLecturerAccount([FromBody] LecturerAccountPOSTDto lecturerAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -91,10 +121,10 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if(lecturerAccountPOSTDto.UserId == null)
+            if(lecturerAccountPOSTDto.TC == null)
                 return BadRequest(ModelState);
             
-            var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(lecturerAccountPOSTDto.UserId); 
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByTCAsync(lecturerAccountPOSTDto.TC); 
 
             if(accInfo == null){
                 return NotFound();
@@ -119,33 +149,5 @@ namespace api.Controllers
 
             return Ok(result.ToLecturerAccountDto());
         }
-        // Function that will be used by the lecturer to update its info, the [authorize] will be done later.
-        [HttpPut("Lecturer/Update/AccountInfo/")]
-        [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> UpdateSettingsLecturer([FromBody] LecturerAccountUpdateDto lecturerAccountUpdateDto){
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var accInfo = await _lecturerAccRepo.GetLecturerAccountByUIDAsync(userId);
-
-            if(accInfo == null){
-                return NotFound();
-            }
-
-            accInfo.Phone = lecturerAccountUpdateDto.Phone;
-            accInfo.PersonalMail = lecturerAccountUpdateDto.PersonalMail;
-
-            var result = await _lecturerAccRepo.UpdateLecturerAccountAsync(accInfo);
-
-            if(result == null){
-                return StatusCode(500);
-            }
-
-            return Ok(result.ToLecturerAccountDto());
-        } 
     }
 }

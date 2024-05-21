@@ -30,9 +30,21 @@ namespace api.Controllers
             _advisorAccountRepository = advisorAccountRepository;
             _administratorAccountRepository  = administratorAccountRepository;
         }
+        // Function to validate TC.
+        private bool InvalidTC(string TC){
+            if(TC.Length != 11)
+                return true;
+
+            foreach(char c in TC){
+                if(!System.Char.IsDigit(c))
+                    return true;
+            }
+
+            return false;
+        }
         //Function to register any type of user.
         [HttpPost("register")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto){
             try{
                 if (!ModelState.IsValid)
@@ -111,24 +123,29 @@ namespace api.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "Student");
                     if (roleResult.Succeeded)
                     {
-                        var id = await _userManager.GetUserIdAsync(appUser);
+                        var newStudentAccPost = registerStudentDto.ToStudentAccount(registerStudentDto.Username);
 
-                        var newStudentAccPost = registerStudentDto.ToStudentAccount(id);
-
-                        var newStudentAcc = await _studentAccountRepository.CreateStudentAccountAsync(newStudentAccPost);
-
-                        if (newStudentAcc == null){
-                            return StatusCode(500, "Error creating the account!");
+                        try{
+                            var newStudentAcc = await _studentAccountRepository.CreateStudentAccountAsync(newStudentAccPost);
+                            if (newStudentAcc == null){
+                                var result = await _userManager.DeleteAsync(appUser);
+                                return StatusCode(500, "Error creating the account!");
+                            }
+                            return Ok(newStudentAcc.ToStudentAccountLOGINDto(_tokenService.CreateToken(appUser)));
+                        }catch( Exception e ){
+                            await _userManager.DeleteAsync(appUser);
+                            return StatusCode(500, e);
                         }
-                        return Ok(newStudentAcc.ToStudentAccountLOGINDto(_tokenService.CreateToken(appUser)));
                     }
                     else
                     {
+                        await _userManager.DeleteAsync(appUser);
                         return StatusCode(500, roleResult.Errors);
                     }
                 }
                 else
                 {
+                    await _userManager.DeleteAsync(appUser);
                     return StatusCode(500, createdUser.Errors);
                 }
             }
@@ -161,24 +178,31 @@ namespace api.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "Lecturer");
                     if (roleResult.Succeeded)
                     {
-                        var id = await _userManager.GetUserIdAsync(appUser);
+                        var newLecturerAccPost = registerLecturerDto.ToLecturerAccount(registerLecturerDto.Username);
+                        try{
+                            var newLecturerAcc = await _lecturerAccountRepository.CreateLecturerAccountAsync(newLecturerAccPost);
 
-                        var newLecturerAccPost = registerLecturerDto.ToLecturerAccount(id);
+                            if (newLecturerAcc == null){
+                                await _userManager.DeleteAsync(appUser);
+                                return StatusCode(500, "Error creating the account!");
+                            }
 
-                        var newLecturerAcc = await _lecturerAccountRepository.CreateLecturerAccountAsync(newLecturerAccPost);
-
-                        if (newLecturerAcc == null){
-                            return StatusCode(500, "Error creating the account!");
+                            return Ok(newLecturerAcc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(appUser)));
                         }
-                        return Ok(newLecturerAcc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(appUser)));
+                        catch (Exception e){
+                            await _userManager.DeleteAsync(appUser);
+                            return StatusCode(500, e);
+                        }
                     }
                     else
                     {
+                        await _userManager.DeleteAsync(appUser);
                         return StatusCode(500, roleResult.Errors);
                     }
                 }
                 else
                 {
+                    await _userManager.DeleteAsync(appUser);
                     return StatusCode(500, createdUser.Errors);
                 }
             }
@@ -212,24 +236,30 @@ namespace api.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "Advisor");
                     if (roleResult.Succeeded)
                     {
-                        var id = await _userManager.GetUserIdAsync(appUser);
+                        var newAdvisorAccPost = registerAdvisorDto.ToAdvisorAccount(registerAdvisorDto.Username);
+                        try{
+                            var newAdvisorAcc = await _advisorAccountRepository.CreateAdvisorAccountAsync(newAdvisorAccPost);
 
-                        var newAdvisorAccPost = registerAdvisorDto.ToAdvisorAccount(id);
-
-                        var newAdvisorAcc = await _advisorAccountRepository.CreateAdvisorAccountAsync(newAdvisorAccPost);
-
-                        if (newAdvisorAcc == null){
-                            return StatusCode(500, "Error creating the account!");
+                            if (newAdvisorAcc == null){
+                                await _userManager.DeleteAsync(appUser);
+                                return StatusCode(500, "Error creating the account!");
+                            }
+                            return Ok(newAdvisorAcc.ToAdvisorAccountLOGINDto(_tokenService.CreateToken(appUser)));
                         }
-                        return Ok(newAdvisorAcc.ToAdvisorAccountLOGINDto(_tokenService.CreateToken(appUser)));
+                        catch (Exception e){
+                            await _userManager.DeleteAsync(appUser);
+                            return StatusCode(500, e);
+                        }
                     }
                     else
                     {
+                        await _userManager.DeleteAsync(appUser);
                         return StatusCode(500, roleResult.Errors);
                     }
                 }
                 else
                 {
+                    await _userManager.DeleteAsync(appUser);
                     return StatusCode(500, createdUser.Errors);
                 }
             }
@@ -263,42 +293,35 @@ namespace api.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "Administrator");
                     if (roleResult.Succeeded)
                     {
-                        var id = await _userManager.GetUserIdAsync(appUser);
+                        var newAdministratorAccPost = registerAdministratorDto.ToAdministratorAccount(registerAdministratorDto.Username);
+                        try{     
+                            var newAdministratorAcc = await _administratorAccountRepository.CreateAdministratorAccountAsync(newAdministratorAccPost);
 
-                        var newAdministratorAccPost = registerAdministratorDto.ToAdministratorAccount(id);
-
-                        var newAdministratorAcc = await _administratorAccountRepository.CreateAdministratorAccountAsync(newAdministratorAccPost);
-
-                        if (newAdministratorAcc == null){
-                            return StatusCode(500, "Error creating the account!");
+                            if (newAdministratorAcc == null){
+                                await _userManager.DeleteAsync(appUser);
+                                return StatusCode(500, "Error creating the account!");
+                            }
+                            return Ok(newAdministratorAcc.ToAdministratorAccountLOGINDto(_tokenService.CreateToken(appUser)));
+                        }catch (Exception e){
+                            await _userManager.DeleteAsync(appUser);
+                            return StatusCode(500, e);
                         }
-                        return Ok(newAdministratorAcc.ToAdministratorAccountLOGINDto(_tokenService.CreateToken(appUser)));
                     }
                     else
                     {
+                        await _userManager.DeleteAsync(appUser);
                         return StatusCode(500, roleResult.Errors);
                     }
                 }
                 else
                 {
+                    await _userManager.DeleteAsync(appUser);
                     return StatusCode(500, createdUser.Errors);
                 }
             }
             catch (Exception e){
                 return StatusCode(500, e);
             }
-        }
-        // Function to validate TC.
-        private bool InvalidTC(string TC){
-            if(TC.Length != 11)
-                return true;
-
-            foreach(char c in TC){
-                if(!System.Char.IsDigit(c))
-                    return true;
-            }
-
-            return false;
         }
         //Log In Function
         [HttpPost("login")]
@@ -363,7 +386,12 @@ namespace api.Controllers
                 return Ok(acc.ToAdministratorAccountLOGINDto(_tokenService.CreateToken(user)));
             }
 
-            return StatusCode(500, "Account not found!");
+            return Ok(new NewUserDto{
+                UserName = user.UserName,
+                Token = _tokenService.CreateToken(user)
+            });
+
+            //return StatusCode(500, "Account not found!");
         }
     }
 }

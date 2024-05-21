@@ -8,9 +8,8 @@ namespace api.Interfaces
 {
     public interface IAdvisorAccountRepository
     {
-        Task<AdvisorAccount?> GetAdvisorAccountByUIDAsync(string UserId);
         Task<AdvisorAccount?> GetAdvisorAccountByTCAsync(string TC);
-        Task<AdvisorAccount?> GetAdvisorAccountBySSNAsync(int AdvisorSSN);
+        Task<AdvisorAccount?> GetAdvisorAccountByIdAsync(int AdvisorId);
         Task<AdvisorAccount?> CreateAdvisorAccountAsync(AdvisorAccount AdvisorAccount);
         Task<AdvisorAccount?> UpdateAdvisorAccountAsync(AdvisorAccount AdvisorAccount);
         Task<AdvisorAccount?> DeleteAdvisorAccountAsync(AdvisorAccount AdvisorAccount);

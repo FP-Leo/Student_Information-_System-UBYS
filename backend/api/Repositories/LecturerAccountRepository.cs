@@ -35,23 +35,16 @@ namespace api.Repositories
             return LecturerAccount;
         }
 
-        public async Task<LecturerAccount?> GetLecturerAccountBySSNAsync(int LecturerSSN)
+        public async Task<LecturerAccount?> GetLecturerAccountBySSNAsync(int LecturerId)
         {
-            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.LecturerId == LecturerSSN);
+            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.LecturerId == LecturerId);
 
             return account;
         }
 
         public async Task<LecturerAccount?> GetLecturerAccountByTCAsync(string TC)
         {
-            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.User.UserName == TC);
-
-            return account;
-        }
-
-        public async Task<LecturerAccount?> GetLecturerAccountByUIDAsync(string UserId)
-        {
-            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.UserId == UserId);
+            var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.TC == TC);
 
             return account;
         }

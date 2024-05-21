@@ -5,6 +5,8 @@ namespace api.DTO.AccountInfo
     public class AdvisorAccountDto
     {
         [Required]
+        public string? TC { get; set; }
+        [Required]
         public string? FirstName {get; set;}
         [Required]
         public string? LastName {get; set;}

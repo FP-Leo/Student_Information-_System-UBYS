@@ -51,11 +51,13 @@ namespace api.Data
                 }*/ // If we ever want to represent the rector and the dean as a different account.
             ];
             modelBuilder.Entity<IdentityRole>().HasData(roles);
+            modelBuilder.Entity<User>().HasAlternateKey( u=> u.UserName);
             // One to One UserAccount - User
             modelBuilder.Entity<UserAccount>()
                 .HasOne(u => u.User)
                 .WithOne(ua => ua.UserAccount)
-                .HasForeignKey<UserAccount>(ua => ua.UserId)
+                .HasForeignKey<UserAccount>(ua => ua.TC)
+                .HasPrincipalKey<User>(u => u.UserName)
                 .IsRequired();
             // Saves tables inhereted from User Account as separate tables
             modelBuilder.Entity<UserAccount>().UseTpcMappingStrategy();
@@ -91,7 +93,13 @@ namespace api.Data
                 .HasForeignKey<Department>(e => e.HeadOfDepartmentId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
+            modelBuilder.Entity<StudentDepDetail>()
+                .HasOne(e => e.Department)
+                .WithMany(e => e.StudentDepDetails)
+                .HasForeignKey(e => e.DepartmentId)
+                .IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }
     }

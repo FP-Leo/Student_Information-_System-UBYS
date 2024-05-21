@@ -24,5 +24,6 @@ namespace api.Models
         // Navigation Properties
         public Faculty? Faculty { get; set; } 
         public User? HeadOfDepartment { get; set; } // One-to-One 
+        public ICollection<StudentDepDetail>? StudentDepDetails { get; set;}
     }
 }

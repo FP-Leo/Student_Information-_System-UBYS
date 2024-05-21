@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
-using api.Mappers;
 using api.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
@@ -36,25 +30,16 @@ namespace api.Repositories
             return AdministratorAccount;
         }
 
-        public async Task<AdministratorAccount?> GetAdministratorAccountBySSNAsync(int AdministratorSSN)
+        public async Task<AdministratorAccount?> GetAdministratorAccountByIdAsync(int AdministratorId)
         {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.AdministratorId == AdministratorSSN);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.AdministratorId == AdministratorId);
 
             return account;
         }
 
         public async Task<AdministratorAccount?> GetAdministratorAccountByTCAsync(string TC)
         {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.User.UserName == TC);
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-
-            return account;
-        }
-
-        public async Task<AdministratorAccount?> GetAdministratorAccountByUIDAsync(string UserId)
-        {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.UserId == UserId);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.TC == TC);
 
             return account;
         }

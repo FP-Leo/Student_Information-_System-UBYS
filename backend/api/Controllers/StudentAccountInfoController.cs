@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using api.DTO.AccountInfo;
 using api.Interfaces;
@@ -29,14 +30,14 @@ namespace api.Controllers
 
         [HttpGet("Student/AccountInfo/")]
         [Authorize(Roles = "Student")]
-        public async Task<IActionResult> GetStudentByUID(){
+        public async Task<IActionResult> GetStudentData(){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
-            var accInfo = await _studentAccRepo.GetStudentAccountByUIDAsync(userId); 
+            var accInfo = await _studentAccRepo.GetStudentAccountByTCAsync(TC); 
 
             if(accInfo == null){
                 return NotFound();
@@ -44,9 +45,38 @@ namespace api.Controllers
 
             return Ok(accInfo.ToStudentAccountDto());
         }
-        [HttpGet("Student/AccountInfo/TC/{TC}")]
+        // Function that will be used by the student to update its info, the [authorize] will be done later.
+        [HttpPut("Student/AccountInfo/Update")]
+        [Authorize(Roles = "Student")]
+        public async Task<IActionResult> UpdateSettingsStudent([FromBody] StudentAccountUpdateDto studentAccountUpdateDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var accInfo = await _studentAccRepo.GetStudentAccountByTCAsync(TC); 
+
+            if(accInfo == null){
+                return NotFound();
+            }
+
+            accInfo.Phone = studentAccountUpdateDto.Phone;
+            accInfo.PersonalMail =studentAccountUpdateDto.PersonalMail;
+
+           var result = await _studentAccRepo.UpdateStudentAccountAsync(accInfo);
+
+            if(result == null){
+                return StatusCode(500);
+            }
+
+            return Ok(result.ToStudentAccountDto());
+        }
+        // Function that will be used for an admin to get data of a student account.
+        [HttpGet("Admin/Student/AccountInfo/{TC}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetStudentByTc(string TC){
+        public async Task<IActionResult> GetStudentByTC(string TC){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -82,7 +112,7 @@ namespace api.Controllers
             return Ok(accInfo.ToStudentAccountDto());
         }*/
         // Function that will be used for an admin to change data of a student account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Student/Update/AccountInfo/")]
+        [HttpPut("Admin/Student/AccountInfo/Update")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateStudentAccount([FromBody] StudentAccountPOSTDto studentAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -90,11 +120,11 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if(studentAccountPOSTDto.UserId == null){
+            if(studentAccountPOSTDto.TC == null){
                 return BadRequest(ModelState);
             }
             
-            var accInfo = await _studentAccRepo.GetStudentAccountByUIDAsync(studentAccountPOSTDto.UserId); 
+            var accInfo = await _studentAccRepo.GetStudentAccountByTCAsync(studentAccountPOSTDto.TC); 
 
             if(accInfo == null){
                 return NotFound();
@@ -111,34 +141,6 @@ namespace api.Controllers
             accInfo.Phone = studentAccountPOSTDto.Phone;
 
             var result = await _studentAccRepo.UpdateStudentAccountAsync(accInfo);
-
-            if(result == null){
-                return StatusCode(500);
-            }
-
-            return Ok(result.ToStudentAccountDto());
-        }
-        // Function that will be used by the student to update its info, the [authorize] will be done later.
-        [HttpPut("Student/Update/AccountInfo/")]
-        [Authorize(Roles = "Student")]
-        public async Task<IActionResult> UpdateSettingsStudent([FromBody] StudentAccountUpdateDto studentAccountUpdateDto){
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var accInfo = await _studentAccRepo.GetStudentAccountByUIDAsync(userId); 
-
-            if(accInfo == null){
-                return NotFound();
-            }
-
-            accInfo.Phone = studentAccountUpdateDto.Phone;
-            accInfo.PersonalMail =studentAccountUpdateDto.PersonalMail;
-
-           var result = await _studentAccRepo.UpdateStudentAccountAsync(accInfo);
 
             if(result == null){
                 return StatusCode(500);

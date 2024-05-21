@@ -2,9 +2,27 @@ import { Box, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import TableHeader from "components/TableHeader";
 import TableRow from "components/TableRow";
+import { useEffect } from "react";
+import { getToken } from "utils/helper-functions";
+import axios from "axios";
 
 const Subjects = () => {
   const theme = useTheme();
+  useEffect(() => {
+    const token = getToken();
+    axios
+      .get("http://localhost:5158/api/Student/AccountInfo", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
   return (
     <Box
       sx={{

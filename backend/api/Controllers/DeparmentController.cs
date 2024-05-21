@@ -66,7 +66,7 @@ namespace api.Controllers
 
             department.BuildingNumber = departmentUpdateDto.BuildingNumber;
             department.FloorNumber = departmentUpdateDto.FloorNumber;
-            department.HeadOfDepartmentId = departmentUpdateDto.HeadOfDepartmentId;
+            department.HeadOfDepartmentTC = departmentUpdateDto.HeadOfDepartmentTC;
             
             var updatedDepartment = await _departmentRepository.UpdateDepartmentAsync(department);
             

@@ -67,7 +67,7 @@ namespace api.Controllers
             faculty.WebSite = facultyUpdateDto.WebSite;
             faculty.Mail = facultyUpdateDto.Mail;
             faculty.PhoneNumber = facultyUpdateDto.PhoneNumber;
-            faculty.DeanId = facultyUpdateDto.DeanId;
+            faculty.DeanTC = facultyUpdateDto.DeanTC;
             
             var updatedFaculty = await _facultyRepository.UpdateFacultyAsync(faculty);
             

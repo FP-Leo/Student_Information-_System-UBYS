@@ -28,7 +28,7 @@ namespace api.Models
         [Required]
         public string? PhoneNumber { get; set; }
         public int? UniId { get; set; }
-        public string? DeanId { get; set; }
+        public string? DeanTC { get; set; }
 
         // Navigation Properties
         public University? University { get; set; }   //One-to-Many relationship

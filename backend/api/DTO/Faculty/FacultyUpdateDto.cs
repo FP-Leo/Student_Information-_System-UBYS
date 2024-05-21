@@ -15,6 +15,6 @@ namespace api.DTO.Faculty
         [Required]
         public string? PhoneNumber { get; set; }
         [Required]
-        public string? DeanId { get; set; }
+        public string? DeanTC { get; set; }
     }
 }

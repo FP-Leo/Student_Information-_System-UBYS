@@ -69,7 +69,7 @@ namespace api.Controllers
             university.Mail = universityUpdateDto.Mail;
             university.PhoneNumber = universityUpdateDto.PhoneNumber;
             university.CurrentSchoolYear = universityUpdateDto.CurrentSchoolYear;
-            university.RectorId = universityUpdateDto.RectorId;
+            university.RectorTC = universityUpdateDto.RectorTC;
             
             var updatedUniversity = await _universityRepo.UpdateUniversityAsync(university);
             

@@ -9,6 +9,6 @@ namespace api.DTO.Department
         public string? BuildingNumber { get; set; }
         public int FloorNumber { get; set; }
         [Required]
-        public string? HeadOfDepartmentId { get; set; }
+        public string? HeadOfDepartmentTC { get; set; }
     }
 }

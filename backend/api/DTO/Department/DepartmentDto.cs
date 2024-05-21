@@ -12,6 +12,6 @@ namespace api.DTO.Department
         [Required] 
         public int FloorNumber { get; set; }
         public int FacultyId { get; set; }
-        public string? HeadOfDepartmentId { get; set; }
+        public string? HeadOfDepartmentTC { get; set; }
     }
 }

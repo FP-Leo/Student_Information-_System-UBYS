@@ -69,7 +69,8 @@ namespace api.Data
             modelBuilder.Entity<University>()
                 .HasOne(u => u.Rector)
                 .WithOne(uni => uni.University)
-                .HasForeignKey<University>(uni => uni.RectorId)
+                .HasForeignKey<University>(uni => uni.RectorTC)
+                .HasPrincipalKey<User>(u => u.UserName)
                 .IsRequired();
             // Many to One Faculty - University
             modelBuilder.Entity<Faculty>()
@@ -82,7 +83,8 @@ namespace api.Data
             modelBuilder.Entity<Faculty>()
                 .HasOne(e => e.Dean)
                 .WithOne(e => e.Faculty)
-                .HasForeignKey<Faculty>(e => e.DeanId)
+                .HasForeignKey<Faculty>(e => e.DeanTC)
+                .HasPrincipalKey<User>(u => u.UserName)
                 .IsRequired();
             // One to Many Faculty - Departments
             modelBuilder.Entity<Department>()
@@ -94,7 +96,8 @@ namespace api.Data
             modelBuilder.Entity<Department>()
                 .HasOne(e => e.HeadOfDepartment)
                 .WithOne(e => e.Department)
-                .HasForeignKey<Department>(e => e.HeadOfDepartmentId)
+                .HasForeignKey<Department>(e => e.HeadOfDepartmentTC)
+                .HasPrincipalKey<User>(u => u.UserName)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 

@@ -18,7 +18,7 @@ namespace api.Mappers
                 WebSite = faculty.WebSite,
                 PhoneNumber = faculty.PhoneNumber,
                 UniId = faculty.UniId,
-                DeanId = faculty.DeanId
+                DeanTC = faculty.DeanTC
             };
         }
         public static Faculty ToFaculty(this FacultyPostDto facultyPost){
@@ -29,7 +29,7 @@ namespace api.Mappers
                 WebSite = facultyPost.WebSite,
                 PhoneNumber = facultyPost.PhoneNumber,
                 UniId = facultyPost.UniId,
-                DeanId = facultyPost.DeanId
+                DeanTC = facultyPost.DeanTC
             };
         }
     }

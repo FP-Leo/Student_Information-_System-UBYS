@@ -18,7 +18,7 @@ namespace api.Mappers
                 Mail = university.Mail,
                 PhoneNumber = university.PhoneNumber,
                 CurrentSchoolYear = university.CurrentSchoolYear,
-                RectorId = university.RectorId
+                RectorTC = university.RectorTC
             };
         } 
         public static University ToUniversity(this UniversityPostDto universityPostDto){
@@ -29,7 +29,7 @@ namespace api.Mappers
                 Mail = universityPostDto.Mail,
                 PhoneNumber = universityPostDto.PhoneNumber,
                 CurrentSchoolYear = universityPostDto.CurrentSchoolYear,
-                RectorId = universityPostDto.RectorId
+                RectorTC = universityPostDto.RectorTC
             };
         }
         /*

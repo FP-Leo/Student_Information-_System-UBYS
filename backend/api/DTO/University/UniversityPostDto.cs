@@ -17,6 +17,6 @@ namespace api.DTO.University
         [Required]
         public int CurrentSchoolYear { get; set; }
         [Required]
-        public string? RectorId { get; set; }
+        public string? RectorTC { get; set; }
     }
 }

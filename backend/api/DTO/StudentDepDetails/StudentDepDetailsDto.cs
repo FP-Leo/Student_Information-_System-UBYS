@@ -1,12 +1,15 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
-namespace api.Models
+namespace api.DTO.StudentDepDetails
 {
-    [Index(nameof(TC), nameof(DepartmentId), IsUnique = true)]
-    public class StudentDepDetail
+    public class StudentDepDetailsDto
     {
+        //Primary Key
         public int Id { get; set;}
+        //Foreign Keys
+        public string? TC { get; set; }
+        public int DepartmentId { get; set; }
+        //Rest
         public string? StudentType { get; set; }
         public string? StudentStatus { get; set; }
         [Range(1, 7, ErrorMessage = "Maximum 7 years of study are allowed.")]
@@ -20,10 +23,6 @@ namespace api.Models
         public int TotalAKTS { get; set; }
         [Range(0, 4.0, ErrorMessage = "GNO must be between 0 and 4.")]
         public float Gno { get; set; }
-        //Foreign Keys
-        public int DepartmentId { get; set; }
-        public string? TC { get; set; }
-        public Department? Department{ get; set; }
-        public StudentAccount? StudentAccount{ get; set; }
+        
     }
 }

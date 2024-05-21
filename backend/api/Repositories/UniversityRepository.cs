@@ -11,7 +11,7 @@ namespace api.Repositories
 {
     public class UniversityRepository : IUniversityRepository
     {
-        ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
         public UniversityRepository(ApplicationDBContext context){
             _context = context;
         }

@@ -17,8 +17,8 @@ namespace api.Models
         public float FinalValue { get; set; }
 
         // Navigation Property
-        public string? CourseID { get; set; } // Foreign Key
-        public Course? Course { get; set; } // One-to-Many relationship
+        //public string? CourseName { get; set; } // Foreign Key
+        //public Course? Course { get; set; } // One-to-Many relationship
          //public string CoursePersonel { get; set; }
     }
 }

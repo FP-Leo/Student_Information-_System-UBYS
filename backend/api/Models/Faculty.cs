@@ -8,7 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    [Index(nameof(FacultyID), nameof(FacultyName), IsUnique = true)]
+    [Index(nameof(FacultyName), IsUnique = true)]
+    [Index(nameof(UniId), nameof(FacultyName), IsUnique = true)]
     [Index(nameof(Address), IsUnique = true)]
     [Index(nameof(Mail), IsUnique = true)]
     [Index(nameof(WebSite), IsUnique = true)]

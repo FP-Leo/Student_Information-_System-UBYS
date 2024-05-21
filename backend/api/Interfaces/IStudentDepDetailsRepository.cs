@@ -9,10 +9,10 @@ namespace api.Interfaces
 {
     public interface IStudentDepDetailsRepository
     {
-        Task<ICollection<StudentDepDetail>> GetStudentDepDetailsByTC(String TC);
-        Task<StudentDepDetail?> GetStudentDepDetailByTcAndDepId(String TC, int depId);
-        Task<StudentDepDetail?> CreateStudentDepDetail(StudentDepDetail studentDepDetail);
-        Task<StudentDepDetail?> UpdateStudentDepDetail(StudentDepDetail studentDepDetail);
-        Task<StudentDepDetail?> DeleteStudentDepDetail(String TC, int depId);
+        Task<ICollection<StudentDepDetail>> GetStudentDepDetailsByTCAsync(String TC);
+        Task<StudentDepDetail?> GetStudentDepDetailByTcAndDepIdAsync(String TC, int depId);
+        Task<StudentDepDetail?> CreateStudentDepDetailAsync(StudentDepDetail studentDepDetail);
+        Task<StudentDepDetail?> UpdateStudentDepDetailAsync(StudentDepDetail studentDepDetail);
+        Task<StudentDepDetail?> DeleteStudentDepDetailAsync(String TC, int depId);
     }
 }

@@ -11,7 +11,7 @@ namespace api.Models
         public string? StudentStatus { get; set; }
         [Range(1, 7, ErrorMessage = "Maximum 7 years of study are allowed.")]
         public int CurrentSchoolYear { get; set; }
-        [Range(1, 8, ErrorMessage = "There are only 8 semesters per department.")]
+        [Range(1, 8, ErrorMessage = "There are only 8 semesters.")]
         public int CurrentSemester { get; set; }
         
         [Range(30, 45, ErrorMessage = "Current AKTS must be between 30 and 45.")]

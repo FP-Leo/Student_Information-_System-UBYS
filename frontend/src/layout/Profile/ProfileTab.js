@@ -40,6 +40,7 @@ const ProfileTab = ({ handleLogout }) => {
     <List
       component="nav"
       sx={{
+        marginTop: 1,
         p: 0,
         "& .MuiListItemIcon-root": {
           minWidth: 32,

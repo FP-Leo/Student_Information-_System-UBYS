@@ -12,5 +12,7 @@ namespace api.DTO.DepartmentCourse
         public string? CourseName { get; set; } 
         [Required]
         public string? DepartmentName { get; set; }
+        [Required]
+        public int CourseDetailsId { get; set; }
     }
 }

@@ -13,42 +13,42 @@ namespace api.Repositories
             _context = context;
         }
 
-        public async Task<CourseDetails?> AddCourseDetailsAsync(CourseDetails courseExplanation)
+        public async Task<CourseDetails?> AddCourseDetailsAsync(CourseDetails courseDetails)
         {
-            await _context.AddAsync(courseExplanation);
+            await _context.AddAsync(courseDetails);
             var result = await _context.SaveChangesAsync();
             if (result <= 0)
                 return null;
-            return courseExplanation;
+            return courseDetails;
         }
 
-        public async Task<CourseDetails?> DeleteCourseDetailsAsync(string DepartmentName, string CourseName)
+        public async Task<CourseDetails?> DeleteCourseDetailsAsync(int CourseDetailsId)
         {
-            var courseExplanation = await GetCourseDetailsAsync(DepartmentName, CourseName);
+            var courseDetails = await GetCourseDetailsAsync(CourseDetailsId);
 
-            if (courseExplanation == null){
+            if (courseDetails == null){
                 return null;
             }
 
-            _context.Remove(courseExplanation);
+            _context.Remove(courseDetails);
             var result = await _context.SaveChangesAsync();
             if (result <= 0)
                 return null;
-            return courseExplanation;
+            return courseDetails;
         }
-        public async Task<CourseDetails?> GetCourseDetailsAsync(string DepartmentName, string CourseName)
+        public async Task<CourseDetails?> GetCourseDetailsAsync(int CourseDetailsId)
         {
-            var courseExplanation = await _context.CourseExplanations.FirstOrDefaultAsync(ce => ce.CourseName == CourseName && ce.DepartmentName == DepartmentName);
+            var courseDetails = await _context.CourseExplanations.FirstOrDefaultAsync(ce => ce.Id == CourseDetailsId);
 
-            return courseExplanation;
+            return courseDetails;
         }
 
-        public async Task<CourseDetails?> UpdateCourseDetailsAsync(CourseDetails courseExplanation)
+        public async Task<CourseDetails?> UpdateCourseDetailsAsync(CourseDetails courseDetails)
         {
             var result = await _context.SaveChangesAsync();
             if (result <= 0)
                 return null;
-            return courseExplanation;
+            return courseDetails;
         }
     }
 }

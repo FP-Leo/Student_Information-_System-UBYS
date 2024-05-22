@@ -61,7 +61,7 @@ namespace api.Data
             // To give back the course name instead of the id.
             modelBuilder.Entity<Course>().HasAlternateKey( u=> u.CourseName);
             // Compound Alt key to be used for Specific Course Explanation.
-            modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(c => new { c.CourseName, c.DepartmentName }).HasName("DC_Alt_Key");
+            modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(c => new { c.CourseName, c.DepartmentName });
             // One to One UserAccount - User
             modelBuilder.Entity<UserAccount>()
                 .HasOne(u => u.User)
@@ -136,10 +136,9 @@ namespace api.Data
                 .IsRequired();
 
             modelBuilder.Entity<DepartmentCourse>()
-                .HasOne(e => e.CourseExplanation)
-                .WithMany(e => e.DepartmentCourses)
-                .HasForeignKey(e => new { e.CourseName, e.DepartmentName })
-                .HasPrincipalKey(c => new { c.CourseName, c.DepartmentName })
+                .HasOne(cd => cd.CourseDetails)
+                .WithMany(dc => dc.DepartmentCourses)
+                .HasForeignKey(dc=> dc.CourseDetailsId)
                 .IsRequired();
 
             base.OnModelCreating(modelBuilder);

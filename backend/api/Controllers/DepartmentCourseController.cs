@@ -111,6 +111,7 @@ namespace api.Controllers
             }
 
             depCourse.TaughtSemester = departmentCourseUpdateDto.TaughtSemester;
+            depCourse.CourseDetailsId = departmentCourseUpdateDto.CourseDetailsId;
             
             var updatedDepCourse = await _departmentCourseRepository.UpdateDepsCourseAsync(depCourse);
             

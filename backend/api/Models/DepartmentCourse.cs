@@ -13,9 +13,10 @@ namespace api.Models
         //Foreign Keys
         public string? CourseName { get; set; } 
         public string? DepartmentName { get; set; }
+        public int CourseDetailsId { get; set; }
         //Navigation Property
         public Course? Course{ get; set; }
         public Department? Department { get; set; } 
-        public CourseDetails? CourseExplanation { get; set; }
+        public CourseDetails? CourseDetails { get; set; }
     }
 }

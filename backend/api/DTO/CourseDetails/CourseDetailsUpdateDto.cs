@@ -5,9 +5,7 @@ namespace api.DTO.CourseDetails
     public class CourseDetailsUpdateDto
     {
         [Required]
-        public string? DepartmentName { get; set; } // Foreign Key
-        [Required]
-        public string? CourseName { get; set; } // Foreign Key
+        public int CourseDetailsId { get; set; }
         [Required]
         public string? CourseLanguage { get; set; }
         [Required]

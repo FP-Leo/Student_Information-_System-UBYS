@@ -10,6 +10,7 @@ namespace api.Mappers
                 CourseName = course.CourseName,
                 DepartmentName = course.DepartmentName,
                 TaughtSemester = course.TaughtSemester,
+                CourseDetailsId = course.CourseDetailsId
             };
         }
 
@@ -18,6 +19,7 @@ namespace api.Mappers
                 CourseName = course.CourseName,
                 DepartmentName = course.DepartmentName,
                 TaughtSemester = course.TaughtSemester,
+                CourseDetailsId = course.CourseDetailsId
             };
         }
     }

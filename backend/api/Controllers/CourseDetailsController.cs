@@ -12,19 +12,19 @@ namespace api.Controllers
     public class CourseDetailsController : ControllerBase
     {
         private readonly ICourseDetailsRepository _courseDetailsRepo;
-        private readonly IDepartmentCourseRepository _depCourseRepo;
-        public CourseDetailsController(ICourseDetailsRepository courseExplanationRepository, IDepartmentCourseRepository departmentCourseRepository){
+        private readonly ICourseRepository _courseRepo;
+        public CourseDetailsController(ICourseDetailsRepository courseExplanationRepository, ICourseRepository courseRepository){
             _courseDetailsRepo = courseExplanationRepository;
-            _depCourseRepo = departmentCourseRepository;
+            _courseRepo = courseRepository;
         }
         [HttpGet("Department/Course/Details")]
-        public async Task<IActionResult> GetCourseDetails([FromQuery] String DepName, [FromQuery] String CourseName){
+        public async Task<IActionResult> GetCourseDetails([FromQuery] int CourseDetailsId){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            var courseDetails = await _courseDetailsRepo.GetCourseDetailsAsync(DepName,CourseName);
+            var courseDetails = await _courseDetailsRepo.GetCourseDetailsAsync(CourseDetailsId);
 
             if(courseDetails == null){
                 return NotFound();
@@ -40,60 +40,57 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var depCourse = await _depCourseRepo.CourseDetailsByCourseAndDepNameAsync(courseDetailsPostDto.CourseName, courseDetailsPostDto.DepartmentName);
-            
-            if(depCourse == null){
+            var course = await _courseRepo.GetCourseAsync(courseDetailsPostDto.CourseName);
+            if(course == null)
                 return NotFound();
-            }
 
-            var depCourseExplanation = await _courseDetailsRepo.AddCourseDetailsAsync(courseDetailsPostDto.ToCourseExplanation());
+            var courseDetails = await _courseDetailsRepo.AddCourseDetailsAsync(courseDetailsPostDto.ToCourseExplanation());
 
-            if(depCourseExplanation == null){
+            if(courseDetails == null)
                 return StatusCode(500);
-            }
 
-            return Ok(depCourseExplanation.ToCourseExplanationDto());
+            return Ok(courseDetails.ToCourseExplanationDto());
         }
         [HttpPut("Department/Course/Details")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateCourseDetails([FromQuery] String DepName, [FromQuery] String CourseName, [FromBody] CourseDetailsUpdateDto courseDetailsUpdateDto){
+        public async Task<IActionResult> UpdateCourseDetails([FromQuery] int CourseDetailsId, [FromBody] CourseDetailsUpdateDto courseDetailsUpdateDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var courseDetails = await _courseDetailsRepo.GetCourseDetailsAsync(DepName, CourseName);
+            var courseDetails = await _courseDetailsRepo.GetCourseDetailsAsync(CourseDetailsId);
             
             if(courseDetails == null){
                 return NotFound();
             }
 
-            if(DepName != courseDetailsUpdateDto.DepartmentName || CourseName != courseDetailsUpdateDto.CourseName){
+            if(courseDetails.Id != courseDetailsUpdateDto.CourseDetailsId){
                 return BadRequest();
             }
 
-            courseDetails.CourseName = courseDetailsUpdateDto.CourseName;
+            courseDetails.CourseLanguage = courseDetailsUpdateDto.CourseLanguage;
             courseDetails.CourseLevel = courseDetailsUpdateDto.CourseLevel;
             courseDetails.CourseType = courseDetailsUpdateDto.CourseType;
             courseDetails.CourseContent = courseDetailsUpdateDto.CourseContent;
             
-            var updatedCourseExplanation = await _courseDetailsRepo.UpdateCourseDetailsAsync(courseDetails);
+            var updatedCourseDetails = await _courseDetailsRepo.UpdateCourseDetailsAsync(courseDetails);
             
-            if(updatedCourseExplanation == null){
+            if(updatedCourseDetails == null){
                 return StatusCode(500);
             }
 
-            return Ok(updatedCourseExplanation.ToCourseExplanationDto());
+            return Ok(updatedCourseDetails.ToCourseExplanationDto());
         }
         [HttpDelete("Department/Course/Details")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteCourseDetails([FromQuery] String DepName, [FromQuery] String CourseName){
+        public async Task<IActionResult> DeleteCourseDetails([FromQuery] int CourseDetailsId){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _courseDetailsRepo.DeleteCourseDetailsAsync(DepName, CourseName);
+            var result = await _courseDetailsRepo.DeleteCourseDetailsAsync(CourseDetailsId);
 
             if(result == null){
                 return BadRequest();

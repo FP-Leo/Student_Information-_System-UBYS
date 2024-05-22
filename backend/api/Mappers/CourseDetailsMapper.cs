@@ -3,12 +3,11 @@ using api.Models;
 
 namespace api.Mappers
 {
-    public static class CourseExplanationMapper
+    public static class CourseDetailsMapper
     {
         public static CourseDetailsDto ToCourseExplanationDto(this CourseDetails courseExplanation){
             return new CourseDetailsDto{
                 CourseName = courseExplanation.CourseName,
-                DepartmentName = courseExplanation.DepartmentName,
                 CourseLevel = courseExplanation.CourseLevel,
                 CourseType = courseExplanation.CourseType,
                 CourseLanguage = courseExplanation.CourseLanguage,
@@ -19,7 +18,6 @@ namespace api.Mappers
         public static CourseDetails ToCourseExplanation(this CourseDetailsPostDto courseExplanation){
             return new CourseDetails{
                 CourseName = courseExplanation.CourseName,
-                DepartmentName = courseExplanation.DepartmentName,
                 CourseLevel = courseExplanation.CourseLevel,
                 CourseType = courseExplanation.CourseType,
                 CourseLanguage = courseExplanation.CourseLanguage,

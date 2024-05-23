@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "store/user/user.selector";
 
 import { ROLE_TYPES } from "./role.types.js";
+import AdvisorRoutes from "./role-based-routers/AdvisorRoutes.js";
 
 const ProtectedRoute = Loadable(
   lazy(() => import("router/ProtectedRoute.jsx"))
@@ -22,30 +23,32 @@ export const Router = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isStudent = currentUser?.role === ROLE_TYPES.STUDENT;
   const isLecturer = currentUser?.role === ROLE_TYPES.LECTURER;
+  const isAdvisor = currentUser?.role === ROLE_TYPES.ADVISOR;
 
-  return useRoutes(
-    currentUser
-      ? [
-          {
-            path: "home",
-            element: <MainLayout />,
-            children: isStudent
-              ? StudentRoutes
-              : isLecturer
-              ? LecturerRoutes
-              : null,
-          },
-          {
-            path: "*",
-            element: <NotFound />,
-          },
-        ]
-      : [
-          {
-            path: "/",
-            element: <Auth />,
-            index: true,
-          },
-        ]
-  );
+  return useRoutes([
+    {
+      path: "/",
+      element: <Auth />,
+      index: true,
+    },
+    {
+      path: "home",
+      element: (
+        <ProtectedRoute>
+          <MainLayout />
+        </ProtectedRoute>
+      ),
+      children: isStudent
+        ? StudentRoutes
+        : isLecturer
+        ? LecturerRoutes
+        : isAdvisor
+        ? AdvisorRoutes
+        : null,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ]);
 };

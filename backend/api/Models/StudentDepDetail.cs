@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
@@ -6,6 +7,7 @@ namespace api.Models
     [Index(nameof(TC), nameof(DepartmentId), IsUnique = true)]
     public class StudentDepDetail
     {
+        [Column(Order = 0)]
         public int Id { get; set;}
         public string? StudentType { get; set; }
         public string? StudentStatus { get; set; }
@@ -21,7 +23,9 @@ namespace api.Models
         [Range(0, 4.0, ErrorMessage = "GNO must be between 0 and 4.")]
         public float Gno { get; set; }
         //Foreign Keys
+        [Column(Order = 2)]
         public int DepartmentId { get; set; }
+        [Column(Order = 1)]
         public string? TC { get; set; }
         public Department? Department{ get; set; }
         public StudentAccount? StudentAccount{ get; set; }

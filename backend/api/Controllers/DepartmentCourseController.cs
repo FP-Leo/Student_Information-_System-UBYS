@@ -21,7 +21,7 @@ namespace api.Controllers
         }
 
         [HttpGet("Department/Course/")]
-        public async Task<IActionResult> GetDepCourseByCourseIdAndDepId([FromQuery] String CourseName, [FromQuery] String DepName){
+        public async Task<IActionResult> GetDepCourseByCourseIdAndDepId([FromQuery] String DepName, [FromQuery] String CourseName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

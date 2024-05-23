@@ -56,6 +56,10 @@ namespace api.Data
             modelBuilder.Entity<User>().HasAlternateKey( u=> u.UserName);
             // Since Ids differ for each type of user account, TC can be used as fk instead.
             modelBuilder.Entity<UserAccount>().HasAlternateKey( u=> u.TC);
+            // For better readability
+            modelBuilder.Entity<University>().HasAlternateKey( u=> u.Name);
+            modelBuilder.Entity<Faculty>().HasAlternateKey( u=> u.FacultyName);
+            modelBuilder.Entity<Department>().HasAlternateKey( u=> u.DepartmentName);
             // To give back the course name instead of the id.
             modelBuilder.Entity<Department>().HasAlternateKey( u=> u.DepartmentName);
             // To give back the course name instead of the id.
@@ -82,7 +86,8 @@ namespace api.Data
             modelBuilder.Entity<Faculty>()
                 .HasOne(e => e.University)
                 .WithMany(e => e.Faculties)
-                .HasForeignKey(e => e.UniId)
+                .HasForeignKey(e => e.UniName)
+                .HasPrincipalKey(e => e.Name)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             // One to One Faculty - User for Dean

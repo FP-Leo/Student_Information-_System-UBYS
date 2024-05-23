@@ -9,10 +9,10 @@ namespace api.Controllers
 {
     [Route("api/")]
     [ApiController]
-    public class DeparmentController : ControllerBase
+    public class DepartmentController : ControllerBase
     {
         private readonly IDepartmentRepository _departmentRepository;
-        public DeparmentController(IDepartmentRepository departmentRepository){
+        public DepartmentController(IDepartmentRepository departmentRepository){
             _departmentRepository = departmentRepository;
         }
         [HttpGet("Department/{Id:int}")]

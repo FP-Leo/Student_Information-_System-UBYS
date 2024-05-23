@@ -13,20 +13,26 @@ namespace api.Models
     [Index(nameof(Phone), IsUnique = true)]
     public class UserAccount
     {
+        [Column(Order = 0)]
         [Key]
         public int AccountId {get; set;}
         [Required]
+        [Column(Order = 2)]
         public string? FirstName {get; set;}
         [Required]
+        [Column(Order = 3)]
         public string? LastName {get; set;}
         [Required]
+        [Column(Order = 4)]
         public DateTime BirthDate {get; set;}
+        [Column(Order = 5)]
         [Required]
         public DateTime RegisterDate {get; set;}
         [Required]
         public string? SchoolMail {get; set;}
         public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
+        [Column(Order = 1)]
         public string? TC {get; set;}
         public User? User {get; set;}
     }

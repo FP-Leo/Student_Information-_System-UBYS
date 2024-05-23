@@ -4,9 +4,10 @@ namespace api.Interfaces
 {
     public interface IFacultyRepository
     {
-        Task<Faculty?> GetFacultyByIdAsync(int id);
+        Task<ICollection<Faculty>?> GetUniFacultiesAsync(String UniName);
+        Task<Faculty?> GetUniFacultyAsync(String UniName, String FacultyName);
         Task<Faculty?> CreateFacultyAsync(Faculty faculty);
         Task<Faculty?> UpdateFacultyAsync(Faculty faculty);
-        Task<Faculty?> DeleteFacultyByIdAsync(int id);
+        Task<Faculty?> DeleteUniFacultyAsync(String UniName, String FacultyName);
     }
 }

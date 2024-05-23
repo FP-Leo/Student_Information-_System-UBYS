@@ -2,7 +2,20 @@ import { Box, Typography, Button, Avatar } from "@mui/material";
 import React from 'react'
 import avatarPhoto from "../../../../assets/avatar1.png" 
 
-export default function MyStudentsItem() {
+export default function MyStudentsItem({student}) {
+  const {  
+  ogrenciNumara,
+  ogrenciAd,
+  ogrenciSoyad,
+  ogrenciFakulte,
+  ogrenciProgram,
+  kayitlanmaAsamasi,
+  ogrenciSinif,
+  harcBorcu,
+  ogrenciDurum,
+  ogrenciDurumDetay,
+  GANO
+} = student
     return (
         <Box>
           <Box
@@ -40,7 +53,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-               200401012
+              {ogrenciNumara}
               </Typography>
             </Box>
 
@@ -54,7 +67,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                Muhammet Eren Nokta
+                {ogrenciAd} {ogrenciSoyad}
               </Typography>
             </Box>
 
@@ -68,7 +81,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                Mühendislik Fakültesi - Bilgisayar Mühendisliği
+                {ogrenciFakulte} - {ogrenciProgram}
               </Typography>
             </Box>
 
@@ -82,7 +95,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                Kayıt Tamamlandı
+                {kayitlanmaAsamasi}
               </Typography>
             </Box>
 
@@ -96,7 +109,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                    3.Sınıf
+                    {ogrenciSinif}
               </Typography>
             </Box>
 
@@ -110,7 +123,23 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                -
+                {harcBorcu > 0 ? harcBorcu : "-"}
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gridRow: "1/5",
+                borderRight:"1px solid #B3B3B3"
+              }}
+            >
+              <Typography
+              color={ogrenciDurum ? "#22bb33" : "#bb2124"}
+              >
+                {ogrenciDurum ? "Başarılı" : "Başarısız"}
               </Typography>
             </Box>
 
@@ -124,7 +153,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                Aktif
+                {ogrenciDurumDetay}
               </Typography>
             </Box>
 
@@ -138,21 +167,7 @@ export default function MyStudentsItem() {
               }}
             >
               <Typography>
-                Ders Onayı Bekleniyor
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gridRow: "1/5",
-                borderRight:"1px solid #B3B3B3"
-              }}
-            >
-              <Typography>
-                2.82
+                {GANO}
               </Typography>
             </Box>
 

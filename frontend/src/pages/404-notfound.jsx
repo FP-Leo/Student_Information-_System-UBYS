@@ -32,7 +32,7 @@ const NotFoundPage = () => {
 
       <NotFoundIcon />
 
-      <Button variant="contained" color="primary" to="/" component={Link}>
+      <Button variant="contained" color="primary" to="/home" component={Link}>
         Back Home
       </Button>
     </Box>

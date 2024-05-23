@@ -1,6 +1,7 @@
+/* eslint-disable no-restricted-globals */
 import { Box, Typography } from "@mui/material";
 
-const TableHeader = ({ title, right, left }) => {
+const TableHeader = ({ title, right, left,onClick }) => {
   return (
     <Box
       sx={{
@@ -13,7 +14,9 @@ const TableHeader = ({ title, right, left }) => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#EEEFF0",
+        cursor : onClick !== null ? "pointer" : "default"
       }}
+      onClick={onClick}
     >
       <Typography variant="subtitle1">{title}</Typography>
     </Box>

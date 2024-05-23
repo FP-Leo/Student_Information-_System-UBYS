@@ -18,6 +18,6 @@ namespace api.Models
         public string? CurrentType { get; set; }
         [Required]
         public string? CurrentStatus { get; set; }
-        public ICollection<StudentDepDetail>? StudentDepDetails { get; set;}
+        public ICollection<StudentDepDetails>? StudentDepDetails { get; set;}
     }
 }

@@ -18,6 +18,6 @@ namespace api.Models
         public string? CurrentStatus { get; set; }
         // Navigation Properties
         public ICollection<CourseClass>? Courses{ get; set; }
-        public ICollection<LecturerDepDetail>? LecturerDepDetails { get; set;}
+        public ICollection<LecturerDepDetails>? LecturerDepDetails { get; set;}
     }
 }

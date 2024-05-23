@@ -34,6 +34,17 @@ namespace api.Controllers
             
             return Ok(depsDetails);
         }
+        [HttpGet("University/Faculty/Department/Students/Details")]
+        public async Task<IActionResult> GetDepsStudents([FromQuery] String DepName){
+             if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var depsStudents = await _studentDepDetailsRepository.GetDepartmentsStudentsAsync(DepName);
+            
+            return Ok(depsStudents);
+        }
         [HttpGet("University/Faculty/Department/Student/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetDepDetailByTcAndDepId([FromQuery] String TC, [FromQuery] String DepName){

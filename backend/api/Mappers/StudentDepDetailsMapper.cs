@@ -5,7 +5,7 @@ namespace api.Mappers
 {
     public static class StudentDepDetailsMapper
     {
-        public static StudentDepDetailsDto ToStudentDepDetailsDto(this StudentDepDetail studentDepDetails){
+        public static StudentDepDetailsDto ToStudentDepDetailsDto(this StudentDepDetails studentDepDetails){
             return new StudentDepDetailsDto{
                 StudentType = studentDepDetails.StudentType,
                 StudentStatus = studentDepDetails.StudentStatus,
@@ -18,8 +18,8 @@ namespace api.Mappers
                 TC = studentDepDetails.TC,
             };
         }
-        public static StudentDepDetail ToStudentDepDetails(this StudentDepDetailsPostDto studentDepDetails){
-            return new StudentDepDetail{
+        public static StudentDepDetails ToStudentDepDetails(this StudentDepDetailsPostDto studentDepDetails){
+            return new StudentDepDetails{
                 StudentType = studentDepDetails.StudentType,
                 StudentStatus = studentDepDetails.StudentStatus,
                 CurrentSchoolYear = studentDepDetails.CurrentSchoolYear,
@@ -32,8 +32,8 @@ namespace api.Mappers
             };
         }
 
-        public static StudentDepDetail ToStudentDepDetails(this StudentDepDetailsUpdateDto studentDepDetails){
-            return new StudentDepDetail{
+        public static StudentDepDetails ToStudentDepDetails(this StudentDepDetailsUpdateDto studentDepDetails){
+            return new StudentDepDetails{
                 StudentType = studentDepDetails.StudentType,
                 StudentStatus = studentDepDetails.StudentStatus,
                 CurrentSchoolYear = studentDepDetails.CurrentSchoolYear,

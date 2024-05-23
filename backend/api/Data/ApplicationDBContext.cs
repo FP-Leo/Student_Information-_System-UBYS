@@ -17,7 +17,8 @@ namespace api.Data
         public DbSet<University> Universities{ get; set; }
         public DbSet<Faculty> Faculties{ get; set; }
         public DbSet<Department> Departments{ get; set; }
-        public DbSet<StudentDepDetail> StudentDepDetails{ get; set; }
+        public DbSet<StudentDepDetails> StudentDepDetails{ get; set; }
+        public DbSet<LecturerDepDetails> LecturerDepDetails{ get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<DepartmentCourse> DepartmentCourses { get; set; }
         public DbSet<CourseDetails> CourseExplanations { get; set; }
@@ -70,7 +71,7 @@ namespace api.Data
             // Compound Alt key to be used for Specific Course Explanation.
             modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(c => new { c.CourseName, c.DepartmentName });
             // Compount Alt key to reference Lecturer, Department and Faculty at the same time.
-            modelBuilder.Entity<LecturerDepDetail>().HasAlternateKey(ld => new { ld.DepartmentName, ld.LecturerTC });
+            modelBuilder.Entity<LecturerDepDetails>().HasAlternateKey(ld => new { ld.DepartmentName, ld.TC });
 
             //// Relationships
             
@@ -125,14 +126,14 @@ namespace api.Data
                         .OnDelete(DeleteBehavior.Restrict);
             ////Student Details
             // Many to One Student Details - Department
-            modelBuilder.Entity<StudentDepDetail>()
+            modelBuilder.Entity<StudentDepDetails>()
                         .HasOne(e => e.Department)
                         .WithMany(e => e.StudentDepDetails)
                         .HasForeignKey(e => e.DepartmentName)
                         .HasPrincipalKey(e => e.DepartmentName)
                         .IsRequired();
             // Many to One Student Details - StudentAccount
-            modelBuilder.Entity<StudentDepDetail>()
+            modelBuilder.Entity<StudentDepDetails>()
                         .HasOne(e => e.StudentAccount)
                         .WithMany(e => e.StudentDepDetails)
                         .HasForeignKey(e => e.TC)
@@ -178,15 +179,15 @@ namespace api.Data
                         .IsRequired();
             //// Lecturer Dep Details
             // Many to One LecturerDepDetail - Lecturer
-            modelBuilder.Entity<LecturerDepDetail>()
+            modelBuilder.Entity<LecturerDepDetails>()
                         .HasOne(ldd => ldd.Lecturer)
                         .WithMany(l => l.LecturerDepDetails)
-                        .HasForeignKey(ldd => ldd.LecturerTC)
+                        .HasForeignKey(ldd => ldd.TC)
                         .HasPrincipalKey(l => l.TC)
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
             // Many to One LecturerDepDetail - Department
-            modelBuilder.Entity<LecturerDepDetail>()
+            modelBuilder.Entity<LecturerDepDetails>()
                         .HasOne(ldd => ldd.Department)
                         .WithMany(d => d.LecturerDepDetails)
                         .HasForeignKey(ldd => ldd.DepartmentName)

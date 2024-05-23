@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace api.Models
 {
     [Index(nameof(TC), nameof(DepartmentName), IsUnique = true)]
-    public class StudentDepDetail
+    public class StudentDepDetails
     {
         [Column(Order = 0)]
         public int Id { get; set;}

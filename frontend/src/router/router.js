@@ -11,6 +11,7 @@ import { selectCurrentUser } from "store/user/user.selector";
 
 import { ROLE_TYPES } from "./role.types.js";
 import AdvisorRoutes from "./role-based-routers/AdvisorRoutes.js";
+import AdministratorRoutes from "./role-based-routers/AdministratorRoutes.js";
 
 const ProtectedRoute = Loadable(
   lazy(() => import("router/ProtectedRoute.jsx"))
@@ -24,6 +25,7 @@ export const Router = () => {
   const isStudent = currentUser?.role === ROLE_TYPES.STUDENT;
   const isLecturer = currentUser?.role === ROLE_TYPES.LECTURER;
   const isAdvisor = currentUser?.role === ROLE_TYPES.ADVISOR;
+  const isAdmin = currentUser?.role === ROLE_TYPES.ADMINISTRATOR;
 
   return useRoutes([
     {
@@ -44,6 +46,8 @@ export const Router = () => {
         ? LecturerRoutes
         : isAdvisor
         ? AdvisorRoutes
+        : isAdmin
+        ? AdministratorRoutes
         : null,
     },
     {

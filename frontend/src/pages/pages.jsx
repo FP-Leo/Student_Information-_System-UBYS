@@ -4,6 +4,7 @@ import DerslerimIcon from "assets/derslerim-icon";
 import CalendarIcon from "assets/calendar-icon";
 import BelgeIcon from "assets/belge-icon";
 import StudentIcon from "assets/student-icon";
+import ListIcon from "assets/list-icon";
 
 const STUDENT_PAGES = [
   { title: "Derslerim", link: "derslerim", icon: <DerslerimIcon /> },
@@ -17,6 +18,14 @@ const ADVISOR_PAGES = [
     title: "Danışmanı Olduğum Öğrenciler",
     link: "advisor-students",
     icon: <StudentIcon />,
+  },
+];
+
+const ADMINISTRATOR_PAGES = [
+  {
+    title: "Öğretim Elemanları",
+    link: "lecturers",
+    icon: <ListIcon />,
   },
 ];
 
@@ -35,6 +44,8 @@ const Pages = (role) => {
       return PROFESSOR_PAGES;
     case ROLE_TYPES.ADVISOR:
       return ADVISOR_PAGES;
+    case ROLE_TYPES.ADMINISTRATOR:
+      return ADMINISTRATOR_PAGES;
     default:
       return "No pages available for this role.";
   }

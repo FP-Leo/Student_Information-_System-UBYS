@@ -1,6 +1,6 @@
 export const ROLE_TYPES = {
   STUDENT: "Student",
   LECTURER: "Lecturer",
-  ADMIN: "Admin",
+  ADMINISTRATOR: "Administrator",
   ADVISOR: "Advisor",
 };

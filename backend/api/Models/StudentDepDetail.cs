@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    [Index(nameof(TC), nameof(DepartmentId), IsUnique = true)]
+    [Index(nameof(TC), nameof(DepartmentName), IsUnique = true)]
     public class StudentDepDetail
     {
         [Column(Order = 0)]
@@ -24,7 +24,7 @@ namespace api.Models
         public float Gno { get; set; }
         //Foreign Keys
         [Column(Order = 2)]
-        public int DepartmentId { get; set; }
+        public string? DepartmentName { get; set; }
         [Column(Order = 1)]
         public string? TC { get; set; }
         public Department? Department{ get; set; }

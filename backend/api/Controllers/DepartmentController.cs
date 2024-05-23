@@ -15,22 +15,36 @@ namespace api.Controllers
         public DepartmentController(IDepartmentRepository departmentRepository){
             _departmentRepository = departmentRepository;
         }
-        [HttpGet("Department/{Id:int}")]
-        public async Task<IActionResult> GetDepartmentById(int Id){
+        [HttpGet("University/Faculty/Department/")]
+        public async Task<IActionResult> GetDepartment([FromQuery] String DepartmentName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            var department = await _departmentRepository.GetDepartmentByIdAsync(Id);
+            var department = await _departmentRepository.GetDepartmentAsync(DepartmentName);
 
-            if(department == null){
-                return BadRequest();
-            }
+            if(department == null)
+                return NotFound();
 
             return Ok(department.ToDepartmentDto());
         }
-        [HttpPost("Department")]
+        [HttpGet("University/Faculty/Departments/")]
+        public async Task<IActionResult> GetDepartmentsOfFaculty([FromQuery] String FacultyName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var departments = await _departmentRepository.GetDepartmentsOfFacultyAsync(FacultyName);
+
+            if(departments == null){
+                return BadRequest();
+            }
+
+            return Ok(departments);
+        }
+        [HttpPost("University/Faculty/Department/")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddDepartment([FromBody] DepartmentPostDto departmentPostDto){
             if(!ModelState.IsValid)
@@ -40,29 +54,26 @@ namespace api.Controllers
             
             var department = await _departmentRepository.CreateDepartmentAsync(departmentPostDto.ToDepartment());
             
-            if(department == null){
+            if(department == null)
                 return BadRequest();
-            }
 
             return Ok(department.ToDepartmentDto());
         }
-        [HttpPut("Department/{Id:int}")]
+        [HttpPut("University/Faculty/Department/")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateDepartment(int Id, [FromBody] DepartmentUpdateDto departmentUpdateDto){
+        public async Task<IActionResult> UpdateDepartment([FromQuery] String DepartmentName, [FromBody] DepartmentUpdateDto departmentUpdateDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var department = await _departmentRepository.GetDepartmentByIdAsync(Id);
+            var department = await _departmentRepository.GetDepartmentAsync(DepartmentName);
 
-            if(department == null){
-                return BadRequest();
-            }
+            if(department == null)
+                return NotFound();
 
-            if(departmentUpdateDto.DepartmentId != department.DepartmentId){
+            if(departmentUpdateDto.DepartmentName != department.DepartmentName)
                 return BadRequest();
-            }
 
             department.BuildingNumber = departmentUpdateDto.BuildingNumber;
             department.FloorNumber = departmentUpdateDto.FloorNumber;
@@ -76,19 +87,18 @@ namespace api.Controllers
 
             return Ok(updatedDepartment.ToDepartmentDto());
         }
-        [HttpDelete("Department/{Id:int}")]
+        [HttpDelete("University/Faculty/Department/")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteDepartment(int Id){
+        public async Task<IActionResult> DeleteDepartment([FromQuery] String DepartmentName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _departmentRepository.DeleteDepartmentByIdAsync(Id);
+            var result = await _departmentRepository.DeleteDepartmentAsync(DepartmentName);
 
-            if(result == null){
+            if(result == null)
                 return BadRequest();
-            }
 
             return NoContent();
         }

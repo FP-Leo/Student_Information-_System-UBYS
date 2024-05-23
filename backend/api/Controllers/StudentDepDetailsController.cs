@@ -36,13 +36,13 @@ namespace api.Controllers
         }
         [HttpGet("Student/Department/Details")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetDepDetailByTcAndDepId([FromQuery] String TC, [FromQuery] int DepId){
+        public async Task<IActionResult> GetDepDetailByTcAndDepId([FromQuery] String TC, [FromQuery] String DepName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailByTcAndDepIdAsync(TC, DepId);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepName);
 
             if(studentDepDetails == null){
                 return NotFound();
@@ -64,7 +64,7 @@ namespace api.Controllers
                 return BadRequest("Student doesn't exist");
             }
 
-            var validDep = await _depRepository.GetDepartmentByIdAsync(studentDepDetailsPostDto.DepartmentId);
+            var validDep = await _depRepository.GetDepartmentAsync(studentDepDetailsPostDto.DepartmentName);
 
             if(validDep == null){
                 return BadRequest("Department doesn't exist");
@@ -80,19 +80,19 @@ namespace api.Controllers
         }
         [HttpPut("Student/Departmant/Details")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateStudentDepDetails([FromQuery] String TC, [FromQuery] int DepId, [FromBody] StudentDepDetailsUpdateDto studentDepDetailsUpdateDto){
+        public async Task<IActionResult> UpdateStudentDepDetails([FromQuery] String TC, [FromQuery] String DepName, [FromBody] StudentDepDetailsUpdateDto studentDepDetailsUpdateDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailByTcAndDepIdAsync(TC, DepId);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepName);
 
             if(studentDepDetails == null){
                 return NotFound();
             }
 
-            if(studentDepDetails.TC != TC && studentDepDetails.DepartmentId != DepId){
+            if(studentDepDetails.TC != TC && studentDepDetails.DepartmentName != DepName){
                 return BadRequest();
             }
 
@@ -113,13 +113,13 @@ namespace api.Controllers
         }
         [HttpDelete("Student/Department/Details")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteStudentDepDetails([FromQuery] String TC, [FromQuery] int DepId){
+        public async Task<IActionResult> DeleteStudentDepDetails([FromQuery] String TC, [FromQuery] String DepName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _studentDepDetailsRepository.DeleteStudentDepDetailAsync(TC, DepId);
+            var result = await _studentDepDetailsRepository.DeleteStudentDepDetailAsync(TC, DepName);
 
             if(result == null){
                 return BadRequest();

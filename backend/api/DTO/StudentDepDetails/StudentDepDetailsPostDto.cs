@@ -7,7 +7,7 @@ namespace api.DTO.StudentDepDetails
         [Required]
         public string? TC { get; set; }
         [Required]
-        public int DepartmentId { get; set; }
+        public string? DepartmentName { get; set; }
         [Required]
         public string? StudentType { get; set; }
         [Required]

@@ -18,7 +18,7 @@ namespace api.Models
         public string? BuildingNumber { get; set; }
         [Required] 
         public int FloorNumber { get; set; }
-        public int FacultyId { get; set; }
+        public string? FacultyName { get; set; }
         public string? HeadOfDepartmentTC { get; set; }
 
         // Navigation Properties

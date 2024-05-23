@@ -53,17 +53,15 @@ namespace api.Data
             ];
             modelBuilder.Entity<IdentityRole>().HasData(roles);
             // Set up alterate keys to be used as foreign keys instead of the primary ones.
-            modelBuilder.Entity<User>().HasAlternateKey( u=> u.UserName);
+            modelBuilder.Entity<User>().HasAlternateKey(u=> u.UserName);
             // Since Ids differ for each type of user account, TC can be used as fk instead.
-            modelBuilder.Entity<UserAccount>().HasAlternateKey( u=> u.TC);
+            modelBuilder.Entity<UserAccount>().HasAlternateKey(u=> u.TC);
             // For better readability
-            modelBuilder.Entity<University>().HasAlternateKey( u=> u.Name);
-            modelBuilder.Entity<Faculty>().HasAlternateKey( u=> u.FacultyName);
-            modelBuilder.Entity<Department>().HasAlternateKey( u=> u.DepartmentName);
+            modelBuilder.Entity<University>().HasAlternateKey(u=> u.Name);
+            modelBuilder.Entity<Faculty>().HasAlternateKey(u=> u.FacultyName);
+            modelBuilder.Entity<Department>().HasAlternateKey(u=> u.DepartmentName);
             // To give back the course name instead of the id.
-            modelBuilder.Entity<Department>().HasAlternateKey( u=> u.DepartmentName);
-            // To give back the course name instead of the id.
-            modelBuilder.Entity<Course>().HasAlternateKey( u=> u.CourseName);
+            modelBuilder.Entity<Course>().HasAlternateKey(u=> u.CourseName);
             // Compound Alt key to be used for Specific Course Explanation.
             modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(c => new { c.CourseName, c.DepartmentName });
             // One to One UserAccount - User
@@ -101,7 +99,8 @@ namespace api.Data
             modelBuilder.Entity<Department>()
                 .HasOne(e => e.Faculty)
                 .WithMany(e => e.Departments)
-                .HasForeignKey(e => e.FacultyId)
+                .HasForeignKey(e => e.FacultyName)
+                .HasPrincipalKey(e => e.FacultyName)
                 .IsRequired();
             // One to One Department - User for HeadOfDepartment
             modelBuilder.Entity<Department>()
@@ -115,7 +114,8 @@ namespace api.Data
             modelBuilder.Entity<StudentDepDetail>()
                 .HasOne(e => e.Department)
                 .WithMany(e => e.StudentDepDetails)
-                .HasForeignKey(e => e.DepartmentId)
+                .HasForeignKey(e => e.DepartmentName)
+                .HasPrincipalKey(e => e.DepartmentName)
                 .IsRequired();
 
             modelBuilder.Entity<StudentDepDetail>()

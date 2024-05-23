@@ -11,7 +11,7 @@ namespace api.Mappers
                 DepartmentName = department.DepartmentName,
                 BuildingNumber = department.BuildingNumber,
                 FloorNumber = department.FloorNumber,
-                FacultyId = department.FacultyId,
+                FacultyName = department.FacultyName,
                 HeadOfDepartmentTC = department.HeadOfDepartmentTC,
             };
         }
@@ -21,7 +21,7 @@ namespace api.Mappers
                 DepartmentName = departmentPostDto.DepartmentName,
                 BuildingNumber = departmentPostDto.BuildingNumber,
                 FloorNumber = departmentPostDto.FloorNumber,
-                FacultyId = departmentPostDto.FacultyId,
+                FacultyName = departmentPostDto.FacultyName,
                 HeadOfDepartmentTC = departmentPostDto.HeadOfDepartmentTC,
             };
         }

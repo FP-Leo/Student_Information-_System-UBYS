@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
 using api.Models;
@@ -26,9 +22,9 @@ namespace api.Repositories
             return studentDepDetail;
         }
 
-        public async Task<StudentDepDetail?> DeleteStudentDepDetailAsync(String TC, int id)
+        public async Task<StudentDepDetail?> DeleteStudentDepDetailAsync(String TC, String depName)
         {
-            var studentDepDetail = await GetStudentDepDetailByTcAndDepIdAsync(TC, id);
+            var studentDepDetail = await GetStudentDepDetailAsync(TC, depName);
 
             if (studentDepDetail == null){
                 return null;
@@ -41,9 +37,9 @@ namespace api.Repositories
             return studentDepDetail;
         }
 
-        public async Task<StudentDepDetail?> GetStudentDepDetailByTcAndDepIdAsync(string TC, int depId)
+        public async Task<StudentDepDetail?> GetStudentDepDetailAsync(String TC, String depName)
         {
-            var studentDepDetail = await _context.StudentDepDetails.FirstOrDefaultAsync(dd=> dd.TC == TC && dd.DepartmentId == depId);
+            var studentDepDetail = await _context.StudentDepDetails.FirstOrDefaultAsync(dd=> dd.TC == TC && dd.DepartmentName == depName);
 
             return studentDepDetail;
         }

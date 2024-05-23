@@ -14,7 +14,7 @@ namespace api.Mappers
                 CurrentAKTS = studentDepDetails.CurrentAKTS,
                 TotalAKTS = studentDepDetails.TotalAKTS,
                 Gno = studentDepDetails.Gno,
-                DepartmentId = studentDepDetails.DepartmentId,
+                DepartmentName = studentDepDetails.DepartmentName,
                 TC = studentDepDetails.TC,
             };
         }
@@ -27,7 +27,7 @@ namespace api.Mappers
                 CurrentAKTS = studentDepDetails.CurrentAKTS,
                 TotalAKTS = studentDepDetails.TotalAKTS,
                 Gno = studentDepDetails.Gno,
-                DepartmentId = studentDepDetails.DepartmentId,
+                DepartmentName = studentDepDetails.DepartmentName,
                 TC = studentDepDetails.TC,
             };
         }
@@ -41,7 +41,7 @@ namespace api.Mappers
                 CurrentAKTS = studentDepDetails.CurrentAKTS,
                 TotalAKTS = studentDepDetails.TotalAKTS,
                 Gno = studentDepDetails.Gno,
-                DepartmentId = studentDepDetails.DepartmentId,
+                DepartmentName = studentDepDetails.DepartmentName,
                 TC = studentDepDetails.TC,
             };
         }

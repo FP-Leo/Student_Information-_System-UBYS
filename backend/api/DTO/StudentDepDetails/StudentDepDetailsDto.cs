@@ -6,7 +6,7 @@ namespace api.DTO.StudentDepDetails
     {
         //Foreign Keys
         public string? TC { get; set; }
-        public int DepartmentId { get; set; }
+        public string? DepartmentName { get; set; }
         //Rest
         public string? StudentType { get; set; }
         public string? StudentStatus { get; set; }

@@ -72,7 +72,7 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var validDepartment = await _departmentRepository.GetDepartmentByNameAsync(coursePostDto.DepartmentName);
+            var validDepartment = await _departmentRepository.GetDepartmentAsync(coursePostDto.DepartmentName);
 
             if(validDepartment == null){
                 return NotFound("Department not found!");

@@ -37,9 +37,29 @@ namespace api.Repositories
                 return null;
             return department;
         }
+        public async Task<Department?> DeleteDepartmentByNameAsync(string DepartmantName)
+        {
+            var department = await GetDepartmentByNameAsync(DepartmantName);
+
+            if (department == null){
+                return null;
+            }
+
+            _context.Remove(department);
+            var result = await _context.SaveChangesAsync();
+            if (result <= 0)
+                return null;
+            return department;
+        }
         public async Task<Department?> GetDepartmentByIdAsync(int id)
         {
             var department = await _context.Departments.FirstOrDefaultAsync(d => d.DepartmentId == id);
+
+            return department;
+        }
+        public async Task<Department?> GetDepartmentByNameAsync(string DepartmantName)
+        {
+            var department = await _context.Departments.FirstOrDefaultAsync(d => d.DepartmentName == DepartmantName);
 
             return department;
         }

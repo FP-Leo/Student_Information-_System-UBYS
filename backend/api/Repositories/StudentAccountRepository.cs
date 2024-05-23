@@ -13,7 +13,7 @@ namespace api.Repositories
 {
     public class StudentAccountRepository : IStudentAccountRepository
     {
-        ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
         public StudentAccountRepository(ApplicationDBContext context){
             _context = context;
         }

@@ -92,6 +92,10 @@ builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IStudentDepDetailsRepository, StudentDepDetailsRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IDepartmentCourseRepository, DepartmentCourseRepository>();
+builder.Services.AddScoped<ICourseDetailsRepository, CourseDetailsRepository>();
+
 
 builder.Services.AddCors(options =>
 {

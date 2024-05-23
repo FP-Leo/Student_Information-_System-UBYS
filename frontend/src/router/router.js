@@ -3,8 +3,6 @@ import { useRoutes } from "react-router-dom";
 import Loadable from "components/Loadable.jsx";
 import { lazy } from "react";
 
-import MainLayout from "layout/main-layout";
-
 import StudentRoutes from "./role-based-routers/StudentRoutes.js";
 import LecturerRoutes from "./role-based-routers/LecturerRoutes.js";
 
@@ -17,6 +15,7 @@ import AdvisorRoutes from "./role-based-routers/AdvisorRoutes.js";
 const ProtectedRoute = Loadable(
   lazy(() => import("router/ProtectedRoute.jsx"))
 );
+const MainLayout = Loadable(lazy(() => import("layout/main-layout.jsx")));
 const NotFound = Loadable(lazy(() => import("pages/404-notfound.jsx")));
 const Auth = Loadable(lazy(() => import("pages/auth/auth.jsx")));
 

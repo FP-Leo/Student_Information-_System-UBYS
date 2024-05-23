@@ -19,9 +19,9 @@ namespace api.Data
         public DbSet<Department> Departments{ get; set; }
         public DbSet<StudentDepDetail> StudentDepDetails{ get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<CourseExplanation> CourseExplanations { get; set; }
+        public DbSet<DepartmentCourse> DepartmentCourses { get; set; }
+        public DbSet<CourseDetails> CourseExplanations { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   
             // List of Roles.
@@ -56,6 +56,16 @@ namespace api.Data
             modelBuilder.Entity<User>().HasAlternateKey( u=> u.UserName);
             // Since Ids differ for each type of user account, TC can be used as fk instead.
             modelBuilder.Entity<UserAccount>().HasAlternateKey( u=> u.TC);
+            // For better readability
+            modelBuilder.Entity<University>().HasAlternateKey( u=> u.Name);
+            modelBuilder.Entity<Faculty>().HasAlternateKey( u=> u.FacultyName);
+            modelBuilder.Entity<Department>().HasAlternateKey( u=> u.DepartmentName);
+            // To give back the course name instead of the id.
+            modelBuilder.Entity<Department>().HasAlternateKey( u=> u.DepartmentName);
+            // To give back the course name instead of the id.
+            modelBuilder.Entity<Course>().HasAlternateKey( u=> u.CourseName);
+            // Compound Alt key to be used for Specific Course Explanation.
+            modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(c => new { c.CourseName, c.DepartmentName });
             // One to One UserAccount - User
             modelBuilder.Entity<UserAccount>()
                 .HasOne(u => u.User)
@@ -76,7 +86,8 @@ namespace api.Data
             modelBuilder.Entity<Faculty>()
                 .HasOne(e => e.University)
                 .WithMany(e => e.Faculties)
-                .HasForeignKey(e => e.UniId)
+                .HasForeignKey(e => e.UniName)
+                .HasPrincipalKey(e => e.Name)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             // One to One Faculty - User for Dean
@@ -114,6 +125,26 @@ namespace api.Data
                 .HasPrincipalKey(e=> e.TC)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<DepartmentCourse>()
+                .HasOne(e => e.Course)
+                .WithOne(e => e.DepartmentCourse)
+                .HasForeignKey<DepartmentCourse>(e => e.CourseName)
+                .HasPrincipalKey<Course>(e=> e.CourseName)
+                .IsRequired();
+
+            modelBuilder.Entity<DepartmentCourse>()
+                .HasOne(e => e.Department)
+                .WithOne(e => e.DepartmentCourse)
+                .HasForeignKey<DepartmentCourse>(e => e.DepartmentName)
+                .HasPrincipalKey<Department>(e=> e.DepartmentName)
+                .IsRequired();
+
+            modelBuilder.Entity<DepartmentCourse>()
+                .HasOne(cd => cd.CourseDetails)
+                .WithMany(dc => dc.DepartmentCourses)
+                .HasForeignKey(dc=> dc.CourseDetailsId)
+                .IsRequired();
 
             base.OnModelCreating(modelBuilder);
         }

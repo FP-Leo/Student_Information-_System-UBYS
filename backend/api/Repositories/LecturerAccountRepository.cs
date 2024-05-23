@@ -13,7 +13,7 @@ namespace api.Repositories
 {
     public class LecturerAccountRepository : ILecturerAccountRepository
     {
-        ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
         public LecturerAccountRepository(ApplicationDBContext context){
             _context = context;
         }

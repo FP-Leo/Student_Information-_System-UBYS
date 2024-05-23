@@ -24,9 +24,9 @@ namespace api.Repositories
             return faculty;
         }
 
-        public async Task<Faculty?> DeleteFacultyByIdAsync(int id)
+        public async Task<Faculty?> DeleteUniFacultyAsync(String UniName, String FacultyName)
         {
-            var faculty = await GetFacultyByIdAsync(id);
+            var faculty = await GetUniFacultyAsync(UniName, FacultyName);
 
             if (faculty == null){
                 return null;
@@ -39,9 +39,16 @@ namespace api.Repositories
             return faculty;
         }
 
-        public async Task<Faculty?> GetFacultyByIdAsync(int id)
+        public async Task<ICollection<Faculty>?> GetUniFacultiesAsync(string UniName)
         {
-            var faculty = await _context.Faculties.FirstOrDefaultAsync(u => u.FacultyID == id);
+            var faculties= await _context.Faculties.Where(u => u.UniName == UniName).ToListAsync();
+
+            return faculties;
+        }
+
+        public async Task<Faculty?> GetUniFacultyAsync(String UniName, String FacultyName)
+        {
+            var faculty = await _context.Faculties.FirstOrDefaultAsync(u => u.FacultyName == FacultyName && u.UniName == UniName);
 
             return faculty;
         }

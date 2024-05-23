@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.DTO.Faculty;
 using api.Models;
 
@@ -17,7 +13,7 @@ namespace api.Mappers
                 Mail = faculty.Mail,
                 WebSite = faculty.WebSite,
                 PhoneNumber = faculty.PhoneNumber,
-                UniId = faculty.UniId,
+                UniName = faculty.UniName,
                 DeanTC = faculty.DeanTC
             };
         }
@@ -28,7 +24,7 @@ namespace api.Mappers
                 Mail = facultyPost.Mail,
                 WebSite = facultyPost.WebSite,
                 PhoneNumber = facultyPost.PhoneNumber,
-                UniId = facultyPost.UniId,
+                UniName = facultyPost.UniName,
                 DeanTC = facultyPost.DeanTC
             };
         }

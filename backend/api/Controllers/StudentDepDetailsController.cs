@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using api.DTO.StudentDepDetails;
 using api.Interfaces;
 using api.Mappers;
-using api.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,14 +23,14 @@ namespace api.Controllers
         }
         [HttpGet("Student/Departments/Details")]
         [Authorize(Roles = "Student")]
-        public async Task<IActionResult> GetDepsDetails(){
+        public async Task<IActionResult> GetStudentDepsDetails(){
              if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
             
-            var depsDetails = await _studentDepDetailsRepository.GetStudentDepDetailsByTC(TC);
+            var depsDetails = await _studentDepDetailsRepository.GetStudentDepDetailsByTCAsync(TC);
             
             return Ok(depsDetails);
         }
@@ -47,10 +42,10 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailByTcAndDepId(TC, DepId);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailByTcAndDepIdAsync(TC, DepId);
 
             if(studentDepDetails == null){
-                return BadRequest();
+                return NotFound();
             }
 
             return Ok(studentDepDetails.ToStudentDepDetailsDto());
@@ -75,7 +70,7 @@ namespace api.Controllers
                 return BadRequest("Department doesn't exist");
             }
             
-            var depsDetails = await _studentDepDetailsRepository.CreateStudentDepDetail(studentDepDetailsPostDto.ToStudentDepDetails());
+            var depsDetails = await _studentDepDetailsRepository.CreateStudentDepDetailAsync(studentDepDetailsPostDto.ToStudentDepDetails());
             
             if(depsDetails == null){
                 return BadRequest();
@@ -91,7 +86,7 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailByTcAndDepId(TC, DepId);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailByTcAndDepIdAsync(TC, DepId);
 
             if(studentDepDetails == null){
                 return NotFound();
@@ -108,7 +103,7 @@ namespace api.Controllers
             studentDepDetails.TotalAKTS = studentDepDetailsUpdateDto.TotalAKTS;
             studentDepDetails.Gno = studentDepDetailsUpdateDto.Gno;
             
-            var updatedStudentDepDetails = await _studentDepDetailsRepository.UpdateStudentDepDetail(studentDepDetails);
+            var updatedStudentDepDetails = await _studentDepDetailsRepository.UpdateStudentDepDetailAsync(studentDepDetails);
             
             if(updatedStudentDepDetails == null){
                 return BadRequest();
@@ -124,7 +119,7 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await _studentDepDetailsRepository.DeleteStudentDepDetail(TC, DepId);
+            var result = await _studentDepDetailsRepository.DeleteStudentDepDetailAsync(TC, DepId);
 
             if(result == null){
                 return BadRequest();

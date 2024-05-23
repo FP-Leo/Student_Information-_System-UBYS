@@ -17,7 +17,7 @@ namespace api.Repositories
             _context = context;
         }
 
-        public async Task<StudentDepDetail?> CreateStudentDepDetail(StudentDepDetail studentDepDetail)
+        public async Task<StudentDepDetail?> CreateStudentDepDetailAsync(StudentDepDetail studentDepDetail)
         {
             await _context.AddAsync(studentDepDetail);
             var result = await _context.SaveChangesAsync();
@@ -26,9 +26,9 @@ namespace api.Repositories
             return studentDepDetail;
         }
 
-        public async Task<StudentDepDetail?> DeleteStudentDepDetail(String TC, int id)
+        public async Task<StudentDepDetail?> DeleteStudentDepDetailAsync(String TC, int id)
         {
-            var studentDepDetail = await GetStudentDepDetailByTcAndDepId(TC, id);
+            var studentDepDetail = await GetStudentDepDetailByTcAndDepIdAsync(TC, id);
 
             if (studentDepDetail == null){
                 return null;
@@ -41,21 +41,21 @@ namespace api.Repositories
             return studentDepDetail;
         }
 
-        public async Task<StudentDepDetail?> GetStudentDepDetailByTcAndDepId(string TC, int depId)
+        public async Task<StudentDepDetail?> GetStudentDepDetailByTcAndDepIdAsync(string TC, int depId)
         {
             var studentDepDetail = await _context.StudentDepDetails.FirstOrDefaultAsync(dd=> dd.TC == TC && dd.DepartmentId == depId);
 
             return studentDepDetail;
         }
 
-        public async Task<ICollection<StudentDepDetail>> GetStudentDepDetailsByTC(string TC)
+        public async Task<ICollection<StudentDepDetail>> GetStudentDepDetailsByTCAsync(string TC)
         {
             var studentDepDetail = await _context.StudentDepDetails.Where(dd=> dd.TC == TC).ToListAsync();
 
             return studentDepDetail;
         }
 
-        public async Task<StudentDepDetail?> UpdateStudentDepDetail(StudentDepDetail studentDepDetail)
+        public async Task<StudentDepDetail?> UpdateStudentDepDetailAsync(StudentDepDetail studentDepDetail)
         {
             var result = await _context.SaveChangesAsync();
             if (result <= 0)

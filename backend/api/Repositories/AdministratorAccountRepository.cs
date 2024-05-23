@@ -7,7 +7,7 @@ namespace api.Repositories
 {
     public class AdministratorAccountRepository : IAdministratorAccountRepository
     {
-        ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
         public AdministratorAccountRepository(ApplicationDBContext context){
             _context = context;
         }

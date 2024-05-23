@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
@@ -6,12 +7,13 @@ namespace api.Models
     [Index(nameof(TC), nameof(DepartmentId), IsUnique = true)]
     public class StudentDepDetail
     {
+        [Column(Order = 0)]
         public int Id { get; set;}
         public string? StudentType { get; set; }
         public string? StudentStatus { get; set; }
         [Range(1, 7, ErrorMessage = "Maximum 7 years of study are allowed.")]
         public int CurrentSchoolYear { get; set; }
-        [Range(1, 8, ErrorMessage = "There are only 8 semesters per department.")]
+        [Range(1, 8, ErrorMessage = "There are only 8 semesters.")]
         public int CurrentSemester { get; set; }
         
         [Range(30, 45, ErrorMessage = "Current AKTS must be between 30 and 45.")]
@@ -21,7 +23,9 @@ namespace api.Models
         [Range(0, 4.0, ErrorMessage = "GNO must be between 0 and 4.")]
         public float Gno { get; set; }
         //Foreign Keys
+        [Column(Order = 2)]
         public int DepartmentId { get; set; }
+        [Column(Order = 1)]
         public string? TC { get; set; }
         public Department? Department{ get; set; }
         public StudentAccount? StudentAccount{ get; set; }

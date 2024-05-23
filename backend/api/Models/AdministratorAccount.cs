@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
@@ -11,6 +8,7 @@ namespace api.Models
     public class AdministratorAccount : UserAccount
     {
         [Required]
+        [Column(Order = 6)]
         public int AdministratorId {get; set;}
 
     }

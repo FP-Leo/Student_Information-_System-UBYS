@@ -14,14 +14,14 @@ namespace api.Controllers
         public FacultyController(IFacultyRepository facultyRepository){
             _facultyRepository = facultyRepository;
         }
-        [HttpGet("Faculty/{Id:int}")]
-        public async Task<IActionResult> GetFacultyById(int Id){
+        [HttpGet("University/Faculty/")]
+        public async Task<IActionResult> GetFaculty([FromQuery] String UniName, [FromQuery] String FacultyName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            var faculty = await _facultyRepository.GetFacultyByIdAsync(Id);
+            var faculty = await _facultyRepository.GetUniFacultyAsync(UniName, FacultyName);
 
             if(faculty == null){
                 return BadRequest();
@@ -29,7 +29,22 @@ namespace api.Controllers
 
             return Ok(faculty.ToFacultyDto());
         }
-        [HttpPost("Faculty")]
+        [HttpGet("University/Faculties/")]
+        public async Task<IActionResult> GetFaculties([FromQuery] String UniName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var faculties = await _facultyRepository.GetUniFacultiesAsync(UniName);
+
+            if(faculties == null){
+                return BadRequest();
+            }
+
+            return Ok(faculties);
+        }
+        [HttpPost("University/Faculty")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddFaculty([FromBody] FacultyPostDto facultyPostDto){
             if(!ModelState.IsValid)
@@ -45,21 +60,21 @@ namespace api.Controllers
 
             return Ok(faculty.ToFacultyDto());
         }
-        [HttpPut("Faculty/{Id:int}")]
+        [HttpPut("University/Faculty/")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateFaculty(int Id, [FromBody] FacultyUpdateDto facultyUpdateDto){
+        public async Task<IActionResult> UpdateFaculty([FromQuery] String UniName, [FromQuery] String FacultyName, [FromBody] FacultyUpdateDto facultyUpdateDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var faculty = await _facultyRepository.GetFacultyByIdAsync(Id);
+            var faculty = await _facultyRepository.GetUniFacultyAsync(UniName, FacultyName);
 
             if(faculty == null){
                 return BadRequest();
             }
 
-            if(facultyUpdateDto.FacultyID != faculty.FacultyID){
+            if(facultyUpdateDto.UniName != faculty.UniName || facultyUpdateDto.FacultyName != faculty.FacultyName){
                 return BadRequest();
             }
 
@@ -77,15 +92,15 @@ namespace api.Controllers
 
             return Ok(updatedFaculty.ToFacultyDto());
         }
-        [HttpDelete("Faculty/{Id:int}")]
+        [HttpDelete("University/Faculty/")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteFaculty(int Id){
+        public async Task<IActionResult> DeleteFaculty([FromQuery] String UniName, [FromQuery] String FacultyName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _facultyRepository.DeleteFacultyByIdAsync(Id);
+            var result = await _facultyRepository.DeleteUniFacultyAsync(UniName, FacultyName);
 
             if(result == null){
                 return BadRequest();

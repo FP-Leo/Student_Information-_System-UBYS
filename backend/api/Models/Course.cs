@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
-{
+{    
+    [Index(nameof(CourseName), IsUnique = true)]
     public class Course
     {
         [Key]
-        public string? CourseID { get; set; } // Primary Key
-        //Navigation Property
-        public CourseExplanation? Explanation { get; set; } // One-to-One relationship    
+        public int CourseId { get; set; } 
+        public string? CourseName { get; set; }
+        public DepartmentCourse? DepartmentCourse{ get; set; } // M to N relationship. New table.
     }
 }

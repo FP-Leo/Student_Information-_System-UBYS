@@ -8,7 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    [Index(nameof(FacultyID), nameof(FacultyName), IsUnique = true)]
+    [Index(nameof(FacultyName), IsUnique = true)]
+    [Index(nameof(UniName), nameof(FacultyName), IsUnique = true)]
     [Index(nameof(Address), IsUnique = true)]
     [Index(nameof(Mail), IsUnique = true)]
     [Index(nameof(WebSite), IsUnique = true)]
@@ -27,7 +28,7 @@ namespace api.Models
         public string? WebSite { get; set; }
         [Required]
         public string? PhoneNumber { get; set; }
-        public int? UniId { get; set; }
+        public String? UniName { get; set; }
         public string? DeanTC { get; set; }
 
         // Navigation Properties

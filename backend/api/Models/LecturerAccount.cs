@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
@@ -7,6 +8,7 @@ namespace api.Models
     public class LecturerAccount : UserAccount
     {
         [Required]
+        [Column(Order = 6)]
         public int LecturerId { get; set; }
         [Required]
         public string? Title { get; set; }

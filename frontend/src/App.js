@@ -15,7 +15,7 @@ const App = () => {
     if (user) {
       dispatch(setCurrentUser(JSON.parse(user)));
       if (location.pathname === "/") navigate("/home");
-    }
+    } else navigate("/");
   }, []);
   return (
     <>

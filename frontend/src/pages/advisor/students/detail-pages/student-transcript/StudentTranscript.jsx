@@ -12,6 +12,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "AA",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "MATH201",
@@ -19,6 +28,15 @@ const data = [
         kredi: 3,
         akts: 5,
         hbn: "BB",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "PHYS101",
@@ -26,6 +44,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "CC",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "HIST101",
@@ -33,6 +60,15 @@ const data = [
         kredi: 2,
         akts: 3,
         hbn: "DD",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "CS201",
@@ -40,6 +76,15 @@ const data = [
         kredi: 3,
         akts: 5,
         hbn: "AA",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "MATH203",
@@ -47,6 +92,15 @@ const data = [
         kredi: 3,
         akts: 5,
         hbn: "BB",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "CHEM101",
@@ -54,6 +108,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "CC",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "SOC101",
@@ -61,6 +124,15 @@ const data = [
         kredi: 3,
         akts: 4,
         hbn: "DD",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
     ],
   },
@@ -74,6 +146,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "AA",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "MATH201",
@@ -81,6 +162,15 @@ const data = [
         kredi: 3,
         akts: 5,
         hbn: "BB",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "PHYS101",
@@ -88,6 +178,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "CC",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "HIST101",
@@ -95,6 +194,15 @@ const data = [
         kredi: 2,
         akts: 3,
         hbn: "DD",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "CS301",
@@ -102,6 +210,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "AA",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "MATH301",
@@ -109,6 +226,15 @@ const data = [
         kredi: 3,
         akts: 5,
         hbn: "BB",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "EE201",
@@ -116,6 +242,15 @@ const data = [
         kredi: 4,
         akts: 6,
         hbn: "CC",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
       {
         dersKodu: "TURK101",
@@ -123,6 +258,15 @@ const data = [
         kredi: 2,
         akts: 3,
         hbn: "DD",
+        devamDurumu: "Devamlı",
+        vize: {
+          puan: 80,
+          siralama: 10,
+        },
+        final: {
+          puan: 90,
+          siralama: 5,
+        },
       },
     ],
   },

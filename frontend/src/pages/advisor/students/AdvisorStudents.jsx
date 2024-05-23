@@ -6,34 +6,6 @@ import StudentTableRow from "./components/StudentTableRow";
 import generatePDF from "react-to-pdf";
 import DownloadAsExcel from "./components/DownloadExcelFile";
 import { getArrayFromObject } from "utils/helper-functions";
-const STUDENTS1 = [
-  [
-    "Resim",
-    "Numerası",
-    "Ad Soyad",
-    "Akademik Program",
-    "Kayıtlanma Aşaması",
-    "Sınıf",
-    "Harç Borcu",
-    "Durum",
-    "Detay Durum",
-    "GANO",
-    "İşlemler",
-  ],
-  [
-    "Resim",
-    "Numerası",
-    "Ad Soyad",
-    "Akademik Program",
-    "Kayıtlanma Aşaması",
-    "Sınıf",
-    "Harç Borcu",
-    "Durum",
-    "Detay Durum",
-    "GANO",
-    "İşlemler",
-  ],
-];
 
 const STUDENTS = [
   {

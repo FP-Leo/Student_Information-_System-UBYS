@@ -2,7 +2,6 @@ import MainScreenCategories from "pages/MainScreenCategories";
 import EditProfile from "pages/edit-profile/EditProfile";
 import AdvisorStudents from "pages/advisor/students/AdvisorStudents";
 import StudentTranscript from "pages/advisor/students/detail-pages/student-transcript/StudentTranscript";
-import StudentDetails from "pages/advisor/students/StudentDetails";
 import HistoricalDocument from "pages/advisor/students/detail-pages/historical-document/HistoricalDocument";
 import StudentsInformation from "pages/advisor/students/detail-pages/student-information/StudentsInformation";
 import SubjectsRegistration from "pages/advisor/students/detail-pages/subjects-registration.jsx/SubjectsRegistration";

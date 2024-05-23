@@ -1,7 +1,7 @@
 import TranscriptTable from "../../components/TranscriptTable";
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-const data = [
+export const data = [
   {
     year: "2024",
     semester: "1. Yarıyıl",

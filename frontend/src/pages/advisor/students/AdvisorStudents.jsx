@@ -7,7 +7,7 @@ import generatePDF from "react-to-pdf";
 import DownloadAsExcel from "./components/DownloadExcelFile";
 import { getArrayFromObject } from "utils/helper-functions";
 
-const STUDENTS = [
+export const STUDENTS = [
   {
     id: 1,
     name: "Ali Veli",

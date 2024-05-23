@@ -87,13 +87,11 @@ const typography = {
   },
   caption: {
     fontWeight: 500,
-
     lineHeight: 1.5,
     fontSize: pxToRem(13),
   },
   caption2: {
     fontWeight: 400,
-
     lineHeight: 1.5,
     fontSize: pxToRem(13),
   },

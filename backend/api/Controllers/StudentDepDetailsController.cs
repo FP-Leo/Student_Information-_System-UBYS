@@ -21,7 +21,7 @@ namespace api.Controllers
             _studentAccountRepository = studentAccountRepository;
             _depRepository = departmentRepository;
         }
-        [HttpGet("Student/Departments/Details")]
+        [HttpGet("University/Faculty/Departments/Student/Details")]
         [Authorize(Roles = "Student")]
         public async Task<IActionResult> GetStudentDepsDetails(){
              if(!ModelState.IsValid)
@@ -34,7 +34,7 @@ namespace api.Controllers
             
             return Ok(depsDetails);
         }
-        [HttpGet("Student/Department/Details")]
+        [HttpGet("University/Faculty/Department/Student/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetDepDetailByTcAndDepId([FromQuery] String TC, [FromQuery] String DepName){
             if(!ModelState.IsValid)
@@ -50,7 +50,7 @@ namespace api.Controllers
 
             return Ok(studentDepDetails.ToStudentDepDetailsDto());
         }
-        [HttpPost("Student/Departmant/Details")]
+        [HttpPost("University/Faculty/Department/Student/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddStudentDepDetail([FromBody] StudentDepDetailsPostDto studentDepDetailsPostDto){
             if(!ModelState.IsValid)
@@ -78,7 +78,7 @@ namespace api.Controllers
 
             return Ok(depsDetails.ToStudentDepDetailsDto());
         }
-        [HttpPut("Student/Departmant/Details")]
+        [HttpPut("University/Faculty/Department/Student/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateStudentDepDetails([FromQuery] String TC, [FromQuery] String DepName, [FromBody] StudentDepDetailsUpdateDto studentDepDetailsUpdateDto){
             if(!ModelState.IsValid)
@@ -111,7 +111,7 @@ namespace api.Controllers
 
             return Ok(updatedStudentDepDetails.ToStudentDepDetailsDto());
         }
-        [HttpDelete("Student/Department/Details")]
+        [HttpDelete("University/Faculty/Departments/Student/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteStudentDepDetails([FromQuery] String TC, [FromQuery] String DepName){
             if(!ModelState.IsValid)

@@ -20,7 +20,7 @@ namespace api.Controllers
             _courseRepository = courseRepository;
         }
 
-        [HttpGet("Department/Course/")]
+        [HttpGet("University/Faculty/Department/Course/")]
         public async Task<IActionResult> GetDepCourseByCourseIdAndDepId([FromQuery] String DepName, [FromQuery] String CourseName){
             if(!ModelState.IsValid)
             {
@@ -35,8 +35,8 @@ namespace api.Controllers
 
             return Ok(course.ToDepartmentCourseDto());
         }
-        [HttpGet("Course/Departments/{CourseName}")]
-        public async Task<IActionResult> GetDepartmentsOfCourse(String CourseName){
+        [HttpGet("University/Faculty/Departments/Course")]
+        public async Task<IActionResult> GetDepartmentsOfCourse([FromQuery] String CourseName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -50,8 +50,8 @@ namespace api.Controllers
 
             return Ok(course);
         }
-        [HttpGet("Department/Courses/{DepName}")]
-        public async Task<IActionResult> GetCoursesOfDepartment(String DepName){
+        [HttpGet("University/Faculty/Department/Courses/")]
+        public async Task<IActionResult> GetCoursesOfDepartment([FromQuery] String DepName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -65,7 +65,7 @@ namespace api.Controllers
 
             return Ok(course);
         }
-        [HttpPost("Department/Course")]
+        [HttpPost("University/Faculty/Department/Course")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCourseToDepartment([FromBody] DepartmentCoursePostDto coursePostDto){
             if(!ModelState.IsValid)
@@ -92,7 +92,7 @@ namespace api.Controllers
 
             return Ok(depsDetails.ToDepartmentCourseDto());
         }
-        [HttpPut("Department/Course")]
+        [HttpPut("University/Faculty/Department/Course")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateCourseOfDepartment([FromQuery] String DepName, [FromQuery] String CourseName, [FromBody] DepartmentCourseUpdateDto departmentCourseUpdateDto){
             if(!ModelState.IsValid)
@@ -121,7 +121,7 @@ namespace api.Controllers
 
             return Ok(updatedDepCourse.ToDepartmentCourseDto());
         }
-        [HttpDelete("Deparment/Course")]
+        [HttpDelete("University/Faculty/Deparment/Course")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourseOfDepartment([FromQuery] String DepName, [FromQuery] String CourseName){
             if(!ModelState.IsValid)

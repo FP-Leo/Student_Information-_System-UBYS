@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
-    [Route("api/account")]
+    [Route("api/")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -43,7 +43,7 @@ namespace api.Controllers
             return false;
         }
         //Function to register any type of user.
-        [HttpPost("register")]
+        [HttpPost("Admin/System/Account/Register")]
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto){
             try{
@@ -98,7 +98,7 @@ namespace api.Controllers
             }
         }
         //Function to register students only, for backend admins.
-        [HttpPost("register/student")]
+        [HttpPost("Admin/System/Account/Register/Student")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentDto registerStudentDto){
             try{
@@ -153,7 +153,7 @@ namespace api.Controllers
                 return StatusCode(500, e);
             }
         }
-        [HttpPost("register/lecturer")]
+        [HttpPost("Admin/System/Account/Register/Lecturer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterLecturer([FromBody] RegisterLecturerDto registerLecturerDto){
             try{
@@ -211,7 +211,7 @@ namespace api.Controllers
             }
         }
         // Advisor controller
-        [HttpPost("register/advisor")]
+        [HttpPost("Admin/System/Account/Register/Advisor")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterAdvisor([FromBody] RegisterAdvisorDto registerAdvisorDto){
             try{
@@ -268,7 +268,7 @@ namespace api.Controllers
             }
         }
         // administrator controller
-        [HttpPost("register/administrator")]
+        [HttpPost("Admin/System/Account/Register/Administrator")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterAdministrator([FromBody] RegisterAdministratorDto registerAdministratorDto){
             try{
@@ -324,7 +324,7 @@ namespace api.Controllers
             }
         }
         //Log In Function
-        [HttpPost("login")]
+        [HttpPost("System/Account/LogIn")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             if (!ModelState.IsValid)

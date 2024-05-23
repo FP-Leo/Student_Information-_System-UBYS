@@ -18,5 +18,6 @@ namespace api.Models
         public Course? Course{ get; set; }
         public Department? Department { get; set; } 
         public CourseDetails? CourseDetails { get; set; }
+        public IEnumerable<CourseClass>? CourseClasses { get; set; }
     }
 }

@@ -16,5 +16,8 @@ namespace api.Models
         public float TotalWorkHours { get; set; }
         [Required]
         public string? CurrentStatus { get; set; }
+        // Navigation Properties
+        public ICollection<CourseClass>? Courses{ get; set; }
+        public ICollection<LecturerDepDetail>? LecturerDepDetails { get; set;}
     }
 }

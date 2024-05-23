@@ -25,6 +25,7 @@ namespace api.Models
         public Faculty? Faculty { get; set; } 
         public User? HeadOfDepartment { get; set; } // One-to-One 
         public ICollection<StudentDepDetail>? StudentDepDetails { get; set;}
+        public ICollection<LecturerDepDetail>? LecturerDepDetails { get; set;}
         public DepartmentCourse? DepartmentCourse { get; set; } // Many to Many. New table.
     }
 }

@@ -11,14 +11,18 @@ namespace api.Models
         [Key]
         public string? CourseClassID { get; set; } // Primary Key
         public int HourPerWeek { get; set; }
+        public int SchoolYear { get; set; }
         public int AKTS { get; set; }
         public int Kredi { get; set; }
         public float MidTermValue { get; set; }
         public float FinalValue { get; set; }
-
+        
+        // Foreign Key
+        public string? CourseName { get; set; } 
+        public string? DepartmentName { get; set; }
+        public string? LecturerTC { get; set; }
         // Navigation Property
-        //public string? CourseName { get; set; } // Foreign Key
-        //public Course? Course { get; set; } // One-to-Many relationship
-         //public string CoursePersonel { get; set; }
+        public DepartmentCourse? DepartmentCourse{ get; set; }
+        public LecturerAccount? LecturerDetails{ get; set; }
     }
 }

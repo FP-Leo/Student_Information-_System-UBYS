@@ -28,7 +28,7 @@ namespace api.Controllers
             return false;
         }
         // Administrator 
-        [HttpGet("Administrator/AccountInfo/")]
+        [HttpGet("User/Administrator/Account/Details")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetAdministratorData(){
             if(!ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace api.Controllers
             return Ok(accInfo.ToAdministratorAccountDto());
         }
         // Function that will be used by the administrator to update its info, the [authorize] will be done later.
-        [HttpPut("Administrator/AccountInfo/Update")]
+        [HttpPut("User/Administrator/Account/Details")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateSettingsAdministrator([FromBody] AdministratorAccountUpdateDto administratorAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace api.Controllers
             return Ok(result.ToAdministratorAccountDto());
         }
         // Function that will be used by an admin to get data of an Administrator account.
-        [HttpGet("Admin/Administrator/AccountInfo/{TC}")]
+        [HttpGet("Admin/Administrator/Account/Details/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdministratorByTc(string TC){
             if(!ModelState.IsValid)
@@ -114,7 +114,7 @@ namespace api.Controllers
         }
         */
         // Function that will be used by an admin to change data of the Administrator account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Administrator/AccountInfo/Update")]
+        [HttpPut("Admin/Administrator/Account/Details/Update")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAdministratorAccount([FromBody] AdministratorAccountPOSTDto administratorAccountPOSTDto){
             if(!ModelState.IsValid)

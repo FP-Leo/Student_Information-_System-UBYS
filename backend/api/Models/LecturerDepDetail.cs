@@ -1,14 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace api.Models
 {
     public class LecturerDepDetail
     {
-        public int Id { get; set; } // Primary key
-
-
+        // Primary key
+        public int Id { get; set; } 
+        //Foreign Keys
+        public string? DepartmentName { get; set; }
+        public string? LecturerTC { get; set; }
+        public int Hours { get; set; }
+        // Navigation Properties
+        public LecturerAccount? Lecturer { get; set; }
+        public Department? Department { get; set; }
     }
 }

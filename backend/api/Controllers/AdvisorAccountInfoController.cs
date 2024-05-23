@@ -30,7 +30,7 @@ namespace api.Controllers
         }
         
         //Advisor 
-        [HttpGet("Advisor/AccountInfo/")]
+        [HttpGet("User/Advisor/Account/Details")]
         [Authorize(Roles = "Advisor")]
         public async Task<IActionResult> GetAdvisorData(){
             if(!ModelState.IsValid)
@@ -49,7 +49,7 @@ namespace api.Controllers
             return Ok(accInfo.ToAdvisorAccountDto());
         }
          // Function that will be used by the advisor to update its info, the [authorize] will be done later.
-        [HttpPut("Advisor/AccountInfo/Update")]
+        [HttpPut("User/Advisor/Account/Details")]
         [Authorize(Roles = "Advisor")]
         public async Task<IActionResult> UpdateSettingsAdvisor([FromBody] AdvisorAccountUpdateDto advisorAccountPOSTDto){
             if(!ModelState.IsValid)
@@ -77,7 +77,7 @@ namespace api.Controllers
             return Ok(result.ToAdvisorAccountDto());
         }
         // Function that will be used by an admin to get data of an Advisor account.
-        [HttpGet("Admin/Advisor/AccountInfo/{TC}")]
+        [HttpGet("Admin/Advisor/Account/Details/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAdvisorByTc(string TC){
             if(!ModelState.IsValid)
@@ -116,7 +116,7 @@ namespace api.Controllers
         }
         */
         // Function that will be used by an admin to change data of the Advisor account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Advisor/AccountInfo/Update")]
+        [HttpPut("Admin/Advisor/Account/Details/Update")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAdvisorAccount([FromBody] AdvisorAccountPOSTDto advisorAccountPOSTDto){
             if(!ModelState.IsValid)

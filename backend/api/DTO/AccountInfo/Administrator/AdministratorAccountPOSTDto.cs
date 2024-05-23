@@ -5,6 +5,8 @@ namespace api.DTO.AccountInfo
     public class AdministratorAccountPOSTDto
     {
         [Required]
+        public string? TC {get; set;}
+        [Required]
         public string FirstName {get; set;} = string.Empty;
         [Required]
         public string LastName {get; set;} = string.Empty;
@@ -18,7 +20,5 @@ namespace api.DTO.AccountInfo
         [Required]
         public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
-        [Required]
-        public string? TC {get; set;}
     }
 }

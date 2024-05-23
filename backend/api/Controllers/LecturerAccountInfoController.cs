@@ -29,7 +29,7 @@ namespace api.Controllers
         }
         
         // Lecturer 
-        [HttpGet("Lecturer/AccountInfo/")]
+        [HttpGet("User/Lecturer/Account/Details")]
         [Authorize(Roles = "Lecturer")]
         public async Task<IActionResult> GetLecturerData(){
             if(!ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace api.Controllers
             return Ok(accInfo.ToLecturerAccountDto());
         }
         // Function that will be used by the lecturer to update its info, the [authorize] will be done later.
-        [HttpPut("Lecturer/AccountInfo/Update")]
+        [HttpPut("User/Lecturer/Account/Details")]
         [Authorize(Roles = "Lecturer")]
         public async Task<IActionResult> UpdateSettingsLecturer([FromBody] LecturerAccountUpdateDto lecturerAccountUpdateDto){
             if(!ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace api.Controllers
             return Ok(result.ToLecturerAccountDto());
         } 
         // Function that will be used by an admin to get data of a lecturer account.
-        [HttpGet("Admin/Lecturer/AccountInfo/{TC}")]
+        [HttpGet("Admin/Lecturer/Account/Details/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetLecturerByTc(string TC){
             if(!ModelState.IsValid)
@@ -113,7 +113,7 @@ namespace api.Controllers
             return Ok(accInfo.ToLecturerAccountDto());
         }*/
         // Function that will be used by an admin to change data of the lecturer account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Lecturer/AccountInfo/Update")]
+        [HttpPut("Admin/Lecturer/Account/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateLecturerAccount([FromBody] LecturerAccountPOSTDto lecturerAccountPOSTDto){
             if(!ModelState.IsValid)

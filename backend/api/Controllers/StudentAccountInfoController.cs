@@ -28,7 +28,7 @@ namespace api.Controllers
             return false;
         }
 
-        [HttpGet("Student/AccountInfo/")]
+        [HttpGet("User/Student/Account/Details")]
         [Authorize(Roles = "Student")]
         public async Task<IActionResult> GetStudentData(){
             if(!ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace api.Controllers
             return Ok(accInfo.ToStudentAccountDto());
         }
         // Function that will be used by the student to update its info, the [authorize] will be done later.
-        [HttpPut("Student/AccountInfo/Update")]
+        [HttpPut("User/Student/Account/Details")]
         [Authorize(Roles = "Student")]
         public async Task<IActionResult> UpdateSettingsStudent([FromBody] StudentAccountUpdateDto studentAccountUpdateDto){
             if(!ModelState.IsValid)
@@ -74,7 +74,7 @@ namespace api.Controllers
             return Ok(result.ToStudentAccountDto());
         }
         // Function that will be used for an admin to get data of a student account.
-        [HttpGet("Admin/Student/AccountInfo/{TC}")]
+        [HttpGet("Admin/Student/Account/Details/{TC}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetStudentByTC(string TC){
             if(!ModelState.IsValid)
@@ -112,7 +112,7 @@ namespace api.Controllers
             return Ok(accInfo.ToStudentAccountDto());
         }*/
         // Function that will be used for an admin to change data of a student account if the data entered was invalid/outdated.
-        [HttpPut("Admin/Student/AccountInfo/Update")]
+        [HttpPut("Admin/Student/Account/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateStudentAccount([FromBody] StudentAccountPOSTDto studentAccountPOSTDto){
             if(!ModelState.IsValid)

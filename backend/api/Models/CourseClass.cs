@@ -22,5 +22,6 @@ namespace api.Models
         // Navigation Property
         public DepartmentCourse? DepartmentCourse{ get; set; }
         public LecturerAccount? LecturerDetails{ get; set; }
+        public ICollection<StudentCourseDetails>? StudentsCourseDetails  { get; set; }
     }
 }

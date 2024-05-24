@@ -27,7 +27,7 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var course = await _departmentCourseRepository.CourseDetailsByCourseAndDepNameAsync(CourseName, DepName);
+            var course = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
 
             if(course == null){
                 return NotFound();
@@ -100,7 +100,7 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var depCourse = await _departmentCourseRepository.CourseDetailsByCourseAndDepNameAsync(CourseName, DepName);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
 
             if(depCourse == null){
                 return BadRequest();

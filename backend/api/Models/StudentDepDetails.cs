@@ -29,5 +29,6 @@ namespace api.Models
         public string? TC { get; set; }
         public Department? Department{ get; set; }
         public StudentAccount? StudentAccount{ get; set; }
+        public ICollection<StudentCourseDetails>? StudentCoursesDetails { get; set; }
     }
 }

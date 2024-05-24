@@ -11,7 +11,7 @@ const Subjects = () => {
   useEffect(() => {
     const token = getToken();
     axios
-      .get("http://localhost:5158/api/Student/AccountInfo", {
+      .get("http://localhost:5158/api/User/Student/Account/Details", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

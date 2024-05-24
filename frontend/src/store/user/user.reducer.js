@@ -12,15 +12,16 @@ const TEST_STATE = {
 };
 
 const INITIAL_STATE = {
-  currentUser: null,
+  userToken: null,
+
   userData: null,
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
   const { payload, type } = action;
   switch (type) {
-    case USER_ACTION_TYPES.SET_CURRENT_USER:
-      return { ...state, currentUser: payload };
+    case USER_ACTION_TYPES.SET_USER_TOKEN:
+      return { ...state, userToken: payload };
     case USER_ACTION_TYPES.SET_USER_DATA:
       return { ...state, userData: payload };
 

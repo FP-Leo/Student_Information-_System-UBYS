@@ -5,6 +5,10 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using api.DTO.AccountInfo;
+using api.DTO.AccountInfo.Administrator;
+using api.DTO.AccountInfo.Advisor;
+using api.DTO.AccountInfo.Lecturer;
+using api.DTO.AccountInfo.Student;
 using api.Models;
 
 namespace api.Mappers
@@ -30,18 +34,20 @@ namespace api.Mappers
         public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc, String token){
             return new StudentAccountLOGINDto{
                 Token = token,
-                Role = "Student",
-                TC = studentAcc.TC,
-                FirstName = studentAcc.FirstName,
-                LastName = studentAcc.LastName,
-                BirthDate = studentAcc.BirthDate,
-                SSN = studentAcc.SSN,
-                RegisterDate = studentAcc.RegisterDate,
-                CurrentType = studentAcc.CurrentType,
-                CurrentStatus = studentAcc.CurrentStatus,
-                SchoolMail = studentAcc.SchoolMail,
-                PersonalMail = studentAcc.PersonalMail,
-                Phone = studentAcc.Phone
+                Data = new StudentAccountDataDto{
+                    Role = "Student",
+                    TC = studentAcc.TC,
+                    FirstName = studentAcc.FirstName,
+                    LastName = studentAcc.LastName,
+                    BirthDate = studentAcc.BirthDate,
+                    SSN = studentAcc.SSN,
+                    RegisterDate = studentAcc.RegisterDate,
+                    CurrentType = studentAcc.CurrentType,
+                    CurrentStatus = studentAcc.CurrentStatus,
+                    SchoolMail = studentAcc.SchoolMail,
+                    PersonalMail = studentAcc.PersonalMail,
+                    Phone = studentAcc.Phone
+                }
             };
         }
         public static StudentAccount POSTToStudentAccount(this StudentAccountPOSTDto newStudentAcc){
@@ -81,19 +87,21 @@ namespace api.Mappers
         public static LecturerAccountLOGINDto ToLecturerAccountLOGINDto(this LecturerAccount LecturerAcc, String token){
             return new LecturerAccountLOGINDto{
                 Token = token,
-                Role = "Lecturer",
-                TC = LecturerAcc.TC,
-                FirstName = LecturerAcc.FirstName,
-                LastName = LecturerAcc.LastName,
-                BirthDate = LecturerAcc.BirthDate,
-                LecturerId = LecturerAcc.LecturerId,
-                RegisterDate = LecturerAcc.RegisterDate,
-                Title = LecturerAcc.Title,
-                CurrentStatus = LecturerAcc.CurrentStatus,
-                TotalWorkHours = LecturerAcc.TotalWorkHours,
-                SchoolMail = LecturerAcc.SchoolMail,
-                PersonalMail = LecturerAcc.PersonalMail,
-                Phone = LecturerAcc.Phone
+                Data = new LecturerAccountDataDto{
+                    Role = "Lecturer",
+                    TC = LecturerAcc.TC,
+                    FirstName = LecturerAcc.FirstName,
+                    LastName = LecturerAcc.LastName,
+                    BirthDate = LecturerAcc.BirthDate,
+                    LecturerId = LecturerAcc.LecturerId,
+                    RegisterDate = LecturerAcc.RegisterDate,
+                    Title = LecturerAcc.Title,
+                    CurrentStatus = LecturerAcc.CurrentStatus,
+                    TotalWorkHours = LecturerAcc.TotalWorkHours,
+                    SchoolMail = LecturerAcc.SchoolMail,
+                    PersonalMail = LecturerAcc.PersonalMail,
+                    Phone = LecturerAcc.Phone
+                }
             };
         }
 
@@ -132,16 +140,18 @@ namespace api.Mappers
          public static AdvisorAccountLOGINDto ToAdvisorAccountLOGINDto(this AdvisorAccount AdvisorAcc, String token){
             return new AdvisorAccountLOGINDto{
                 Token = token,
-                Role = "Advisor",
-                TC = AdvisorAcc.TC,
-                FirstName = AdvisorAcc.FirstName,
-                LastName = AdvisorAcc.LastName,
-                BirthDate = AdvisorAcc.BirthDate,
-                AdvisorId = AdvisorAcc.AdvisorId,
-                RegisterDate = AdvisorAcc.RegisterDate,
-                SchoolMail = AdvisorAcc.SchoolMail,
-                PersonalMail = AdvisorAcc.PersonalMail,
-                Phone = AdvisorAcc.Phone
+                Data = new AdvisorAccountDataDto{
+                    Role = "Advisor",
+                    TC = AdvisorAcc.TC,
+                    FirstName = AdvisorAcc.FirstName,
+                    LastName = AdvisorAcc.LastName,
+                    BirthDate = AdvisorAcc.BirthDate,
+                    AdvisorId = AdvisorAcc.AdvisorId,
+                    RegisterDate = AdvisorAcc.RegisterDate,
+                    SchoolMail = AdvisorAcc.SchoolMail,
+                    PersonalMail = AdvisorAcc.PersonalMail,
+                    Phone = AdvisorAcc.Phone
+                }
             };
         }
 
@@ -177,16 +187,18 @@ namespace api.Mappers
          public static AdministratorAccountLOGINDto ToAdministratorAccountLOGINDto(this AdministratorAccount AdministratorAcc, String token){
             return new AdministratorAccountLOGINDto{
                 Token = token,
-                Role = "Administrator",
-                TC = AdministratorAcc.TC,
-                FirstName = AdministratorAcc.FirstName,
-                LastName = AdministratorAcc.LastName,
-                BirthDate = AdministratorAcc.BirthDate,
-                AdministratorId = AdministratorAcc.AdministratorId,
-                RegisterDate = AdministratorAcc.RegisterDate,
-                SchoolMail = AdministratorAcc.SchoolMail,
-                PersonalMail = AdministratorAcc.PersonalMail,
-                Phone = AdministratorAcc.Phone
+                Data = new AdministratorAccountDataDto{
+                    Role = "Administrator",
+                    TC = AdministratorAcc.TC,
+                    FirstName = AdministratorAcc.FirstName,
+                    LastName = AdministratorAcc.LastName,
+                    BirthDate = AdministratorAcc.BirthDate,
+                    AdministratorId = AdministratorAcc.AdministratorId,
+                    RegisterDate = AdministratorAcc.RegisterDate,
+                    SchoolMail = AdministratorAcc.SchoolMail,
+                    PersonalMail = AdministratorAcc.PersonalMail,
+                    Phone = AdministratorAcc.Phone
+                }
             };
         }
 

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using api.DTO.AccountInfo.Advisor;
 
 namespace api.DTO.AccountInfo
 {
@@ -7,23 +8,6 @@ namespace api.DTO.AccountInfo
         [Required]
         public string? Token { get; set; }
         [Required]
-        public string? Role {get; set;}
-        [Required]
-        public string? TC { get; set; }
-        [Required]
-        public string? FirstName {get; set;}
-        [Required]
-        public string? LastName {get; set;}
-        [Required]
-        public DateTime BirthDate {get; set;}
-        [Required]
-        public int AdvisorId {get; set;}
-        [Required]
-        public DateTime RegisterDate {get; set;}
-        [Required]
-        public string? SchoolMail {get; set;}
-        public string? PersonalMail {get; set;}
-        [Required]
-        public string? Phone {get; set;}
+        public AdvisorAccountDataDto? Data { get; set; }
     }
 }

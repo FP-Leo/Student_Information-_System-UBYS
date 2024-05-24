@@ -12,11 +12,11 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    //const user = localStorage.getItem("userData");
+    const user = localStorage.getItem("userData");
     const token = localStorage.getItem("token");
-    console.log(token);
     if (token) {
       dispatch(setUserToken(token));
+      dispatch(setUserData(JSON.parse(user)));
       const fetchUserData = async () => {
         try {
           const response = await axios.get(
@@ -33,10 +33,10 @@ const App = () => {
           alert(err);
         }
       };
-      fetchUserData();
-    }
-    if (location.pathname === "/") navigate("/home");
-    else navigate("/");
+      //fetchUserData();
+
+      if (location.pathname === "/") navigate("/home");
+    } else navigate("/");
   }, []);
   return (
     <>

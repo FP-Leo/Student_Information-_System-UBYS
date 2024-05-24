@@ -13,10 +13,12 @@ namespace api.Controllers
         private readonly ICourseClassRepository _courseClassRepository;
         private readonly IDepartmentCourseRepository _departmentCourseRepository;
         private readonly IDepartmentRepository _departmentRepository;
-        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IDepartmentRepository departmentRepository){
+        private readonly IUniversityRepository _universityRepository;
+        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IDepartmentRepository departmentRepository, IUniversityRepository universityRepository){
             _courseClassRepository = courseClassRepository;
             _departmentCourseRepository = departmentCourseRepository;
             _departmentRepository = departmentRepository;
+            _universityRepository = universityRepository;
         }
         [HttpGet("University/Faculty/Department/Course/Class")]
         public async Task<IActionResult> GetCourseClass([FromQuery] String DepName, [FromQuery] String CourseName){
@@ -31,7 +33,10 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            var courseClass = await _courseClassRepository.GetCourseClassAsync(DepName, CourseName, depCourse.Department.Faculty.University.CurrentSchoolYear);
+            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+
+            var courseClass = await _courseClassRepository.GetCourseClassAsync(DepName, CourseName, uni.CurrentSchoolYear);
             
             if(courseClass == null){
                 return NotFound();
@@ -51,8 +56,10 @@ namespace api.Controllers
             if(dep == null){
                 return NotFound();
             }
+            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
 
-            var coursesClass = await _courseClassRepository.GetSpecificCourseClasses(DepName, dep.Faculty.University.CurrentSchoolYear);
+            var coursesClass = await _courseClassRepository.GetSpecificCourseClasses(DepName, uni.CurrentSchoolYear);
             
             if(coursesClass == null){
                 return NotFound();
@@ -72,8 +79,11 @@ namespace api.Controllers
             if(depCourse == null){
                 return NotFound();
             }
+
+            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
             
-            var courseClass = await _courseClassRepository.AddCourseClassAsync(courseClassPostDto.ToCourseClass(depCourse.Department.Faculty.University.CurrentSchoolYear));
+            var courseClass = await _courseClassRepository.AddCourseClassAsync(courseClassPostDto.ToCourseClass(uni.CurrentSchoolYear));
             
             if(courseClass == null){
                 return BadRequest();
@@ -98,7 +108,10 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            var courseClass = await _courseClassRepository.GetCourseClassAsync(DepName, CourseName, depCourse.Department.Faculty.University.CurrentSchoolYear);
+            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+
+            var courseClass = await _courseClassRepository.GetCourseClassAsync(DepName, CourseName, uni.CurrentSchoolYear);
             
             if(courseClass == null){
                 return NotFound();
@@ -132,7 +145,10 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            var result = await _courseClassRepository.DeleteCourseClassAsync(DepName, CourseName, depCourse.Department.Faculty.University.CurrentSchoolYear);
+            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+
+            var result = await _courseClassRepository.DeleteCourseClassAsync(DepName, CourseName, uni.CurrentSchoolYear);
 
             if(result == null){
                 return BadRequest();

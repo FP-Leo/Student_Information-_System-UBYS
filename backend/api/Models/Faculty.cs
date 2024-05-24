@@ -17,8 +17,10 @@ namespace api.Models
     public class Faculty
     {
         [Key]
+        [Column(Order = 0)]
         public int FacultyID { get; set; }
         [Required]
+        [Column(Order = 2)]
         public string? FacultyName { get; set; }
         [Required]
         public string? Address { get; set; }
@@ -28,6 +30,7 @@ namespace api.Models
         public string? WebSite { get; set; }
         [Required]
         public string? PhoneNumber { get; set; }
+        [Column(Order = 1)]
         public String? UniName { get; set; }
         public string? DeanTC { get; set; }
 

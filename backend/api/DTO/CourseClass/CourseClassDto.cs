@@ -6,7 +6,7 @@ namespace api.DTO.CourseClass
     public class CourseClassDto
     {
         [Required]
-        public string? CourseClassID { get; set; } // Primary Key
+        public int CourseClassID { get; set; } // Primary Key
         [Required]
         public string? DepartmentName { get; set; } 
         [Required]

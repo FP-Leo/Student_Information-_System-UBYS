@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
@@ -11,13 +8,16 @@ namespace api.Models
     public class Department
     {
         [Key]
+        [Column(Order = 0)]
         public int DepartmentId { get; set; }
         [Required]
+        [Column(Order = 2)]
         public string? DepartmentName { get; set; }
         [Required] 
         public string? BuildingNumber { get; set; }
         [Required] 
         public int FloorNumber { get; set; }
+        [Column(Order = 1)]
         public string? FacultyName { get; set; }
         public string? HeadOfDepartmentTC { get; set; }
 

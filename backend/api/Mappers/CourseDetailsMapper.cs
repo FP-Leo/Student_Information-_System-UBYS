@@ -7,6 +7,7 @@ namespace api.Mappers
     {
         public static CourseDetailsDto ToCourseExplanationDto(this CourseDetails courseExplanation){
             return new CourseDetailsDto{
+                Id = courseExplanation.Id,
                 CourseName = courseExplanation.CourseName,
                 CourseLevel = courseExplanation.CourseLevel,
                 CourseType = courseExplanation.CourseType,

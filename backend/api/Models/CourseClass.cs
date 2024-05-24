@@ -7,7 +7,7 @@ namespace api.Models
     public class CourseClass
     {
         [Key]
-        public string? CourseClassID { get; set; } // Primary Key
+        public int CourseClassID { get; set; } // Primary Key
         public int HourPerWeek { get; set; }
         public int SchoolYear { get; set; }
         public int AKTS { get; set; }

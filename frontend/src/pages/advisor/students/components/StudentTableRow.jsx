@@ -255,16 +255,7 @@ const StudentTableRow = ({ data }) => {
             <HistoryEduRoundedIcon />
             Transkriptini Görüntüle
           </MenuItem>
-          <MenuItem
-            onClick={() => {
-              navigate(`/home/historical-document/${number}`);
-              handleClose();
-            }}
-            disableRipple
-          >
-            <FileCopyIcon />
-            Tarihsel Not Dökümanı Görüntüle
-          </MenuItem>
+
           <MenuItem
             onClick={() => {
               navigate(`/home/students-information/${number}`);

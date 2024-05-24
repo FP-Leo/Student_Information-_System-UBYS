@@ -4,10 +4,10 @@ import UserCardSm from "components/UserCardSm";
 import LinkCard from "components/link-card";
 import Pages from "./pages";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "store/user/user.selector";
+import { selectUserData } from "store/user/user.selector";
 
 export default function MainScreenCategories() {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectUserData);
   const PAGES = Pages(currentUser.role);
   return (
     <Container

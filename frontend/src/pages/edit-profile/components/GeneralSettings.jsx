@@ -14,14 +14,14 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectCurrentUser } from "store/user/user.selector";
+import { selectUserData } from "store/user/user.selector";
 import { setCurrentUser } from "store/user/user.action";
 
 import axios from "axios";
 
-const GenelAyarlar = () => {
+const GeneralSettings = () => {
   const dispatch = useDispatch();
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectUserData);
   const { token, personalMail, phone, schoolMail } = currentUser;
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -194,4 +194,4 @@ const GenelAyarlar = () => {
   );
 };
 
-export default GenelAyarlar;
+export default GeneralSettings;

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Router } from "router/router";
 import { useDispatch } from "react-redux";
-import { setCurrentUser, setUserData } from "store/user/user.action";
+import { setUserToken, setUserData } from "store/user/user.action";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,10 +12,11 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const token = JSON.parse(user).token;
-    if (user) {
-      dispatch(setCurrentUser(JSON.parse(user)));
+    //const user = localStorage.getItem("userData");
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      dispatch(setUserToken(token));
       const fetchUserData = async () => {
         try {
           const response = await axios.get(
@@ -33,8 +34,9 @@ const App = () => {
         }
       };
       fetchUserData();
-      if (location.pathname === "/") navigate("/home");
-    } else navigate("/");
+    }
+    if (location.pathname === "/") navigate("/home");
+    else navigate("/");
   }, []);
   return (
     <>

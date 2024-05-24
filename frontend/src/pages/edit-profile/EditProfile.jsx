@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 
 import PasswordIcon from "assets/password-icon";
 import SettingsIcon from "assets/settings-icon";
-import GenelAyarlar from "./components/GenelAyarlar";
+import GenelAyarlar from "./components/GeneralSettings";
 import Password from "./components/Password";
 
 function a11yProps(index) {

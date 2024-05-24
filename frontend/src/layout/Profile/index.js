@@ -20,7 +20,8 @@ import ProfileTab from "./ProfileTab";
 //! ------ User ------ !//
 import { useDispatch, useSelector } from "react-redux";
 import Transitions from "components/Transitions";
-import { setCurrentUser } from "store/user/user.action";
+import { selectUserData } from "store/user/user.selector";
+import { setUserData, setUserToken } from "store/user/user.action";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -42,13 +43,16 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector(selectUserData);
+  console.log(currentUser);
   const { firstName, lastName, role } = currentUser;
 
   const handleLogout = () => {
     try {
-      dispatch(setCurrentUser(null));
-      localStorage.removeItem("user");
+      dispatch(setUserData(null));
+      dispatch(setUserToken(null));
+      localStorage.removeItem("userData");
+      localStorage.removeItem("token");
       navigate("/");
     } catch (err) {
       alert(err);

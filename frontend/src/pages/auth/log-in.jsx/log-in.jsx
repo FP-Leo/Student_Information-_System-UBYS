@@ -17,7 +17,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { useDispatch } from "react-redux";
-import { setCurrentUser, setUserData } from "store/user/user.action";
+import { setUserToken, setUserData } from "store/user/user.action";
 
 const INITIAL_STATE = {
   username: "",
@@ -55,9 +55,10 @@ const Login = () => {
         `http://localhost:${PORT}/api/System/Account/LogIn`,
         userInput
       );
-      dispatch(setCurrentUser(response.data));
-      dispatch(setUserData(response.data));
-      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log(response.data);
+      dispatch(setUserToken(response.data.token));
+      dispatch(setUserData(response.data.data));
+      localStorage.setItem("userData", JSON.stringify(response.data.data));
       localStorage.setItem("token", response.data.token);
       resetInputValue();
       navigate("/home");
@@ -68,7 +69,7 @@ const Login = () => {
 
   const handleDevletButton = async (e) => {
     e.preventDefault();
-    dispatch(setCurrentUser(userInput));
+    dispatch(setUserToken(userInput));
     resetInputValue();
     navigate("/home");
   };

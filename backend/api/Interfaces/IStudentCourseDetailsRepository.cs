@@ -8,7 +8,7 @@ namespace api.Interfaces
         Task<ICollection<StudentCourseDetails>?> GetAllStudentsCourseDetails(String? Department, String? Course);
         Task<ICollection<StudentCourseDetails>?> GetStudentsAllCourseDetails(String? Department, String? TC);
         Task<StudentCourseDetails?> CreateStudentCourseDetails(StudentCourseDetails studentCourseDetails);
-        Task<StudentCourseDetails?> UpdateStudentCourseDetails(StudentCourseDetails studentCourseDetails);
-        Task<StudentCourseDetails?> DeleteStudentCourseDetails(String? Department, String? Course, String? TC);
+        Task<StudentCourseDetails?> UpdateStudentCourseDetailsAsync(StudentCourseDetails studentCourseDetails);
+        Task<StudentCourseDetails?> DeleteStudentCourseDetailsAsync(String? Department, String? Course, String? TC);
     }
 }

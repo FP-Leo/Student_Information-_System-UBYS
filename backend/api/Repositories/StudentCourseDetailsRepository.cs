@@ -12,7 +12,7 @@ namespace api.Repositories
         public StudentCourseDetailsRepository(ApplicationDBContext context){
             _context = context;
         }
-        public async Task<StudentCourseDetails?> DeleteStudentCourseDetails(string? Department, string? Course, string? TC)
+        public async Task<StudentCourseDetails?> DeleteStudentCourseDetailsAsync(string? Department, string? Course, string? TC)
         {
             var studentCourseDetail = await GetStudentCourseDetails(Department, Course, TC);
 
@@ -57,7 +57,7 @@ namespace api.Repositories
             return studentCourseDetails;
         }
 
-        public async Task<StudentCourseDetails?> UpdateStudentCourseDetails(StudentCourseDetails studentCourseDetails)
+        public async Task<StudentCourseDetails?> UpdateStudentCourseDetailsAsync(StudentCourseDetails studentCourseDetails)
         {
             var result = await _context.SaveChangesAsync();
             if (result <= 0)

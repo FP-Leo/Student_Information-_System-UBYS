@@ -15,6 +15,7 @@ import FilledInput from "@mui/material/FilledInput";
 import Visibility from "@mui/icons-material/Visibility";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useDispatch } from "react-redux";
 import { setUserToken, setUserData } from "store/user/user.action";
@@ -32,6 +33,7 @@ const Login = () => {
   const [userInput, setUserInput] = useState(INITIAL_STATE);
   const { username, password } = userInput;
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -51,6 +53,7 @@ const Login = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.post(
         `http://localhost:${PORT}/api/System/Account/LogIn`,
         userInput
@@ -65,6 +68,7 @@ const Login = () => {
     } catch (error) {
       alert(error);
     }
+    setLoading(false);
   };
 
   const handleDevletButton = async (e) => {
@@ -159,7 +163,11 @@ const Login = () => {
               }}
               fullWidth={true}
             >
-              Giriş Yap
+              {loading ? (
+                <CircularProgress color="inherit" size={24} />
+              ) : (
+                "Giriş Yap"
+              )}
             </Button>
           </form>
         </Box>

@@ -1,15 +1,40 @@
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import { CancelOutlined } from '@mui/icons-material';
 import { Box, Button, FormControl, MenuItem, Select, Typography } from '@mui/material';
-import TableHeader from 'components/TableHeader';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import OwnedCourses from "../../../Data/ProfessorCourses.json";
 import ProfessorSubjectItem from './ProfessorSubjectItem/ProfessorSubjectItem';
+import ProfessorSubjectsTableHeader from './ProfessorSubjectItem/ProfessorSubjectsTableHeader';
+
 
 export default function ProfessorSubjects() {
+
+
+
 
     const [yil,setYil] = useState(2024);
     const [donem,setDonem] = useState("Bahar")
     const yillar = [2024,2023,2022,2021]
     const donemler = ["Bahar","Güz"]
+
+    const [professorCourses, setProfessorCourses] = useState(OwnedCourses.professorCourses.sort(function(a,b){return b.dersYili - a.dersYili}))
+    
+    const [isFiltered,setIsFiltered] = useState(false)
+
+    const resetProfessorCourse = ( )=>{
+      setProfessorCourses(OwnedCourses.professorCourses.sort(function(a,b){return b.dersYili - a.dersYili}))
+    }
+    const filterCourses = () =>{
+      setProfessorCourses(professorCourses.filter((course)=>course.dersYili === yil && course.dersDonemi === donem))
+    }
+    useEffect(()=>{
+      setIsFiltered(false)
+      resetProfessorCourse()
+    },[yil,donem])
+  
+ 
+    
 
     const [tabloBaslik,setTabloBaslik] = useState(yil + "-" + donem)
 
@@ -19,10 +44,24 @@ export default function ProfessorSubjects() {
     const handleSetDonem = (event)=>{
         setDonem(event.target.value)
     }
-    const onClickFilter = ()=>{
-        setTabloBaslik(yil + "-" + donem)
-    }
 
+    const onClickFilter =()=>{
+        setTabloBaslik(yil + "-" + donem)
+        if(isFiltered){
+          resetProfessorCourse()
+        }else{
+          filterCourses()
+        }
+        setIsFiltered(!isFiltered)
+    }
+    
+
+
+    const sortByHeader = (event) =>{  
+      console.log(event.target.innerText); // Backendden veri gelince burayı dinamik yapacağım
+      // Bu sayede tıklayıp direkt sort edebilecekler
+    }
+    
 
   return (
     <Box sx={{width:"100%",display:"flex",flexDirection:"column",}}>
@@ -54,9 +93,10 @@ export default function ProfessorSubjects() {
           </FormControl>
           <Button 
           onClick={onClickFilter}
-          sx={{minWidth:400 ,bgcolor:"#1769aa",color:"white",":hover":{backgroundColor:"#1769aa"}}} 
-          startIcon={<FilterAltOutlinedIcon/>}>
-            Filtrele
+          sx={{minWidth:400 ,bgcolor:( !isFiltered ? "#1769aa" : "#bb2124"),color:"white",":hover":{backgroundColor:( !isFiltered ? "#1769aa" : "#bb2124")}}} 
+          startIcon = {isFiltered ? <CancelOutlined/> :<FilterAltOutlinedIcon/> }
+          >
+            {isFiltered ? "Filtreyi Kaldır" : "Filtrele"}
           </Button>
         </Box>
 
@@ -98,18 +138,21 @@ export default function ProfessorSubjects() {
             borderRight: "1px solid #B3B3B3",
           }}
         >
-          <TableHeader left={false} right={true} title="Seç" />
-          <TableHeader left={false} right={false} title="Ders Birimi" />
-          <TableHeader left={true} right={true} title="Ders Kodu" />
-          <TableHeader left={false} right={true} title="Ders Adı" />
-          <TableHeader left={false} right={false} title="Ders Yılı" />
-          <TableHeader left={true} right={false} title="Ders Dönemi" />
-          <TableHeader left={true} right={true} title="Ders İşlemleri" />
+        <ProfessorSubjectsTableHeader sortByHeader={sortByHeader}/>
         </Box>
-        <ProfessorSubjectItem yil={yil} donem={donem}/>
-        <ProfessorSubjectItem yil={yil} donem={donem}/>
-        <ProfessorSubjectItem yil={yil} donem={donem}/>
-        <ProfessorSubjectItem yil={yil} donem={donem}/>
+        {professorCourses.map((course)=>{
+          return(
+            <ProfessorSubjectItem 
+            dersAdi={course.dersAdi}
+            dersBirimi={course.dersBirimi}
+            dersKodu={course.dersKodu}
+            dersFakulte={course.dersFakulte}
+            yil={course.dersYili} 
+            donem={course.dersDonemi} 
+            key={course.id}/>
+          )
+        })}
+
       </Box>
     </Box>
     </Box>

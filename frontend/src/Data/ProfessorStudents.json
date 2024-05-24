@@ -1,0 +1,61 @@
+{
+    "professorName":"Erlindi Isaj",
+    "professorStudents":[
+        {
+            "Id" :1,
+            "ogrenciNumara" : 200401012,
+            "ogrenciAd":"Muhammet Eren",
+            "ogrenciSoyad":"Nokta",
+            "ogrenciFakulte":"Mühendislik Fakültesi",
+            "ogrenciProgram":"Bilgisayar Mühendisliği",
+            "kayitlanmaAsamasi":"Kayıt Tamamlandı",
+            "ogrenciSinif":"3.Sınıf",
+            "harcBorcu":0,
+            "ogrenciDurum":true,
+            "ogrenciDurumDetay":"Ders Kayıdı Tamamlandı",
+            "GANO":2.82
+        },
+        {
+            "Id" :2,
+            "ogrenciNumara" : 200401013,
+            "ogrenciAd":"Erlindi",
+            "ogrenciSoyad":"Isaj",
+            "ogrenciFakulte":"Mühendislik Fakültesi",
+            "ogrenciProgram":"Bilgisayar Programcılığı",
+            "kayitlanmaAsamasi":"Kayıt Tamamlandı",
+            "ogrenciSinif":"3.Sınıf",
+            "harcBorcu":542,
+            "ogrenciDurum":false,
+            "ogrenciDurumDetay":"Ders Kayıdı Onayı Bekleniyor",
+            "GANO":3.12
+        },
+        {
+            "Id" :3,
+            "ogrenciNumara" : 200401052,
+            "ogrenciAd":"Leonit",
+            "ogrenciSoyad":"Isaj",
+            "ogrenciFakulte":"Mühendislik Fakültesi",
+            "ogrenciProgram":"Makine Mühendisliği",
+            "kayitlanmaAsamasi":"Kayıt Tamamlandı",
+            "ogrenciSinif":"3.Sınıf",
+            "harcBorcu":12250,
+            "ogrenciDurum":true,
+            "ogrenciDurumDetay":"Ders Kayıdı Tamamlandı",
+            "GANO":3.99
+        },
+        {
+            "Id" :4,
+            "ogrenciNumara" : 200401023,
+            "ogrenciAd":"Baha",
+            "ogrenciSoyad":"Yolal",
+            "ogrenciFakulte":"Mühendislik Fakültesi",
+            "ogrenciProgram":"Bilgisayar Mühendisliği",
+            "kayitlanmaAsamasi":"Kayıt Tamamlandı",
+            "ogrenciSinif":"3.Sınıf",
+            "harcBorcu":0,
+            "ogrenciDurum":false,
+            "ogrenciDurumDetay":"Kayıt Başarısız",
+            "GANO":3.998
+        }
+    ]
+}

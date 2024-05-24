@@ -1,3 +1,5 @@
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import OwnedStudents from "../../../Data/ProfessorStudents.json"
 import {
   Box,
   Button,
@@ -7,13 +9,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import TableHeader from "components/TableHeader";
+import { useEffect, useState } from "react";
 import MyStudentsItem from "./MyStudentsItem/MyStudentsItem";
+import MyStudentsTableHeader from "./MyStudentsItem/MyStudentsTableHeader";
+import { CancelOutlined } from "@mui/icons-material";
 
 export default function ProfessorsStudents() {
-  const [selectedBolum, setSelectedBolum] = useState();
+  const [selectedBolum, setSelectedBolum] = useState("");
   const bolumler = [
     "Makine Mühendisliği",
     "Bilgisayar Mühendisliği",
@@ -22,6 +24,38 @@ export default function ProfessorsStudents() {
   const handleSetSelectedBolum = (event) => {
     setSelectedBolum(event.target.value);
   };
+
+  const [isFiltered,setIsFiltered] = useState(false)
+
+
+
+
+  const [professorStudents,setProfessorStudents] = useState( OwnedStudents.professorStudents.sort(function(a,b){ return b.ogrenciAd - a.ogrenciAd}))
+
+
+  const resetProfessorStudents = () =>{
+    setSelectedBolum("")
+    setProfessorStudents(OwnedStudents.professorStudents.sort(function(a,b){ return b.ogrenciAd - a.ogrenciAd}))
+    setIsFiltered(false)
+  }
+  const filterStudents = () =>{
+    if(selectedBolum !== ""){
+      setProfessorStudents([...professorStudents.filter((student)=>student.ogrenciProgram === selectedBolum)])
+      setIsFiltered(true)
+    }
+  }
+
+
+
+  const onClickFilter =()=>{
+    if(isFiltered){
+      resetProfessorStudents()
+    }else{
+      filterStudents()
+    }
+    setIsFiltered(!isFiltered)
+}
+
 
   return (
     <Box
@@ -39,7 +73,9 @@ export default function ProfessorsStudents() {
         }}
         my={5}
       >
-        <FormControl size="small" sx={{ minWidth: 1200 }} id="yilSelect">
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+        <Typography mx={2}>Bölüm :</Typography>
+        <FormControl size="small" sx={{ minWidth: 1200 }}>
           <Select
             value={selectedBolum}
             sx={{ fontSize: "12px", fontWeight: "500" }}
@@ -47,21 +83,25 @@ export default function ProfessorsStudents() {
             displayEmpty
             inputProps={{ "aria-label": "Without label" }}
           >
+            <MenuItem disabled value="">Bölüm Seçiniz</MenuItem>
             {bolumler.map((bolum) => (
-              <MenuItem value={bolum}>{bolum}</MenuItem>
+              <MenuItem  value={bolum}>{bolum}</MenuItem>
             ))}
           </Select>
         </FormControl>
+        </Box>
         <Button
+        onClick={onClickFilter}
+        disabled = {selectedBolum === "" ? true : false}
           sx={{
             minWidth: 400,
-            bgcolor: "#1769aa",
+            bgcolor:( !isFiltered ? "#1769aa" : "#bb2124"),
             color: "white",
-            ":hover": { backgroundColor: "#1769aa" },
+            ":hover":{backgroundColor:( !isFiltered ? "#1769aa" : "#bb2124")},
           }}
-          startIcon={<FilterAltOutlinedIcon />}
+          startIcon= {isFiltered ? <CancelOutlined/> : <FilterAltOutlinedIcon />}
         >
-          Filtrele
+          {isFiltered ? "Filtreyi Kaldır" : "Filtrele"}
         </Button>
       </Box>
 
@@ -124,24 +164,19 @@ export default function ProfessorsStudents() {
             borderRight: "1px solid #B3B3B3",
           }}
         >
-          <TableHeader left={false} right={true} title="Resim" />
-          <TableHeader left={false} right={false} title="Numarası" />
-          <TableHeader left={true} right={true} title="Adı - Soyadı" />
-          <TableHeader left={false} right={true} title="Akademik Program" />
-          <TableHeader left={false} right={false} title="Kayıtlanma Aşaması" />
-          <TableHeader left={true} right={false} title="Sınıfı" />
-          <TableHeader left={true} right={true} title="Harç Borcu" />
-          <TableHeader left={false} right={true} title="Durum" />
-          <TableHeader left={false} right={false} title="Detay Durum" />
-          <TableHeader left={true} right={true} title="GANO" />
-          <TableHeader left={false} right={true} title="İşlemler" />
-
-          
+          <MyStudentsTableHeader/>
         </Box>
-        <MyStudentsItem/>
-        <MyStudentsItem/>
-        <MyStudentsItem/>
-        <MyStudentsItem/>
+        {professorStudents.map((student)=>{
+          return(
+            <MyStudentsItem 
+            key={student.id} 
+            student={student}
+            
+            
+            />
+          )
+        })}
+
       </Box>
     </Box>
     </Box>

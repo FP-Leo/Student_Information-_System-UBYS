@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { Router } from "router/router";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "store/user/user.action";
+import { setCurrentUser, setUserData } from "store/user/user.action";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,8 +13,26 @@ const App = () => {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
+    const token = JSON.parse(user).token;
     if (user) {
       dispatch(setCurrentUser(JSON.parse(user)));
+      const fetchUserData = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost:5158/api/User/Student/Account/Details",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log(response.data);
+          dispatch(setUserData(response.data));
+        } catch (err) {
+          alert(err);
+        }
+      };
+      fetchUserData();
       if (location.pathname === "/") navigate("/home");
     } else navigate("/");
   }, []);

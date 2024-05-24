@@ -17,7 +17,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "store/user/user.action";
+import { setCurrentUser, setUserData } from "store/user/user.action";
 
 const INITIAL_STATE = {
   username: "",
@@ -46,26 +46,19 @@ const Login = () => {
       ...userInput,
       [name]: value,
     });
-    console.log(userInput);
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      //!------ Uncomment this part if you want to use MAIN PROJECT API
       const response = await axios.post(
-        `http://localhost:${PORT}/api/account/login`,
+        `http://localhost:${PORT}/api/System/Account/LogIn`,
         userInput
       );
-
-      //!------ Uncomment this part if you want to use PERSONAL PROJECT API
-      /*
-      const response = await axios.get(
-        `https://localhost:${PORT}/api/User/${username}`
-      );
-      */
       dispatch(setCurrentUser(response.data));
+      dispatch(setUserData(response.data));
       localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("token", response.data.token);
       resetInputValue();
       navigate("/home");
     } catch (error) {

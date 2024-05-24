@@ -5,6 +5,8 @@ namespace api.DTO.AccountInfo
     public class AdministratorAccountDto
     {
         [Required]
+        public string? Role {get; set;}
+        [Required]
         public string? TC {get; set;}
         [Required]
         public string? FirstName {get; set;}

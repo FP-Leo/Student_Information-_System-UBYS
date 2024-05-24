@@ -1,14 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using api.DTO.AccountInfo;
-using api.DTO.AccountInfo.Administrator;
-using api.DTO.AccountInfo.Advisor;
-using api.DTO.AccountInfo.Lecturer;
-using api.DTO.AccountInfo.Student;
 using api.Models;
 
 namespace api.Mappers
@@ -18,6 +8,7 @@ namespace api.Mappers
         // StudentAccountMappers
         public static StudentAccountDto ToStudentAccountDto(this StudentAccount studentAcc){
             return new StudentAccountDto{
+                Role = "Student",
                 TC = studentAcc.TC,
                 FirstName = studentAcc.FirstName,
                 LastName = studentAcc.LastName,
@@ -34,7 +25,7 @@ namespace api.Mappers
         public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc, String token){
             return new StudentAccountLOGINDto{
                 Token = token,
-                Data = new StudentAccountDataDto{
+                Data = new StudentAccountDto{
                     Role = "Student",
                     TC = studentAcc.TC,
                     FirstName = studentAcc.FirstName,
@@ -70,6 +61,7 @@ namespace api.Mappers
         // LecturerAccountMappers
         public static LecturerAccountDto ToLecturerAccountDto(this LecturerAccount LecturerAcc){
             return new LecturerAccountDto{
+                Role = "Lecturer",
                 TC = LecturerAcc.TC,
                 FirstName = LecturerAcc.FirstName,
                 LastName = LecturerAcc.LastName,
@@ -87,7 +79,7 @@ namespace api.Mappers
         public static LecturerAccountLOGINDto ToLecturerAccountLOGINDto(this LecturerAccount LecturerAcc, String token){
             return new LecturerAccountLOGINDto{
                 Token = token,
-                Data = new LecturerAccountDataDto{
+                Data = new LecturerAccountDto{
                     Role = "Lecturer",
                     TC = LecturerAcc.TC,
                     FirstName = LecturerAcc.FirstName,
@@ -125,6 +117,7 @@ namespace api.Mappers
         // AdvisorAccountMappers
         public static AdvisorAccountDto ToAdvisorAccountDto(this AdvisorAccount AdvisorAcc){
             return new AdvisorAccountDto{
+                Role = "Advisor",
                 TC = AdvisorAcc.TC,
                 FirstName = AdvisorAcc.FirstName,
                 LastName = AdvisorAcc.LastName,
@@ -140,7 +133,7 @@ namespace api.Mappers
          public static AdvisorAccountLOGINDto ToAdvisorAccountLOGINDto(this AdvisorAccount AdvisorAcc, String token){
             return new AdvisorAccountLOGINDto{
                 Token = token,
-                Data = new AdvisorAccountDataDto{
+                Data = new AdvisorAccountDto{
                     Role = "Advisor",
                     TC = AdvisorAcc.TC,
                     FirstName = AdvisorAcc.FirstName,
@@ -172,6 +165,7 @@ namespace api.Mappers
         //AdministratorAccountMappers
         public static AdministratorAccountDto ToAdministratorAccountDto(this AdministratorAccount AdministratorAcc){
             return new AdministratorAccountDto{
+                Role = "Administrator",
                 TC = AdministratorAcc.TC,
                 FirstName = AdministratorAcc.FirstName,
                 LastName = AdministratorAcc.LastName,
@@ -187,7 +181,7 @@ namespace api.Mappers
          public static AdministratorAccountLOGINDto ToAdministratorAccountLOGINDto(this AdministratorAccount AdministratorAcc, String token){
             return new AdministratorAccountLOGINDto{
                 Token = token,
-                Data = new AdministratorAccountDataDto{
+                Data = new AdministratorAccountDto{
                     Role = "Administrator",
                     TC = AdministratorAcc.TC,
                     FirstName = AdministratorAcc.FirstName,

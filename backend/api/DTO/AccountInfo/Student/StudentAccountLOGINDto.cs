@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using api.DTO.AccountInfo.Student;
 
 namespace api.DTO.AccountInfo
 {
@@ -8,6 +7,6 @@ namespace api.DTO.AccountInfo
         [Required]
         public string? Token { get; set; }
         [Required]
-        public StudentAccountDataDto? Data { get; set; }
+        public StudentAccountDto? Data { get; set; }
     }
 }

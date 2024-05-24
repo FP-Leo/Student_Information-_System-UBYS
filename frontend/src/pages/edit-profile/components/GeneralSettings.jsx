@@ -15,14 +15,17 @@ import { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserData } from "store/user/user.selector";
-import { setCurrentUser } from "store/user/user.action";
+import { setUserData } from "store/user/user.action";
+import { getToken } from "utils/helper-functions";
+import { ROLE_TYPES } from "utils/constants";
 
 import axios from "axios";
 
 const GeneralSettings = () => {
+  const token = getToken();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUserData);
-  const { token, personalMail, phone, schoolMail } = currentUser;
+  const { role, personalMail, phone, schoolMail } = currentUser;
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -44,13 +47,29 @@ const GeneralSettings = () => {
       return;
     }
     setSuccess(false);
+    setError(false);
   };
+
+  const isStudent = role === ROLE_TYPES.STUDENT;
+  const isLecturer = role === ROLE_TYPES.LECTURER;
+  const isAdministrator = role === ROLE_TYPES.ADMINISTRATOR;
+  const isAdvisor = role === ROLE_TYPES.ADVISOR;
+
+  const apiLink = isStudent
+    ? "/api/User/Student/Account/Details"
+    : isLecturer
+    ? "/api/User/Lecturer/Account/Details"
+    : isAdministrator
+    ? "/api/User/Administrator/Account/Details"
+    : isAdvisor
+    ? "/api/User/Advisor/Account/Details"
+    : null;
 
   const handleSubmit = async () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        "http://localhost:5158/api/User/Student/Account/Details",
+        `http://localhost:5158${apiLink}`,
         {
           phone: newData.phoneNr,
           personalMail: newData.email,
@@ -61,10 +80,12 @@ const GeneralSettings = () => {
           },
         }
       );
+
       setSuccess(true);
-      console.log(response);
+      dispatch(setUserData(response.data));
+      localStorage.setItem("userData", JSON.stringify(response.data));
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
     setLoading(false);
   };
@@ -81,7 +102,17 @@ const GeneralSettings = () => {
           variant="filled"
           sx={{ width: "100%", color: "white" }}
         >
-          This is a success Alert inside a Snackbar!
+          Changes saved successfully!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="error"
+          variant="filled"
+          sx={{ width: "100%", color: "white" }}
+        >
+          An error occurred. Please try again later.
         </Alert>
       </Snackbar>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -186,7 +217,11 @@ const GeneralSettings = () => {
             onClick={handleSubmit}
             variant="contained"
           >
-            {loading ? <CircularProgress size={24} /> : "Save Changes"}
+            {loading ? (
+              <CircularProgress color="inherit" size={24} />
+            ) : (
+              "Save Changes"
+            )}
           </Button>
         </Box>
       </form>

@@ -2,7 +2,7 @@ import { Box, Checkbox, Typography } from "@mui/material";
 import { useState } from "react";
 
 
-export default function ProfessorSubjectItem({yil,donem}) {
+export default function ProfessorSubjectItem({yil,donem,dersAdi,dersBirimi,dersKodu,dersFakulte}) {
     const [selectedSubject ,setSelectedSubject] = useState(false)
 
     const handleSelectedSubject = () =>{
@@ -20,6 +20,7 @@ export default function ProfessorSubjectItem({yil,donem}) {
             borderBottom: "1px solid #B3B3B3",
             borderLeft: "1px solid #B3B3B3",
             borderRight: "1px solid #B3B3B3",
+            textAlign:"center"
           }}
         >
           <Box
@@ -48,7 +49,7 @@ export default function ProfessorSubjectItem({yil,donem}) {
             }}
           >
             <Typography variant="body2" sx={{ textAlign: "center" }}>
-              Mühendislik Fakültesi - Bilgisayar Mühendisliği 
+            {dersFakulte}-{dersBirimi}
             </Typography>
           </Box>
           <Box
@@ -63,7 +64,7 @@ export default function ProfessorSubjectItem({yil,donem}) {
               textAlign:"center"
             }}
           >
-            <Typography  variant="body2">BLM-3031</Typography>
+            <Typography  variant="body2">{dersKodu}</Typography>
           </Box>
           <Box
             sx={{
@@ -74,7 +75,7 @@ export default function ProfessorSubjectItem({yil,donem}) {
               borderRight: "1px solid #B3B3B3",
             }}
           >
-            <Typography variant="body2">Nesneye Dayalı Analiz Ve Tasarım (NDAT)</Typography>
+            <Typography variant="body2">{dersAdi}</Typography>
           </Box>
           <Box
             sx={{
@@ -109,12 +110,6 @@ export default function ProfessorSubjectItem({yil,donem}) {
           >
             <Typography variant="body2">İşlemler</Typography>
           </Box>
-
-
-
-
-
-
         </Box>
       </Box>
     );

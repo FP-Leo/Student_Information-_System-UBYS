@@ -1,0 +1,77 @@
+ {
+   "professorName":"Erlindi Isaj",
+   "professorCourses":[
+    {
+        "id" : 1,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Nesneye Dayalı Analiz ve Tasarım ( NDAT )",
+        "dersYili":2024,
+        "dersDonemi":"Bahar"
+    },
+    {
+        "id" : 2,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Linux ile Sistem Yönetimi",
+        "dersYili":2023,
+        "dersDonemi":"Güz"
+    },
+    {
+        "id" : 3,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Veri Yapıları",
+        "dersYili":2022,
+        "dersDonemi":"Bahar"
+    },
+    {
+        "id" : 4,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Veri Tabanı Yönetim Sistemi",
+        "dersYili":2021,
+        "dersDonemi":"Güz"
+    },
+    {
+        "id" : 5,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Arduino Programlama",
+        "dersYili":2024,
+        "dersDonemi":"Güz"
+    },
+    {
+        "id" : 6,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Yapay Zekaya Giriş",
+        "dersYili":2023,
+        "dersDonemi":"Bahar"
+    },
+    {
+        "id" : 7,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Lineer Cebir",
+        "dersYili":2022,
+        "dersDonemi":"Güz"
+    },
+    {
+        "id" : 8,
+        "dersFakulte":"Mühendislik Fakültesi",
+        "dersBirimi":"Bilgisayar Mühendisliği",
+        "dersKodu":"BLM-3031",
+        "dersAdi":"Oryantasyon",
+        "dersYili":2021,
+        "dersDonemi":"Bahar"
+    }
+   ]
+}

@@ -22,7 +22,7 @@ namespace api.Repositories
         }
         public async Task<DepartmentCourse?> DeleteCourseFromDepAsync(String CourseName, String DepartmentName)
         {
-            var course = await CourseDetailsByCourseAndDepNameAsync(CourseName, DepartmentName);
+            var course = await GetDeparmentCourseAsync(CourseName, DepartmentName);
 
             if (course == null){
                 return null;
@@ -40,7 +40,7 @@ namespace api.Repositories
 
             return courses;
         }
-        public async Task<DepartmentCourse?> CourseDetailsByCourseAndDepNameAsync(String CourseName, String DepartmentName)
+        public async Task<DepartmentCourse?> GetDeparmentCourseAsync(String CourseName, String DepartmentName)
         {
             var course = await _context.DepartmentCourses.FirstOrDefaultAsync(c=> c.CourseName == CourseName && c.DepartmentName == DepartmentName);
 

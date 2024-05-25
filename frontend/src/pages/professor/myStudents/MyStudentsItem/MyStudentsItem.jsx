@@ -1,6 +1,5 @@
-import { Box, Typography, Button, Avatar } from "@mui/material";
-import React from 'react'
-import avatarPhoto from "../../../../assets/avatar1.png" 
+import { Avatar, Box, Button, Typography } from "@mui/material";
+import avatarPhoto from "../../../../assets/avatar1.png";
 
 export default function MyStudentsItem({student}) {
   const {  
@@ -16,15 +15,17 @@ export default function MyStudentsItem({student}) {
   ogrenciDurumDetay,
   GANO
 } = student
+
     return (
         <Box>
           <Box
             sx={{
+            
               width: "100%",
               display: "grid",
-              height: "75px",
+              height: "125px",
               gridTemplateRows: "1fr 1fr 1fr 1fr",
-              gridTemplateColumns: "1fr 1.5fr 2fr 4fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr",
+              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
               borderBottom: "1px solid #B3B3B3",
               borderLeft: "1px solid #B3B3B3",
               borderRight: "1px solid #B3B3B3",
@@ -63,10 +64,11 @@ export default function MyStudentsItem({student}) {
                 justifyContent: "center",
                 alignItems: "center",
                 gridRow: "1/5",
-                borderRight:"1px solid #B3B3B3"
+                borderRight:"1px solid #B3B3B3",
+
               }}
             >
-              <Typography>
+              <Typography >
                 {ogrenciAd} {ogrenciSoyad}
               </Typography>
             </Box>
@@ -176,15 +178,18 @@ export default function MyStudentsItem({student}) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                flexDirection:"column",
                 gridRow: "1/5",
                 borderRight:"1px solid #B3B3B3"
               }}
             >
               <Typography>
-                <Button>
+                <Button 
+                sx={{bgcolor:"#D3D1D1"}}>
                     İşlemler
                 </Button>
               </Typography>
+
             </Box>
 
             

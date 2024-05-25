@@ -17,7 +17,7 @@ namespace api.Controllers
             _courseDetailsRepo = courseExplanationRepository;
             _courseRepo = courseRepository;
         }
-        [HttpGet("Department/Course/Details")]
+        [HttpGet("University/Faculty/Department/Course/Details")]
         public async Task<IActionResult> GetCourseDetails([FromQuery] int CourseDetailsId){
             if(!ModelState.IsValid)
             {
@@ -32,7 +32,7 @@ namespace api.Controllers
 
             return Ok(courseDetails.ToCourseExplanationDto());
         }
-        [HttpPost("Department/Course/Details")]
+        [HttpPost("University/Faculty/Department/Course/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCourseDetails([FromBody] CourseDetailsPostDto courseDetailsPostDto){
             if(!ModelState.IsValid)
@@ -51,7 +51,7 @@ namespace api.Controllers
 
             return Ok(courseDetails.ToCourseExplanationDto());
         }
-        [HttpPut("Department/Course/Details")]
+        [HttpPut("University/Faculty/Department/Course/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateCourseDetails([FromQuery] int CourseDetailsId, [FromBody] CourseDetailsUpdateDto courseDetailsUpdateDto){
             if(!ModelState.IsValid)
@@ -82,7 +82,7 @@ namespace api.Controllers
 
             return Ok(updatedCourseDetails.ToCourseExplanationDto());
         }
-        [HttpDelete("Department/Course/Details")]
+        [HttpDelete("University/Faculty/Department/Course/Details")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourseDetails([FromQuery] int CourseDetailsId){
             if(!ModelState.IsValid)

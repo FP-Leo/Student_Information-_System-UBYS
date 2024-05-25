@@ -1,3 +1,4 @@
+
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import { CancelOutlined } from "@mui/icons-material";
 import {
@@ -10,11 +11,18 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import { CancelOutlined } from '@mui/icons-material';
+import { Box, Button, FormControl, MenuItem, Select, Typography } from '@mui/material';
+import { useEffect, useState, useTransition } from 'react';
+
+
 import OwnedCourses from "../../../Data/ProfessorCourses.json";
 import ProfessorSubjectItem from "./ProfessorSubjectItem/ProfessorSubjectItem";
 import ProfessorSubjectsTableHeader from "./ProfessorSubjectItem/ProfessorSubjectsTableHeader";
 
 export default function ProfessorSubjects() {
+
   const [yil, setYil] = useState(2024);
   const [donem, setDonem] = useState("Bahar");
   const yillar = [2024, 2023, 2022, 2021];
@@ -62,14 +70,66 @@ export default function ProfessorSubjects() {
       resetProfessorCourse();
     } else {
       filterCourses();
+
+
+    const [yil,setYil] = useState(2024);
+    const [donem,setDonem] = useState("Bahar")
+    const yillar = [2024,2023,2022,2021]
+    const donemler = ["Bahar","Güz"]
+
+    const [professorCourses, setProfessorCourses] = useState(OwnedCourses.professorCourses.sort(function(a,b){return b.dersYili - a.dersYili}))
+    
+    const [isFiltered,setIsFiltered] = useState(false)
+
+    const resetProfessorCourse = ( )=>{
+      setProfessorCourses(OwnedCourses.professorCourses.sort(function(a,b){return b.dersYili - a.dersYili}))
+    }
+    const filterCourses = () =>{
+      setProfessorCourses(professorCourses.filter((course)=>course.dersYili === yil && course.dersDonemi === donem))
+    }
+    useEffect(()=>{
+      setIsFiltered(false)
+      resetProfessorCourse()
+    },[yil,donem])
+  
+ 
+    
+    const [tabloBaslik,setTabloBaslik] = useState(yil + "-" + donem)
+
+    const handleSetYear = (event) =>{
+        setYil(event.target.value)
+    }
+    const handleSetDonem = (event)=>{
+        setDonem(event.target.value)
+
     }
     setIsFiltered(!isFiltered);
   };
+
 
   const sortByHeader = (event) => {
     console.log(event.target.innerText); // Backendden veri gelince burayı dinamik yapacağım
     // Bu sayede tıklayıp direkt sort edebilecekler
   };
+
+    const onClickFilter =()=>{
+        setTabloBaslik(yil + "-" + donem)
+        if(isFiltered){
+          resetProfessorCourse()
+        }else{
+          filterCourses()
+        }
+        setIsFiltered(!isFiltered)
+    }
+    
+
+    const sortByHeader = (event) =>{  
+      console.log(event.target.innerText); // Backendden veri gelince burayı dinamik yapacağım
+      // Bu sayede tıklayıp direkt sort edebilecekler
+    }
+
+    
+    
 
   return (
     <Box sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
@@ -176,6 +236,21 @@ export default function ProfessorSubjects() {
             );
           })}
         </Box>
+
+        {professorCourses.map((course)=>{
+          return(
+            <ProfessorSubjectItem 
+            course={course}
+            dersAdi={course.dersAdi}
+            dersBirimi={course.dersBirimi}
+            dersKodu={course.dersKodu}
+            dersFakulte={course.dersFakulte}
+            yil={course.dersYili} 
+            donem={course.dersDonemi} 
+            key={course.id}/>
+          )
+        })}
+
       </Box>
     </Box>
   );

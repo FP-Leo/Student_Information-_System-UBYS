@@ -39,21 +39,21 @@ namespace api.Repositories
 
         public async Task<StudentDepDetails?> GetStudentDepDetailAsync(String TC, String depName)
         {
-            var studentDepDetail = await _context.StudentDepDetails.FirstOrDefaultAsync(dd=> dd.TC == TC && dd.DepartmentName == depName);
+            var studentDepDetail = await _context.StudentsDepDetails.FirstOrDefaultAsync(dd=> dd.TC == TC && dd.DepartmentName == depName);
 
             return studentDepDetail;
         }
 
         public async Task<ICollection<StudentDepDetails>> GetStudentDepDetailsByTCAsync(string TC)
         {
-            var studentDepDetail = await _context.StudentDepDetails.Where(dd=> dd.TC == TC).ToListAsync();
+            var studentDepDetail = await _context.StudentsDepDetails.Where(dd=> dd.TC == TC).ToListAsync();
 
             return studentDepDetail;
         }
 
         public async Task<ICollection<StudentDepDetails>?> GetDepartmentsStudentsAsync(string DepName)
         {
-            var studentsDepDetail = await _context.StudentDepDetails.Where(dd=> dd.DepartmentName == DepName).ToListAsync();
+            var studentsDepDetail = await _context.StudentsDepDetails.Where(dd=> dd.DepartmentName == DepName).ToListAsync();
 
             return studentsDepDetail;
         }

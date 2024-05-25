@@ -1,5 +1,5 @@
+import { CancelOutlined } from "@mui/icons-material";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import OwnedStudents from "../../../Data/ProfessorStudents.json"
 import {
   Box,
   Button,
@@ -9,10 +9,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import OwnedStudents from "../../../Data/ProfessorStudents.json";
 import MyStudentsItem from "./MyStudentsItem/MyStudentsItem";
 import MyStudentsTableHeader from "./MyStudentsItem/MyStudentsTableHeader";
-import { CancelOutlined } from "@mui/icons-material";
 
 export default function ProfessorsStudents() {
   const [selectedBolum, setSelectedBolum] = useState("");
@@ -68,13 +68,13 @@ export default function ProfessorsStudents() {
       <Box
         sx={{
           display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-evenly",
+          alignItems: "center",
         }}
         my={5}
+        maxWidth={"1250px"}
       >
-        <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-        <Typography mx={2}>Bölüm :</Typography>
+        <Box display={"flex"} alignItems={"center"}>
+        <Typography mx={2}>Bölüm:</Typography>
         <FormControl size="small" sx={{ minWidth: 1200 }}>
           <Select
             value={selectedBolum}
@@ -94,7 +94,8 @@ export default function ProfessorsStudents() {
         onClick={onClickFilter}
         disabled = {selectedBolum === "" ? true : false}
           sx={{
-            minWidth: 400,
+            minWidth:200, 
+            marginLeft:"15px",
             bgcolor:( !isFiltered ? "#1769aa" : "#bb2124"),
             color: "white",
             ":hover":{backgroundColor:( !isFiltered ? "#1769aa" : "#bb2124")},
@@ -159,9 +160,11 @@ export default function ProfessorsStudents() {
           sx={{
             width: "100%",
             display: "grid",
-            gridTemplateColumns: "1fr 1.5fr 2fr 4fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr",
+            gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+            borderBottom: "1px solid #B3B3B3",
             borderLeft: "1px solid #B3B3B3",
             borderRight: "1px solid #B3B3B3",
+            textAlign:"center"
           }}
         >
           <MyStudentsTableHeader/>

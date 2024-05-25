@@ -23,5 +23,6 @@ namespace api.Models
         public DepartmentCourse? DepartmentCourse{ get; set; }
         public LecturerAccount? LecturerDetails{ get; set; }
         public ICollection<StudentCourseDetails>? StudentsCourseDetails  { get; set; }
+        public ICollection<CourseClassDate>? CourseClassDates { get; set; }
     }
 }

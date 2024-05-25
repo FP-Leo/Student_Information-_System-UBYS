@@ -1,7 +1,7 @@
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import { CancelOutlined } from '@mui/icons-material';
 import { Box, Button, FormControl, MenuItem, Select, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 import OwnedCourses from "../../../Data/ProfessorCourses.json";
 import ProfessorSubjectItem from './ProfessorSubjectItem/ProfessorSubjectItem';
@@ -9,8 +9,6 @@ import ProfessorSubjectsTableHeader from './ProfessorSubjectItem/ProfessorSubjec
 
 
 export default function ProfessorSubjects() {
-
-
 
 
     const [yil,setYil] = useState(2024);
@@ -35,7 +33,6 @@ export default function ProfessorSubjects() {
   
  
     
-
     const [tabloBaslik,setTabloBaslik] = useState(yil + "-" + donem)
 
     const handleSetYear = (event) =>{
@@ -56,11 +53,12 @@ export default function ProfessorSubjects() {
     }
     
 
-
     const sortByHeader = (event) =>{  
       console.log(event.target.innerText); // Backendden veri gelince burayı dinamik yapacağım
       // Bu sayede tıklayıp direkt sort edebilecekler
     }
+
+    
     
 
   return (
@@ -143,6 +141,7 @@ export default function ProfessorSubjects() {
         {professorCourses.map((course)=>{
           return(
             <ProfessorSubjectItem 
+            course={course}
             dersAdi={course.dersAdi}
             dersBirimi={course.dersBirimi}
             dersKodu={course.dersKodu}

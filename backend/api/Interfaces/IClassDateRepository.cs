@@ -6,10 +6,10 @@ using api.Models;
 
 namespace api.Interfaces
 {
-    public class IClassDateRepository
+    public interface IClassDateRepository
     {
-        Task<ClassDate?> GetClassDateByIdAsync(int id);
-        Task<ClassDate?> CreateClassDatesityAsync(ClassDate classdate);
+        Task<ClassDate?> GetClassDateByIdAsync(int Id);
+        Task<ClassDate?> CreateClassDateAsync(ClassDate classdate);
         Task<ClassDate?> UpdateClassDateAsync(ClassDate classdate);
         Task<ClassDate?> DeleteClassDateByIdAsync(int id);
     }

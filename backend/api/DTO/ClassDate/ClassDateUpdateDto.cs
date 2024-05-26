@@ -5,7 +5,7 @@ namespace api.DTO.ClassDate
     public class ClassDateUpdateDto
     {
         [Required]
-        public int CourseClassId { get; set; }
+        public int Id { get; set; }
         [Required]
         public String? Day { get; set; }
         [Required]

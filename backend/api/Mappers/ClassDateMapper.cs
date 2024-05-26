@@ -12,7 +12,7 @@ namespace api.Mappers
         
         public static ClassDateDto ToClassDateDto(this ClassDate classDate){
             return new ClassDateDto{
-                CourseClassId = classDate.Id,
+                Id = classDate.Id,
                 Day = classDate.Day,
                 Time = classDate.Time,
                 NumberOfClasses  = classDate.NumberOfClasses

@@ -11,7 +11,7 @@ namespace api.Repositories
 {
     public class ClassDateRepository : IClassDateRepository
     {
-         private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
         public ClassDateRepository(ApplicationDBContext context){
             _context = context;
         }

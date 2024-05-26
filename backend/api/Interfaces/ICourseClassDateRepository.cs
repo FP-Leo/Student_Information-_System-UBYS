@@ -6,7 +6,7 @@ using api.Models;
 
 namespace api.Interfaces
 {
-    public interface ICourseClassDate
+    public interface ICourseClassDateRepository
     {
         Task<CourseClassDate?> GetCourseClassDateByIdAsync(int id);
         Task<CourseClassDate?> CreateCourseClassDateAsync(CourseClassDate courseClassDate);

@@ -75,7 +75,7 @@ export default function Islemler({ setIslemler,course,show }) {
         <IslemButton handleButtonClick={handleButtonClick} title={"Yoklama Raporu Görüntüle / Yükle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Devam Listesi Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Vize Sınav Sonuç Raporu Görüntüle"}/>
-        <IslemButton handleButtonClick={handleButtonClick} title={"Final Yoklama Listesi Görüntüle"}/>
+        <IslemButton handleButtonClick={handleButtonClick} title={"Final Sınav Yoklama Listesi Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Final Sınav Sonuç Raporu Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Öğrenci Not Listesi Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle"}/>

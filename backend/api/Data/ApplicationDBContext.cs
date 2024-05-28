@@ -150,16 +150,16 @@ namespace api.Data
             // One to One DepartmentCourse - Course
             modelBuilder.Entity<DepartmentCourse>()
                         .HasOne(e => e.Course)
-                        .WithOne(e => e.DepartmentCourse)
-                        .HasForeignKey<DepartmentCourse>(e => e.CourseName)
-                        .HasPrincipalKey<Course>(e => e.CourseName)
+                        .WithMany(e => e.DepartmentCourses)
+                        .HasForeignKey(e => e.CourseName)
+                        .HasPrincipalKey(e => e.CourseName)
                         .IsRequired();
             // One to One DepartmentCourse - Department
             modelBuilder.Entity<DepartmentCourse>()
                         .HasOne(e => e.Department)
-                        .WithOne(e => e.DepartmentCourse)
-                        .HasForeignKey<DepartmentCourse>(e => e.DepartmentName)
-                        .HasPrincipalKey<Department>(e => e.DepartmentName)
+                        .WithMany(e => e.DepartmentCourses)
+                        .HasForeignKey(e => e.DepartmentName)
+                        .HasPrincipalKey(e => e.DepartmentName)
                         .IsRequired();
             // Many to One DepartmentCourse - CourseDetails
             modelBuilder.Entity<DepartmentCourse>()
@@ -174,8 +174,7 @@ namespace api.Data
                         .WithMany(la => la.Courses)
                         .HasForeignKey(cc => cc.LecturerTC)
                         .HasPrincipalKey(la => la.TC)
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
             // Many to One Class - Course
             modelBuilder.Entity<CourseClass>()
                         .HasOne(e => e.DepartmentCourse)

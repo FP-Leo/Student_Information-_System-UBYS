@@ -23,6 +23,7 @@ namespace api
                 await Register("99324668300", "Leoleoleoleo1.", "Student");  
                 await Register("10000000001", "Leoleoleoleo1.", "Administrator");
                 await Register("10000000002", "Leoleoleoleo1.", "Lecturer");
+                await Register("10000000003", "Leoleoleoleo1.", "Advisor");
             }
             if(!_context.Universities.Any()){
                 var uni = new University{

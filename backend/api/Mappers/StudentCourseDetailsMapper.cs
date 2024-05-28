@@ -33,5 +33,13 @@ namespace api.Mappers
                 Grade = null
             };
         }
+
+        public static ICollection<StudentCourseDetailsDto> ToStudentCourseDetailsDto(this ICollection<StudentCourseDetails> studentCoursesDetails){
+            ICollection<StudentCourseDetailsDto> studentCoursesDetailsDto = [];
+            foreach(var stdCourseDetails in studentCoursesDetails){
+                studentCoursesDetailsDto.Add(stdCourseDetails.ToStudentCourseDetailsDto());
+            }
+            return studentCoursesDetailsDto;
+        }
     }
 }

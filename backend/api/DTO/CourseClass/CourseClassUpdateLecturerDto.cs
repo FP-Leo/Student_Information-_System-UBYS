@@ -1,9 +1,8 @@
-
 using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.CourseClass
 {
-    public class CourseClassUpdateDto
+    public class CourseClassUpdateLecturerDto
     {
         [Required]
         public string? DepartmentName { get; set; } 
@@ -12,12 +11,6 @@ namespace api.DTO.CourseClass
         [Required]
         public int HourPerWeek { get; set; }
         [Required]
-        public int AKTS { get; set; }
-        [Required]
-        public int Kredi { get; set; }
-        [Required]
-        public float MidTermValue { get; set; }
-        [Required]
-        public float FinalValue { get; set; }
+        public string? LecturerTC { get; set; }
     }
 }

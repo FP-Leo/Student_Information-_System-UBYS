@@ -17,6 +17,7 @@ namespace api.Data
         public DbSet<University> Universities{ get; set; }
         public DbSet<Faculty> Faculties{ get; set; }
         public DbSet<Department> Departments{ get; set; }
+        public DbSet<SemesterDetail> SemesterDetails { get; set; }
         public DbSet<StudentDepDetails> StudentsDepDetails{ get; set; }
         public DbSet<StudentCourseDetails> StudentsCourseDetails{ get; set; }
         public DbSet<LecturerDepDetails> LecturerDepDetails{ get; set; }
@@ -228,6 +229,14 @@ namespace api.Data
                         .WithMany(cd => cd.CourseClassDates)
                         .HasForeignKey(ccd => new { ccd.DepartmentName, ccd.CourseName, ccd.SchoolYear})
                         .HasPrincipalKey(cc => new { cc.DepartmentName, cc.CourseName, cc.SchoolYear })
+                        .IsRequired();
+            //// SemesterDetail
+            // Many to One SemesterDetail - Department
+             modelBuilder.Entity<SemesterDetail>()
+                        .HasOne(sd => sd.Department)
+                        .WithMany(d => d.SemestersDetails)
+                        .HasForeignKey(sd => sd.DepartmentName)
+                        .HasPrincipalKey(d => d.DepartmentName)
                         .IsRequired();
             base.OnModelCreating(modelBuilder);
         }

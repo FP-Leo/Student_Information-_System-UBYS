@@ -55,11 +55,43 @@ namespace api
                 var department = new Department{
                     FacultyName = "Mühendislik",
                     DepartmentName = "Bilgisayar Mühendisliği",
+                    NumberOfSemesters = 8,
+                    MaxYears = 7,
                     BuildingNumber = "2. Bina",
                     FloorNumber = 2,
                     HeadOfDepartmentTC = "10000000001"
                 };
                 await _context.Departments.AddAsync(department);
+                await _context.SaveChangesAsync();
+            }
+            if(!_context.SemesterDetails.Any()){
+                var semesterOne = new SemesterDetail{
+                    DepartmentName = "Bilgisayar Mühendisliği",
+                    Semester = 1,
+                    NumberOfObligatoryCourses = 9,
+                    NumberOfSelectiveCourses = 1,
+                    SelectiveCourseACTS = 1,
+                    SelectiveCourseKredi = 0
+                };
+                var semesterTwo = new SemesterDetail{
+                    DepartmentName = "Bilgisayar Mühendisliği",
+                    Semester = 2,
+                    NumberOfObligatoryCourses = 8,
+                    NumberOfSelectiveCourses = 1,
+                    SelectiveCourseACTS = 1,
+                    SelectiveCourseKredi = 0
+                };
+                var semesterThree = new SemesterDetail{
+                    DepartmentName = "Bilgisayar Mühendisliği",
+                    Semester = 3,
+                    NumberOfObligatoryCourses = 6,
+                    NumberOfSelectiveCourses = 0,
+                    SelectiveCourseACTS = 0,
+                    SelectiveCourseKredi = 0
+                };
+                await _context.SemesterDetails.AddAsync(semesterOne);
+                await _context.SemesterDetails.AddAsync(semesterTwo);
+                await _context.SemesterDetails.AddAsync(semesterThree);
                 await _context.SaveChangesAsync();
             }
             if(!_context.Courses.Any()){
@@ -83,6 +115,7 @@ namespace api
                     DepartmentName = "Bilgisayar Mühendisliği",
                     CourseName = "Math",
                     TaughtSemester = 1,
+                    Status = "Open",
                     CourseDetailsId = 1
                 };
                 await _context.DepartmentCourses.AddAsync(depCourse);

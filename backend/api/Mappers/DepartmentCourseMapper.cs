@@ -10,6 +10,7 @@ namespace api.Mappers
                 CourseName = course.CourseName,
                 DepartmentName = course.DepartmentName,
                 TaughtSemester = course.TaughtSemester,
+                Status = course.Status,
                 CourseDetailsId = course.CourseDetailsId
             };
         }
@@ -19,8 +20,17 @@ namespace api.Mappers
                 CourseName = course.CourseName,
                 DepartmentName = course.DepartmentName,
                 TaughtSemester = course.TaughtSemester,
+                Status = "Closed",
                 CourseDetailsId = course.CourseDetailsId
             };
+        }
+
+        public static ICollection<DepartmentCourseDto> ToDepartmentCourseDto(this ICollection<DepartmentCourse> courses){
+            ICollection<DepartmentCourseDto> coursesDto = [];
+            foreach(DepartmentCourse course in courses){
+                coursesDto.Add(course.ToDepartmentCourseDto());
+            }
+            return coursesDto;
         }
     }
 }

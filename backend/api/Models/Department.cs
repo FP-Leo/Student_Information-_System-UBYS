@@ -20,6 +20,8 @@ namespace api.Models
         [Column(Order = 1)]
         public string? FacultyName { get; set; }
         public string? HeadOfDepartmentTC { get; set; }
+        public int NumberOfSemesters { get; set; }
+        public int MaxYears {get; set; }
 
         // Navigation Properties
         public Faculty? Faculty { get; set; } 
@@ -27,5 +29,6 @@ namespace api.Models
         public ICollection<StudentDepDetails>? StudentDepDetails { get; set;}
         public ICollection<LecturerDepDetails>? LecturerDepDetails { get; set;}
         public ICollection<DepartmentCourse>? DepartmentCourses { get; set; } // Many to Many. New table.
+        public ICollection<SemesterDetail>? SemestersDetails{ get; set; }
     }
 }

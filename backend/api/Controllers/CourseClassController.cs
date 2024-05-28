@@ -110,6 +110,17 @@ namespace api.Controllers
             if(lectDepDetails == null){
                 return BadRequest("The lecturer is currently not registered at this department.");
             }
+            /*
+            if(courseDetails.CourseType == "Zorunlu"){
+                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(coursePostDto.DepartmentName, coursePostDto.TaughtSemester);
+                //var classes = await _courseClassRepository.Get
+                int totalAKTS = 0;
+                foreach(var course in courses){
+                    //totalAKTS += course.A;
+                }
+            }else{
+                // Check if AKTS are the same as Secmeli AKTS
+            }*/
 
             // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
             var uni = await _universityRepository.GetUniversityByIdAsync(1);

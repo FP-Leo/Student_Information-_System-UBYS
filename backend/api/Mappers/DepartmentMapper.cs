@@ -9,6 +9,8 @@ namespace api.Mappers
             return new DepartmentDto{
                 DepartmentId = department.DepartmentId,
                 DepartmentName = department.DepartmentName,
+                NumberOfSemesters = department.NumberOfSemesters,
+                MaxYears = department.MaxYears,
                 BuildingNumber = department.BuildingNumber,
                 FloorNumber = department.FloorNumber,
                 FacultyName = department.FacultyName,
@@ -20,6 +22,8 @@ namespace api.Mappers
             return new Department{
                 DepartmentName = departmentPostDto.DepartmentName,
                 BuildingNumber = departmentPostDto.BuildingNumber,
+                NumberOfSemesters = departmentPostDto.NumberOfSemesters,
+                MaxYears = departmentPostDto.MaxYears,
                 FloorNumber = departmentPostDto.FloorNumber,
                 FacultyName = departmentPostDto.FacultyName,
                 HeadOfDepartmentTC = departmentPostDto.HeadOfDepartmentTC,

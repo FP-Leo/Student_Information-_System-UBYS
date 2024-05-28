@@ -10,6 +10,10 @@ namespace api.DTO.Department
         [Required] 
         public string? DepartmentName { get; set; }
         [Required] 
+        public int NumberOfSemesters { get; set; }
+        [Required] 
+        public int MaxYears {get; set; }
+        [Required] 
         public string? BuildingNumber { get; set; }
         [Required] 
         public int FloorNumber { get; set; }

@@ -102,6 +102,7 @@ builder.Services.AddScoped<ICourseClassRepository, CourseClassRepository>();
 builder.Services.AddScoped<IStudentCourseDetailsRepostiory, StudentCourseDetailsRepository>();
 builder.Services.AddScoped<IClassDateRepository, ClassDateRepository>();
 builder.Services.AddScoped<ICourseClassDateRepository, CourseClassDateRepository>();
+builder.Services.AddScoped<ISemesterDetailsRepository, SemesterDetailsRepository>();
 
 builder.Services.AddCors(options =>
 {

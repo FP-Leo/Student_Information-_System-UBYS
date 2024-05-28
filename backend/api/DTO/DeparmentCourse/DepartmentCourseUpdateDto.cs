@@ -16,6 +16,8 @@ namespace api.DTO.DeparmentCourse
         [Range(1, 8, ErrorMessage = "There are only 8 semesters.")]
         public int TaughtSemester { get; set; }
         [Required]
+        public string? Status { get; set; } 
+        [Required]
         public int CourseDetailsId { get; set; }
     }
 }

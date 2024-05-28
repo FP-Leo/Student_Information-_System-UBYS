@@ -14,10 +14,12 @@ namespace api.Controllers
         private readonly IDepartmentCourseRepository _departmentCourseRepository;
         private readonly IDepartmentRepository _departmentRepository;
         private readonly ICourseRepository _courseRepository;
-        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository){
+        private readonly ICourseDetailsRepository _courseDetailsRepository;
+        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository){
             _departmentCourseRepository = courseDepRepository;
             _departmentRepository = departmentRepository;
             _courseRepository = courseRepository;
+            _courseDetailsRepository = courseDetailsRepository;
         }
 
         [HttpGet("University/Faculty/Department/Course/")]
@@ -35,6 +37,21 @@ namespace api.Controllers
 
             return Ok(course.ToDepartmentCourseDto());
         }
+        [HttpGet("University/Faculty/Department/Semester/Courses/")]
+        public async Task<IActionResult> GetActiveDepCoursesBySemester([FromQuery] String DepName, [FromQuery] int Semester){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, Semester);
+
+            if(courses == null){
+                return NotFound();
+            }
+
+            return Ok(courses.ToDepartmentCourseDto());
+        }
         [HttpGet("University/Faculty/Departments/Course")]
         public async Task<IActionResult> GetDepartmentsOfCourse([FromQuery] String CourseName){
             if(!ModelState.IsValid)
@@ -42,13 +59,13 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var course = await _departmentCourseRepository.GetDepartmentsOfCourseByCourseNameAsync(CourseName);
+            var courses = await _departmentCourseRepository.GetDepartmentsOfCourseByCourseNameAsync(CourseName);
 
-            if(course == null){
+            if(courses == null){
                 return NotFound();
             }
 
-            return Ok(course);
+            return Ok(courses.ToDepartmentCourseDto());
         }
         [HttpGet("University/Faculty/Department/Courses/")]
         public async Task<IActionResult> GetCoursesOfDepartment([FromQuery] String DepName){
@@ -57,13 +74,13 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var course = await _departmentCourseRepository.GetDepartmentCoursesAsync(DepName);
+            var courses = await _departmentCourseRepository.GetDepartmentCoursesAsync(DepName);
 
-            if(course == null){
+            if(courses == null){
                 return NotFound();
             }
 
-            return Ok(course);
+            return Ok(courses.ToDepartmentCourseDto());
         }
         [HttpPost("University/Faculty/Department/Course")]
         [Authorize(Roles = "Admin")]
@@ -83,6 +100,11 @@ namespace api.Controllers
             if(validCourse == null){
                 return NotFound("Course not found!");
             }
+
+            var courseDetails = await _courseDetailsRepository.GetCourseDetailsAsync(coursePostDto.CourseDetailsId);
+            if(courseDetails == null){
+                return NotFound("Course Details not found");
+            } 
             
             var depsDetails = await _departmentCourseRepository.AddCourseToDepAsync(coursePostDto.ToDepartmentCourse());
             
@@ -110,7 +132,12 @@ namespace api.Controllers
                 return BadRequest();
             }
 
+            if(departmentCourseUpdateDto.Status != "Open" && departmentCourseUpdateDto.Status != "Closed"){
+                return BadRequest("Status can only be Open or Closed");
+            }
+
             depCourse.TaughtSemester = departmentCourseUpdateDto.TaughtSemester;
+            depCourse.Status = departmentCourseUpdateDto.Status;
             depCourse.CourseDetailsId = departmentCourseUpdateDto.CourseDetailsId;
             
             var updatedDepCourse = await _departmentCourseRepository.UpdateDepsCourseAsync(depCourse);

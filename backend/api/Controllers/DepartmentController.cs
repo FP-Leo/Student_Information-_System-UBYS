@@ -74,7 +74,9 @@ namespace api.Controllers
 
             if(departmentUpdateDto.DepartmentName != department.DepartmentName)
                 return BadRequest();
-
+            
+            department.NumberOfSemesters = departmentUpdateDto.NumberOfSemesters;
+            department.MaxYears = departmentUpdateDto.MaxYears;
             department.BuildingNumber = departmentUpdateDto.BuildingNumber;
             department.FloorNumber = departmentUpdateDto.FloorNumber;
             department.HeadOfDepartmentTC = departmentUpdateDto.HeadOfDepartmentTC;

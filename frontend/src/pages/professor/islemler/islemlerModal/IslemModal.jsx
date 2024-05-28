@@ -7,7 +7,11 @@ export default function IslemModal({ openModal, handleModalClose , course ,title
 
     const allModals = {
         "Detayları Görüntüle" : <DetayGoruntule course={course}/>,
-        "Sınıf Listesini Görüntüle" : <SinifListeGoruntule/>,
+        "Sınıf Listesini Görüntüle" : <SinifListeGoruntule type={"Sınıf Görüntüle"}/>,
+        "Vize Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule type={"Vize Sınav"}/>,
+        "Final Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule type={"Final Sınav"}/>,
+        "Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle" : <SinifListeGoruntule type={"Bütünleme Listesi"}/>,
+        "Not Giriş Ekranını Göster" : <SinifListeGoruntule type={"Not Giriş"}/>
     }
   return (
     <Modal

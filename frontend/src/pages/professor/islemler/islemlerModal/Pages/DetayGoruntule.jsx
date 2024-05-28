@@ -1,44 +1,21 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box } from "@mui/material";
+import DetayGoruntuleItem from "./Components/DetayGoruntuleItem";
 
-export default function DetayGoruntule({course}) {
-    const {
-        dersAdi,
-        dersFakulte,
-        dersBirimi,
-        dersKodu,
-    } = course
+export default function DetayGoruntule({ course }) {
+  const { dersAdi, dersFakulte, dersBirimi, dersKodu } = course;
   return (
-    <Box display={"flex"} flexDirection={"column"}  py={10} >
-    <Box display={"flex"}>
-    <Typography fontWeight={600} pr={1}>Ders Adı : </Typography>
-    <Typography>{dersAdi}</Typography>
-    </Box>
+    <Box display={"flex"} flexDirection={"column"} py={10}>
+      <DetayGoruntuleItem title={"Ders Adı : "} desc={dersAdi} />
 
-    <Box display={"flex"}>
-    <Typography fontWeight={600} pr={1}>Ders Fakülte : </Typography>
-    <Typography>{dersFakulte}</Typography>
-    </Box>
+      <DetayGoruntuleItem title={"Ders Fakülte : "} desc={dersFakulte} />
 
-    <Box display={"flex"}>
-    <Typography fontWeight={600} pr={1}>Ders Bölüm : </Typography>
-    <Typography>{dersBirimi}</Typography>
-    </Box>
+      <DetayGoruntuleItem title={"Ders Bölüm : "} desc={dersBirimi} />
 
-    <Box display={"flex"}>
-    <Typography fontWeight={600} pr={1}>Ders Kodu : </Typography>
-    <Typography>{dersKodu}</Typography>
-    </Box>
+      <DetayGoruntuleItem title={"Ders Kodu : "} desc={dersKodu} />
 
-    <Box display={"flex"}>
-    <Typography fontWeight={600} pr={1}>Ders AKTS : </Typography>
-    <Typography>5 </Typography>
-    </Box>
+      <DetayGoruntuleItem title={"Ders AKTS : "} desc={5} />
 
-    <Box display={"flex"}>
-    <Typography fontWeight={600} pr={1}>Kayıtlı Öğrenci : </Typography>
-    <Typography>80</Typography>
+      <DetayGoruntuleItem title={"Kayıtlı Öğrenci Sayısı : "} desc={70} />
     </Box>
-</Box>
-  )
+  );
 }

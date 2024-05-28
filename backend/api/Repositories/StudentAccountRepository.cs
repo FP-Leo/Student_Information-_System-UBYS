@@ -13,14 +13,16 @@ namespace api.Repositories
 {
     public class StudentAccountRepository : IStudentAccountRepository
     {
-        ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context;
         public StudentAccountRepository(ApplicationDBContext context){
             _context = context;
         }
         public async Task<StudentAccount?> CreateStudentAccountAsync(StudentAccount studentAccount)
         {
             await _context.AddAsync(studentAccount);
+
             var result = await _context.SaveChangesAsync();
+            
             if (result <= 0)
                 return null;
             return studentAccount;
@@ -45,14 +47,7 @@ namespace api.Repositories
 
         public async Task<StudentAccount?> GetStudentAccountByTCAsync(string TC)
         {
-            var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.User.UserName == TC);
-
-            return account;
-        }
-
-        public async Task<StudentAccount?> GetStudentAccountByUIDAsync(string UserId)
-        {
-            var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.UserId == UserId);
+            var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.TC == TC);
 
             return account;
         }

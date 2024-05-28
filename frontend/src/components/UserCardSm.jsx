@@ -5,11 +5,11 @@ import React from "react";
 
 //!---------- With Data from API ----------!//
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "store/user/user.selector";
+import { selectUserData } from "store/user/user.selector";
 //!----------------------------------------!//
 
 export default function UserCardSm({ ppSize, cardSize, isMenuCard }) {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectUserData);
   const { firstName, lastName, role } = currentUser;
   const theme = useTheme();
   const ppSizeMap = {

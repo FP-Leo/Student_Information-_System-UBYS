@@ -5,7 +5,7 @@ import { removeSpacesAndLowerCase } from "utils/helper-functions";
 
 import { motion } from "framer-motion";
 
-const LinkCard = ({ children, title }) => {
+const LinkCard = ({ children, title, link }) => {
   const theme = useTheme();
 
   return (
@@ -13,11 +13,7 @@ const LinkCard = ({ children, title }) => {
       mx={2}
       width="200px"
       component={Link}
-      to={
-        title === "Ders Seçimi"
-          ? "ders-secimi"
-          : removeSpacesAndLowerCase(title)
-      }
+      to={link}
       variant="custom"
       sx={{
         backgroundColor: "background.neutral",
@@ -27,6 +23,9 @@ const LinkCard = ({ children, title }) => {
         transition: "ease .25s",
         "&:hover": {
           backgroundColor: theme.palette.action.hover,
+          "& h6": {
+            color: theme.palette.primary.main,
+          },
         },
       }}
     >

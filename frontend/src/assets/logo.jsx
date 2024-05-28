@@ -1,14 +1,14 @@
 import React from "react";
 
-function Logo() {
+function Logo({ width }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="250"
-      height="249"
+      width={width}
+      height={width}
       fill="none"
-      viewBox="0 0 250 249"
+      viewBox={"0 0 250 249"}
     >
       <path fill="url(#pattern0_1_340)" d="M0 0H250V248.95H0z"></path>
       <defs>

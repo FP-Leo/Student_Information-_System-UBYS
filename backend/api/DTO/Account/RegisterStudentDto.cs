@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace api.DTO.Account
 {
@@ -27,6 +23,7 @@ namespace api.DTO.Account
         public string? CurrentStatus { get; set; }
         [Required]
         public string? SchoolMail {get; set;}
+        public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
     }
 }

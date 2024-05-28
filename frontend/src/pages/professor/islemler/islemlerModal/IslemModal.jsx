@@ -11,7 +11,11 @@ export default function IslemModal({ openModal, handleModalClose , course ,title
         "Vize Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule type={"Vize Sınav"}/>,
         "Final Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule type={"Final Sınav"}/>,
         "Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle" : <SinifListeGoruntule type={"Bütünleme Listesi"}/>,
-        "Not Giriş Ekranını Göster" : <SinifListeGoruntule type={"Not Giriş"}/>
+        "Not Giriş Ekranını Göster" : <SinifListeGoruntule type={"Not Giriş"}/>,
+        "Vize Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule type={"Vize Yoklama"} />,
+        "Final Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule type={"Final Yoklama"} />,
+        "Öğrenci Not Listesi Görüntüle":<SinifListeGoruntule type={"Öğrenci Not Listesi"}/>,
+        "Devam Listesi Görüntüle" : <SinifListeGoruntule type={"Devam Listesi"}/>,
     }
   return (
     <Modal

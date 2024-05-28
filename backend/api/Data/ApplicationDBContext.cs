@@ -22,7 +22,7 @@ namespace api.Data
         public DbSet<LecturerDepDetails> LecturerDepDetails{ get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<DepartmentCourse> DepartmentCourses { get; set; }
-        public DbSet<CourseDetails> CourseExplanations { get; set; }
+        public DbSet<CourseDetails> CourseDetails { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }
         public DbSet<ClassDate> ClassDates { get; set; }
         public DbSet<CourseClassDate> CourseClassDates { get; set; }

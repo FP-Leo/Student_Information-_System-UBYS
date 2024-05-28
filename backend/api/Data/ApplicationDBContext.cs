@@ -147,14 +147,14 @@ namespace api.Data
                         .IsRequired()
                         .OnDelete(DeleteBehavior.Restrict);
             //// DepartmentCourse
-            // One to One DepartmentCourse - Course
+            // One to Many DepartmentCourse - Course
             modelBuilder.Entity<DepartmentCourse>()
                         .HasOne(e => e.Course)
                         .WithMany(e => e.DepartmentCourses)
                         .HasForeignKey(e => e.CourseName)
                         .HasPrincipalKey(e => e.CourseName)
                         .IsRequired();
-            // One to One DepartmentCourse - Department
+            // One to Many DepartmentCourse - Department
             modelBuilder.Entity<DepartmentCourse>()
                         .HasOne(e => e.Department)
                         .WithMany(e => e.DepartmentCourses)

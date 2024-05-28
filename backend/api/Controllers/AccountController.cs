@@ -20,7 +20,9 @@ namespace api.Controllers
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
         private readonly IAdvisorAccountRepository _advisorAccountRepository;
         private readonly IAdministratorAccountRepository _administratorAccountRepository;
-        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository,IAdvisorAccountRepository advisorAccountRepository,IAdministratorAccountRepository administratorAccountRepository)
+        private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
+        private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
+        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository,IAdvisorAccountRepository advisorAccountRepository,IAdministratorAccountRepository administratorAccountRepository, IStudentDepDetailsRepository studentDepDetailsRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository)
         {
             _userManager = userManager;
             _tokenService = tokenService;
@@ -29,6 +31,8 @@ namespace api.Controllers
             _lecturerAccountRepository = lecturerAccountRepository;
             _advisorAccountRepository = advisorAccountRepository;
             _administratorAccountRepository  = administratorAccountRepository;
+            _studentDepDetailsRepository = studentDepDetailsRepository;
+            _lecturerDepDetailsRepository = lecturerDepDetailsRepository;
         }
         // Function to validate TC.
         private bool InvalidTC(string TC){
@@ -131,7 +135,7 @@ namespace api.Controllers
                                 var result = await _userManager.DeleteAsync(appUser);
                                 return StatusCode(500, "Error creating the account!");
                             }
-                            return Ok(newStudentAcc.ToStudentAccountLOGINDto(_tokenService.CreateToken(appUser)));
+                            return Ok(newStudentAcc.ToStudentAccountLOGINDto(_tokenService.CreateToken(appUser), null));
                         }catch( Exception e ){
                             await _userManager.DeleteAsync(appUser);
                             return StatusCode(500, e);
@@ -187,7 +191,7 @@ namespace api.Controllers
                                 return StatusCode(500, "Error creating the account!");
                             }
 
-                            return Ok(newLecturerAcc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(appUser)));
+                            return Ok(newLecturerAcc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(appUser), null));
                         }
                         catch (Exception e){
                             await _userManager.DeleteAsync(appUser);
@@ -353,7 +357,9 @@ namespace api.Controllers
                     return StatusCode(500, "Account not found!");
                 }
 
-                return Ok(acc.ToStudentAccountLOGINDto(_tokenService.CreateToken(user)));
+                var deps = await _studentDepDetailsRepository.GetStudentDepDetailsByTCAsync(loginDto.Username);
+
+                return Ok(acc.ToStudentAccountLOGINDto(_tokenService.CreateToken(user), deps));
             }
 
             if(userRoles[0] == "Lecturer"){
@@ -363,7 +369,10 @@ namespace api.Controllers
                     return StatusCode(500, "Account not found!");
                 }
 
-                return Ok(acc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(user)));
+                var deps = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(loginDto.Username);
+
+
+                return Ok(acc.ToLecturerAccountLOGINDto(_tokenService.CreateToken(user), deps));
             }
 
             if(userRoles[0] == "Advisor"){

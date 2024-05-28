@@ -35,7 +35,7 @@ export default function Islemler({ setIslemler,course,show }) {
             height: "125px",
             backgroundColor:"#ECECEC",
             borderRadius : "10px",
-            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.75fr",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.75fr",
             borderBottom: "1px solid #B3B3B3",
             borderLeft: "1px solid #B3B3B3",
             borderRight: "1px solid #B3B3B3",
@@ -69,12 +69,13 @@ export default function Islemler({ setIslemler,course,show }) {
           
         </Box>
         <IslemButton handleButtonClick={handleButtonClick} title={"Detayları Görüntüle"}/>
+        <IslemButton handleButtonClick={handleButtonClick} title={"Not Giriş Ekranını Göster"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Sınıf Listesini Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Vize Sınav Yoklama Listesi Görüntüle"}/>
-        <IslemButton handleButtonClick={handleButtonClick} title={"Yoklama Raporu Görüntüle"}/>
+        <IslemButton handleButtonClick={handleButtonClick} title={"Yoklama Raporu Görüntüle / Yükle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Devam Listesi Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Vize Sınav Sonuç Raporu Görüntüle"}/>
-        <IslemButton handleButtonClick={handleButtonClick} title={"Final Yoklama Listesi Görüntüle"}/>
+        <IslemButton handleButtonClick={handleButtonClick} title={"Final Sınav Yoklama Listesi Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Final Sınav Sonuç Raporu Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Öğrenci Not Listesi Görüntüle"}/>
         <IslemButton handleButtonClick={handleButtonClick} title={"Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle"}/>

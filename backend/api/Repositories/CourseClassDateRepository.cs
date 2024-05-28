@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
 using api.Models;
@@ -24,29 +20,29 @@ namespace api.Repositories
                 return null;
             return courseClassDate;
         }
-
-        public async Task<CourseClassDate?> DeleteCourseClassDateByIdAsync(int id)
+        public async Task<CourseClassDate?> DeleteCourseClassDateAsync(CourseClassDate courseClassDate)
         {
-            var CourseClassDate = await GetCourseClassDateByIdAsync(id);
-
-            if (CourseClassDate == null){
+            try{
+                _context.Remove(courseClassDate);
+                var result = await _context.SaveChangesAsync();
+                if (result <= 0)
+                    return null;
+                return courseClassDate;
+            }
+            catch {
                 return null;
             }
-
-            _context.Remove(CourseClassDate);
-            var result = await _context.SaveChangesAsync();
-            if (result <= 0)
-                return null;
-            return CourseClassDate;
         }
-
-        public async Task<CourseClassDate?> GetCourseClassDateByIdAsync(int id)
+        public Task<CourseClassDate?> GetCourseClassDateAsync(string DepartmentName, string CourseName, int ClassDateId)
         {
-            var courseClassDate = await _context.CourseClassDates.FirstOrDefaultAsync(u => u.Id == id);
-
-            return courseClassDate;
+            throw new NotImplementedException();
         }
+        public async Task<ICollection<CourseClassDate>?> GetCourseClassDatesAsync(String DepartmentName, String CourseName)
+        {
+            var courseClassDates = await _context.CourseClassDates.Where(ccd => ccd.DepartmentName == DepartmentName && ccd.CourseName == CourseName).ToListAsync();
 
+            return courseClassDates;
+        }
         public async Task<CourseClassDate?> UpdateCourseClassDateAsync(CourseClassDate courseClassDate)
         {
             var result = await _context.SaveChangesAsync();

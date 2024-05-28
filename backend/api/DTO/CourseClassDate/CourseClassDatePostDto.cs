@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using api.DTO.ClassDate;
 using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.CourseClassDate
@@ -16,10 +13,6 @@ namespace api.DTO.CourseClassDate
         [Required] 
         public int SchoolYear { get; set; }
         [Required]
-        public String? Day { get; set; }
-        [Required]
-        public DateTime? Time { get; set;}
-        [Required]
-        public int NumberOfClasses { get; set; }
+        public IList<ClassDatePostDto>? ClassDates{ get; set; }
     }
 }

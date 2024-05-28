@@ -79,8 +79,6 @@ namespace api.Data
             modelBuilder.Entity<CourseClass>().HasAlternateKey(cc => new { cc.DepartmentName, cc.CourseName, cc.SchoolYear });
             // Compound Alt key to reference Student Dep Details.
             modelBuilder.Entity<StudentDepDetails>().HasAlternateKey(sdd => new { sdd.DepartmentName, sdd.TC });
-            // Compound 
-            modelBuilder.Entity<ClassDate>().HasAlternateKey(cd => new { cd.Day, cd.Time, cd.NumberOfClasses });
             //// Relationships
             
             //// User Account
@@ -223,8 +221,7 @@ namespace api.Data
             modelBuilder.Entity<CourseClassDate>()
                         .HasOne(ccd => ccd.ClassDate)
                         .WithMany(cd => cd.CourseClassDates)
-                        .HasForeignKey(ccd => new { ccd.Day, ccd.Time, ccd.NumberOfClasses})
-                        .HasPrincipalKey(cd => new { cd.Day, cd.Time, cd.NumberOfClasses})
+                        .HasForeignKey(ccd => ccd.ClassDateId)
                         .IsRequired();
             // Many to One CourseClassDate - CourseClass
             modelBuilder.Entity<CourseClassDate>()

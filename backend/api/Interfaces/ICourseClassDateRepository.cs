@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Models;
 
 namespace api.Interfaces
 {
     public interface ICourseClassDateRepository
     {
-        Task<CourseClassDate?> GetCourseClassDateByIdAsync(int id);
+        Task<ICollection<CourseClassDate>?> GetCourseClassDatesAsync(String DepartmentName, String CourseName);
+        Task<CourseClassDate?> GetCourseClassDateAsync(String DepartmentName, String CourseName, int ClassDateId);
         Task<CourseClassDate?> CreateCourseClassDateAsync(CourseClassDate courseClassDate);
         Task<CourseClassDate?> UpdateCourseClassDateAsync(CourseClassDate courseClassDate);
-        Task<CourseClassDate?> DeleteCourseClassDateByIdAsync(int id);
+        Task<CourseClassDate?> DeleteCourseClassDateAsync(CourseClassDate courseClassDate);
     }
 }

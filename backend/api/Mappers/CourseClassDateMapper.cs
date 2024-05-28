@@ -1,37 +1,57 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using api.DTO.ClassDate;
 using api.DTO.CourseClassDate;
+using api.Interfaces;
 using api.Models;
 
 namespace api.Mappers
 {
     public static class CourseClassDateMapper
     {
-        public static CourseClassDateDto ToCourseClassDateDto(this CourseClassDate courseClassDate){
-            return new CourseClassDateDto{
-                Id = courseClassDate.Id,
-                DepartmentName = courseClassDate.DepartmentName,
-                CourseName = courseClassDate.CourseName,
-                SchoolYear = courseClassDate.SchoolYear,
-                Day = courseClassDate.Day,
-                Time = courseClassDate.Time,
-                NumberOfClasses = courseClassDate.NumberOfClasses
-
-
+        public static CourseClassDate ToCourseClassDate(this CourseClassDateDeleteDto courseClassDeletePostDto, int ClassDateId){
+             return new CourseClassDate{
+                DepartmentName = courseClassDeletePostDto.DepartmentName,
+                CourseName = courseClassDeletePostDto.CourseName,
+                SchoolYear = courseClassDeletePostDto.SchoolYear,
+                ClassDateId = ClassDateId
             };
-        } 
-        public static CourseClassDate ToCourseClassDate(this CourseClassDatePostDto courseClassDatePostDto){
+        }
+        public static CourseClassDate ToCourseClassDate(this CourseClassDatePostDto courseClassDatePostDto, int ClassDateId){
              return new CourseClassDate{
                 DepartmentName = courseClassDatePostDto.DepartmentName,
                 CourseName = courseClassDatePostDto.CourseName,
                 SchoolYear = courseClassDatePostDto.SchoolYear,
-                Day = courseClassDatePostDto.Day,
-                Time = courseClassDatePostDto.Time,
-                NumberOfClasses = courseClassDatePostDto.NumberOfClasses
+                ClassDateId = ClassDateId
             };
         }
-        
+        public static async Task<CourseClassDateDto> ToCourseClassDatesDto(this ICollection<CourseClassDate> courseClassDates, IClassDateRepository classDateRepository){
+            var courseDetails = courseClassDates.FirstOrDefault();
+            ICollection<ClassDateDto> ClassDates = [];
+            foreach(var cls in courseClassDates){
+                var clsDto = await classDateRepository.GetClassDateByIdAsync(cls.ClassDateId);
+                if(clsDto != null){
+                    ClassDates.Add(clsDto.ToClassDateDto());
+                }
+            }
+
+            return new CourseClassDateDto{
+                DepartmentName = courseDetails.DepartmentName,
+                CourseName = courseDetails.CourseName,
+                SchoolYear = courseDetails.SchoolYear,
+                ClassDates = ClassDates
+            };
+        }
+
+        public static ICollection<ClassDate> GetClassDates(this CourseClassDatePostDto courseClassDatePostDto){
+            ICollection<ClassDate> ClassDates = [];
+            foreach(var cls in courseClassDatePostDto.ClassDates){
+                var temp = new ClassDate{
+                    Day = cls.Day,
+                    Time = cls.Time,
+                    NumberOfClasses = cls.NumberOfClasses,
+                };
+                ClassDates.Add(temp);
+            }
+            return ClassDates;
+        }
     }
 }

@@ -7,14 +7,6 @@ namespace api.Mappers
 {
     public static class CourseClassDateMapper
     {
-        public static CourseClassDate ToCourseClassDate(this CourseClassDateDeleteDto courseClassDeletePostDto, int ClassDateId){
-             return new CourseClassDate{
-                DepartmentName = courseClassDeletePostDto.DepartmentName,
-                CourseName = courseClassDeletePostDto.CourseName,
-                SchoolYear = courseClassDeletePostDto.SchoolYear,
-                ClassDateId = ClassDateId
-            };
-        }
         public static CourseClassDate ToCourseClassDate(this CourseClassDatePostDto courseClassDatePostDto, int ClassDateId){
              return new CourseClassDate{
                 DepartmentName = courseClassDatePostDto.DepartmentName,

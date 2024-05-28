@@ -33,9 +33,11 @@ namespace api.Repositories
                 return null;
             }
         }
-        public Task<CourseClassDate?> GetCourseClassDateAsync(string DepartmentName, string CourseName, int ClassDateId)
+        public async Task<CourseClassDate?> GetCourseClassDateAsync(string DepartmentName, string CourseName, int ClassDateId)
         {
-            throw new NotImplementedException();
+            var courseClassDate = await _context.CourseClassDates.FirstOrDefaultAsync(ccd => ccd.DepartmentName == DepartmentName && ccd.CourseName == CourseName && ccd.ClassDateId == ClassDateId);
+
+            return courseClassDate;
         }
         public async Task<ICollection<CourseClassDate>?> GetCourseClassDatesAsync(String DepartmentName, String CourseName)
         {

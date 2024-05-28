@@ -98,11 +98,21 @@ namespace api.Controllers
             }
 
             var classId = await _classDateRepo.GetClassDateIdAsync(courseClassDateDeleteDto.Day, courseClassDateDeleteDto.Time, courseClassDateDeleteDto.NumberOfClasses);
+            
+            if(classId == null){
+                return NotFound("Class Date not found");
+            }
 
-            var result = await _courseClassDateRepo.DeleteCourseClassDateAsync(courseClassDateDeleteDto.ToCourseClassDate(classId.Id));
+            var courseClassDate = await _courseClassDateRepo.GetCourseClassDateAsync(courseClassDateDeleteDto.DepartmentName, courseClassDateDeleteDto.CourseName, classId.Id);
+
+            if(courseClassDate == null){
+                return NotFound("Course is not given at that date.");
+            }
+
+            var result = await _courseClassDateRepo.DeleteCourseClassDateAsync(courseClassDate);
 
             if(result == null){
-                return NotFound();
+                return StatusCode(500);
             }
 
             return NoContent();

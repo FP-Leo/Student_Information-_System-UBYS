@@ -16,12 +16,16 @@ namespace api.Controllers
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IUniversityRepository _universityRepository;
         private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
-        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IDepartmentRepository departmentRepository, IUniversityRepository universityRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository){
+        private readonly ICourseDetailsRepository _courseDetailsRepository;
+        private readonly ISemesterDetailsRepository _semesterDetailsRepository;
+        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IDepartmentRepository departmentRepository, IUniversityRepository universityRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository){
             _courseClassRepository = courseClassRepository;
             _departmentCourseRepository = departmentCourseRepository;
             _departmentRepository = departmentRepository;
             _universityRepository = universityRepository;
             _lecturerDepDetailsRepository = lecturerDepDetailsRepository;
+            _courseDetailsRepository = courseDetailsRepository;
+            _semesterDetailsRepository = semesterDetailsRepository;
         }
         [HttpGet("University/Faculty/Department/Course/Class")]
         public async Task<IActionResult> GetCurrentCourseClass([FromQuery] String DepName, [FromQuery] String CourseName){
@@ -116,25 +120,57 @@ namespace api.Controllers
             if(lectDepDetails == null){
                 return BadRequest("The lecturer is currently not registered at this department.");
             }
-            /*
-            if(courseDetails.CourseType == "Zorunlu"){
-                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(coursePostDto.DepartmentName, coursePostDto.TaughtSemester);
-                //var classes = await _courseClassRepository.Get
-                int totalAKTS = 0;
-                foreach(var course in courses){
-                    //totalAKTS += course.A;
-                }
-            }else{
-                // Check if AKTS are the same as Secmeli AKTS
-            }*/
 
+            var courseDetails = await _courseDetailsRepository.GetCourseDetailsAsync(depCourse.CourseDetailsId);
+            
+            if(courseDetails == null){
+                return StatusCode(500, "Couldn't get the course details.");
+            }
+            
             // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
-            
+
+            if(uni == null){
+                return StatusCode(500, "Coudn't get university data.");
+            }
+
+            var SemesterDetail = await _semesterDetailsRepository.GetSemesterDetailsAsync(depCourse.DepartmentName, depCourse.TaughtSemester);
+            if(SemesterDetail == null){
+                return StatusCode(500, "Coudn't get university data.");
+            }
+
+            if(courseDetails.CourseType == "Mandatory"){
+                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(depCourse.DepartmentName, depCourse.TaughtSemester);
+                int totalAKTS = 0;
+                foreach(var course in courses){
+                    var cd = await _courseDetailsRepository.GetCourseDetailsAsync(course.CourseDetailsId);
+                    if(cd.CourseType == "Mandatory"){
+                        var cc = await _courseClassRepository.GetCourseClassAsync(course.CourseCode, uni.CurrentSchoolYear);
+                        totalAKTS += cc.AKTS;
+                    }
+                    var totalAKTSwS = totalAKTS + SemesterDetail.SelectiveCourseACTS*SemesterDetail.NumberOfSelectiveCourses;
+                    if(totalAKTSwS == 30)
+                        return BadRequest("AKTS for this Semester are full. To add a new course change the other courses' AKTS or remove one of them.");
+                    if(totalAKTSwS + courseClassPostDto.AKTS > 30)
+                        return BadRequest("Opening this course exceeds 30 ATKS. Either remove another course or change AKTSs so that it is 30.");
+                }
+            }else{
+                if(courseClassPostDto.AKTS != SemesterDetail.SelectiveCourseACTS){
+                    return BadRequest("AKTS of Selective Courses must be the same as the others on the semester");
+                }
+            }
+
             var courseClass = await _courseClassRepository.AddCourseClassAsync(courseClassPostDto.ToCourseClass(uni.CurrentSchoolYear));
             
             if(courseClass == null){
                 return BadRequest();
+            }
+
+            depCourse.Status = "Open";
+            var res = await _departmentCourseRepository.UpdateDepsCourseAsync(depCourse);
+
+            if(res == null){
+                return StatusCode(500, "Failed to set Course as Open.");
             }
 
             return Ok(courseClass.ToCourseClassDto());

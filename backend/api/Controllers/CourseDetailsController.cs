@@ -44,6 +44,14 @@ namespace api.Controllers
             if(course == null)
                 return NotFound();
 
+            if(courseDetailsPostDto.CourseType != "Mandatory" && courseDetailsPostDto.CourseType != "Optional"){
+                return BadRequest("Bad input on the course type.");
+            }
+
+            if(courseDetailsPostDto.CourseLanguage != "English" && courseDetailsPostDto.CourseLanguage != "Turkish"){
+                return BadRequest("Bad input on the course type.");
+            }
+
             var courseDetails = await _courseDetailsRepo.AddCourseDetailsAsync(courseDetailsPostDto.ToCourseExplanation());
 
             if(courseDetails == null)

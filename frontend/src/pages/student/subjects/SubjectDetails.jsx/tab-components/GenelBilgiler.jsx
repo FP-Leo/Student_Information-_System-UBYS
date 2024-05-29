@@ -1,11 +1,11 @@
-import { Box, Typography, Avatar } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Box, Typography, Avatar } from "@mui/material";
+
 import Avatar1 from "assets/avatar1";
-import NotFoundIcon from "assets/not-found-icon";
-import NotFoundCircle from "assets/notfound-circle";
 
 const GenelBilgiler = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

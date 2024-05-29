@@ -1,6 +1,25 @@
-import { Scheduler } from "@aldabil/react-scheduler";
+import axios from "axios";
+
 import { Box } from "@mui/material";
+
+import { Scheduler } from "@aldabil/react-scheduler";
+import { useEffect } from "react";
+
+const PORT = 5158;
+
 const Calendar = () => {
+  useEffect(() => {
+    // try {
+    //   const res = axios.get(
+    //     `http://localhost:${PORT}/api/University/Faculty/Department/Course/Class/Dates`,
+    //     { params: { answer: 42 } }
+    //   );
+    //   console.log(res.data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  });
+
   return (
     <Box
       sx={{

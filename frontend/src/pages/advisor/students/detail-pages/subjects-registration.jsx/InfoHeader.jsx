@@ -1,17 +1,10 @@
-import { Box, Typography, Button } from "@mui/material";
-import SendIcon from "assets/send-icon";
-import laught from "assets/laugh.mp3";
+import { Box, Typography } from "@mui/material";
 
 const InfoHeader = () => {
-  const audio = new Audio(laught);
-  const playAudio = () => {
-    audio.play();
-  };
   return (
     <Box
       sx={{
         borderRadius: "10px 10px 0 0 ",
-
         paddingX: "10px",
         width: "100%",
         height: "50px",

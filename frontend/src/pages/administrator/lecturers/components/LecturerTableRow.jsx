@@ -1,15 +1,14 @@
-import { Box, Button, Typography } from "@mui/material";
-import { Avatar } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import avatar1 from "assets/avatar1.png";
 import { useState } from "react";
 
-import { styled, alpha } from "@mui/material/styles";
-import Menu, { MenuProps } from "@mui/material/Menu";
+import { useNavigate } from "react-router-dom";
+
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useTheme, styled, alpha } from "@mui/material/styles";
+import { Box, Button, Typography, Avatar } from "@mui/material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 
-import { useNavigate } from "react-router-dom";
+import avatar1 from "assets/avatar1.png";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -55,16 +54,20 @@ const StyledMenu = styled((props) => (
 }));
 
 const LecturerTableRow = ({ data }) => {
-  const navigate = useNavigate();
   const theme = useTheme();
-  const { id, name, number, department, faculty, status } = data;
-
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const { name, number, department, faculty, status } = data;
+
   const handleClick = (event) => {
+    event.preventDefault();
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+
+  const handleClose = (event) => {
+    event.preventDefault();
     setAnchorEl(null);
   };
 

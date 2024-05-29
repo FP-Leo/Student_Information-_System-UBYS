@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
+
 import { Box, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import { removeSpacesAndLowerCase } from "utils/helper-functions";
 
 import { motion } from "framer-motion";
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { selectUserToken } from "store/user/user.selector";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectUserToken } from "store/user/user.selector";
 
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();

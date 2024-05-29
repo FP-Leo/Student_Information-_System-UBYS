@@ -6,30 +6,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSubjectToStore } from "store/ders-secimi/ders-secimi.action";
 import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
-const SubjectsTableRow = ({ subject }) => {
+const SubjectsTableRow = ({ subject, toControl }) => {
+  const { subjectCode, dersAdı, dönem, kredi, AKTS } = subject;
+
   const theme = useTheme();
   const dispatch = useDispatch();
   const [isSelected, setIsSelected] = useState(false);
   const selectedSubjects = useSelector(selectSelectedSubjects);
 
-  const { subjectCode, dersAdı, dönem, kredi, AKTS } = subject;
-
-  const checkIfSelected = () => {
-    if (selectedSubjects === undefined) return isSelected;
+  useEffect(() => {
     let found = false;
     selectedSubjects.forEach((item) => {
       if (item.subjectCode === subjectCode) found = true;
     });
     setIsSelected(found);
-  };
-  useEffect(() => {
-    checkIfSelected();
-  }, [selectedSubjects]);
+    // eslint-disable-next-line
+  }, [toControl, selectedSubjects]);
 
   const handleAdd = (e) => {
     e.preventDefault();
     dispatch(addSubjectToStore(selectedSubjects, subject));
-    console.log("addSubjectToStore", subject);
   };
 
   return (

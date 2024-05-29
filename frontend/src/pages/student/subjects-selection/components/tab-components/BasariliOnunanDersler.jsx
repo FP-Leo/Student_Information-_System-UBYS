@@ -1,11 +1,14 @@
-import { Box, Typography } from "@mui/material";
-import { Data } from "data";
-import { useTheme } from "@mui/material/styles";
 import Ders from "../Ders";
+import { Data } from "data";
+
+import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
 import SelectSubjectsTableHeader from "components/SelectSubjectsTableHeader";
 
 const BasariliOnunanDersler = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

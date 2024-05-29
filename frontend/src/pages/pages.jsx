@@ -1,10 +1,10 @@
 import { ROLE_TYPES } from "router/role.types";
 
-import DerslerimIcon from "assets/derslerim-icon";
-import CalendarIcon from "assets/calendar-icon";
+import ListIcon from "assets/list-icon";
 import BelgeIcon from "assets/belge-icon";
 import StudentIcon from "assets/student-icon";
-import ListIcon from "assets/list-icon";
+import CalendarIcon from "assets/calendar-icon";
+import DerslerimIcon from "assets/derslerim-icon";
 
 const STUDENT_PAGES = [
   { title: "Derslerim", link: "derslerim", icon: <DerslerimIcon /> },

@@ -1,7 +1,7 @@
-import MainScreenCategories from "pages/MainScreenCategories";
 import EditProfile from "pages/edit-profile/EditProfile";
-import ProfessorsStudents from "pages/professor/myStudents/ProfessorsStudents";
+import MainScreenCategories from "pages/MainScreenCategories";
 import ProfessorSubjects from "pages/professor/subjects/ProfessorSubjects";
+import ProfessorsStudents from "pages/professor/myStudents/ProfessorsStudents";
 
 const LecturerRoutes = [
   {

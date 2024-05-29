@@ -1,9 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
+
 import InfoBox from "components/Info-Box";
 
 const Aciklama = () => {
-  const theme = useTheme();
   return (
     <Box
       sx={{

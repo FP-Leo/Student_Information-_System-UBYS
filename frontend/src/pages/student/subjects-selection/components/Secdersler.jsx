@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 import { alpha } from "@mui/material/styles";
 import { Box, Tabs, Tab } from "@mui/material";

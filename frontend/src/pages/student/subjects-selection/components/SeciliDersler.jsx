@@ -1,15 +1,16 @@
-import { Box, Typography } from "@mui/material";
-
-import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
-import SecilmisDers from "./SecilmisDers";
+
+import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import { selectedSubjectsAkts } from "store/ders-secimi/ders-secimi.selector";
 import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
+import SecilmisDers from "./SecilmisDers";
+
 const SeciliDersler = () => {
-  const selectedSubjects = useSelector(selectSelectedSubjects);
   const selectedAkts = useSelector(selectedSubjectsAkts);
+  const selectedSubjects = useSelector(selectSelectedSubjects);
 
   const theme = useTheme();
   return (

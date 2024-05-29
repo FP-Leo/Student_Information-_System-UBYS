@@ -1,22 +1,26 @@
-import { Box, Typography, Button } from "@mui/material";
 import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
 
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { useDispatch, useSelector } from "react-redux";
-import { addSubjectToStore } from "store/ders-secimi/ders-secimi.action";
-import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
+import { Box, Typography, Button } from "@mui/material";
 
-import { selectedSubjectsAkts } from "store/ders-secimi/ders-secimi.selector";
+import { addSubjectToStore } from "store/ders-secimi/ders-secimi.action";
+import {
+  selectSelectedSubjects,
+  selectedSubjectsAkts,
+} from "store/ders-secimi/ders-secimi.selector";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const Ders = ({ data }) => {
   const { subjectName, subjectCode, akts, subeler, aciklama, limit } = data;
+
   const [age, setAge] = useState("");
+
   const selectedSubjects = useSelector(selectSelectedSubjects);
   const selectedAkts = useSelector(selectedSubjectsAkts);
 
@@ -34,7 +38,6 @@ const Ders = ({ data }) => {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-  const theme = useTheme();
   return (
     <>
       <Box

@@ -1,14 +1,6 @@
-import {
-  Box,
-  Typography,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Grid,
-} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
+
 import LecturerTableRow from "./components/LecturerTableRow";
 
 const LECTURERS = [
@@ -104,6 +96,7 @@ const LECTURERS = [
 
 const Lecturers = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

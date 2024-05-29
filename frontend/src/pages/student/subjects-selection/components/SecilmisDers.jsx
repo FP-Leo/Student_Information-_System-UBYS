@@ -1,16 +1,18 @@
-import { Box, IconButton, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
-//! -------------- Erlindi --------------!//
+import { Box, IconButton, Typography } from "@mui/material";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+
 import { removeSubjectFromStore } from "store/ders-secimi/ders-secimi.action";
 import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
-const SecilmisDers = ({ data, value, index, item }) => {
-  //! -------------- Erlindi --------------!//
+const SecilmisDers = ({ data, index }) => {
   const { subjectCode, subjectName, akts, state } = data;
+
   const dispatch = useDispatch();
+
   const selectedSubjects = useSelector(selectSelectedSubjects);
+
   const handleRemove = (e) => {
     e.preventDefault();
     dispatch(removeSubjectFromStore(selectedSubjects, data));

@@ -1,11 +1,12 @@
-import { Box, Typography, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
-import CustomTabPanel from "components/CustomTabPanel";
+
+import { Box, Tabs, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+import Odevler from "./tab-components/Odevler";
+import CustomTabPanel from "components/CustomTabPanel";
 import GenelBilgiler from "./tab-components/GenelBilgiler";
 import HaftaIcerikleri from "./tab-components/HaftaIcerikleri";
-import Odevler from "./tab-components/Odevler";
 
 function a11yProps(index) {
   return {
@@ -15,8 +16,8 @@ function a11yProps(index) {
 }
 
 const SubjectDetails = () => {
-  const [value, setValue] = useState(0);
   const theme = useTheme();
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -1,18 +1,14 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  IconButton,
-  Typography,
-} from "@mui/material";
 import { useState } from "react";
+
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import { Box, Button, Typography } from "@mui/material";
+
 import TableRow from "./components/TableRow";
+
 import { DOCUMENTS } from "./documents";
 
 const BelgeTablebi = () => {

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SubjectsTableRow from "../components/SubjectsTableRow";
 import {
   getFaculties,
-  getDepartments,
+  //getDepartments,
   getSubjects,
   filteredSubjects,
   getDepartmentsByFaculty,
@@ -23,6 +23,7 @@ import {
   IconButton,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -30,22 +31,19 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
-  setFetchedSubjects,
-  setSelectedSubjects,
+  //setFetchedSubjects,
+  //setSelectedSubjects,
   removeSubjectFromStore,
 } from "store/ders-secimi/ders-secimi.action";
 import {
-  selectFetchedSubjects,
+  //selectFetchedSubjects,
   selectSelectedSubjects,
 } from "store/ders-secimi/ders-secimi.selector";
-
-import { isEqual } from "lodash";
 
 const LecturerSubjectRegistration = () => {
   const theme = useTheme();
@@ -53,21 +51,21 @@ const LecturerSubjectRegistration = () => {
   const SUBJECTS = getSubjects();
   const dispatch = useDispatch();
   const FACULTIES = getFaculties();
-  const DEPARTMENTS = getDepartments();
-  const fetchedSubjects = useSelector(selectFetchedSubjects);
+  //const DEPARTMENTS = getDepartments();
+  //const fetchedSubjects = useSelector(selectFetchedSubjects);
   const selectedSubjects = useSelector(selectSelectedSubjects);
 
   const [open, setOpen] = useState(false);
   const [faculty, setFaulty] = useState("");
   const [subjects, setSubjects] = useState([]);
   const [changed, setChanged] = useState(false);
-  const [faculties, setFaculties] = useState([]);
+  //const [faculties, setFaculties] = useState([]);
   const [department, setDepartment] = useState("");
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
     setSubjects(SUBJECTS);
-  }, []);
+  }, [SUBJECTS]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -279,7 +277,11 @@ const LecturerSubjectRegistration = () => {
               </TableHead>
               <TableBody>
                 {subjects.map((subject, index) => (
-                  <SubjectsTableRow key={index} subject={subject} />
+                  <SubjectsTableRow
+                    key={index}
+                    toControl={subjects}
+                    subject={subject}
+                  />
                 ))}
               </TableBody>
             </Table>

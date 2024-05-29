@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+
 import StudentInfo from "./components/StudentInfo";
 import AdvisorInfo from "./components/AdvisorInfo";
 import SubjectsList from "./components/SubjectsList";

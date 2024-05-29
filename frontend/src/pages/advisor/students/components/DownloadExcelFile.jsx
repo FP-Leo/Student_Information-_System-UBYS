@@ -1,16 +1,18 @@
-import { Button } from "@mui/material";
-import ExcelIcon from "assets/excel-icon";
-import { saveAs } from "file-saver";
-import { getArrayFromObject } from "utils/helper-functions";
 import * as XLSX from "xlsx";
 
+import { saveAs } from "file-saver";
+
+import { Button } from "@mui/material";
+
+import ExcelIcon from "assets/excel-icon";
+
 const DownloadAsExcel = ({ data }) => {
-  function s2ab(s) {
+  const s2ab = (s) => {
     const buf = new ArrayBuffer(s.length);
     const view = new Uint8Array(buf);
     for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
     return buf;
-  }
+  };
 
   const handleDownload = () => {
     const wb = XLSX.utils.book_new();

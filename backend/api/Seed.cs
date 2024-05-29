@@ -19,11 +19,10 @@ namespace api
 
         public async Task SeedDataContext(){
             if(!_context.Users.Any()){
-                await Register("10000000000", "Leoleoleoleo1.", "Admin");
-                await Register("99324668300", "Leoleoleoleo1.", "Student");  
-                await Register("10000000001", "Leoleoleoleo1.", "Administrator");
-                await Register("10000000002", "Leoleoleoleo1.", "Lecturer");
-                await Register("10000000003", "Leoleoleoleo1.", "Advisor");
+                await Register("10000000000", "Erlindi.1234", "Admin");
+                await Register("10000000001", "Erlindi.1234", "Student");  
+                await Register("10000000002", "Erlindi.1234", "Administrator");
+                await Register("10000000003", "Erlindi.1234", "Lecturer");
             }
             if(!_context.Universities.Any()){
                 var uni = new University{
@@ -60,7 +59,7 @@ namespace api
                     DepCode = "BLM",
                     BuildingNumber = "2. Bina",
                     FloorNumber = 2,
-                    HeadOfDepartmentTC = "10000000001"
+                    HeadOfDepartmentTC = "10000000002"
                 };
                 await _context.Departments.AddAsync(department);
                 await _context.SaveChangesAsync();
@@ -132,7 +131,7 @@ namespace api
             if(!_context.LecturerDepDetails.Any()){
                 var lectDepDetails = new LecturerDepDetails{
                     DepartmentName = "Bilgisayar Mühendisliği",
-                    TC = "10000000002",
+                    TC = "10000000003",
                     HoursPerWeek = 0,
                     StartDate = DateTime.Now,
                     EndDate = null,
@@ -143,7 +142,7 @@ namespace api
             if(!_context.StudentsDepDetails.Any()){
                 var studentDepDetails = new StudentDepDetails{
                     DepartmentName = "Bilgisayar Mühendisliği",
-                    TC = "99324668300",
+                    TC = "10000000001",
                     StudentType = "Bachelor",
                     StudentStatus = "Active",
                     CurrentSchoolYear = 3,
@@ -159,7 +158,7 @@ namespace api
                 var courseClass = new CourseClass{
                     CourseCode = "BLM-1001",
                     SchoolYear = 2023,
-                    LecturerTC = "10000000002",
+                    LecturerTC = "10000000003",
                     HourPerWeek = 4,
                     AKTS = 6,
                     Kredi = 3,
@@ -169,7 +168,7 @@ namespace api
                 var courseClassTwo = new CourseClass{
                     CourseCode = "BLM-1001",
                     SchoolYear = 2021,
-                    LecturerTC = "10000000002",
+                    LecturerTC = "10000000003",
                     HourPerWeek = 4,
                     AKTS = 6,
                     Kredi = 3,
@@ -221,7 +220,7 @@ namespace api
                     DepartmentName = "Bilgisayar Mühendisliği",
                     CourseCode = "BLM-1001",
                     SchoolYear = 2021,
-                    TC = "99324668300",
+                    TC = "10000000001",
                     State = "Passed",
                     AttendanceFulfilled = true,
                     MidTerm = 85,
@@ -248,8 +247,8 @@ namespace api
                     if(Role == "Student"){
                         var student = new StudentAccount{
                             TC = Username,
-                            FirstName = "Leonit",
-                            LastName = "Shabani",
+                            FirstName = "Erlindi",
+                            LastName = "Isaj",
                             BirthDate = new DateTime(2001,12,04),
                             SSN = 200401110,
                             RegisterDate = DateTime.Now,

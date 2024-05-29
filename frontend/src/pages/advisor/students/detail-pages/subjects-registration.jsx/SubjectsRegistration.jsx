@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+
 import {
   Box,
   Button,
@@ -7,26 +13,25 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import InfoHeader from "./InfoHeader";
-import InfoCard from "../../components/InfoCard";
 import { useTheme, alpha } from "@mui/material/styles";
-import SelectSubjects from "./SelectSubjects";
-import SelectedSubjects from "./SelectedSubjects";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import { useNavigate } from "react-router-dom";
 
-import { useSelector } from "react-redux";
 import {
   selectSelectedSubjects,
   selectFetchedSubjects,
 } from "store/ders-secimi/ders-secimi.selector";
-import { useDispatch } from "react-redux";
 import {
   setFetchedSubjects,
   setSelectedSubjects,
 } from "store/ders-secimi/ders-secimi.action";
+
 import { isEqual } from "lodash";
+
+import InfoHeader from "./InfoHeader";
+import SelectSubjects from "./SelectSubjects";
+import InfoCard from "../../components/InfoCard";
+import SelectedSubjects from "./SelectedSubjects";
+
 import SendIcon from "assets/send-icon";
 
 const DataToTest = [
@@ -60,6 +65,7 @@ const DataToTest = [
 
 const SubjectsRegistration = () => {
   const theme = useTheme();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -72,19 +78,16 @@ const SubjectsRegistration = () => {
   useEffect(() => {
     dispatch(setFetchedSubjects(DataToTest));
     dispatch(setSelectedSubjects(DataToTest));
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    checkIfSelectedSubjectsAndFetchedSubjects();
-  }, [selectedSubjects]);
-
-  const checkIfSelectedSubjectsAndFetchedSubjects = () => {
     if (isEqual(selectedSubjects, fetchedSubjects)) {
       setChanged(false);
     } else {
       setChanged(true);
     }
-  };
+  }, [selectedSubjects, fetchedSubjects]);
 
   const handleClose = () => {
     setOpen(false);

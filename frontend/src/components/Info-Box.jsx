@@ -1,5 +1,5 @@
-import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
 
 const InfoBox = ({ description, heading }) => {
   const theme = useTheme();

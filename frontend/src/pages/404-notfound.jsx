@@ -1,5 +1,7 @@
-import { Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { Typography, Box, Button } from "@mui/material";
+
 import NotFoundIcon from "../assets/not-found-icon";
 
 const NotFoundPage = () => {

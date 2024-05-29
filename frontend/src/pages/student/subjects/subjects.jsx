@@ -1,28 +1,43 @@
-import { Box, Typography, Button } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import TableHeader from "components/TableHeader";
-import TableRow from "components/TableRow";
-import { useEffect } from "react";
-import { getToken } from "utils/helper-functions";
 import axios from "axios";
+
+import { useEffect, useState } from "react";
+
+import { useTheme } from "@mui/material/styles";
+import { Box, Button, Typography } from "@mui/material";
+
+import TableRow from "components/TableRow";
+import TableHeader from "components/TableHeader";
+
+import { useSelector } from "react-redux";
+import { selectProgram } from "store/program/program.selector";
+
+import { getToken } from "utils/helper-functions";
 
 const Subjects = () => {
   const theme = useTheme();
+  const program = useSelector(selectProgram);
+  const [subjects, setSubjects] = useState([]);
+
   useEffect(() => {
     const token = getToken();
     axios
-      .get("http://localhost:5158/api/User/Student/Account/Details", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        "http://localhost:5158/api/University/Faculty/Departments/Student/Courses/Details",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { DepName: program },
+        }
+      )
       .then((response) => {
-        console.log(response.data);
+        setSubjects(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, [program]);
+
   return (
     <Box
       sx={{
@@ -73,10 +88,9 @@ const Subjects = () => {
           <TableHeader left={true} right={true} title="HBN" />
           <TableHeader left={false} right={false} title="Başarı Durumu" />
         </Box>
-        <TableRow />
-        <TableRow />
-        <TableRow />
-        <TableRow />
+        {subjects.map((subject, index) => (
+          <TableRow key={index} data={subject} />
+        ))}
       </Box>
       <Box sx={{ margin: "50px" }}>
         <Button

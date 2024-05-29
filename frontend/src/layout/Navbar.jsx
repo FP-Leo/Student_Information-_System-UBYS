@@ -1,26 +1,30 @@
 import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import CssBaseline from "@mui/material/CssBaseline";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import { AppBar, Typography } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 
 import Profile from "./Profile";
-import HomeIcon from "assets/home-icon";
+
 import Logo from "assets/logo";
+import HomeIcon from "assets/home-icon";
+
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import Toolbar from "@mui/material/Toolbar";
+import ListItem from "@mui/material/ListItem";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import { AppBar, Typography } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemButton from "@mui/material/ListItemButton";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 
 export default function Navbar() {
   const theme = useTheme();
+
   const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -28,11 +32,8 @@ export default function Navbar() {
       event &&
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setOpen(open);
+    )
+      setOpen(open);
   };
 
   const list = () => (

@@ -1,8 +1,9 @@
+import { useTheme } from "@mui/material/styles";
 import { Avatar, Box, Typography } from "@mui/material";
-import { useTheme, alpha } from "@mui/material/styles";
 
 const StudentInfo = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

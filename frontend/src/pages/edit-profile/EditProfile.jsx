@@ -1,12 +1,14 @@
-import { Box, Tabs, Tab, Typography, TextField, Button } from "@mui/material";
-import CustomTabPanel from "components/CustomTabPanel";
 import { useState } from "react";
+
+import { Box, Tabs, Tab } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import PasswordIcon from "assets/password-icon";
 import SettingsIcon from "assets/settings-icon";
-import GenelAyarlar from "./components/GeneralSettings";
+
 import Password from "./components/Password";
+import GenelAyarlar from "./components/GeneralSettings";
+import CustomTabPanel from "components/CustomTabPanel";
 
 function a11yProps(index) {
   return {
@@ -16,8 +18,8 @@ function a11yProps(index) {
 }
 
 const EditProfile = () => {
-  const [value, setValue] = useState(0);
   const theme = useTheme();
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

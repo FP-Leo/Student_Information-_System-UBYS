@@ -1,9 +1,10 @@
+import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
-import { useTheme } from "@mui/material/styles";
 
 const InfoCard = ({ content }) => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

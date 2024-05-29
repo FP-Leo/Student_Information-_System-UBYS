@@ -1,34 +1,33 @@
-import {
-  Box,
-  Typography,
-  Snackbar,
-  Alert,
-  Avatar,
-  Button,
-} from "@mui/material";
-import avatar2 from "assets/avatar2.png";
-import InputAdornment from "@mui/material/InputAdornment";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import CircularProgress from "@mui/material/CircularProgress";
-import TextField from "@mui/material/TextField";
+import axios from "axios";
+
 import { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectUserData } from "store/user/user.selector";
-import { setUserData } from "store/user/user.action";
-import { getToken } from "utils/helper-functions";
-import { ROLE_TYPES } from "utils/constants";
 
-import axios from "axios";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Box, Snackbar, Alert, Avatar, Button } from "@mui/material";
+
+import { setUserData } from "store/user/user.action";
+import { selectUserData } from "store/user/user.selector";
+
+import { ROLE_TYPES } from "utils/constants";
+import { getToken } from "utils/helper-functions";
+
+import avatar2 from "assets/avatar2.png";
 
 const GeneralSettings = () => {
-  const token = getToken();
-  const dispatch = useDispatch();
   const currentUser = useSelector(selectUserData);
   const { role, personalMail, phone, schoolMail } = currentUser;
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+
+  const token = getToken();
+  const dispatch = useDispatch();
+
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [newData, setNewData] = useState({
     email: personalMail,
     phoneNr: phone,
@@ -50,10 +49,10 @@ const GeneralSettings = () => {
     setError(false);
   };
 
+  const isAdvisor = role === ROLE_TYPES.ADVISOR;
   const isStudent = role === ROLE_TYPES.STUDENT;
   const isLecturer = role === ROLE_TYPES.LECTURER;
   const isAdministrator = role === ROLE_TYPES.ADMINISTRATOR;
-  const isAdvisor = role === ROLE_TYPES.ADVISOR;
 
   const apiLink = isStudent
     ? "/api/User/Student/Account/Details"

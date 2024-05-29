@@ -1,44 +1,46 @@
-import { Box, Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import { useTheme } from "@mui/material/styles";
+import { Box, Typography, Button } from "@mui/material";
 
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { useDispatch, useSelector } from "react-redux";
-import { addSubjectToStore } from "store/ders-secimi/ders-secimi.action";
-import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
-import { selectedSubjectsAkts } from "store/ders-secimi/ders-secimi.selector";
+import { addSubjectToStore } from "store/ders-secimi/ders-secimi.action";
+import {
+  selectSelectedSubjects,
+  selectedSubjectsAkts,
+} from "store/ders-secimi/ders-secimi.selector";
 
 const Ders = ({ data }) => {
-  const { subjectName, subjectCode, akts, subeler, aciklama, limit, state } =
-    data;
+  const { subjectName, subjectCode, akts, subeler, aciklama, state } = data;
+
+  const theme = useTheme();
+  const dispatch = useDispatch();
+
   const [age, setAge] = useState("");
   const [isSelected, setIsSelected] = useState(false);
-  const selectedSubjects = useSelector(selectSelectedSubjects);
   const selectedAkts = useSelector(selectedSubjectsAkts);
+  const selectedSubjects = useSelector(selectSelectedSubjects);
 
-  const checkIfSelected = () => {
+  useEffect(() => {
     if (selectedSubjects === undefined) return isSelected;
     let found = false;
     selectedSubjects.forEach((item) => {
       if (item.subjectCode === subjectCode) found = true;
     });
     setIsSelected(found);
-  };
-  useEffect(() => {
-    checkIfSelected();
+    // eslint-disable-next-line
   }, [selectedSubjects]);
-
-  const dispatch = useDispatch();
 
   const handleAdd = (e) => {
     e.preventDefault();
-
     if (selectedAkts + akts > 35) {
       toast.error("35 AKTS'den fazla ders seçemezsiniz!");
       return;
@@ -48,7 +50,7 @@ const Ders = ({ data }) => {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-  const theme = useTheme();
+
   return (
     <>
       <Box

@@ -1,5 +1,5 @@
-import MainScreenCategories from "pages/MainScreenCategories";
 import EditProfile from "pages/edit-profile/EditProfile";
+import MainScreenCategories from "pages/MainScreenCategories";
 import Lecturers from "pages/administrator/lecturers/Lecturers";
 
 import LecturerSubjects from "pages/administrator/lecturers/detail-pages/LecturerSubjects";

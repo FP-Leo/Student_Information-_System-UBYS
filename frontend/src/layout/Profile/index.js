@@ -1,5 +1,9 @@
 import { useRef, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
@@ -14,14 +18,14 @@ import {
   Typography,
 } from "@mui/material";
 
-import avatar1 from "assets/avatar1.png";
 import ProfileTab from "./ProfileTab";
 
-//! ------ User ------ !//
-import { useDispatch, useSelector } from "react-redux";
-import Transitions from "components/Transitions";
 import { selectUserData } from "store/user/user.selector";
 import { setUserData, setUserToken } from "store/user/user.action";
+
+import Transitions from "components/Transitions";
+
+import avatar1 from "assets/avatar1.png";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -40,27 +44,32 @@ const TabPanel = ({ children, value, index, ...other }) => {
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
+  const anchorRef = useRef(null);
+  // eslint-disable-next-line
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const theme = useTheme();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useTheme();
+
   const currentUser = useSelector(selectUserData);
-  console.log(currentUser);
   const { firstName, lastName, role } = currentUser;
 
+  //LogOut Button Function
   const handleLogout = () => {
     try {
       dispatch(setUserData(null));
       dispatch(setUserToken(null));
-      localStorage.removeItem("userData");
-      localStorage.removeItem("token");
+      localStorage.removeItem("userData"); //Storing User Data in Local Storage
+      localStorage.removeItem("token"); //Storing User Data in Local Storage
       navigate("/");
     } catch (err) {
       alert(err);
     }
   };
 
-  const anchorRef = useRef(null);
-  const [open, setOpen] = useState(false);
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -72,8 +81,6 @@ const Profile = () => {
     setOpen(false);
   };
 
-  const [value, setValue] = useState(0);
-
   const iconBackColorOpen = "grey.300";
 
   return (
@@ -81,9 +88,9 @@ const Profile = () => {
       <ButtonBase
         sx={{
           p: 0.25,
-          bgcolor: open ? iconBackColorOpen : "transparent",
+          backgroundColor: open ? iconBackColorOpen : "transparent",
           borderRadius: 1,
-          "&:hover": { bgcolor: "action.hover" },
+          "&:hover": { backgroundColor: "action.hover" },
         }}
         aria-label="open profile"
         ref={anchorRef}
@@ -135,7 +142,7 @@ const Profile = () => {
                 }}
               >
                 <ClickAwayListener onClickAway={handleClose}>
-                  <Paper elevation={0} border={false} content={false}>
+                  <Paper elevation={0} border={"false"} content={"false"}>
                     <CardContent sx={{ px: 2.5, pt: 3 }}>
                       <Grid
                         container

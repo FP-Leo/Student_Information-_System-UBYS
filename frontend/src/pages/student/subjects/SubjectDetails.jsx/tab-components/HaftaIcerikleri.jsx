@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 
 const HaftaIcerikleri = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

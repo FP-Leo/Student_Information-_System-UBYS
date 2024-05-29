@@ -1,24 +1,28 @@
-import { Box, Typography, Button } from "@mui/material";
 import { useState } from "react";
+
 import { useTheme } from "@mui/material/styles";
-import PasswordHeaderIcon from "assets/password-header-icon";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
+import IconButton from "@mui/material/IconButton";
+import FormControl from "@mui/material/FormControl";
+import Visibility from "@mui/icons-material/Visibility";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { Box, Typography, Button } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+import PasswordHeaderIcon from "assets/password-header-icon";
 
 const Password = () => {
+  const theme = useTheme();
+
   const [showPassword, setShowPassword] = useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  const theme = useTheme();
   return (
     <Box
       sx={{

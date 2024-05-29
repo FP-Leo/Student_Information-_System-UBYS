@@ -1,6 +1,9 @@
-import TranscriptTable from "../../components/TranscriptTable";
-import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+
+import { Box, Typography } from "@mui/material";
+
+import TranscriptTable from "../../components/TranscriptTable";
+
 export const data = [
   {
     year: "2024",

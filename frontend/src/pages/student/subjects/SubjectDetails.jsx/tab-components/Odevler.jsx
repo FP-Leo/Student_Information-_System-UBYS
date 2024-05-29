@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 
 const Odevler = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

@@ -14,7 +14,6 @@ export default function MyStudentsTableHeader() {
       <TableHeader left={false} right={true} title="Durum" />
       <TableHeader left={false} right={false} title="Detay Durum" />
       <TableHeader left={true} right={true} title="GANO" />
-      <TableHeader left={false} right={true} title="İşlemler" />
     </>
   );
 }

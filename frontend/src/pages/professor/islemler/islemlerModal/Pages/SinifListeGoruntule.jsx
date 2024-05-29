@@ -1,10 +1,15 @@
 import { useTheme } from "@emotion/react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import OwnedStudents from "Data/ProfessorStudents.json";
+import SearchInput from "components/SearchInput";
+import { useState } from "react";
 import SınıfListeItem from "./Components/SınıfListeItem";
 
 export default function SinifListeGoruntule({ type }) {
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const professorStudents = OwnedStudents.professorStudents
   const theme = useTheme();
+
+  const [records,setRecords] = useState(professorStudents)
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "50vh" }}>
@@ -45,8 +50,7 @@ export default function SinifListeGoruntule({ type }) {
             marginBottom: "10px ",
           }}
         >
-          <Typography mx={2}>Bul:</Typography>
-          <TextField label="İsim giriniz" variant="outlined" />
+          <SearchInput setSearchInputArray={setRecords} initialArray={professorStudents}/>
         </Box>
         {type === "Not Giriş" && (
           <Box display={"flex"}>
@@ -62,9 +66,14 @@ export default function SinifListeGoruntule({ type }) {
           overflow: "auto",
         }}
       >
-        {array.map((item) => {
-          return <SınıfListeItem type={type} key={item} />;
-        })}
+        {records.length !== 0 ? (records.map((item) => {
+          return(
+          <SınıfListeItem type={type} key={item} item={item}/>
+        )
+        })) : (
+          <SınıfListeItem type={"NotFound"} key={null} item={null}/>
+        )}
+  
       </Box>
     </Box>
   );

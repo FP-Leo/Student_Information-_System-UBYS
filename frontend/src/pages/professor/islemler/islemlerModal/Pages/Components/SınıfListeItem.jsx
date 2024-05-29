@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { DoNotDisturb, DoNotDisturbOutlined } from "@mui/icons-material";
+import { DoNotDisturb } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -9,9 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import Avatar1 from "assets/avatar1.png";
-import React from "react";
 
-export default function SınıfListeItem({ type }) {
+export default function SınıfListeItem({ type, item }) {
   const typeGridTempColumns = {
     "Sınıf Görüntüle": "0.5fr 1fr 1fr 1fr",
     "Vize Sınav": "1fr 1.5fr 1.5fr 1.5fr 2fr",
@@ -21,7 +20,8 @@ export default function SınıfListeItem({ type }) {
     "Vize Yoklama": "1fr 1fr 1fr 1fr 1fr",
     "Final Yoklama": "1fr 1fr 1fr 1fr 1fr",
     "Öğrenci Not Listesi": "0.75fr 1fr 1fr 0.5fr 1fr 1fr 1fr",
-    "Devam Listesi" : "1fr 1fr 1fr 1fr 1fr"
+    "Devam Listesi": "1fr 1fr 1fr 1fr 1fr",
+    "NotFound":"1fr"
   };
 
   const theme = useTheme();
@@ -253,23 +253,28 @@ export default function SınıfListeItem({ type }) {
         </>
       );
       break;
-    case "Devam Listesi" : 
+    case "Devam Listesi":
       pageTemplate = (
         <>
           <Box>
-            <Typography color={randomStatus === true ? theme.palette.success.dark: "error"}> 
-            {randomStatus === true ? "Devam Ediyor" : "Devamsızlıktan Kaldı"} </Typography>
+            <Typography
+              color={
+                randomStatus === true ? theme.palette.success.dark : "error"
+              }
+            >
+              {randomStatus === true ? "Devam Ediyor" : "Devamsızlıktan Kaldı"}{" "}
+            </Typography>
           </Box>
         </>
-      )
+      );
       break;
     default:
       break;
   }
   return (
-    <Box
+    type !== "NotFound" ? (<Box
       sx={{
-        width: type === "Sınıf Görüntüle" ? "40vw" : "60vw",
+        width: type === "Sınıf Görüntüle" ? "50vw" : "60vw",
         display: "grid",
         border: "1px solid #B3B3B3",
         gridTemplateColumns: typeGridTempColumns[type],
@@ -281,20 +286,27 @@ export default function SınıfListeItem({ type }) {
       <Avatar src={Avatar1}></Avatar>
       <Box display={"flex"}>
         <Typography fontWeight={600} pr={1}>
-          Eren Nokta
+          {item.ogrenciAd} {item.ogrenciSoyad}
         </Typography>
       </Box>
       <Box display={"flex"}>
         <Typography fontWeight={600} pr={1}>
-          200401012
+          {item.ogrenciNumara}
         </Typography>
       </Box>
       <Box display={"flex"}>
         <Typography fontWeight={600} pr={1}>
-          4.Sınıf
+          {item.ogrenciSinif}
         </Typography>
       </Box>
       {pageTemplate}
-    </Box>
+    </Box>)
+    :(
+      <>
+      <Box width={"50vw"} textAlign={"center"} marginTop={"20px"}>
+        Aradığınız Sayfa Bulunamadı. Lütfen başka bir isim giriniz
+      </Box>
+      </>
+    )
   );
 }

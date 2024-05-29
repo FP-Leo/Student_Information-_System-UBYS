@@ -1,0 +1,420 @@
+<mxfile host="Electron" modified="2024-05-21T19:55:32.555Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.4.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="FhYKnySxUBL1C9Qhx1dz" version="24.4.0" type="device">
+  <diagram name="Page-1" id="0BDnvHmp4e41hQNBjY2y">
+    <mxGraphModel dx="2302" dy="1564" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uD7xro_-V_x7wngqfkr_-1" value="UserAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="450" y="640" width="280" height="498" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-2" value="- AccountId: int&lt;div data-sider-select-id=&quot;4407d347-5827-4aab-94fe-731d5e60e205&quot;&gt;- FirstName: String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;4407d347-5827-4aab-94fe-731d5e60e205&quot;&gt;- LastName: String&lt;br&gt;&lt;/div&gt;&lt;div&gt;- BirthDate: DateTime&lt;/div&gt;&lt;div&gt;- RegisterDate: DateTime&lt;/div&gt;&lt;div data-sider-select-id=&quot;62cc902e-5606-45ce-99e5-c4f5c0370c5b&quot;&gt;- SchoolMail: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;62cc902e-5606-45ce-99e5-c4f5c0370c5b&quot;&gt;- PersonalMail: String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;8bd549fe-1a7b-4c33-831f-a06e257aa104&quot;&gt;- TC: String&lt;/div&gt;&lt;div&gt;- phone: String&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;lt;&amp;lt;UserAccount&amp;gt;&amp;gt;();&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-1" vertex="1">
+          <mxGeometry y="26" width="280" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-1" vertex="1">
+          <mxGeometry y="190" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-4" value="&lt;div data-sider-select-id=&quot;fc361fc3-beb3-42de-9c12-508e2daf6551&quot;&gt;- getAccountId(): int&lt;div data-sider-select-id=&quot;4407d347-5827-4aab-94fe-731d5e60e205&quot;&gt;- getFirstName(): String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;4407d347-5827-4aab-94fe-731d5e60e205&quot;&gt;- getLastName(): String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;ebbecc61-d622-45bc-ba40-728edced9803&quot;&gt;- getBirthDate(): DateTime&lt;/div&gt;&lt;div&gt;- getRegisterDate(): DateTime&lt;/div&gt;&lt;div data-sider-select-id=&quot;62cc902e-5606-45ce-99e5-c4f5c0370c5b&quot;&gt;- getSchoolMail(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;62cc902e-5606-45ce-99e5-c4f5c0370c5b&quot;&gt;- getPersonalMail(): String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;8bd549fe-1a7b-4c33-831f-a06e257aa104&quot;&gt;- getTC(): String&lt;/div&gt;&lt;div&gt;- getphone(): String&lt;/div&gt;&lt;div&gt;- setAccountId(Id:int): void&lt;div data-sider-select-id=&quot;4407d347-5827-4aab-94fe-731d5e60e205&quot;&gt;- setFirstName(fname:String): void&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;4407d347-5827-4aab-94fe-731d5e60e205&quot;&gt;- setLastName(lname:&lt;span style=&quot;background-color: initial;&quot;&gt;String&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;): void&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- setBirthDate(bdate:DateTime): void&lt;/div&gt;&lt;div&gt;- setRegisterDate(registerD:DateTime): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;62cc902e-5606-45ce-99e5-c4f5c0370c5b&quot;&gt;- setSchoolMail(Smail:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;62cc902e-5606-45ce-99e5-c4f5c0370c5b&quot;&gt;- setPersonalMail(Pmail:String): void&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;8bd549fe-1a7b-4c33-831f-a06e257aa104&quot;&gt;- setTC(TC:String): void&lt;/div&gt;&lt;div&gt;- setphone(phone:String): void&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-1" vertex="1">
+          <mxGeometry y="198" width="280" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-5" value="StudentAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="840" y="620" width="280" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-6" value="- SSN: int&lt;div&gt;- CurrentType: String&lt;br&gt;&lt;div&gt;- CurrentStatus: String&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;f8b6bf96-1f82-4704-bffa-21a5291a859a&quot;&gt;+ &amp;lt;&amp;lt;&lt;b&gt;StudentAccount&lt;/b&gt;&amp;gt;&amp;gt;():&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-5" vertex="1">
+          <mxGeometry y="26" width="280" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-5" vertex="1">
+          <mxGeometry y="120" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-8" value="&lt;div data-sider-select-id=&quot;9579f348-93ef-4612-93f1-10a2e39cf560&quot;&gt;&lt;span data-sider-select-id=&quot;e6eb32f3-9053-436c-8327-b952fa71b113&quot; style=&quot;background-color: initial;&quot;&gt;+ getSchoolNumber(): int&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9579f348-93ef-4612-93f1-10a2e39cf560&quot;&gt;&lt;span data-sider-select-id=&quot;e6eb32f3-9053-436c-8327-b952fa71b113&quot; style=&quot;background-color: initial;&quot;&gt;+ getCurrentType(): String&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9579f348-93ef-4612-93f1-10a2e39cf560&quot;&gt;&lt;span data-sider-select-id=&quot;e6eb32f3-9053-436c-8327-b952fa71b113&quot; style=&quot;background-color: initial;&quot;&gt;+ getCurrentStatus&lt;/span&gt;&lt;span data-sider-select-id=&quot;45852cec-4f67-484b-836b-3af9b6361191&quot; style=&quot;background-color: initial;&quot;&gt;(): String&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;2276f474-3722-45e2-a050-777a0efd1eee&quot;&gt;+ setSchoolNumber(ssn:int): void&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;2276f474-3722-45e2-a050-777a0efd1eee&quot;&gt;+ setCurrentType(type:String): void&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;2276f474-3722-45e2-a050-777a0efd1eee&quot;&gt;&lt;div data-sider-select-id=&quot;2276f474-3722-45e2-a050-777a0efd1eee&quot;&gt;+ setCurrentStatus(status:String): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-5" vertex="1">
+          <mxGeometry y="128" width="280" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-9" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=-0.003;exitY=0.464;exitDx=0;exitDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;exitPerimeter=0;" parent="1" source="uD7xro_-V_x7wngqfkr_-6" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="300" y="1260" as="sourcePoint" />
+            <mxPoint x="730" y="944" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800" y="690" />
+              <mxPoint x="800" y="700" />
+              <mxPoint x="800" y="944" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-10" value="Course&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="2080" y="640" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-11" value="&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;- CourseId: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;- CourseName: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;+&amp;lt;&amp;lt;Course&amp;gt;&amp;gt;():&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-10" vertex="1">
+          <mxGeometry y="26" width="200" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-10" vertex="1">
+          <mxGeometry y="120" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-13" value="&lt;div data-sider-select-id=&quot;ffde2987-56f6-4ef2-abc0-418806fd4a39&quot;&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ getCourseId(): String&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ getCourseName(): String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;1661848b-26b4-4908-b4a5-7f36f9df768b&quot;&gt;+ setCourseId(Id:Stirng): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;1661848b-26b4-4908-b4a5-7f36f9df768b&quot;&gt;+ setCourseName(name: String): void&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-10" vertex="1">
+          <mxGeometry y="128" width="200" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-14" value="LecturerAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="840" y="960" width="280" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-15" value="&lt;div data-sider-select-id=&quot;4d326a96-2382-415f-a6bb-c2fde661ef08&quot;&gt;- LecturerId: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4d326a96-2382-415f-a6bb-c2fde661ef08&quot;&gt;- Title: String&lt;/div&gt;&lt;div&gt;- totalWorkHours: float&lt;/div&gt;&lt;div&gt;- currentStatus: String&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot; data-sider-select-id=&quot;9792b44d-cd1b-466a-9594-d1616cbe702e&quot;&gt;+ &amp;lt;&amp;lt;&lt;b&gt;LecturerAccount&lt;/b&gt;&amp;gt;&amp;gt;():&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-14" vertex="1">
+          <mxGeometry y="26" width="280" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-16" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-14" vertex="1">
+          <mxGeometry y="120" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-17" value="&lt;div data-sider-select-id=&quot;7ed6d980-ada8-49a5-824a-b7450c590605&quot;&gt;+ getLecturerId(): int&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;8a5ae485-e85c-40d8-8f97-bdb0fd88e50f&quot;&gt;+ getTitle(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;8a5ae485-e85c-40d8-8f97-bdb0fd88e50f&quot;&gt;+ gettotalWorkHours(): float&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;8a5ae485-e85c-40d8-8f97-bdb0fd88e50f&quot;&gt;+ getcurrentStatus(): String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;8b940148-cc8c-4c78-9da0-aa4d0f199412&quot;&gt;+ setLecturerId(Id:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;8b940148-cc8c-4c78-9da0-aa4d0f199412&quot;&gt;&lt;div data-sider-select-id=&quot;8b940148-cc8c-4c78-9da0-aa4d0f199412&quot;&gt;+ setTitle(title:String): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;8b940148-cc8c-4c78-9da0-aa4d0f199412&quot;&gt;+ settotalWorkHours(hours:float): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;8b940148-cc8c-4c78-9da0-aa4d0f199412&quot;&gt;+ setCurrentStatus(status:String): void&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;d4a23084-695c-49fa-9fc9-a5fa70519a9f&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-14" vertex="1">
+          <mxGeometry y="128" width="280" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-18" value="CourseClass" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="2360" y="880" width="240" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-19" value="&lt;div data-sider-select-id=&quot;cefdf3b2-4a4a-4cc3-99c5-c6ec74dd2386&quot;&gt;- CourseClassID: String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;- HourPerWeek: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;- AKTS: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;- Kredi: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;- MidTermValue: float&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;- FinalValue: float&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;- CourseId: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ &amp;lt;&amp;lt;CourseClass&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-18" vertex="1">
+          <mxGeometry y="26" width="240" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-18" vertex="1">
+          <mxGeometry y="170" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-21" value="&lt;div&gt;&lt;div data-sider-select-id=&quot;cefdf3b2-4a4a-4cc3-99c5-c6ec74dd2386&quot;&gt;+ getCourseClassID(): String&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ getHourPerWeek(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ getAKTS(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ getKredi(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ getMidTermValue(): float&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ getFinalValue(): float&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;&lt;div data-sider-select-id=&quot;cefdf3b2-4a4a-4cc3-99c5-c6ec74dd2386&quot;&gt;+ setCourseClassID(id:String): void&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ setHourPerWeek(week:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ setAKTS(AKTS:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ setKredi(kredi:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ setMidTermValue(midterm:float): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;9210febe-e40b-4ce6-a575-9c0851d9879f&quot;&gt;+ setFinalValue(final:float): void&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-18" vertex="1">
+          <mxGeometry y="178" width="240" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-22" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;" parent="1" source="uD7xro_-V_x7wngqfkr_-15" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="919" y="1220" as="sourcePoint" />
+            <mxPoint x="730" y="944" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800" y="1033" />
+              <mxPoint x="800" y="944" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-23" value="StudentDepDetail" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="360" width="280" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-24" value="&lt;div data-sider-select-id=&quot;f96e78ef-f11c-45f9-8aa7-045c808922df&quot;&gt;- StudentId: int&lt;/div&gt;&lt;div&gt;- DepartmantId: int&lt;/div&gt;&lt;div&gt;- StudentType: String&lt;/div&gt;&lt;div&gt;- StudentStatus: String&lt;/div&gt;&lt;div&gt;- CurrentSchoolYear: int&lt;/div&gt;&lt;div&gt;- CurrentSemester: int&lt;/div&gt;- currentCourseIDs: String[]&lt;div&gt;- passedCourseIDs: String[]&lt;/div&gt;&lt;div&gt;- failedCourseIDs: String[]&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- CurrentAKTS: int&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- TotalAKTS: int&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- GNO: float&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- TC: int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+&amp;lt;&amp;lt;StudentDepDetail&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-23" vertex="1">
+          <mxGeometry y="26" width="280" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-25" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-23" vertex="1">
+          <mxGeometry y="260" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-26" value="&lt;div data-sider-select-id=&quot;092efe05-998f-40f3-99b7-d98213badddd&quot;&gt;&lt;div data-sider-select-id=&quot;092efe05-998f-40f3-99b7-d98213badddd&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getStudentId(): int&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getDepartmentId(): int&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getStudentType(): String&lt;/div&gt;&lt;div&gt;+ getStudentStatus(): String&lt;/div&gt;&lt;div&gt;+ getCurrentSchoolYear():int&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getCurrentSemester(): int&lt;/div&gt;&lt;div&gt;+ getCurrentCourses(): String[]&lt;/div&gt;&lt;div&gt;+ getPassedCourses(): String[]&lt;/div&gt;&lt;div&gt;+ getFailedCourses(): String[]&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getCurrentAKTS(): int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getTotalAKTS(): int&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ getGNO():float&lt;/div&gt;&lt;div&gt;+ getGraduationState():bool&lt;/div&gt;&lt;div&gt;+ setStudentId(ıd: int): void&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ setDepartmentId(Id: int): void&lt;/div&gt;&lt;div&gt;+ setStudentType(type:String): void&lt;/div&gt;&lt;div&gt;+ setStudentStatus(status: String): void&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;+ setCurrentSchoolYear(schoolYear&lt;span style=&quot;background-color: initial;&quot;&gt;:int&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ setCurrentSemester(semester&lt;span style=&quot;background-color: initial;&quot;&gt;:int&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ setCurrentCourses(cc: String)&lt;span style=&quot;background-color: initial;&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ setPassesCoursees(passedCoursees:)&lt;span style=&quot;background-color: initial;&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ setFailedCoursees(failedCoursees:): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ calculateGNO(): float&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ setCurrentAKTS(ca:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;int&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ setTotalAKTS(ta:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;int&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ s&lt;/span&gt;etGraduationState&lt;span style=&quot;background-color: initial;&quot;&gt;(gstate:bool): void&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-23" vertex="1">
+          <mxGeometry y="268" width="280" height="412" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-27" value="CourseDetails" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="2640" y="360" width="240" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-28" value="&lt;div data-sider-select-id=&quot;e7e1b125-0d95-4fcf-bffc-712faa0a1368&quot;&gt;&lt;div data-sider-select-id=&quot;e7e1b125-0d95-4fcf-bffc-712faa0a1368&quot;&gt;- CourseDetailsId: int&lt;/div&gt;- CourseName: String&lt;div data-sider-select-id=&quot;9587d084-6dbc-48fc-8ab2-5a5a3cc5068d&quot;&gt;- CourseLanguage: String&lt;div data-sider-select-id=&quot;2bb0a533-ba01-4e8d-858a-650f5f708753&quot;&gt;- CourseLevel: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;0b21a946-96f5-46fe-a833-912b8067c0aa&quot;&gt;- CourseType: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4fda2e25-c6ac-423b-8773-eb0bc57503a6&quot;&gt;- CourseContent: String&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;7a4aff4a-74e6-4f9e-8e1c-4c7da53a5fc5&quot;&gt;- DepartmentName: String&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ &amp;lt;&amp;lt;CourseExplanation&amp;gt;&amp;gt;():&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-27" vertex="1">
+          <mxGeometry y="26" width="240" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-27" vertex="1">
+          <mxGeometry y="170" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-30" value="&lt;div data-sider-select-id=&quot;e7e1b125-0d95-4fcf-bffc-712faa0a1368&quot;&gt;&lt;div data-sider-select-id=&quot;e7e1b125-0d95-4fcf-bffc-712faa0a1368&quot;&gt;+ getId(): int&lt;/div&gt;+ getName(): String&lt;div data-sider-select-id=&quot;9587d084-6dbc-48fc-8ab2-5a5a3cc5068d&quot;&gt;+ getCourseLanguage(): String&lt;div data-sider-select-id=&quot;2bb0a533-ba01-4e8d-858a-650f5f708753&quot;&gt;+ getCourseLevel(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;0b21a946-96f5-46fe-a833-912b8067c0aa&quot;&gt;+ getCourseType(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4fda2e25-c6ac-423b-8773-eb0bc57503a6&quot;&gt;+ getCourseContent(): String&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;5510c469-a171-4836-a4ba-0f10947def4b&quot;&gt;&lt;div data-sider-select-id=&quot;e7e1b125-0d95-4fcf-bffc-712faa0a1368&quot;&gt;+ setId(Id:int): void&lt;/div&gt;+ setName(name:String): void&lt;div data-sider-select-id=&quot;9587d084-6dbc-48fc-8ab2-5a5a3cc5068d&quot;&gt;+ setCourseLanguage(language: String): void&lt;div data-sider-select-id=&quot;2bb0a533-ba01-4e8d-858a-650f5f708753&quot;&gt;+ setCourseLevel(level:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;0b21a946-96f5-46fe-a833-912b8067c0aa&quot;&gt;+ setCourseType(type: String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4fda2e25-c6ac-423b-8773-eb0bc57503a6&quot;&gt;+ setCourseContent(content:String): void&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;5510c469-a171-4836-a4ba-0f10947def4b&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-27" vertex="1">
+          <mxGeometry y="178" width="240" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-31" value="Faculty" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="640" y="40" width="230" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-32" value="&lt;div data-sider-select-id=&quot;939029f3-9b22-4629-add4-f6a4fbf43940&quot;&gt;- FacultyId: int&lt;/div&gt;- FacultyName: String&lt;div data-sider-select-id=&quot;6189d0d8-7c25-4bf4-91ec-291dd08875af&quot;&gt;- Address: String&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;b98007c1-0edd-4025-acb4-4b958bde3791&quot;&gt;- Website: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;063cd497-bc02-49b1-ba73-cf26518c9fba&quot;&gt;- Mail: String&lt;/div&gt;&lt;div&gt;- PhoneNumber: String&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;29948bb4-90fc-4eb0-945a-943bb937e375&quot;&gt;- DeanTC: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;9e089491-ef58-42f3-af44-322333032c33&quot;&gt;- UniId: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9e089491-ef58-42f3-af44-322333032c33&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;9e089491-ef58-42f3-af44-322333032c33&quot;&gt;+&amp;lt;&amp;lt;Faculty&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-31" vertex="1">
+          <mxGeometry y="26" width="230" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-33" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-31" vertex="1">
+          <mxGeometry y="180" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-34" value="&lt;div data-sider-select-id=&quot;939029f3-9b22-4629-add4-f6a4fbf43940&quot;&gt;+ getFacultyId(): int&lt;/div&gt;+ getFacultyName(): String&lt;div data-sider-select-id=&quot;6189d0d8-7c25-4bf4-91ec-291dd08875af&quot;&gt;+ getAddress(): String&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;b98007c1-0edd-4025-acb4-4b958bde3791&quot;&gt;+ getWebsite(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;063cd497-bc02-49b1-ba73-cf26518c9fba&quot;&gt;+ getMail(): String&lt;/div&gt;&lt;div&gt;+ getPhoneNumber(): String&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;29948bb4-90fc-4eb0-945a-943bb937e375&quot;&gt;+ getDeanTC(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;9e089491-ef58-42f3-af44-322333032c33&quot;&gt;+ getUniId(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;9e089491-ef58-42f3-af44-322333032c33&quot;&gt;&lt;div data-sider-select-id=&quot;939029f3-9b22-4629-add4-f6a4fbf43940&quot;&gt;+ setFacultyId(Id:int): void&lt;/div&gt;+ setFacultyName(name:String): void&lt;div data-sider-select-id=&quot;6189d0d8-7c25-4bf4-91ec-291dd08875af&quot;&gt;+ setAddress(address:String): void&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;b98007c1-0edd-4025-acb4-4b958bde3791&quot;&gt;+ setWebsite(website:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;063cd497-bc02-49b1-ba73-cf26518c9fba&quot;&gt;+ setMail(mail:&lt;span style=&quot;background-color: initial;&quot;&gt;String): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ setPhoneNumber(pnumber:String): void&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;29948bb4-90fc-4eb0-945a-943bb937e375&quot;&gt;+ setDeanTC(TC:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;9e089491-ef58-42f3-af44-322333032c33&quot;&gt;+ setUniId(Id:int): void&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-31" vertex="1">
+          <mxGeometry y="188" width="230" height="262" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-47" value="StudentCourseDetails" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="2800" y="880" width="280" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-48" value="&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;- ClassId: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;- SSN: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;- AttendanceFulfilled: bool&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;- MidTerm: float&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;- Final: float&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;- Grade: float&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;5827b64d-9b20-411c-8a05-a7dcee3a18b8&quot;&gt;+ &amp;lt;&amp;lt;StudentCourseDetails&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-47" vertex="1">
+          <mxGeometry y="26" width="280" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-49" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-47" vertex="1">
+          <mxGeometry y="160" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-50" value="&lt;div data-sider-select-id=&quot;b4a3e427-fec0-42e5-96e4-297be7fd6546&quot;&gt;+ getClassID(): String&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getSSNList: String[]&lt;/div&gt;&lt;div data-sider-select-id=&quot;bd665f01-18cd-4c0a-96b6-d4e74b38275f&quot;&gt;+ getAttendanceFulfilled(): bool&lt;/div&gt;&lt;div&gt;+ getStudentGrade(ssn:String):float&lt;/div&gt;&lt;div&gt;+ getGrades(): float[]&lt;/div&gt;&lt;div&gt;+ getMidTermValues():float[]&lt;/div&gt;&lt;div&gt;+ getFinalValue():float[]&lt;/div&gt;&lt;div&gt;+ setSSNList(list[]:String[]): void&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;+ setClassID(ıd:String): void&lt;/div&gt;&lt;div&gt;+ setAttendanceFulfilled(fulfilled:bool): void&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ setStudentGrade(ssn:String, af: Bool, midTerm:float, final:float)&lt;/div&gt;&lt;div&gt;+ setAllGrades(ssnList:String, attendanceList: Bool[], midTermList: float[], finalsList:float[])&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+setMidTermValues(mtvs:float[]):void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-47" vertex="1">
+          <mxGeometry y="168" width="280" height="242" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-64" value="LecturerDepDetail" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="1080" width="280" height="308" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-65" value="- LecturerId: int&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ &amp;lt;&amp;lt;LecturerDepDetail&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-64" vertex="1">
+          <mxGeometry y="26" width="280" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-66" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-64" vertex="1">
+          <mxGeometry y="160" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-67" value="+ getLecturerId(): int&lt;div&gt;+ setLecturerId(Id:int): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-64" vertex="1">
+          <mxGeometry y="168" width="280" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-68" value="University&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="240" y="40" width="250" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-69" value="&lt;div data-sider-select-id=&quot;d844eefe-d27a-4d51-b7ea-fbd33fa85cd9&quot;&gt;- UniversityId: int&lt;br&gt;&lt;/div&gt;- Name: String&lt;div data-sider-select-id=&quot;ff42e116-e674-4bd8-8ade-ab6fe13d6f7a&quot;&gt;- Address: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;3a7ee981-85a0-42e5-ae5c-64b0b024f85e&quot;&gt;- CurrentSchoolYear: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;a046e094-769c-4d97-833c-92846337bebe&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- Website: String&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;67649e6e-1f6d-4b37-8e87-5626af1bd408&quot;&gt;- mail: String&lt;/div&gt;&lt;div&gt;- PhoneNumber: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;a18fe915-fc3f-4f64-9ee4-b4fff8efcd14&quot;&gt;- RectorTC: String&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&amp;lt;&amp;lt;University&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-68" vertex="1">
+          <mxGeometry y="26" width="250" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-70" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-68" vertex="1">
+          <mxGeometry y="180" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-71" value="&lt;div data-sider-select-id=&quot;d844eefe-d27a-4d51-b7ea-fbd33fa85cd9&quot;&gt;+ getUniversityId(): int&lt;br data-sider-select-id=&quot;994d4e28-01f4-4db3-b0d4-933f8bf79b26&quot;&gt;&lt;/div&gt;+ getName(): String&lt;div data-sider-select-id=&quot;ff42e116-e674-4bd8-8ade-ab6fe13d6f7a&quot;&gt;+ getAddress(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;3a7ee981-85a0-42e5-ae5c-64b0b024f85e&quot;&gt;+ getCurrentSchoolYear(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;a046e094-769c-4d97-833c-92846337bebe&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getWebsite(): String&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;67649e6e-1f6d-4b37-8e87-5626af1bd408&quot;&gt;+ getMail(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;6793cf2c-266e-4a95-8b83-efc6ff0fdf60&quot;&gt;+ getPhoneNumber(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;a18fe915-fc3f-4f64-9ee4-b4fff8efcd14&quot;&gt;+ getRectorTC(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;a18fe915-fc3f-4f64-9ee4-b4fff8efcd14&quot;&gt;&lt;div data-sider-select-id=&quot;d844eefe-d27a-4d51-b7ea-fbd33fa85cd9&quot;&gt;+ setUniversityId(Id:int): void&lt;br data-sider-select-id=&quot;994d4e28-01f4-4db3-b0d4-933f8bf79b26&quot;&gt;&lt;/div&gt;+ setName(name:String): void&lt;div data-sider-select-id=&quot;ff42e116-e674-4bd8-8ade-ab6fe13d6f7a&quot;&gt;+ setAddress(address:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;3a7ee981-85a0-42e5-ae5c-64b0b024f85e&quot;&gt;+ setCurrentSchoolYear(year:int):void&lt;/div&gt;&lt;div data-sider-select-id=&quot;a046e094-769c-4d97-833c-92846337bebe&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ setWebsite(Website:String): void&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;67649e6e-1f6d-4b37-8e87-5626af1bd408&quot;&gt;+ setMail(mail:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;6793cf2c-266e-4a95-8b83-efc6ff0fdf60&quot;&gt;+ setPhoneNumber(phoneNumber:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;a18fe915-fc3f-4f64-9ee4-b4fff8efcd14&quot;&gt;+ setRectorTC(TC:String): void&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-68" vertex="1">
+          <mxGeometry y="188" width="250" height="322" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-77" value="Department" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="40" width="230" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-78" value="&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;- DepartmentId: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;- DepartmentName: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;- BuildingNumber : String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;- FloorNumber: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;- FacultyId: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;- HeadOfDepartmentTC: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+&amp;lt;&amp;lt;Department&amp;gt;&amp;gt;():&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-77" vertex="1">
+          <mxGeometry y="26" width="230" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-79" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-77" vertex="1">
+          <mxGeometry y="160" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-80" value="&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ getDepartmentId(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ getDepartmentName(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ getBuildingNumber(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ getFloorNumber(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ getFacultyId(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ getHeadOfDepartmentTC(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ setDepartmentId(ıd:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ setDepartmentName(name:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ setBuildingNumber(number: String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ setFloorNumber(floornumber:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ setFacultyId(Id:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;+ setHeadOfDepartmentTC(TC:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;4c738fcd-e463-47c1-a812-45f9bc14af6d&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-77" vertex="1">
+          <mxGeometry y="168" width="230" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-84" value="hasDetails" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;" parent="1" source="uD7xro_-V_x7wngqfkr_-6" target="uD7xro_-V_x7wngqfkr_-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1230" y="580" as="sourcePoint" />
+            <mxPoint x="1390" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-85" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-84" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-86" value="N" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-84" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-87" value="&lt;font color=&quot;#5c5c5c&quot;&gt;hasDetails&lt;/font&gt;" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;" parent="1" source="uD7xro_-V_x7wngqfkr_-15" target="uD7xro_-V_x7wngqfkr_-65" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1130" y="910" as="sourcePoint" />
+            <mxPoint x="1490" y="810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-88" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-87" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-89" value="N" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-87" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-93" value="hasTutorDetails" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="uD7xro_-V_x7wngqfkr_-78" target="uD7xro_-V_x7wngqfkr_-65" edge="1">
+          <mxGeometry x="-0.1915" relative="1" as="geometry">
+            <mxPoint x="1390" y="110" as="sourcePoint" />
+            <mxPoint x="1950" y="961.142839704241" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1920" y="133" />
+              <mxPoint x="1920" y="1173" />
+            </Array>
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-94" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-93" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-95" value="N" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-93" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="20" y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-105" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;" parent="1" source="uD7xro_-V_x7wngqfkr_-69" target="uD7xro_-V_x7wngqfkr_-32" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="520" y="80" as="sourcePoint" />
+            <mxPoint x="680" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_zuk7ShmQERHX0zCytRH-4" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="uD7xro_-V_x7wngqfkr_-105" vertex="1" connectable="0">
+          <mxGeometry x="0.7576" y="2" relative="1" as="geometry">
+            <mxPoint y="-11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-107" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;" parent="1" source="uD7xro_-V_x7wngqfkr_-18" target="NoUucw5yMUZ-8hrY4fZT-8" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="2500" y="790" as="sourcePoint" />
+            <mxPoint x="2660" y="790" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2480" y="840" />
+              <mxPoint x="2600" y="840" />
+              <mxPoint x="2600" y="714" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-13" value="M" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="uD7xro_-V_x7wngqfkr_-107" vertex="1" connectable="0">
+          <mxGeometry x="0.7305" y="5" relative="1" as="geometry">
+            <mxPoint x="-5" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-108" value="N" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="2480" y="850" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-109" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;exitX=0;exitY=0.516;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;exitPerimeter=0;" parent="1" source="uD7xro_-V_x7wngqfkr_-28" target="NoUucw5yMUZ-8hrY4fZT-6" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="2350" y="270" as="sourcePoint" />
+            <mxPoint x="2510" y="270" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2600" y="460" />
+              <mxPoint x="2600" y="553" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-110" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;" parent="1" source="uD7xro_-V_x7wngqfkr_-19" target="uD7xro_-V_x7wngqfkr_-48" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="2630" y="910" as="sourcePoint" />
+            <mxPoint x="2790" y="910" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2700" y="978" />
+              <mxPoint x="2700" y="973" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-111" value="" style="endArrow=block;startArrow=block;endFill=1;startFill=1;html=1;rounded=0;exitX=1.002;exitY=0.357;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;exitPerimeter=0;" parent="1" source="uD7xro_-V_x7wngqfkr_-17" target="uD7xro_-V_x7wngqfkr_-50" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1370" y="1600" as="sourcePoint" />
+            <mxPoint x="1530" y="1600" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1160" y="1139" />
+              <mxPoint x="1200" y="1139" />
+              <mxPoint x="1200" y="1560" />
+              <mxPoint x="2720" y="1560" />
+              <mxPoint x="2720" y="1169" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-112" value="setStudentGrade" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-111" vertex="1" connectable="0">
+          <mxGeometry x="-0.0148" y="2" relative="1" as="geometry">
+            <mxPoint x="4" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-113" value="" style="endArrow=block;startArrow=block;endFill=1;startFill=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;" parent="1" source="uD7xro_-V_x7wngqfkr_-5" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="980" y="520.0000000000002" as="sourcePoint" />
+            <mxPoint x="2940" y="880" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="980" y="470" />
+              <mxPoint x="1360" y="470" />
+              <mxPoint x="1360" y="400" />
+              <mxPoint x="1360" y="320" />
+              <mxPoint x="2150" y="320" />
+              <mxPoint x="2940" y="320" />
+              <mxPoint x="2940" y="420" />
+              <mxPoint x="2940" y="520" />
+              <mxPoint x="2940" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-114" value="viewCourseGrades" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-113" vertex="1" connectable="0">
+          <mxGeometry x="-0.2815" y="-8" relative="1" as="geometry">
+            <mxPoint x="1" y="-18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-115" value="AdvisorAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="840" y="1350" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-116" value="&lt;div data-sider-select-id=&quot;b9696a38-5553-408a-8b78-971fbaa3f174&quot;&gt;-AdvisorId: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;b9696a38-5553-408a-8b78-971fbaa3f174&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;b9696a38-5553-408a-8b78-971fbaa3f174&quot;&gt;+&amp;lt;&amp;lt;AdvisorAccount&amp;gt;&amp;gt;():&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-115" vertex="1">
+          <mxGeometry y="26" width="280" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-117" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-115" vertex="1">
+          <mxGeometry y="90" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-118" value="&lt;div data-sider-select-id=&quot;080942f7-5289-45f5-abfe-9d2c1a84f7fe&quot;&gt;+ getAdvisorId(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;080942f7-5289-45f5-abfe-9d2c1a84f7fe&quot;&gt;+ setAdviorId(ıd:inr): void&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;080942f7-5289-45f5-abfe-9d2c1a84f7fe&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-115" vertex="1">
+          <mxGeometry y="98" width="280" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-119" value="AdministratorAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="830" y="1610" width="280" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-120" value="&lt;div data-sider-select-id=&quot;0c1ed7a4-f236-48c2-851b-23b3b477ec65&quot;&gt;-AdministratorId: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;0c1ed7a4-f236-48c2-851b-23b3b477ec65&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;0c1ed7a4-f236-48c2-851b-23b3b477ec65&quot;&gt;+&amp;lt;&amp;lt;AdministratorAccount&amp;gt;&amp;gt;():&lt;/div&gt;&lt;div data-sider-select-id=&quot;0c1ed7a4-f236-48c2-851b-23b3b477ec65&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-119" vertex="1">
+          <mxGeometry y="26" width="280" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-121" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-119" vertex="1">
+          <mxGeometry y="90" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-122" value="&lt;div data-sider-select-id=&quot;178bcfda-1bdc-46b4-97c6-f29c5c00b071&quot;&gt;+ getAdministratorId(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;bbbbc8a0-a86a-4558-987f-51322d8e5f69&quot;&gt;+ setAdministratorId(Id:int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;bbbbc8a0-a86a-4558-987f-51322d8e5f69&quot;&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-119" vertex="1">
+          <mxGeometry y="98" width="280" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-127" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="40" y="640" width="280" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-128" value="&lt;div data-sider-select-id=&quot;326be5b3-3b56-42ef-ae55-0b9f588c3c95&quot;&gt;&lt;span data-sider-select-id=&quot;2503999f-11fd-4c5f-9b67-325450b5293b&quot; style=&quot;background-color: initial;&quot;&gt;- UserTC: String&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- password: String&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;de1af186-e79e-41a0-ba52-45908eb96fac&quot;&gt;&lt;span style=&quot;background-color: initial;&quot; data-sider-select-id=&quot;838b4f9c-f83f-46f2-83ef-31619f175fcf&quot;&gt;+ &amp;lt;&amp;lt;&lt;/span&gt;&lt;span data-sider-select-id=&quot;9aff3e6e-4e62-4d03-b8e1-f7bc331e7534&quot; style=&quot;background-color: initial; font-weight: 700; text-align: center;&quot;&gt;User&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;gt;&amp;gt;()&lt;/span&gt;&lt;br data-sider-select-id=&quot;761977f1-b920-4aaa-983c-9796aaef46dd&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-127" vertex="1">
+          <mxGeometry y="26" width="280" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-129" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-127" vertex="1">
+          <mxGeometry y="110" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-130" value="&lt;div data-sider-select-id=&quot;de1af186-e79e-41a0-ba52-45908eb96fac&quot;&gt;&lt;span data-sider-select-id=&quot;a7a65cee-e1cd-4d12-abb8-b44cfdfc2b42&quot; style=&quot;background-color: initial;&quot;&gt;+ getUserTC(): String&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;de1af186-e79e-41a0-ba52-45908eb96fac&quot;&gt;&lt;span data-sider-select-id=&quot;a7a65cee-e1cd-4d12-abb8-b44cfdfc2b42&quot; style=&quot;background-color: initial;&quot;&gt;+ getpassword(): String&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;cdba4276-2402-40c8-a96a-bf039325b452&quot;&gt;+ setUserTC(TC:String): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;cdba4276-2402-40c8-a96a-bf039325b452&quot;&gt;+ setpassword(password:String): void&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="uD7xro_-V_x7wngqfkr_-127" vertex="1">
+          <mxGeometry y="118" width="280" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-135" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;" parent="1" source="uD7xro_-V_x7wngqfkr_-128" target="uD7xro_-V_x7wngqfkr_-2" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="330" y="710" as="sourcePoint" />
+            <mxPoint x="480" y="725" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uD7xro_-V_x7wngqfkr_-103" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;" parent="1" source="uD7xro_-V_x7wngqfkr_-32" target="uD7xro_-V_x7wngqfkr_-78" edge="1">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="900" y="20" as="sourcePoint" />
+            <mxPoint x="1060" y="20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_zuk7ShmQERHX0zCytRH-2" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" parent="uD7xro_-V_x7wngqfkr_-103" vertex="1" connectable="0">
+          <mxGeometry x="0.6966" y="3" relative="1" as="geometry">
+            <mxPoint x="2" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AEI5w53N04PJda7zmnBn-4" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.007;exitY=0.313;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#006658;" parent="1" source="uD7xro_-V_x7wngqfkr_-116" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="829.9964705882353" y="1396" as="sourcePoint" />
+            <mxPoint x="800" y="1030" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800" y="1396" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AEI5w53N04PJda7zmnBn-5" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.844;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#006658;" parent="1" source="uD7xro_-V_x7wngqfkr_-120" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="840" y="1744" as="sourcePoint" />
+            <mxPoint x="800" y="1380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="830" y="1690" />
+              <mxPoint x="800" y="1690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-5" value="DepartmentCourse" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#21C0A5;strokeColor=#006658;fontColor=#5C5C5C;" parent="1" vertex="1">
+          <mxGeometry x="2360" y="480" width="200" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-6" value="&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;- Id: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;- TaughtSemester: int&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;- CourseName: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;- DepartmentName: String&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;5978899b-74d0-4c04-8e9b-4e08adf89fae&quot;&gt;+&amp;lt;&amp;lt;DepartmentCourse&amp;gt;&amp;gt;():&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="NoUucw5yMUZ-8hrY4fZT-5" vertex="1">
+          <mxGeometry y="26" width="200" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#006658;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="NoUucw5yMUZ-8hrY4fZT-5" vertex="1">
+          <mxGeometry y="120" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-8" value="&lt;div data-sider-select-id=&quot;ffde2987-56f6-4ef2-abc0-418806fd4a39&quot;&gt;&lt;div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ getId(): String&lt;/div&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ getTaughtSemester(): int&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ getCourseName(): String&lt;br data-sider-select-id=&quot;afa10d34-17fc-4f51-9749-0b23ba2af338&quot;&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ getDepartmentName(): String&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ setId(id: String): void&lt;/span&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ setTaughtSemester(semester: int): void&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ setCourseName(Cname: String): void&lt;br data-sider-select-id=&quot;afa10d34-17fc-4f51-9749-0b23ba2af338&quot;&gt;&lt;/div&gt;&lt;div data-sider-select-id=&quot;3898fbe6-ce9d-4953-abf0-0c6ae0f247ed&quot;&gt;+ setDepartmentName(name:String): void&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="NoUucw5yMUZ-8hrY4fZT-5" vertex="1">
+          <mxGeometry y="128" width="200" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-9" value="hasCourses" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=#5c5c5c;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="uD7xro_-V_x7wngqfkr_-78" target="NoUucw5yMUZ-8hrY4fZT-5" edge="1">
+          <mxGeometry x="0.6956" relative="1" as="geometry">
+            <mxPoint x="1240" y="100" as="sourcePoint" />
+            <mxPoint x="2445" y="460" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2460" y="133" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-10" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="NoUucw5yMUZ-8hrY4fZT-9" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-11" value="N" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontColor=#5C5C5C;" parent="NoUucw5yMUZ-8hrY4fZT-9" connectable="0" vertex="1">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="10" y="-40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NoUucw5yMUZ-8hrY4fZT-14" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#006658;fontColor=default;" parent="1" source="uD7xro_-V_x7wngqfkr_-11" target="NoUucw5yMUZ-8hrY4fZT-6" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="2320" y="518.5" as="sourcePoint" />
+            <mxPoint x="2240" y="611.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2320" y="713" />
+              <mxPoint x="2320" y="553" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

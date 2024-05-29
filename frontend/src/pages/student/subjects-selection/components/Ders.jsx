@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -15,10 +15,24 @@ import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 import { selectedSubjectsAkts } from "store/ders-secimi/ders-secimi.selector";
 
 const Ders = ({ data }) => {
-  const { subjectName, subjectCode, akts, subeler, aciklama, limit } = data;
+  const { subjectName, subjectCode, akts, subeler, aciklama, limit, state } =
+    data;
   const [age, setAge] = useState("");
+  const [isSelected, setIsSelected] = useState(false);
   const selectedSubjects = useSelector(selectSelectedSubjects);
   const selectedAkts = useSelector(selectedSubjectsAkts);
+
+  const checkIfSelected = () => {
+    if (selectedSubjects === undefined) return isSelected;
+    let found = false;
+    selectedSubjects.forEach((item) => {
+      if (item.subjectCode === subjectCode) found = true;
+    });
+    setIsSelected(found);
+  };
+  useEffect(() => {
+    checkIfSelected();
+  }, [selectedSubjects]);
 
   const dispatch = useDispatch();
 
@@ -43,6 +57,12 @@ const Ders = ({ data }) => {
           height: "50px",
           display: "grid",
           gridTemplateColumns: "1fr 2fr 5fr 1fr 4fr 2fr ",
+          backgroundColor:
+            isSelected && state === "success"
+              ? theme.palette.success.light
+              : isSelected && state === "failed"
+              ? theme.palette.error.light
+              : "",
         }}
       >
         <Box
@@ -53,18 +73,22 @@ const Ders = ({ data }) => {
             alignItems: "center",
           }}
         >
-          <Button
-            onClick={handleAdd}
-            sx={{
-              width: "70%",
-              height: "35px",
-              color: "white",
-            }}
-            variant="contained"
-            color="success"
-          >
-            +&nbsp;Seç
-          </Button>
+          {!isSelected ? (
+            <Button
+              onClick={handleAdd}
+              sx={{
+                width: "70%",
+                height: "35px",
+                color: "white",
+              }}
+              variant="contained"
+              color="success"
+            >
+              +&nbsp;Seç
+            </Button>
+          ) : (
+            ""
+          )}
         </Box>
         <Box
           sx={{
@@ -106,8 +130,12 @@ const Ders = ({ data }) => {
         >
           <FormControl size="small" sx={{ minWidth: 120 }}>
             <Select
+              disabled={isSelected}
               value={age}
-              sx={{ fontSize: "12px", fontWeight: "500" }}
+              sx={{
+                fontSize: "12px",
+                fontWeight: "500",
+              }}
               onChange={handleChange}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
@@ -115,8 +143,10 @@ const Ders = ({ data }) => {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {subeler.map((sube) => (
-                <MenuItem value={sube}>{sube}</MenuItem>
+              {subeler.map((sube, index) => (
+                <MenuItem key={index} value={sube}>
+                  {sube}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>

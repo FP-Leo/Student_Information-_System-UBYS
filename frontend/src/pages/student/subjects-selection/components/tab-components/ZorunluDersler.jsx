@@ -48,8 +48,8 @@ const ZorunluDersler = () => {
           flexDirection: "column",
         }}
       >
-        {Data.zorunlu.map((item) => (
-          <Ders data={item} />
+        {Data.zorunlu.map((item, index) => (
+          <Ders key={index} data={item} />
         ))}
       </Box>
     </Box>

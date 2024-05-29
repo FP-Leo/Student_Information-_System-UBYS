@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CssBaseline from "@mui/material/CssBaseline";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import { AppBar } from "@mui/material";
+import { AppBar, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -15,8 +15,11 @@ import ListItemText from "@mui/material/ListItemText";
 
 import Profile from "./Profile";
 import HomeIcon from "assets/home-icon";
+import Logo from "assets/logo";
+import { useTheme } from "@mui/material/styles";
 
 export default function Navbar() {
+  const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -34,21 +37,58 @@ export default function Navbar() {
 
   const list = () => (
     <Box
-      sx={{ width: 250, marginTop: "64px" }}
+      sx={{ width: 250 }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List>
-        <ListItem key={"Home"} disablePadding>
-          <ListItemButton onClick={() => navigate("/home")}>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Home"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <Box
+        sx={{
+          paddingY: 3,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          borderBottom: `1px solid ${theme.palette.divider}`,
+        }}
+      >
+        <Logo width="50px" />
+        <Typography
+          sx={{
+            marginLeft: 2,
+          }}
+          variant="subtitle1"
+        >
+          ÇOMÜ
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          marginY: 3,
+        }}
+      >
+        <List>
+          <ListItem key={"Home"} disablePadding>
+            <ListItemButton
+              sx={{
+                height: "50px",
+              }}
+              onClick={() => navigate("/home")}
+            >
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <Typography
+                color={theme.palette.text.primary}
+                variant="subtitle2"
+              >
+                Anasayfa
+              </Typography>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
     </Box>
   );
 

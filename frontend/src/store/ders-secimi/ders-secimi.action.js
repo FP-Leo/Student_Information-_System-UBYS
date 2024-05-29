@@ -30,3 +30,6 @@ export const removeSubjectFromStore = (subjectsSelected, subjectToRemove) => {
 
 export const setSelectedSubjects = (newCartItems) =>
   createAction(DERS_SECIMI_ACTIONS.SET_SELECTED_SUBJECTS, newCartItems);
+
+export const setFetchedSubjects = (fetchedSubjects) =>
+  createAction(DERS_SECIMI_ACTIONS.SET_FETCHED_SUBJECTS, fetchedSubjects);

@@ -1,18 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
+    [Index(nameof(DepartmentName), IsUnique = true)]
     public class Department
     {
-        public int DepartmentId { get; set; } 
+        [Key]
+        [Column(Order = 0)]
+        public int DepartmentId { get; set; }
+        [Required]
+        [Column(Order = 2)]
+        public string? DepartmentName { get; set; }
+        [Required] 
         public string? BuildingNumber { get; set; }
-        public int FacultyId { get; set; }
+        [Required] 
+        public int FloorNumber { get; set; }
+        [Column(Order = 1)]
+        public string? FacultyName { get; set; }
+        public string? HeadOfDepartmentTC { get; set; }
 
         // Navigation Properties
         public Faculty? Faculty { get; set; } 
         public User? HeadOfDepartment { get; set; } // One-to-One 
+        public ICollection<StudentDepDetails>? StudentDepDetails { get; set;}
+        public ICollection<LecturerDepDetails>? LecturerDepDetails { get; set;}
+        public DepartmentCourse? DepartmentCourse { get; set; } // Many to Many. New table.
     }
 }

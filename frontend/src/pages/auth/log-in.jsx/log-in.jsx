@@ -15,16 +15,17 @@ import FilledInput from "@mui/material/FilledInput";
 import Visibility from "@mui/icons-material/Visibility";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "store/user/user.action";
+import { setUserToken, setUserData } from "store/user/user.action";
 
 const INITIAL_STATE = {
   username: "",
   password: "",
 };
 
-const PORT = 7150; //!--- Change this to your port number
+const PORT = 5158; //!--- Change this to your port number
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Login = () => {
   const [userInput, setUserInput] = useState(INITIAL_STATE);
   const { username, password } = userInput;
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -46,36 +48,32 @@ const Login = () => {
       ...userInput,
       [name]: value,
     });
-    console.log(userInput);
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      //!------ Uncomment this part if you want to use MAIN PROJECT API
-      // const response = await axios.post(
-      //   `https://localhost:${PORT}/api/account/login`,
-      //   userInput
-      // );
-
-      //!------ Uncomment this part if you want to use PERSONAL PROJECT API
-      /*
-      const response = await axios.get(
-        `https://localhost:${PORT}/api/User/${username}`
+      setLoading(true);
+      const response = await axios.post(
+        `http://localhost:${PORT}/api/System/Account/LogIn`,
+        userInput
       );
-
-      dispatch(setCurrentUser(response.data));
+      console.log(response.data);
+      dispatch(setUserToken(response.data.token));
+      dispatch(setUserData(response.data.data));
+      localStorage.setItem("userData", JSON.stringify(response.data.data));
+      localStorage.setItem("token", response.data.token);
       resetInputValue();
-      */
       navigate("/home");
     } catch (error) {
       alert(error);
     }
+    setLoading(false);
   };
 
   const handleDevletButton = async (e) => {
     e.preventDefault();
-    dispatch(setCurrentUser(userInput));
+    dispatch(setUserToken(userInput));
     resetInputValue();
     navigate("/home");
   };
@@ -100,7 +98,7 @@ const Login = () => {
         alignItems: "center",
       }}
     >
-      <Logo />
+      <Logo width="250px" />
       <Box>
         <Box
           width={"300px"}
@@ -165,7 +163,11 @@ const Login = () => {
               }}
               fullWidth={true}
             >
-              Giriş Yap
+              {loading ? (
+                <CircularProgress color="inherit" size={24} />
+              ) : (
+                "Giriş Yap"
+              )}
             </Button>
           </form>
         </Box>

@@ -47,6 +47,11 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 builder.Services.AddIdentity<User, IdentityRole>(options => {
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
@@ -56,8 +61,10 @@ builder.Services.AddIdentity<User, IdentityRole>(options => {
     options.User.RequireUniqueEmail = false;
 }).AddEntityFrameworkStores<ApplicationDBContext>();
 
-builder.Services.AddAuthentication(options =>{
-    options.DefaultAuthenticateScheme = 
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme =
     options.DefaultChallengeScheme =
     options.DefaultForbidScheme =
     options.DefaultScheme =
@@ -76,9 +83,22 @@ builder.Services.AddAuthentication(options =>{
 #pragma warning restore CS8604 // Possible null reference argument.
 });
 
-builder.Services.AddScoped<ILogInInfoRepository, LogInInfoRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IStudentAccountRepository, StudentAccountRepository>();
+builder.Services.AddScoped<ILecturerAccountRepository, LecturerAccountRepository>();
+builder.Services.AddScoped<IAdvisorAccountRepository, AdvisorAccountRepository>();
+builder.Services.AddScoped<IAdministratorAccountRepository, AdministratorAccountRepository>();
+builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
+builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IStudentDepDetailsRepository, StudentDepDetailsRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IDepartmentCourseRepository, DepartmentCourseRepository>();
+builder.Services.AddScoped<ICourseDetailsRepository, CourseDetailsRepository>();
+builder.Services.AddScoped<ILecturerDepDetailsRepository, LecturerDepDetailsRepository>();
+builder.Services.AddScoped<ICourseClassRepository, CourseClassRepository>();
+builder.Services.AddScoped<IStudentCourseDetailsRepostiory, StudentCourseDetailsRepository>();
+
 
 builder.Services.AddCors(options =>
 {
@@ -100,12 +120,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowSpecificOrigin");
-
 app.UseHttpsRedirection();
 
+app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthentication();
-app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

@@ -31,16 +31,19 @@ const SubjectDetails = () => {
         justifyContent: "center",
       }}
     >
-      <Box>
-        <Typography variant="subtitle1">Ders Kodu: 3003BML</Typography>
-      </Box>
       <Box
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 3fr",
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            marginRight: 6,
+            paddingBottom: 2,
+            borderRight: `1px solid ${theme.palette.divider}`,
+          }}
+        >
           <Tabs
             sx={{
               marginTop: 0,
@@ -78,8 +81,8 @@ const SubjectDetails = () => {
         </Box>
         <Box
           sx={{
-            backgroundColor: "background.neutral",
-            boxShadow: theme.customShadows.z8,
+            backgroundColor: "white",
+            boxShadow: theme.customShadows.z4,
             borderRadius: 1,
             marginTop: 3,
           }}

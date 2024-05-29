@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    [Index(nameof(DepartmentName),nameof(CourseName), IsUnique = true)]
+    [Index(nameof(DepartmentName), nameof(CourseName), nameof(TaughtSemester),IsUnique = true)]
+    [Index(nameof(CourseCode), IsUnique = true)]
     public class DepartmentCourse
     {
         [Required]
@@ -12,6 +13,7 @@ namespace api.Models
         //Primary Key
         public int Id { get; set; }
         public int TaughtSemester { get; set; }
+        public String? CourseCode { get; set; }
         public String? Status { get; set; }
         //Foreign Keys
         [Required]

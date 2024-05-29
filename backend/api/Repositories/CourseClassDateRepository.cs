@@ -33,15 +33,15 @@ namespace api.Repositories
                 return null;
             }
         }
-        public async Task<CourseClassDate?> GetCourseClassDateAsync(string DepartmentName, string CourseName, int ClassDateId)
+        public async Task<CourseClassDate?> GetCourseClassDateAsync(string CourseCode, int ClassDateId)
         {
-            var courseClassDate = await _context.CourseClassDates.FirstOrDefaultAsync(ccd => ccd.DepartmentName == DepartmentName && ccd.CourseName == CourseName && ccd.ClassDateId == ClassDateId);
+            var courseClassDate = await _context.CourseClassDates.FirstOrDefaultAsync(ccd => ccd.CourseCode == CourseCode && ccd.ClassDateId == ClassDateId);
 
             return courseClassDate;
         }
-        public async Task<ICollection<CourseClassDate>?> GetCourseClassDatesAsync(String DepartmentName, String CourseName)
+        public async Task<ICollection<CourseClassDate>?> GetCourseClassDatesAsync(String CourseCode)
         {
-            var courseClassDates = await _context.CourseClassDates.Where(ccd => ccd.DepartmentName == DepartmentName && ccd.CourseName == CourseName).ToListAsync();
+            var courseClassDates = await _context.CourseClassDates.Where(ccd => ccd.CourseCode == CourseCode).ToListAsync();
 
             return courseClassDates;
         }

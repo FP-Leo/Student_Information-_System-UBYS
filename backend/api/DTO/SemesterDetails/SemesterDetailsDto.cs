@@ -8,6 +8,8 @@ namespace api.DTO.SemesterDetails
         [Required]
         public String? DepartmentName { get; set;}
         [Required]
+        public int AcademicYear { get; set;}
+        [Required]
         public int Semester { get; set;}
         [Required]
         public int NumberOfObligatoryCourses { get; set;}
@@ -17,5 +19,7 @@ namespace api.DTO.SemesterDetails
         public int SelectiveCourseACTS { get; set;}
         [Required]
         public int SelectiveCourseKredi { get; set;}
+        [Required]
+        public int TotalCourses { get; set;}
     }
 }

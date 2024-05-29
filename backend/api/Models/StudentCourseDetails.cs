@@ -15,7 +15,7 @@ namespace api.Models
         [Column(Order = 3)]
         public String? TC { get; set; }
         [Column(Order = 2)]
-        public String? CourseName { get; set; }
+        public String? CourseCode { get; set; }
         [Column(Order = 1)]
         public String? DepartmentName { get; set; }
         public int SchoolYear { get; set; }

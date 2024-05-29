@@ -12,9 +12,11 @@ namespace api.Controllers
     {
         private readonly ICourseClassDateRepository _courseClassDateRepo;
         private readonly IClassDateRepository _classDateRepo;
-        public CourseClassDateController(ICourseClassDateRepository courseClassDateRepository, IClassDateRepository classDateRepository){
+        private readonly IDepartmentCourseRepository _departmentCourseRepo;
+        public CourseClassDateController(ICourseClassDateRepository courseClassDateRepository, IClassDateRepository classDateRepository, IDepartmentCourseRepository departmentCourseRepository){
             _courseClassDateRepo = courseClassDateRepository;
             _classDateRepo = classDateRepository;
+            _departmentCourseRepo = departmentCourseRepository;
         }
         [HttpGet("University/Faculty/Department/Course/Class/Dates/")]
         public async Task<IActionResult> GetCourseClassDates([FromQuery] String DepartmentName, String CourseName){
@@ -22,8 +24,13 @@ namespace api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            var depCourse = await _departmentCourseRepo.GetDeparmentCourseAsync(DepartmentName, CourseName);
+            if(depCourse == null){
+                return NotFound();
+            }
             
-            var courseClassDates = await _courseClassDateRepo.GetCourseClassDatesAsync(DepartmentName, CourseName);
+            var courseClassDates = await _courseClassDateRepo.GetCourseClassDatesAsync(depCourse.CourseCode);
 
             if(courseClassDates == null){
                 return BadRequest();
@@ -61,7 +68,6 @@ namespace api.Controllers
 
             return Ok();
         }
-
         [HttpDelete("University/Faculty/Department/Course/Class/Dates/")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourseClassDates([FromQuery] String DepartmentName, [FromQuery] String CourseName){
@@ -70,7 +76,12 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await _courseClassDateRepo.GetCourseClassDatesAsync(DepartmentName, CourseName);
+            var depCourse = await _departmentCourseRepo.GetDeparmentCourseAsync(DepartmentName, CourseName);
+            if(depCourse == null){
+                return NotFound();
+            }
+
+            var result = await _courseClassDateRepo.GetCourseClassDatesAsync(depCourse.CourseCode);
 
             if(result == null){
                 return BadRequest();
@@ -103,7 +114,7 @@ namespace api.Controllers
                 return NotFound("Class Date not found");
             }
 
-            var courseClassDate = await _courseClassDateRepo.GetCourseClassDateAsync(courseClassDateDeleteDto.DepartmentName, courseClassDateDeleteDto.CourseName, classId.Id);
+            var courseClassDate = await _courseClassDateRepo.GetCourseClassDateAsync(courseClassDateDeleteDto.CourseCode, classId.Id);
 
             if(courseClassDate == null){
                 return NotFound("Course is not given at that date.");

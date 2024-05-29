@@ -8,8 +8,7 @@ namespace api.Mappers
         public static CourseClassDto ToCourseClassDto(this CourseClass courseClass){
             return new CourseClassDto{
                 CourseClassID = courseClass.CourseClassID,
-                DepartmentName = courseClass.DepartmentName,
-                CourseName = courseClass.CourseName,
+                CourseCode = courseClass.CourseCode,
                 SchoolYear = courseClass.SchoolYear,
                 LecturerTC = courseClass.LecturerTC,
                 HourPerWeek = courseClass.HourPerWeek,
@@ -21,8 +20,7 @@ namespace api.Mappers
         }
         public static CourseClass ToCourseClass(this CourseClassPostDto courseClass, int SchoolYear){
             return new CourseClass{
-                DepartmentName = courseClass.DepartmentName,
-                CourseName = courseClass.CourseName,
+                CourseCode = courseClass.CourseCode,
                 SchoolYear = SchoolYear,
                 LecturerTC = courseClass.LecturerTC,
                 HourPerWeek = courseClass.HourPerWeek,

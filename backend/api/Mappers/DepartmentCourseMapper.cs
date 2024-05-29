@@ -10,16 +10,18 @@ namespace api.Mappers
                 CourseName = course.CourseName,
                 DepartmentName = course.DepartmentName,
                 TaughtSemester = course.TaughtSemester,
+                CourseCode = course.CourseCode,
                 Status = course.Status,
                 CourseDetailsId = course.CourseDetailsId
             };
         }
 
-        public static DepartmentCourse ToDepartmentCourse(this DepartmentCoursePostDto course){
+        public static DepartmentCourse ToDepartmentCourse(this DepartmentCoursePostDto course, String CourseCode){
             return new DepartmentCourse{
                 CourseName = course.CourseName,
                 DepartmentName = course.DepartmentName,
                 TaughtSemester = course.TaughtSemester,
+                CourseCode = CourseCode,
                 Status = "Closed",
                 CourseDetailsId = course.CourseDetailsId
             };

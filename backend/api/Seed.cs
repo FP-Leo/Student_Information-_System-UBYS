@@ -57,6 +57,7 @@ namespace api
                     DepartmentName = "Bilgisayar Mühendisliği",
                     NumberOfSemesters = 8,
                     MaxYears = 7,
+                    DepCode = "BLM",
                     BuildingNumber = "2. Bina",
                     FloorNumber = 2,
                     HeadOfDepartmentTC = "10000000001"
@@ -67,27 +68,33 @@ namespace api
             if(!_context.SemesterDetails.Any()){
                 var semesterOne = new SemesterDetail{
                     DepartmentName = "Bilgisayar Mühendisliği",
+                    AcademicYear = 1,
                     Semester = 1,
                     NumberOfObligatoryCourses = 9,
                     NumberOfSelectiveCourses = 1,
                     SelectiveCourseACTS = 1,
-                    SelectiveCourseKredi = 0
+                    SelectiveCourseKredi = 0,
+                    TotalCourses = 1
                 };
                 var semesterTwo = new SemesterDetail{
                     DepartmentName = "Bilgisayar Mühendisliği",
+                    AcademicYear = 1,
                     Semester = 2,
                     NumberOfObligatoryCourses = 8,
                     NumberOfSelectiveCourses = 1,
                     SelectiveCourseACTS = 1,
-                    SelectiveCourseKredi = 0
+                    SelectiveCourseKredi = 0,
+                    TotalCourses = 0
                 };
                 var semesterThree = new SemesterDetail{
                     DepartmentName = "Bilgisayar Mühendisliği",
+                    AcademicYear = 2,
                     Semester = 3,
                     NumberOfObligatoryCourses = 6,
                     NumberOfSelectiveCourses = 0,
                     SelectiveCourseACTS = 0,
-                    SelectiveCourseKredi = 0
+                    SelectiveCourseKredi = 0,
+                    TotalCourses = 0
                 };
                 await _context.SemesterDetails.AddAsync(semesterOne);
                 await _context.SemesterDetails.AddAsync(semesterTwo);
@@ -116,7 +123,8 @@ namespace api
                     CourseName = "Math",
                     TaughtSemester = 1,
                     Status = "Open",
-                    CourseDetailsId = 1
+                    CourseDetailsId = 1,
+                    CourseCode = "BLM-1001"
                 };
                 await _context.DepartmentCourses.AddAsync(depCourse);
                 await _context.SaveChangesAsync();
@@ -149,8 +157,7 @@ namespace api
             }
             if(!_context.CourseClasses.Any()){
                 var courseClass = new CourseClass{
-                    DepartmentName = "Bilgisayar Mühendisliği",
-                    CourseName = "Math",
+                    CourseCode = "BLM-1001",
                     SchoolYear = 2023,
                     LecturerTC = "10000000002",
                     HourPerWeek = 4,
@@ -160,8 +167,7 @@ namespace api
                     FinalValue = 60,
                 };
                 var courseClassTwo = new CourseClass{
-                    DepartmentName = "Bilgisayar Mühendisliği",
-                    CourseName = "Math",
+                    CourseCode = "BLM-1001",
                     SchoolYear = 2021,
                     LecturerTC = "10000000002",
                     HourPerWeek = 4,
@@ -191,20 +197,17 @@ namespace api
             }
             if(!_context.CourseClassDates.Any()){
                 var courseClassDate = new CourseClassDate{
-                    DepartmentName = "Bilgisayar Mühendisliği",
-                    CourseName = "Math",
+                    CourseCode = "BLM-1001",
                     SchoolYear = 2023,
                     ClassDateId = 1
                 };
                 var courseClassDateTwo = new CourseClassDate{
-                    DepartmentName = "Bilgisayar Mühendisliği",
-                    CourseName = "Math",
+                    CourseCode = "BLM-1001",
                     SchoolYear = 2023,
                     ClassDateId = 2
                 };
                 var courseClassDateThree = new CourseClassDate{
-                    DepartmentName = "Bilgisayar Mühendisliği",
-                    CourseName = "Math",
+                    CourseCode = "BLM-1001",
                     SchoolYear = 2021,
                     ClassDateId = 1
                 };
@@ -216,7 +219,7 @@ namespace api
             if(!_context.StudentsCourseDetails.Any()){
                 var studentCourseDetails = new StudentCourseDetails{
                     DepartmentName = "Bilgisayar Mühendisliği",
-                    CourseName = "Math",
+                    CourseCode = "BLM-1001",
                     SchoolYear = 2021,
                     TC = "99324668300",
                     State = "Passed",

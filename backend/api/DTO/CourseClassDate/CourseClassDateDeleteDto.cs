@@ -5,9 +5,7 @@ namespace api.DTO.CourseClassDate
     public class CourseClassDateDeleteDto
     {
         [Required]
-        public string? DepartmentName { get; set; }
-        [Required]
-        public string? CourseName { get; set; }
+        public string? CourseCode { get; set; }
         [Required]
         public int SchoolYear { get; set; }
         [Required] 

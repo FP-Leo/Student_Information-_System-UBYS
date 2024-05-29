@@ -8,8 +8,7 @@ namespace api.Mappers
         public static StudentCourseDetailsDto ToStudentCourseDetailsDto(this StudentCourseDetails studentCourseDetails){
             return new StudentCourseDetailsDto(){
                 Id = studentCourseDetails.Id,
-                DepartmentName = studentCourseDetails.DepartmentName,
-                CourseName = studentCourseDetails.CourseName,
+                CourseCode = studentCourseDetails.CourseCode,
                 SchoolYear = studentCourseDetails.SchoolYear,
                 TC = studentCourseDetails.TC,
                 State = studentCourseDetails.State,
@@ -22,8 +21,7 @@ namespace api.Mappers
 
         public static StudentCourseDetails ToStudentCourseDetails(this StudentCourseDetailsPostDto studentCourseDetailsPostDto, int SchoolYear){
             return new StudentCourseDetails{
-                DepartmentName = studentCourseDetailsPostDto.DepartmentName,
-                CourseName = studentCourseDetailsPostDto.CourseName,
+                CourseCode = studentCourseDetailsPostDto.CourseCode,
                 SchoolYear = SchoolYear,
                 TC = studentCourseDetailsPostDto.TC,
                 State = "Currently Attending",

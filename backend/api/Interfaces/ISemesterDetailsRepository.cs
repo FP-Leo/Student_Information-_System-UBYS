@@ -8,5 +8,6 @@ namespace api.Interfaces
         Task<SemesterDetail?> AddSemesterDetailsAsync(SemesterDetail semesterDetail);
         Task<SemesterDetail?> UpdateSemesterDetailsAsync(SemesterDetail semesterDetail);
         Task<SemesterDetail?> DeleteSemesterDetailsAsync(String DeparmentName, int Semester);
+        Task<int> GetNumOfCoursesInAcademicYear(int AcademicYear);
     }
 }

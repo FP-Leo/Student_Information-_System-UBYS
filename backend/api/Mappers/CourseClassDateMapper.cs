@@ -9,8 +9,7 @@ namespace api.Mappers
     {
         public static CourseClassDate ToCourseClassDate(this CourseClassDatePostDto courseClassDatePostDto, int ClassDateId){
              return new CourseClassDate{
-                DepartmentName = courseClassDatePostDto.DepartmentName,
-                CourseName = courseClassDatePostDto.CourseName,
+                CourseCode = courseClassDatePostDto.CourseCode,
                 SchoolYear = courseClassDatePostDto.SchoolYear,
                 ClassDateId = ClassDateId
             };
@@ -26,8 +25,7 @@ namespace api.Mappers
             }
 
             return new CourseClassDateDto{
-                DepartmentName = courseDetails.DepartmentName,
-                CourseName = courseDetails.CourseName,
+                CourseCode = courseDetails.CourseCode,
                 SchoolYear = courseDetails.SchoolYear,
                 ClassDates = ClassDates
             };

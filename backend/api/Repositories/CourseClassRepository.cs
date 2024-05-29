@@ -21,9 +21,9 @@ namespace api.Repositories
             return courseClass;
         }
 
-        public async Task<CourseClass?> DeleteCourseClassAsync(string DepartmentName, string CourseName, int SchoolYear)
+        public async Task<CourseClass?> DeleteCourseClassAsync(string CourseCode, int SchoolYear)
         {
-            var courseClass = await GetCourseClassAsync(DepartmentName, CourseName, SchoolYear);
+            var courseClass = await GetCourseClassAsync(CourseCode, SchoolYear);
 
             if (courseClass == null){
                 return null;
@@ -36,18 +36,11 @@ namespace api.Repositories
             return courseClass;
         }
 
-        public async Task<CourseClass?> GetCourseClassAsync(string DepartmentName, string CourseName, int SchoolYear)
+        public async Task<CourseClass?> GetCourseClassAsync(string CourseCode, int SchoolYear)
         {
-            var courseClass = await _context.CourseClasses.FirstOrDefaultAsync(cc => cc.DepartmentName == DepartmentName && cc.CourseName == CourseName && cc.SchoolYear == SchoolYear);
+            var courseClass = await _context.CourseClasses.FirstOrDefaultAsync(cc => cc.CourseCode == CourseCode && cc.SchoolYear == SchoolYear);
 
             return courseClass;
-        }
-
-        public async Task<ICollection<CourseClass>?> GetSpecificCourseClasses(string DepartmentName, int SchoolYear)
-        {
-            var coursesClass = await _context.CourseClasses.Where(cc => cc.DepartmentName == DepartmentName && cc.SchoolYear == SchoolYear).ToListAsync();
-
-            return coursesClass;
         }
 
         public async Task<CourseClass?> UpdateCourseClassAsync(CourseClass courseClass)

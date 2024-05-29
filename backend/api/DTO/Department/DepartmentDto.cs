@@ -14,6 +14,8 @@ namespace api.DTO.Department
         [Required] 
         public int MaxYears {get; set; }
         [Required] 
+        public string? DepCode { get; set; }
+        [Required] 
         public string? BuildingNumber { get; set; }
         [Required] 
         public int FloorNumber { get; set; }

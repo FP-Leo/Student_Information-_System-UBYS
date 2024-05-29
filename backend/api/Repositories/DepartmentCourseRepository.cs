@@ -66,5 +66,12 @@ namespace api.Repositories
 
             return courses;
         }
+
+        public async Task<DepartmentCourse?> GetDeparmentCourseByCourseCodeAsync(string CourseCode)
+        {
+            var course = await _context.DepartmentCourses.FirstOrDefaultAsync(c=> c.CourseCode == CourseCode);
+
+            return course;
+        }
     }
 }

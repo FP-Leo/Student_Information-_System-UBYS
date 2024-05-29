@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    [Index(nameof(DepartmentName), nameof(CourseName), nameof(SchoolYear), IsUnique = true)]
+    [Index(nameof(CourseCode), nameof(SchoolYear), IsUnique = true)]
     public class CourseClass
     {
         [Key]
@@ -16,8 +16,7 @@ namespace api.Models
         public float FinalValue { get; set; }
         
         // Foreign Key
-        public string? CourseName { get; set; } 
-        public string? DepartmentName { get; set; }
+        public string? CourseCode { get; set; }
         public string? LecturerTC { get; set; }
         // Navigation Property
         public DepartmentCourse? DepartmentCourse{ get; set; }

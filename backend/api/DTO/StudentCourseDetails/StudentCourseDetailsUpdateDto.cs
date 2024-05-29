@@ -5,9 +5,7 @@ namespace api.DTO.StudentCourseDetails
     public class StudentCourseDetailsUpdateDto
     {
         [Required]
-        public String? DepartmentName { get; set; }
-        [Required]
-        public String? CourseName { get; set; }
+        public String? CourseCode { get; set;}
         [Required]
         public String? TC { get; set; }
         [Required]

@@ -17,7 +17,7 @@ namespace api.Controllers
             _departmentRepo = departmentRepository;
         }
         [HttpGet("University/Faculty/Department/Semester")]
-        public async Task<IActionResult> GetDepSemesterDEtails([FromQuery] String DepartmentName, [FromQuery] int Semester){
+        public async Task<IActionResult> GetDepSemesterDetails([FromQuery] String DepartmentName, [FromQuery] int Semester){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -58,7 +58,7 @@ namespace api.Controllers
         }
         [HttpPut("University/Faculty/Department/Semester")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateUniversity([FromQuery] String  DeparmentName,[FromQuery] int Semester, [FromBody] SemesterDetailsUpdateDto semesterDetailsUpdateDto){
+        public async Task<IActionResult> UpdateemesterDetails([FromQuery] String  DeparmentName,[FromQuery] int Semester, [FromBody] SemesterDetailsUpdateDto semesterDetailsUpdateDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -95,7 +95,7 @@ namespace api.Controllers
         }
         [HttpDelete("University/Faculty/Department/Semester")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteUniversity([FromQuery] String  DeparmentName,[FromQuery] int Semester){
+        public async Task<IActionResult> DeleteSemesterDetails([FromQuery] String  DeparmentName,[FromQuery] int Semester){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

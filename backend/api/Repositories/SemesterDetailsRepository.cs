@@ -36,6 +36,21 @@ namespace api.Repositories
             return semesterDetail;
         }
 
+        public async Task<int> GetNumOfCoursesInAcademicYear(int AcademicYear)
+        {
+            var semesters = await _context.SemesterDetails.Where(sd => sd.AcademicYear == AcademicYear).ToListAsync();
+
+            if(semesters == null){
+                return -1;
+            }
+            int TotalCourses = 0;
+            foreach(var semester in semesters){
+                TotalCourses += semester.TotalCourses;
+            }
+        
+            return TotalCourses;
+        }
+
         public async Task<SemesterDetail?> GetSemesterDetailsAsync(string DeparmentName, int Semester)
         {
             var semesterDetail = await _context.SemesterDetails.FirstOrDefaultAsync(sd => sd.DepartmentName == DeparmentName && sd.Semester == Semester);

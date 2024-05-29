@@ -77,6 +77,7 @@ namespace api.Controllers
             
             department.NumberOfSemesters = departmentUpdateDto.NumberOfSemesters;
             department.MaxYears = departmentUpdateDto.MaxYears;
+            department.DepCode = departmentUpdateDto.DepCode;
             department.BuildingNumber = departmentUpdateDto.BuildingNumber;
             department.FloorNumber = departmentUpdateDto.FloorNumber;
             department.HeadOfDepartmentTC = departmentUpdateDto.HeadOfDepartmentTC;

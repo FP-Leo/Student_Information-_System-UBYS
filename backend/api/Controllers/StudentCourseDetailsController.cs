@@ -73,9 +73,15 @@ namespace api.Controllers
                 }
             }
 
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(DepName, Course);
+
+            if(depCourse == null){
+                return NotFound();
+            }
+
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
             
-            var courseClass = await _courseClassRepository.GetCourseClassAsync(DepName, Course, uni.CurrentSchoolYear);
+            var courseClass = await _courseClassRepository.GetCourseClassAsync(depCourse.CourseCode, uni.CurrentSchoolYear);
 
             if(courseClass == null){
                 return BadRequest(ModelState);
@@ -90,7 +96,7 @@ namespace api.Controllers
                 return BadRequest("Student is not registered on this department.");
             }
             
-            var courseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(DepName, Course, TC);
+            var courseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(depCourse.CourseCode, TC);
 
             if(courseDetails == null){
                 return NotFound();
@@ -113,8 +119,14 @@ namespace api.Controllers
                 return Unauthorized("You're not registered on this department. If this is a mistake, please contact the support.");
             }
 
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(DepName, Course);
+
+            if(depCourse == null){
+                return NotFound();
+            }
+
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
-            var courseClass = await _courseClassRepository.GetCourseClassAsync(DepName, Course, uni.CurrentSchoolYear);
+            var courseClass = await _courseClassRepository.GetCourseClassAsync(depCourse.CourseCode, uni.CurrentSchoolYear);
 
             if(courseClass == null){
                 return BadRequest(ModelState);
@@ -124,7 +136,7 @@ namespace api.Controllers
                 return Unauthorized();
             }
             
-            var coursesDetails = await _studentCourseDetailsRepository.GetAllStudentsCourseDetails(DepName, Course);
+            var coursesDetails = await _studentCourseDetailsRepository.GetAllStudentsCourseDetails(depCourse.CourseCode);
 
             if(coursesDetails == null){
                 return NotFound();
@@ -157,19 +169,17 @@ namespace api.Controllers
                 return BadRequest("Student is not registered on this department.");
             }
 
-            var validCourse = await _courseRepository.GetCourseAsync(studentCourseDetailsPostDto.CourseName);
-
-            if(validCourse == null){
-                return BadRequest("Course doesn't exist");
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(studentCourseDetailsPostDto.CourseName, studentCourseDetailsPostDto.DepartmentName);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(studentCourseDetailsPostDto.CourseCode);
             if(depCourse == null){
                 return BadRequest("Course is not taught at this department.");
             }
 
+            if(depCourse.DepartmentName != studentCourseDetailsPostDto.DepartmentName){
+                return BadRequest("Course Code and Department don't match");
+            }
+
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
-            var validClass = await _courseClassRepository.GetCourseClassAsync(studentCourseDetailsPostDto.DepartmentName, studentCourseDetailsPostDto.CourseName, uni.CurrentSchoolYear);
+            var validClass = await _courseClassRepository.GetCourseClassAsync(studentCourseDetailsPostDto.CourseCode, uni.CurrentSchoolYear);
             
             if(validClass == null){
                 return BadRequest("Course Class doesn't exist");
@@ -191,8 +201,25 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if(DepName != studentCourseDetailsUpdateDto.DepartmentName || CourseName != studentCourseDetailsUpdateDto.CourseName || TC != studentCourseDetailsUpdateDto.TC){
-                return BadRequest(ModelState);
+            var validDep = await _departmentRepository.GetDepartmentAsync(DepName);
+
+            if(validDep == null){
+                return BadRequest("Department doesn't exist");
+            }
+
+            var validCourse = await _courseRepository.GetCourseAsync(CourseName);
+
+            if(validCourse == null){
+                return BadRequest("Course doesn't exist");
+            }
+
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
+            if(depCourse == null){
+                return BadRequest();
+            }
+
+            if(depCourse.CourseCode != studentCourseDetailsUpdateDto.CourseCode){
+                return BadRequest();
             }
 
             var validStudent = await _studentAccountRepository.GetStudentAccountByTCAsync(studentCourseDetailsUpdateDto.TC);
@@ -201,36 +228,19 @@ namespace api.Controllers
                 return BadRequest("Student doesn't exist");
             }
 
-            var validDep = await _departmentRepository.GetDepartmentAsync(studentCourseDetailsUpdateDto.DepartmentName);
-
-            if(validDep == null){
-                return BadRequest("Department doesn't exist");
-            }
-
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(studentCourseDetailsUpdateDto.TC, studentCourseDetailsUpdateDto.DepartmentName);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(studentCourseDetailsUpdateDto.TC, DepName);
             if(studentDepDetails == null){
                 return BadRequest("Student is not registered on this department.");
             }
 
-            var validCourse = await _courseRepository.GetCourseAsync(studentCourseDetailsUpdateDto.CourseName);
-
-            if(validCourse == null){
-                return BadRequest("Course doesn't exist");
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(studentCourseDetailsUpdateDto.CourseName, studentCourseDetailsUpdateDto.DepartmentName);
-            if(depCourse == null){
-                return BadRequest("Course is not taught at this department.");
-            }
-
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
-            var validClass = await _courseClassRepository.GetCourseClassAsync(studentCourseDetailsUpdateDto.DepartmentName, studentCourseDetailsUpdateDto.CourseName, uni.CurrentSchoolYear);
+            var validClass = await _courseClassRepository.GetCourseClassAsync(studentCourseDetailsUpdateDto.CourseCode, uni.CurrentSchoolYear);
             
             if(validClass == null){
                 return BadRequest("Course Class doesn't exist");
             }
 
-            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(DepName, CourseName, TC);
+            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(studentCourseDetailsUpdateDto.CourseCode, TC);
 
             if(studentCourseDetails == null){
                 return NotFound();
@@ -258,7 +268,12 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await _studentCourseDetailsRepository.DeleteStudentCourseDetailsAsync(DepName, CourseName, TC);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
+            if(depCourse == null){
+                return BadRequest("Course is not taught at this department.");
+            }
+
+            var result = await _studentCourseDetailsRepository.DeleteStudentCourseDetailsAsync(depCourse.CourseCode, TC);
 
             if(result == null){
                 return BadRequest();

@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using api.Data;
 using api.Interfaces;
 using api.Models;
@@ -26,7 +25,7 @@ namespace api
             }
             if(!_context.Universities.Any()){
                 var uni = new University{
-                    Name = "Çanakkale Onsekiz Mart Üniversitesi",
+                    Name = "Comu", //Name = "Çanakkale Onsekiz Mart Üniversitesi",
                     Address = "Barbaros, Çanakkale Onsekiz Mart Üniversitesi Terzioğlu Kampüsü, Prof. Dr. Sevim Buluç Sk. No:20, 17100 Sarıcaeli/Çanakkale Merkez/Çanakkale",
                     WebSite = "comu.edu.tr",
                     Mail = "bidb@comu.edu.tr",
@@ -39,8 +38,8 @@ namespace api
             }
             if(!_context.Faculties.Any()){
                 var faculty = new Faculty{
-                    UniName = "Çanakkale Onsekiz Mart Üniversitesi",
-                    FacultyName = "Mühendislik",
+                    UniName = "Comu", //"Çanakkale Onsekiz Mart Üniversitesi",
+                    FacultyName = "M", //"Mühendislik",
                     Address = "Terzioğlu Kampüsü Mühendislik Fakültesi Barbaros Mah Çanakkale 18 Mart Üniversitesi, 4C7C+FX, 17100 Sarıcaeli/Çanakkale Merkez/Çanakkale",
                     Mail = "mf@comu.edu.tr",
                     WebSite = "ce.comu.edu.tr",
@@ -52,8 +51,8 @@ namespace api
             }
             if(!_context.Departments.Any()){
                 var department = new Department{
-                    FacultyName = "Mühendislik",
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    FacultyName = "M", //"Mühendislik",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     NumberOfSemesters = 8,
                     MaxYears = 7,
                     DepCode = "BLM",
@@ -66,7 +65,7 @@ namespace api
             }
             if(!_context.SemesterDetails.Any()){
                 var semesterOne = new SemesterDetail{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     AcademicYear = 1,
                     Semester = 1,
                     NumberOfObligatoryCourses = 9,
@@ -76,7 +75,7 @@ namespace api
                     TotalCourses = 1
                 };
                 var semesterTwo = new SemesterDetail{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     AcademicYear = 1,
                     Semester = 2,
                     NumberOfObligatoryCourses = 8,
@@ -86,7 +85,7 @@ namespace api
                     TotalCourses = 0
                 };
                 var semesterThree = new SemesterDetail{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     AcademicYear = 2,
                     Semester = 3,
                     NumberOfObligatoryCourses = 6,
@@ -110,7 +109,7 @@ namespace api
                     CourseName = "Math",
                     CourseLanguage = "Türkçe",
                     CourseLevel = "Bachelor",
-                    CourseType = "Zorunlu",
+                    CourseType = "Obligatory",
                     CourseContent = "Doğrusal denklemler, eşitsizlikler, fonksiyonlar, grafikler."
                 };
                 await _context.CourseDetails.AddAsync(courseDetail);
@@ -118,7 +117,7 @@ namespace api
             }
             if(!_context.DepartmentCourses.Any()){
                 var depCourse = new DepartmentCourse{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     CourseName = "Math",
                     TaughtSemester = 1,
                     Status = "Open",
@@ -130,7 +129,7 @@ namespace api
             }
             if(!_context.LecturerDepDetails.Any()){
                 var lectDepDetails = new LecturerDepDetails{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     TC = "10000000003",
                     HoursPerWeek = 0,
                     StartDate = DateTime.Now,
@@ -141,7 +140,7 @@ namespace api
             }
             if(!_context.StudentsDepDetails.Any()){
                 var studentDepDetails = new StudentDepDetails{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     TC = "10000000001",
                     StudentType = "Bachelor",
                     StudentStatus = "Active",
@@ -217,7 +216,7 @@ namespace api
             }
             if(!_context.StudentsCourseDetails.Any()){
                 var studentCourseDetails = new StudentCourseDetails{
-                    DepartmentName = "Bilgisayar Mühendisliği",
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     CourseCode = "BLM-1001",
                     SchoolYear = 2021,
                     TC = "10000000001",

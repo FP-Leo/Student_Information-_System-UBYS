@@ -1,5 +1,7 @@
 import EditProfile from "pages/edit-profile/EditProfile";
 import MainScreenCategories from "pages/MainScreenCategories";
+import ProfessorCalendar from "pages/professor/calendar/ProfessorCalendar";
+import ProfessorsStudents from "pages/professor/myStudents/ProfessorsStudents";
 import ProfessorSubjects from "pages/professor/subjects/ProfessorSubjects";
 import ProfessorsStudents from "pages/professor/myStudents/ProfessorsStudents";
 
@@ -17,9 +19,18 @@ const LecturerRoutes = [
     element: <ProfessorSubjects />,
   },
   {
+    path:"mystudents",
+    element:<ProfessorsStudents/>
+  },
+  {
+    path:"mycalendar",
+    element:<ProfessorCalendar/>
+  },
+  {
     path: "mystudents",
     element: <ProfessorsStudents />,
   },
+
 ];
 
 export default LecturerRoutes;

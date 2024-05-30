@@ -25,7 +25,7 @@ export default function MyStudentsItem({student}) {
               display: "grid",
               height: "125px",
               gridTemplateRows: "1fr 1fr 1fr 1fr",
-              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr",
               borderBottom: "1px solid #B3B3B3",
               borderLeft: "1px solid #B3B3B3",
               borderRight: "1px solid #B3B3B3",
@@ -171,25 +171,6 @@ export default function MyStudentsItem({student}) {
               <Typography>
                 {GANO}
               </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection:"column",
-                gridRow: "1/5",
-                borderRight:"1px solid #B3B3B3"
-              }}
-            >
-              <Typography>
-                <Button 
-                sx={{bgcolor:"#D3D1D1"}}>
-                    İşlemler
-                </Button>
-              </Typography>
-
             </Box>
 
             

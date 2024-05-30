@@ -52,6 +52,10 @@ namespace api.Controllers
                 return BadRequest("Bad input on the course type.");
             }
 
+            if(courseDetailsPostDto.CourseLevel != "Bachelor" && courseDetailsPostDto.CourseLevel != "Master" && courseDetailsPostDto.CourseLevel != "Doctoral" && courseDetailsPostDto.CourseLevel != "Associate"){
+                return BadRequest("Bad input on the course level.");
+            }
+
             var courseDetails = await _courseDetailsRepo.AddCourseDetailsAsync(courseDetailsPostDto.ToCourseExplanation());
 
             if(courseDetails == null)

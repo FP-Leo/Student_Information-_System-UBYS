@@ -130,6 +130,14 @@ namespace api.Controllers
                 return NotFound();
             }
 
+            if(studentAccountPOSTDto.CurrentType != "Bachelor" && studentAccountPOSTDto.CurrentType != "Master" && studentAccountPOSTDto.CurrentType != "Doctoral" && studentAccountPOSTDto.CurrentType != "Associate"){
+                return BadRequest("Bad input on the student type.");
+            }
+
+            if(studentAccountPOSTDto.CurrentStatus != "Active" && studentAccountPOSTDto.CurrentStatus != "Frozen"){
+                return BadRequest("Bad input on the student status.");
+            }
+
             accInfo.FirstName = studentAccountPOSTDto.FirstName;
             accInfo.LastName = studentAccountPOSTDto.LastName;
             accInfo.BirthDate = studentAccountPOSTDto.BirthDate;

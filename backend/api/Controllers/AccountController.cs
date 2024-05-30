@@ -105,6 +105,14 @@ namespace api.Controllers
         [HttpPost("Admin/System/Account/Register/Student")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentDto registerStudentDto){
+            if(registerStudentDto.CurrentType != "Bachelor" && registerStudentDto.CurrentType != "Master" && registerStudentDto.CurrentType != "Doctoral" && registerStudentDto.CurrentType != "Associate"){
+                return BadRequest("Bad input on the student type.");
+            }
+
+            if(registerStudentDto.CurrentStatus != "Active" && registerStudentDto.CurrentStatus != "Frozen"){
+                return BadRequest("Bad input on the student status.");
+            }
+            
             try{
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);

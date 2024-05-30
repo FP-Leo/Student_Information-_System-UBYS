@@ -60,9 +60,9 @@ namespace api.Repositories
             return course;
         }
 
-        public async Task<ICollection<DepartmentCourse>> GetDepartmentSemesterCoursesAsync(string DepartmentName, int Semester)
+        public async Task<ICollection<DepartmentCourse>> GetDepartmentSemesterCoursesAsync(String DepartmentName, String Level, int Semester)
         {
-            var courses = await _context.DepartmentCourses.Where(c=> c.DepartmentName == DepartmentName && c.TaughtSemester == Semester && c.Status == "Open").ToListAsync();
+            var courses = await _context.DepartmentCourses.Where(c=> c.DepartmentName == DepartmentName && c.TaughtSemester == Semester && c.Status == "Open" && c.CourseDetails.CourseLevel == Level).ToListAsync();
 
             return courses;
         }

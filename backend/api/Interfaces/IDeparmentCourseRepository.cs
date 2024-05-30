@@ -6,7 +6,7 @@ namespace api.Interfaces
     {
         Task<ICollection<DepartmentCourse>> GetDepartmentsOfCourseByCourseNameAsync(String CourseName);
         Task<ICollection<DepartmentCourse>> GetDepartmentCoursesAsync(String DepartmentName);
-        Task<ICollection<DepartmentCourse>> GetDepartmentSemesterCoursesAsync(String DepartmentName, int Semester);
+        Task<ICollection<DepartmentCourse>> GetDepartmentSemesterCoursesAsync(String DepartmentName, String Type, int Semester);
         Task<DepartmentCourse?> GetDeparmentCourseAsync(String CourseName, String DepartmentName);
         Task<DepartmentCourse?> GetDeparmentCourseByCourseCodeAsync(String CourseCode);
         Task<DepartmentCourse?> AddCourseToDepAsync(DepartmentCourse course);

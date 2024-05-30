@@ -80,6 +80,14 @@ namespace api.Controllers
             if(validDep == null){
                 return BadRequest("Department doesn't exist");
             }
+
+            if(studentDepDetailsPostDto.StudentType != "Bachelor" && studentDepDetailsPostDto.StudentType != "Master" && studentDepDetailsPostDto.StudentType != "Doctoral" && studentDepDetailsPostDto.StudentType != "Associate"){
+                return BadRequest("Bad input on the student type.");
+            }
+
+            if(studentDepDetailsPostDto.StudentStatus != "Graduate" && studentDepDetailsPostDto.StudentStatus != "Active" && studentDepDetailsPostDto.StudentStatus != "Frozen"){
+                return BadRequest("Bad input on the student status.");
+            }
             
             var depsDetails = await _studentDepDetailsRepository.CreateStudentDepDetailAsync(studentDepDetailsPostDto.ToStudentDepDetails());
             

@@ -1,18 +1,13 @@
-
 using System.ComponentModel.DataAnnotations;
 
 namespace api.DTO.CourseClass
 {
-    public class CourseClassDto
+    public class CourseClassPostWOCodeDto
     {
         [Required]
-        public int CourseClassID { get; set; } // Primary Key
-        [Required]
-        public string? CourseCode { get; set; }
+        public string? DepartmentName { get; set; }
         [Required]
         public string? CourseName { get; set; }
-        [Required]
-        public int SchoolYear { get; set; }
         [Required]
         public string? LecturerTC { get; set; }
         [Required]

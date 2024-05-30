@@ -1,7 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using api.DTO.DeparmentCourse;
 using api.DTO.DepartmentCourse;
 using api.Interfaces;
 using api.Mappers;
+using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +19,20 @@ namespace api.Controllers
         private readonly ICourseRepository _courseRepository;
         private readonly ICourseDetailsRepository _courseDetailsRepository;
         private readonly ISemesterDetailsRepository _semesterDetailsRepository;
-        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository){
+        private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
+        private readonly ILecturerAccountRepository _lecturerAccountRepository;
+        private readonly ICourseClassRepository _courseClassRepository; 
+        private readonly IUniversityRepository _universityRepository;   
+        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository, IStudentDepDetailsRepository studentDepDetailsRepository, ILecturerAccountRepository lecturerAccountRepository, ICourseClassRepository courseClassRepository, IUniversityRepository universityRepository){
             _departmentCourseRepository = courseDepRepository;
             _departmentRepository = departmentRepository;
             _courseRepository = courseRepository;
             _courseDetailsRepository = courseDetailsRepository;
             _semesterDetailsRepository = semesterDetailsRepository;
+            _studentDepDetailsRepository = studentDepDetailsRepository;
+            _lecturerAccountRepository = lecturerAccountRepository;
+            _courseClassRepository = courseClassRepository;
+            _universityRepository = universityRepository;
         }
 
         [HttpGet("University/Faculty/Department/Course/")]
@@ -40,13 +51,13 @@ namespace api.Controllers
             return Ok(course.ToDepartmentCourseDto());
         }
         [HttpGet("University/Faculty/Department/Semester/Courses/")]
-        public async Task<IActionResult> GetActiveDepCoursesBySemester([FromQuery] String DepName, [FromQuery] int Semester){
+        public async Task<IActionResult> GetActiveDepCoursesBySemester([FromQuery] String DepName, [FromQuery] String Level,[FromQuery] int Semester){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, Semester);
+            var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, Level, Semester);
 
             if(courses == null){
                 return NotFound();
@@ -107,6 +118,10 @@ namespace api.Controllers
             if(courseDetails == null){
                 return NotFound("Course Details not found");
             } 
+
+            if(courseDetails.CourseName != coursePostDto.CourseName){
+                return BadRequest("Course Details and Course Name doesn't match.");
+            }
 
             var SemesterDetail = await _semesterDetailsRepository.GetSemesterDetailsAsync(coursePostDto.DepartmentName, coursePostDto.TaughtSemester);
             if(SemesterDetail == null){
@@ -210,6 +225,51 @@ namespace api.Controllers
             }
 
             return NoContent();
+        }
+        [HttpGet("University/Faculty/Department/Semester/Student/Courses/")]
+        [Authorize(Roles = "Student")]
+        public async Task<IActionResult> GetAvailableCourseSelection([FromQuery] String DepName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var depsDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepName);
+
+            if(depsDetails == null){
+                return NotFound("You're not registered on this course");
+            }
+            
+            var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, depsDetails.StudentType, depsDetails.CurrentSemester);
+
+            if(courses == null){
+                return NotFound();
+            }
+
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to get university data. Report the error to the administrator.");
+            }
+
+            ICollection<CourseSelectionDto> courseSelectionList = [];
+            foreach(var course in courses){
+                var cc = await _courseClassRepository.GetCourseClassAsync(course.CourseCode, uni.CurrentSchoolYear);
+                var lec = await _lecturerAccountRepository.GetLecturerAccountByTCAsync(cc.LecturerTC);
+                var cd = await _courseDetailsRepository.GetCourseDetailsAsync(course.CourseDetailsId);
+                var courseSelectionDto = new CourseSelectionDto{
+                    CourseName = course.CourseName,
+                    CourseCode = course.CourseCode,
+                    CourseType = cd.CourseType,
+                    AKTS = cc.AKTS,
+                    Kredi = cc.Kredi,
+                    LecturerName = lec.FirstName + lec.LastName
+                };
+                courseSelectionList.Add(courseSelectionDto);
+            }
+
+            return Ok(courseSelectionList);
         }
     }
 }

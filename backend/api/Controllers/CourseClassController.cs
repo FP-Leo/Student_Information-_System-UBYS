@@ -49,7 +49,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(courseClass.ToCourseClassDto());
+            return Ok(courseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpGet("University/Faculty/Department/Course/Class/{SchoolYear:int}")]
         public async Task<IActionResult> GetCourseClass(int SchoolYear, [FromQuery] String DepName, [FromQuery] String CourseName){
@@ -70,7 +70,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(courseClass.ToCourseClassDto());
+            return Ok(courseClass.ToCourseClassDto(depCourse.CourseName));
         }
         /*
         [HttpGet("University/Faculty/Department/Courses/Class")]
@@ -99,9 +99,13 @@ namespace api.Controllers
         */
         [HttpPost("University/Faculty/Department/Course/Class")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddCourseClass([FromQuery] String DepName, [FromQuery] String CourseName, [FromBody] CourseClassPostDto courseClassPostDto){
+        public async Task<IActionResult> AddCourseClass([FromQuery] String DepName, [FromQuery] String CourseName, [FromBody] CourseClassPostWOCodeDto courseClassPostDto){
             if(!ModelState.IsValid)
             {
+                return BadRequest(ModelState);
+            }
+
+            if(CourseName != courseClassPostDto.CourseName || DepName != courseClassPostDto.DepartmentName){
                 return BadRequest(ModelState);
             }
 
@@ -109,10 +113,6 @@ namespace api.Controllers
 
             if(depCourse == null){
                 return NotFound();
-            }
-
-            if(depCourse.CourseCode != courseClassPostDto.CourseCode){
-                return BadRequest(ModelState);
             }
 
             var lectDepDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(courseClassPostDto.LecturerTC);
@@ -140,7 +140,7 @@ namespace api.Controllers
             }
 
             if(courseDetails.CourseType == "Mandatory"){
-                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(depCourse.DepartmentName, depCourse.TaughtSemester);
+                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(depCourse.DepartmentName, courseDetails.CourseLevel, depCourse.TaughtSemester);
                 int totalAKTS = 0;
                 foreach(var course in courses){
                     var cd = await _courseDetailsRepository.GetCourseDetailsAsync(course.CourseDetailsId);
@@ -160,7 +160,7 @@ namespace api.Controllers
                 }
             }
 
-            var courseClass = await _courseClassRepository.AddCourseClassAsync(courseClassPostDto.ToCourseClass(uni.CurrentSchoolYear));
+            var courseClass = await _courseClassRepository.AddCourseClassAsync(courseClassPostDto.ToCourseClass(uni.CurrentSchoolYear, depCourse.CourseCode));
             
             if(courseClass == null){
                 return BadRequest();
@@ -173,7 +173,7 @@ namespace api.Controllers
                 return StatusCode(500, "Failed to set Course as Open.");
             }
 
-            return Ok(courseClass.ToCourseClassDto());
+            return Ok(courseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpPut("University/Faculty/Department/Course/Class")]
         [Authorize(Roles = "Admin")]
@@ -214,7 +214,7 @@ namespace api.Controllers
                 return StatusCode(500);
             }
 
-            return Ok(updatedCourseClass.ToCourseClassDto());
+            return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpPut("University/Faculty/Department/Course/Class/Lecturer")]
         [Authorize(Roles = "Administrator")]
@@ -257,9 +257,10 @@ namespace api.Controllers
                 return StatusCode(500);
             }
 
-            return Ok(updatedCourseClass.ToCourseClassDto());
+            return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpDelete("University/Faculty/Department/Course/Class")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourseClass([FromQuery] String DepName, [FromQuery] String CourseName){
             if(!ModelState.IsValid)
             {
@@ -305,7 +306,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(courseClass.ToCourseClassDto());
+            return Ok(courseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpGet("University/Faculty/Department/Course/Class/Code/{SchoolYear:int}")]
         public async Task<IActionResult> GetCourseClassByCode(int SchoolYear, [FromQuery] String CourseCode){
@@ -326,7 +327,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(courseClass.ToCourseClassDto());
+            return Ok(courseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpPost("University/Faculty/Department/Course/Class/Code")]
         [Authorize(Roles = "Admin")]
@@ -366,7 +367,7 @@ namespace api.Controllers
             }
             
             if(courseDetails.CourseType == "Mandatory"){
-                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(depCourse.DepartmentName, depCourse.TaughtSemester);
+                var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(depCourse.DepartmentName, courseDetails.CourseLevel, depCourse.TaughtSemester);
                 int totalAKTS = 0;
                 foreach(var course in courses){
                     var cd = await _courseDetailsRepository.GetCourseDetailsAsync(course.CourseDetailsId);
@@ -392,7 +393,14 @@ namespace api.Controllers
                 return BadRequest();
             }
 
-            return Ok(courseClass.ToCourseClassDto());
+            depCourse.Status = "Open";
+            var res = await _departmentCourseRepository.UpdateDepsCourseAsync(depCourse);
+
+            if(res == null){
+                return StatusCode(500, "Failed to set Course as Open.");
+            }
+
+            return Ok(courseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpPut("University/Faculty/Department/Course/Class/Code")]
         [Authorize(Roles = "Admin")]
@@ -433,7 +441,7 @@ namespace api.Controllers
                 return StatusCode(500);
             }
 
-            return Ok(updatedCourseClass.ToCourseClassDto());
+            return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpPut("University/Faculty/Department/Course/Class/Code/Lecturer")]
         [Authorize(Roles = "Administrator")]
@@ -476,9 +484,10 @@ namespace api.Controllers
                 return StatusCode(500);
             }
 
-            return Ok(updatedCourseClass.ToCourseClassDto());
+            return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
         }
         [HttpDelete("University/Faculty/Department/Course/Class/Code")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourseClassByCode([FromQuery] String CourseCode){
             if(!ModelState.IsValid)
             {

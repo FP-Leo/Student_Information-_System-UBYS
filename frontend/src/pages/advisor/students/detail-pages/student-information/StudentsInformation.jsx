@@ -6,6 +6,7 @@ import {
   TableBody,
 } from "@mui/material";
 import { useTheme, alpha } from "@mui/material/styles";
+
 import SubjectTableRow from "./components/SubjectTableRow";
 import SubjectTableHead from "./components/SubjectTableHead";
 import { data } from "./../student-transcript/StudentTranscript";

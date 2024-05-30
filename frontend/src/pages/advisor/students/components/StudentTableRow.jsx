@@ -1,23 +1,18 @@
-import { Box, Button, Typography } from "@mui/material";
-import { Avatar } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import avatar1 from "assets/avatar1.png";
 import { useState } from "react";
 
-import { styled, alpha } from "@mui/material/styles";
-import Menu, { MenuProps } from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useNavigate } from "react-router-dom";
 
+import Menu from "@mui/material/Menu";
+import Divider from "@mui/material/Divider";
+import MenuItem from "@mui/material/MenuItem";
+import { useTheme, styled, alpha } from "@mui/material/styles";
+import { Box, Button, Typography, Avatar } from "@mui/material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
+import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import PersonOutlineTwoToneIcon from "@mui/icons-material/PersonOutlineTwoTone";
 import InsertDriveFileRoundedIcon from "@mui/icons-material/InsertDriveFileRounded";
-import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
-import { useNavigate } from "react-router-dom";
+
+import avatar1 from "assets/avatar1.png";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -63,10 +58,11 @@ const StyledMenu = styled((props) => (
 }));
 
 const StudentTableRow = ({ data }) => {
-  const navigate = useNavigate();
   const theme = useTheme();
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const {
-    id,
     name,
     stateDetail,
     number,
@@ -78,7 +74,6 @@ const StudentTableRow = ({ data }) => {
     gano,
   } = data;
 
-  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
-import { AuthBackground } from "./auth.styles";
+
+import Login from "./log-in.jsx/log-in";
 
 import Image from "../../assets/background-image.png";
-import Login from "./log-in.jsx/log-in";
+
+import { AuthBackground } from "./auth.styles";
 
 const AuthPage = () => {
   return (

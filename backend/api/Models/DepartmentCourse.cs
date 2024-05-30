@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
+    [Index(nameof(DepartmentName), nameof(CourseName), nameof(TaughtSemester),IsUnique = true)]
+    [Index(nameof(CourseCode), IsUnique = true)]
     public class DepartmentCourse
     {
         [Required]
@@ -14,13 +13,15 @@ namespace api.Models
         //Primary Key
         public int Id { get; set; }
         public int TaughtSemester { get; set; }
+        public String? CourseCode { get; set; }
+        public String? Status { get; set; }
         //Foreign Keys
         [Required]
         [Column(Order = 2)]
-        public string? CourseName { get; set; } 
+        public String? CourseName { get; set; } 
         [Required]
         [Column(Order = 1)]
-        public string? DepartmentName { get; set; }
+        public String? DepartmentName { get; set; }
         public int CourseDetailsId { get; set; }
         //Navigation Property
         public Course? Course{ get; set; }

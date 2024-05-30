@@ -1,9 +1,10 @@
-import { Box, IconButton, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Box, IconButton, Typography } from "@mui/material";
+
 import DownloadIcon from "assets/download-icon";
 
 const TableRow = ({ data }) => {
-  const { id, no, type, date, language, status } = data;
+  const { no, type, date, language, status } = data;
   const theme = useTheme();
   return (
     <Box

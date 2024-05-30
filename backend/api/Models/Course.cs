@@ -9,6 +9,6 @@ namespace api.Models
         [Key]
         public int CourseId { get; set; } 
         public string? CourseName { get; set; }
-        public DepartmentCourse? DepartmentCourse{ get; set; } // M to N relationship. New table.
+        public ICollection<DepartmentCourse>? DepartmentCourses{ get; set; } // M to N relationship. New table.
     }
 }

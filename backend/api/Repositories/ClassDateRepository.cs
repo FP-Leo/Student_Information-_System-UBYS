@@ -46,6 +46,13 @@ namespace api.Repositories
             return classDate;
         }
 
+        public async Task<ClassDate?> GetClassDateIdAsync(string day, DateTime time, int NumberOfClasses)
+        {
+            var classDate = await _context.ClassDates.FirstOrDefaultAsync(u => u.Day == day && u.Time == time && u.NumberOfClasses == NumberOfClasses);
+
+            return classDate;
+        }
+
         public async Task<ClassDate?> UpdateClassDateAsync(ClassDate classDate)
         {
             var result = await _context.SaveChangesAsync();

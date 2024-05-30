@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using api.DTO.AccountInfo.Student;
 
 namespace api.DTO.AccountInfo
 {
@@ -26,5 +27,7 @@ namespace api.DTO.AccountInfo
         public string? SchoolMail {get; set;}
         public string? PersonalMail {get; set;}
         public string? Phone {get; set;}
+        [Required]
+        public ICollection<StudentDepartmentDto>? Departments {get; set;}
     }
 }

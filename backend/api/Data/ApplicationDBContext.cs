@@ -17,12 +17,13 @@ namespace api.Data
         public DbSet<University> Universities{ get; set; }
         public DbSet<Faculty> Faculties{ get; set; }
         public DbSet<Department> Departments{ get; set; }
+        public DbSet<SemesterDetail> SemesterDetails { get; set; }
         public DbSet<StudentDepDetails> StudentsDepDetails{ get; set; }
         public DbSet<StudentCourseDetails> StudentsCourseDetails{ get; set; }
         public DbSet<LecturerDepDetails> LecturerDepDetails{ get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<DepartmentCourse> DepartmentCourses { get; set; }
-        public DbSet<CourseDetails> CourseExplanations { get; set; }
+        public DbSet<CourseDetails> CourseDetails { get; set; }
         public DbSet<CourseClass> CourseClasses { get; set; }
         public DbSet<ClassDate> ClassDates { get; set; }
         public DbSet<CourseClassDate> CourseClassDates { get; set; }
@@ -72,15 +73,13 @@ namespace api.Data
             // To give back the course name instead of the id.
             modelBuilder.Entity<Course>().HasAlternateKey(c => c.CourseName);
             // Compound Alt key to be used for Specific Course Explanation.
-            modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(dc => new { dc.CourseName, dc.DepartmentName });
+            modelBuilder.Entity<DepartmentCourse>().HasAlternateKey(dc => dc.CourseCode);
             // Compound Alt key to reference Lecturer, Department and Faculty at the same time.
             modelBuilder.Entity<LecturerDepDetails>().HasAlternateKey(ld => new { ld.DepartmentName, ld.TC });
             // Compound Alt key to reference Class, Course and Department at the same time.
-            modelBuilder.Entity<CourseClass>().HasAlternateKey(cc => new { cc.DepartmentName, cc.CourseName, cc.SchoolYear });
+            modelBuilder.Entity<CourseClass>().HasAlternateKey(cc => new { cc.CourseCode, cc.SchoolYear });
             // Compound Alt key to reference Student Dep Details.
             modelBuilder.Entity<StudentDepDetails>().HasAlternateKey(sdd => new { sdd.DepartmentName, sdd.TC });
-            // Compound 
-            modelBuilder.Entity<ClassDate>().HasAlternateKey(cd => new { cd.Day, cd.Time, cd.NumberOfClasses });
             //// Relationships
             
             //// User Account
@@ -149,19 +148,19 @@ namespace api.Data
                         .IsRequired()
                         .OnDelete(DeleteBehavior.Restrict);
             //// DepartmentCourse
-            // One to One DepartmentCourse - Course
+            // One to Many DepartmentCourse - Course
             modelBuilder.Entity<DepartmentCourse>()
                         .HasOne(e => e.Course)
-                        .WithOne(e => e.DepartmentCourse)
-                        .HasForeignKey<DepartmentCourse>(e => e.CourseName)
-                        .HasPrincipalKey<Course>(e => e.CourseName)
+                        .WithMany(e => e.DepartmentCourses)
+                        .HasForeignKey(e => e.CourseName)
+                        .HasPrincipalKey(e => e.CourseName)
                         .IsRequired();
-            // One to One DepartmentCourse - Department
+            // One to Many DepartmentCourse - Department
             modelBuilder.Entity<DepartmentCourse>()
                         .HasOne(e => e.Department)
-                        .WithOne(e => e.DepartmentCourse)
-                        .HasForeignKey<DepartmentCourse>(e => e.DepartmentName)
-                        .HasPrincipalKey<Department>(e => e.DepartmentName)
+                        .WithMany(e => e.DepartmentCourses)
+                        .HasForeignKey(e => e.DepartmentName)
+                        .HasPrincipalKey(e => e.DepartmentName)
                         .IsRequired();
             // Many to One DepartmentCourse - CourseDetails
             modelBuilder.Entity<DepartmentCourse>()
@@ -176,14 +175,13 @@ namespace api.Data
                         .WithMany(la => la.Courses)
                         .HasForeignKey(cc => cc.LecturerTC)
                         .HasPrincipalKey(la => la.TC)
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
             // Many to One Class - Course
             modelBuilder.Entity<CourseClass>()
                         .HasOne(e => e.DepartmentCourse)
                         .WithMany(e => e.CourseClasses)
-                        .HasForeignKey(cc => new { cc.CourseName, cc.DepartmentName })
-                        .HasPrincipalKey(dc => new { dc.CourseName, dc.DepartmentName })
+                        .HasForeignKey(cc => cc.CourseCode)
+                        .HasPrincipalKey(dc => dc.CourseCode)
                         .IsRequired();
             //// Lecturer Dep Details
             // Many to One LecturerDepDetail - Lecturer
@@ -206,8 +204,8 @@ namespace api.Data
             modelBuilder.Entity<StudentCourseDetails>()
                         .HasOne(scd => scd.CourseClass)
                         .WithMany(cc =>cc.StudentsCourseDetails)
-                        .HasForeignKey(scd => new { scd.DepartmentName, scd.CourseName, scd.SchoolYear })
-                        .HasPrincipalKey(cc => new { cc.DepartmentName, cc.CourseName, cc.SchoolYear })
+                        .HasForeignKey(scd => new { scd.CourseCode, scd.SchoolYear })
+                        .HasPrincipalKey(cc => new { cc.CourseCode, cc.SchoolYear })
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
             // Many to One StudentCourseDetails - StudentDetails
@@ -223,15 +221,22 @@ namespace api.Data
             modelBuilder.Entity<CourseClassDate>()
                         .HasOne(ccd => ccd.ClassDate)
                         .WithMany(cd => cd.CourseClassDates)
-                        .HasForeignKey(ccd => new { ccd.Day, ccd.Time, ccd.NumberOfClasses})
-                        .HasPrincipalKey(cd => new { cd.Day, cd.Time, cd.NumberOfClasses})
+                        .HasForeignKey(ccd => ccd.ClassDateId)
                         .IsRequired();
             // Many to One CourseClassDate - CourseClass
             modelBuilder.Entity<CourseClassDate>()
                         .HasOne(ccd => ccd.CourseClass)
                         .WithMany(cd => cd.CourseClassDates)
-                        .HasForeignKey(ccd => new { ccd.DepartmentName, ccd.CourseName, ccd.SchoolYear})
-                        .HasPrincipalKey(cc => new { cc.DepartmentName, cc.CourseName, cc.SchoolYear })
+                        .HasForeignKey(ccd => new { ccd.CourseCode, ccd.SchoolYear})
+                        .HasPrincipalKey(cc => new { cc.CourseCode, cc.SchoolYear })
+                        .IsRequired();
+            //// SemesterDetail
+            // Many to One SemesterDetail - Department
+             modelBuilder.Entity<SemesterDetail>()
+                        .HasOne(sd => sd.Department)
+                        .WithMany(d => d.SemestersDetails)
+                        .HasForeignKey(sd => sd.DepartmentName)
+                        .HasPrincipalKey(d => d.DepartmentName)
                         .IsRequired();
             base.OnModelCreating(modelBuilder);
         }

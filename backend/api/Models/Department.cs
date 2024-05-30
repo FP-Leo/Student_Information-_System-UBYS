@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace api.Models
 {
     [Index(nameof(DepartmentName), IsUnique = true)]
+    [Index(nameof(DepCode), IsUnique = true)]
     public class Department
     {
         [Key]
@@ -20,12 +21,16 @@ namespace api.Models
         [Column(Order = 1)]
         public string? FacultyName { get; set; }
         public string? HeadOfDepartmentTC { get; set; }
+        public int NumberOfSemesters { get; set; }
+        public int MaxYears {get; set; }
+        public String? DepCode { get; set; }
 
         // Navigation Properties
         public Faculty? Faculty { get; set; } 
         public User? HeadOfDepartment { get; set; } // One-to-One 
         public ICollection<StudentDepDetails>? StudentDepDetails { get; set;}
         public ICollection<LecturerDepDetails>? LecturerDepDetails { get; set;}
-        public DepartmentCourse? DepartmentCourse { get; set; } // Many to Many. New table.
+        public ICollection<DepartmentCourse>? DepartmentCourses { get; set; } // Many to Many. New table.
+        public ICollection<SemesterDetail>? SemestersDetails{ get; set; }
     }
 }

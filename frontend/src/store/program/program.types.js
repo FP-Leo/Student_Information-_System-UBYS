@@ -1,0 +1,3 @@
+export const PROGRAM_ACTION_TYPES = {
+  SET_PROGRAM: "SET_PROGRAM",
+};

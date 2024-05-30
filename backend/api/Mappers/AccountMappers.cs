@@ -1,4 +1,6 @@
 using api.DTO.AccountInfo;
+using api.DTO.AccountInfo.Lecturer;
+using api.DTO.AccountInfo.Student;
 using api.Models;
 
 namespace api.Mappers
@@ -22,7 +24,19 @@ namespace api.Mappers
                 Phone = studentAcc.Phone
             };
         }
-        public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc, String token){
+        public static StudentAccountLOGINDto ToStudentAccountLOGINDto(this StudentAccount studentAcc, String token, ICollection<StudentDepDetails>? studentDepDetails){
+            ICollection<StudentDepartmentDto>? depDto = [];
+            if(studentDepDetails != null){
+                foreach(var dep in studentDepDetails){
+                    var newDepDto = new StudentDepartmentDto{
+                        DepartmentName = dep.DepartmentName,
+                    };
+                    depDto.Add(newDepDto);
+                }
+            }else{
+                depDto = null;
+            }
+            
             return new StudentAccountLOGINDto{
                 Token = token,
                 Data = new StudentAccountDto{
@@ -37,7 +51,8 @@ namespace api.Mappers
                     CurrentStatus = studentAcc.CurrentStatus,
                     SchoolMail = studentAcc.SchoolMail,
                     PersonalMail = studentAcc.PersonalMail,
-                    Phone = studentAcc.Phone
+                    Phone = studentAcc.Phone,
+                    Departments = depDto
                 }
             };
         }
@@ -76,7 +91,19 @@ namespace api.Mappers
                 Phone = LecturerAcc.Phone
             };
         }
-        public static LecturerAccountLOGINDto ToLecturerAccountLOGINDto(this LecturerAccount LecturerAcc, String token){
+        public static LecturerAccountLOGINDto ToLecturerAccountLOGINDto(this LecturerAccount LecturerAcc, String token, ICollection<LecturerDepDetails>? lecturerDepDetails){
+            ICollection<LecturerDepartmentDto>? depDto = [];
+            if(lecturerDepDetails != null){
+                foreach(var dep in lecturerDepDetails){
+                    var newDepDto = new LecturerDepartmentDto{
+                        DepartmentName = dep.DepartmentName,
+                    };
+                    depDto.Add(newDepDto);
+                }
+            }else{
+                depDto = null;
+            }
+            
             return new LecturerAccountLOGINDto{
                 Token = token,
                 Data = new LecturerAccountDto{
@@ -92,7 +119,8 @@ namespace api.Mappers
                     TotalWorkHours = LecturerAcc.TotalWorkHours,
                     SchoolMail = LecturerAcc.SchoolMail,
                     PersonalMail = LecturerAcc.PersonalMail,
-                    Phone = LecturerAcc.Phone
+                    Phone = LecturerAcc.Phone,
+                    Departments = depDto
                 }
             };
         }

@@ -38,7 +38,7 @@ namespace api.Repositories
         }
         public async Task<CourseDetails?> GetCourseDetailsAsync(int CourseDetailsId)
         {
-            var courseDetails = await _context.CourseExplanations.FirstOrDefaultAsync(ce => ce.Id == CourseDetailsId);
+            var courseDetails = await _context.CourseDetails.FirstOrDefaultAsync(ce => ce.Id == CourseDetailsId);
 
             return courseDetails;
         }

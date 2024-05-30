@@ -1,7 +1,17 @@
-import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const TableRow = () => {
+import { Box, Typography } from "@mui/material";
+
+import {
+  calculateSubjectsPoint,
+  calculateSubjectsHBN,
+} from "utils/helper-functions";
+
+const TableRow = ({ data }) => {
+  const { courseName, final, midTerm, attendanceFulfilled } = data;
+
+  const points = calculateSubjectsPoint(midTerm, final);
+  const hbn = calculateSubjectsHBN(points);
   const navigate = useNavigate();
   return (
     <Box>
@@ -11,7 +21,7 @@ const TableRow = () => {
           display: "grid",
           height: "133px",
           gridTemplateRows: "1fr 1fr 1fr 1fr",
-          gridTemplateColumns: "1.5fr 2fr 1fr 1fr 3fr 2fr 2fr 1fr 2fr", // ne işe yarıyor
+          gridTemplateColumns: "1.5fr 2fr 1fr 1fr 3fr 2fr 2fr 1fr 2fr",
           borderBottom: "1px solid #B3B3B3",
           borderLeft: "1px solid #B3B3B3",
           borderRight: "1px solid #B3B3B3",
@@ -51,7 +61,7 @@ const TableRow = () => {
           }}
         >
           <Typography variant="body2" sx={{ textAlign: "center" }}>
-            Progamlama Dilleri Prensipleri
+            {courseName}
           </Typography>
         </Box>
         <Box
@@ -85,7 +95,7 @@ const TableRow = () => {
             gridRow: "1/5",
           }}
         >
-          <Typography variant="body2"> Ahmet Yıldırım</Typography>
+          <Typography variant="body2">{}</Typography>
         </Box>
         <Box
           sx={{
@@ -98,7 +108,9 @@ const TableRow = () => {
             borderLeft: "1px solid #B3B3B3",
           }}
         >
-          <Typography variant="body2">Devamlı</Typography>
+          <Typography variant="body2">
+            {attendanceFulfilled ? "Devamlı" : "Devamsız"}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -109,7 +121,7 @@ const TableRow = () => {
             borderBottom: "1px solid #B3B3B3",
           }}
         >
-          <Typography variant="body2">70</Typography>
+          <Typography variant="body2">{points}</Typography>
         </Box>
         <Box
           sx={{
@@ -122,7 +134,7 @@ const TableRow = () => {
             borderLeft: "1px solid #B3B3B3",
           }}
         >
-          <Typography variant="subtitle2">CB</Typography>
+          <Typography variant="subtitle2">{hbn}</Typography>
         </Box>
         <Box
           sx={{
@@ -133,7 +145,13 @@ const TableRow = () => {
             borderBottom: "1px solid #B3B3B3",
           }}
         >
-          <Typography variant="body2">Başarılı</Typography>
+          <Typography variant="body2">
+            {points >= 60
+              ? "Başarılı"
+              : points >= 50
+              ? "Koşulu Başarılı"
+              : "Başarısız"}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -161,7 +179,7 @@ const TableRow = () => {
               gridColumn: "2/3",
             }}
           >
-            <Typography variant="body2">70</Typography>
+            <Typography variant="body2">{midTerm}</Typography>
           </Box>
         </Box>
         <Box
@@ -190,7 +208,7 @@ const TableRow = () => {
               gridColumn: "2/3",
             }}
           >
-            <Typography variant="body2">70</Typography>
+            <Typography variant="body2">{final}</Typography>
           </Box>
         </Box>{" "}
         <Box

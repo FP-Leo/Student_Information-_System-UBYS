@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import { Box, Typography } from "@mui/material";
 
-const TableHeader = ({ title, right, left,onClick }) => {
+const TableHeader = ({ title, right, left, onClick }) => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ const TableHeader = ({ title, right, left,onClick }) => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#EEEFF0",
-        cursor : onClick !== null ? "pointer" : "default"
+        cursor: onClick !== null ? "pointer" : "default",
       }}
       onClick={onClick}
     >

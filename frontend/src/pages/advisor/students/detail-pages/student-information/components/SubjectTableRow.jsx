@@ -1,8 +1,10 @@
-import { Box, TableCell, TableRow, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { Box, TableCell, TableRow, Typography } from "@mui/material";
+
 const SubjectTableRow = ({ subject }) => {
   const { dersKodu, dersAdi, vize, final, devamDurumu } = subject;
   const theme = useTheme();
+
   return (
     <TableRow
       sx={{

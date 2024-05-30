@@ -1,8 +1,10 @@
-import { Box } from "@mui/material";
-import Navbar from "layout/Navbar";
 import { Outlet } from "react-router-dom";
+
+import Navbar from "layout/Navbar";
+
+import { Box } from "@mui/material";
+
 const MainLayout = () => {
-  console.log("MainLayout loaded");
   return (
     <Box sx={{ backgroundColor: "background.custom" }}>
       <Navbar />

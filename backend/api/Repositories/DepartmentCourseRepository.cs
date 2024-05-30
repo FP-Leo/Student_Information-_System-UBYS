@@ -59,5 +59,19 @@ namespace api.Repositories
                 return null;
             return course;
         }
+
+        public async Task<ICollection<DepartmentCourse>> GetDepartmentSemesterCoursesAsync(string DepartmentName, int Semester)
+        {
+            var courses = await _context.DepartmentCourses.Where(c=> c.DepartmentName == DepartmentName && c.TaughtSemester == Semester && c.Status == "Open").ToListAsync();
+
+            return courses;
+        }
+
+        public async Task<DepartmentCourse?> GetDeparmentCourseByCourseCodeAsync(string CourseCode)
+        {
+            var course = await _context.DepartmentCourses.FirstOrDefaultAsync(c=> c.CourseCode == CourseCode);
+
+            return course;
+        }
     }
 }

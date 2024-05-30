@@ -12,9 +12,9 @@ namespace api.Repositories
         public StudentCourseDetailsRepository(ApplicationDBContext context){
             _context = context;
         }
-        public async Task<StudentCourseDetails?> DeleteStudentCourseDetailsAsync(string? Department, string? Course, string? TC)
+        public async Task<StudentCourseDetails?> DeleteStudentCourseDetailsAsync(String CourseCode, String TC)
         {
-            var studentCourseDetail = await GetStudentCourseDetails(Department, Course, TC);
+            var studentCourseDetail = await GetStudentCourseDetails(CourseCode, TC);
 
             if (studentCourseDetail == null){
                 return null;
@@ -27,16 +27,16 @@ namespace api.Repositories
             return studentCourseDetail;
         }
 
-        public async Task<ICollection<StudentCourseDetails>?> GetAllStudentsCourseDetails(string? Department, string? Course)
+        public async Task<ICollection<StudentCourseDetails>?> GetAllStudentsCourseDetails(String CourseCode)
         {
-            var studentsCourseDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == Department && dd.CourseName == Course).ToListAsync();
+            var studentsCourseDetails = await _context.StudentsCourseDetails.Where(dd=> dd.CourseCode == CourseCode).ToListAsync();
 
             return studentsCourseDetails;
         }
 
-        public async Task<StudentCourseDetails?> GetStudentCourseDetails(string? Department, string? Course, string? TC)
+        public async Task<StudentCourseDetails?> GetStudentCourseDetails(string? CourseCode, string? TC)
         {
-            var studentCourseDetails = await _context.StudentsCourseDetails.FirstOrDefaultAsync(dd=> dd.DepartmentName == Department && dd.CourseName == Course && dd.TC == TC);
+            var studentCourseDetails = await _context.StudentsCourseDetails.FirstOrDefaultAsync(dd=> dd.CourseCode == CourseCode && dd.TC == TC);
 
             return studentCourseDetails;
         }

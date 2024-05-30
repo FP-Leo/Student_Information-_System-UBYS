@@ -7,7 +7,7 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public String? DepartmentName { get; set; }
         [Required]
-        public String? CourseName { get; set; }
+        public String? CourseCode{ get; set; }
         [Required]
         public String? TC { get; set; }
     }

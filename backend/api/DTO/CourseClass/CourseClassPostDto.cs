@@ -5,9 +5,7 @@ namespace api.DTO.CourseClass
     public class CourseClassPostDto
     {
         [Required]
-        public string? DepartmentName { get; set; } 
-        [Required]
-        public string? CourseName { get; set; }
+        public string? CourseCode { get; set; }
         [Required]
         public string? LecturerTC { get; set; }
         [Required]

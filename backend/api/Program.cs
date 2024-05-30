@@ -1,3 +1,4 @@
+using api;
 using api.Data;
 using api.Interfaces;
 using api.Models;
@@ -14,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
+builder.Services.AddTransient<Seed>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -98,7 +100,9 @@ builder.Services.AddScoped<ICourseDetailsRepository, CourseDetailsRepository>();
 builder.Services.AddScoped<ILecturerDepDetailsRepository, LecturerDepDetailsRepository>();
 builder.Services.AddScoped<ICourseClassRepository, CourseClassRepository>();
 builder.Services.AddScoped<IStudentCourseDetailsRepostiory, StudentCourseDetailsRepository>();
-
+builder.Services.AddScoped<IClassDateRepository, ClassDateRepository>();
+builder.Services.AddScoped<ICourseClassDateRepository, CourseClassDateRepository>();
+builder.Services.AddScoped<ISemesterDetailsRepository, SemesterDetailsRepository>();
 
 builder.Services.AddCors(options =>
 {
@@ -112,6 +116,19 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+SeedData(app);
+
+async void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<Seed>();
+        await service.SeedDataContext();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

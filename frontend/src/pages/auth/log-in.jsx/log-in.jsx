@@ -19,6 +19,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import { useDispatch } from "react-redux";
 import { setUserToken, setUserData } from "store/user/user.action";
+import { setProgram } from "store/program/program.action";
 
 const INITIAL_STATE = {
   username: "",
@@ -63,6 +64,7 @@ const Login = () => {
       dispatch(setUserData(response.data.data));
       localStorage.setItem("userData", JSON.stringify(response.data.data));
       localStorage.setItem("token", response.data.token);
+
       resetInputValue();
       navigate("/home");
     } catch (error) {

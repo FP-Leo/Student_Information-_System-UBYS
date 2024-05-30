@@ -1,5 +1,6 @@
 // src/TranscriptTable.js
 import React from "react";
+
 import {
   Table,
   TableBody,
@@ -11,13 +12,10 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-
 import { useTheme, alpha } from "@mui/material/styles";
 
 const TranscriptTable = ({ data }) => {
   const theme = useTheme();
-  // Sample data
-  console.log(data);
 
   return (
     <Box

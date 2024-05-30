@@ -14,7 +14,7 @@ namespace api.Controllers
         public ClassDateController(IClassDateRepository classDateRepository){
             _classDateRepo = classDateRepository;
         }
-        [HttpGet("ClassDate/{Id:int}")]
+        [HttpGet("Class/Date/{Id:int}")]
         public async Task<IActionResult> GetClassDateById(int Id){
             if(!ModelState.IsValid)
             {
@@ -29,7 +29,7 @@ namespace api.Controllers
 
             return Ok(classDate.ToClassDateDto());
         }
-        [HttpPost("ClassDate")]
+        [HttpPost("Class/Date")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddClassDate([FromBody] ClassDatePostDto classDatePostDto){
             if(!ModelState.IsValid)
@@ -45,7 +45,7 @@ namespace api.Controllers
 
             return Ok(classDate.ToClassDateDto());
         }
-        [HttpPut("ClassDate/{Id:int}")]
+        [HttpPut("Class/Date/{Id:int}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateClassDate(int Id, [FromBody] ClassDateUpdateDto classDateUpdateDto){
             if(!ModelState.IsValid)
@@ -77,7 +77,7 @@ namespace api.Controllers
             return Ok(updatedClassDate.ToClassDateDto());
         }
 
-        [HttpDelete("ClassDate/{Id:int}")]
+        [HttpDelete("Class/Date/{Id:int}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteClassDate(int Id){
             if(!ModelState.IsValid)

@@ -1,10 +1,15 @@
-import { Box, Button, Typography, Avatar } from "@mui/material";
 import { useRef } from "react";
-import PdfIcon from "assets/pdf-icon";
-import { useTheme } from "@mui/material/styles";
-import StudentTableRow from "./components/StudentTableRow";
+
 import generatePDF from "react-to-pdf";
+
+import { useTheme } from "@mui/material/styles";
+import { Box, Button, Typography } from "@mui/material";
+
+import StudentTableRow from "./components/StudentTableRow";
 import DownloadAsExcel from "./components/DownloadExcelFile";
+
+import PdfIcon from "assets/pdf-icon";
+
 import { getArrayFromObject } from "utils/helper-functions";
 
 export const STUDENTS = [
@@ -71,8 +76,8 @@ export const STUDENTS = [
 ];
 
 const AdvisorStudents = () => {
-  const targetRef = useRef();
   const theme = useTheme();
+  const targetRef = useRef();
   const dataAsArray = getArrayFromObject(STUDENTS);
   return (
     <Box

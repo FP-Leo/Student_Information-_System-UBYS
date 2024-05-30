@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+
 const LecturerSubjectRow = () => {
   const theme = useTheme();
   return (

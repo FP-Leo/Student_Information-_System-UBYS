@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace api.DTO.StudentCourseDetails
 {
@@ -11,9 +7,7 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public int Id { get; set;}
         [Required]
-        public String? DepartmentName { get; set; }
-        [Required]
-        public String? CourseName { get; set; }
+        public String? CourseCode { get; set;}
         [Required]
         public int SchoolYear { get; set; }
         [Required]

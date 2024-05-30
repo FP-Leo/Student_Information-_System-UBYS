@@ -8,11 +8,12 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-
 import { useTheme } from "@mui/material/styles";
+
 import LecturerSubjectRow from "../components/LecturerSubjectRow";
 const LecturerSubjects = () => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{

@@ -5,6 +5,7 @@ import { setUserToken, setUserData } from "store/user/user.action";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setProgram } from "store/program/program.action";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,13 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const user = localStorage.getItem("userData");
+    const user = JSON.parse(localStorage.getItem("userData"));
     const token = localStorage.getItem("token");
+    const program = localStorage.getItem("program");
     if (token) {
       dispatch(setUserToken(token));
-      dispatch(setUserData(JSON.parse(user)));
+      dispatch(setUserData(user));
+      dispatch(setProgram(program));
       const fetchUserData = async () => {
         try {
           const response = await axios.get(

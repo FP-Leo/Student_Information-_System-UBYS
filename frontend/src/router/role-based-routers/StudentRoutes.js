@@ -1,12 +1,9 @@
-import { lazy } from "react";
-
-import MainScreenCategories from "pages/MainScreenCategories";
-import Subjects from "pages/student/subjects/subjects";
-import SubjectsSelection from "pages/student/subjects-selection/SubjectsSelection";
-import EditProfile from "pages/edit-profile/EditProfile";
 import Calendar from "pages/student/calendar/Calendar";
+import Subjects from "pages/student/subjects/subjects";
+import EditProfile from "pages/edit-profile/EditProfile";
+import MainScreenCategories from "pages/MainScreenCategories";
+import SubjectsSelection from "pages/student/subjects-selection/SubjectsSelection";
 
-import ProtectedRoute from "../ProtectedRoute";
 import BelgeTablebi from "pages/student/belge-talebi/BelgeTalebi";
 import SubjectDetails from "pages/student/subjects/SubjectDetails.jsx/SubjectDetails";
 

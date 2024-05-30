@@ -14,14 +14,18 @@ namespace api.Controllers
         private readonly IDepartmentCourseRepository _departmentCourseRepository;
         private readonly IDepartmentRepository _departmentRepository;
         private readonly ICourseRepository _courseRepository;
-        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository){
+        private readonly ICourseDetailsRepository _courseDetailsRepository;
+        private readonly ISemesterDetailsRepository _semesterDetailsRepository;
+        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository){
             _departmentCourseRepository = courseDepRepository;
             _departmentRepository = departmentRepository;
             _courseRepository = courseRepository;
+            _courseDetailsRepository = courseDetailsRepository;
+            _semesterDetailsRepository = semesterDetailsRepository;
         }
 
         [HttpGet("University/Faculty/Department/Course/")]
-        public async Task<IActionResult> GetDepCourseByCourseIdAndDepId([FromQuery] String DepName, [FromQuery] String CourseName){
+        public async Task<IActionResult> GetDepCourseByCourseAndDepName([FromQuery] String DepName, [FromQuery] String CourseName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -35,6 +39,21 @@ namespace api.Controllers
 
             return Ok(course.ToDepartmentCourseDto());
         }
+        [HttpGet("University/Faculty/Department/Semester/Courses/")]
+        public async Task<IActionResult> GetActiveDepCoursesBySemester([FromQuery] String DepName, [FromQuery] int Semester){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, Semester);
+
+            if(courses == null){
+                return NotFound();
+            }
+
+            return Ok(courses.ToDepartmentCourseDto());
+        }
         [HttpGet("University/Faculty/Departments/Course")]
         public async Task<IActionResult> GetDepartmentsOfCourse([FromQuery] String CourseName){
             if(!ModelState.IsValid)
@@ -42,13 +61,13 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var course = await _departmentCourseRepository.GetDepartmentsOfCourseByCourseNameAsync(CourseName);
+            var courses = await _departmentCourseRepository.GetDepartmentsOfCourseByCourseNameAsync(CourseName);
 
-            if(course == null){
+            if(courses == null){
                 return NotFound();
             }
 
-            return Ok(course);
+            return Ok(courses.ToDepartmentCourseDto());
         }
         [HttpGet("University/Faculty/Department/Courses/")]
         public async Task<IActionResult> GetCoursesOfDepartment([FromQuery] String DepName){
@@ -57,13 +76,13 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
             
-            var course = await _departmentCourseRepository.GetDepartmentCoursesAsync(DepName);
+            var courses = await _departmentCourseRepository.GetDepartmentCoursesAsync(DepName);
 
-            if(course == null){
+            if(courses == null){
                 return NotFound();
             }
 
-            return Ok(course);
+            return Ok(courses.ToDepartmentCourseDto());
         }
         [HttpPost("University/Faculty/Department/Course")]
         [Authorize(Roles = "Admin")]
@@ -83,11 +102,36 @@ namespace api.Controllers
             if(validCourse == null){
                 return NotFound("Course not found!");
             }
-            
-            var depsDetails = await _departmentCourseRepository.AddCourseToDepAsync(coursePostDto.ToDepartmentCourse());
+
+            var courseDetails = await _courseDetailsRepository.GetCourseDetailsAsync(coursePostDto.CourseDetailsId);
+            if(courseDetails == null){
+                return NotFound("Course Details not found");
+            } 
+
+            var SemesterDetail = await _semesterDetailsRepository.GetSemesterDetailsAsync(coursePostDto.DepartmentName, coursePostDto.TaughtSemester);
+            if(SemesterDetail == null){
+                return NotFound("Semester Details not found. Either that semester doesn't exist or its info is not posted yet.");
+            }
+            int academicYear = (coursePostDto.TaughtSemester + 1) / 2;
+            int totalCourses = await _semesterDetailsRepository.GetNumOfCoursesInAcademicYear(academicYear);
+
+            if(totalCourses == -1){
+                return NotFound("No semester details on the specified academic year.");
+            }
+            int code = academicYear*1000 + totalCourses + 1;
+            String CourseCode = validDepartment.DepCode + "-" + code.ToString();
+
+            var depsDetails = await _departmentCourseRepository.AddCourseToDepAsync(coursePostDto.ToDepartmentCourse(CourseCode));
             
             if(depsDetails == null){
                 return BadRequest();
+            }
+            
+            SemesterDetail.TotalCourses++;
+            var result = await _semesterDetailsRepository.UpdateSemesterDetailsAsync(SemesterDetail);
+
+            if(result == null){
+                return StatusCode(500, "Failed to increment semester courses.");
             }
 
             return Ok(depsDetails.ToDepartmentCourseDto());
@@ -100,17 +144,27 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
+            if(departmentCourseUpdateDto.CourseName != CourseName || departmentCourseUpdateDto.DepartmentName != DepName){
+                return BadRequest();
+            }
+
+            if(departmentCourseUpdateDto.Status != "Open" && departmentCourseUpdateDto.Status != "Closed"){
+                return BadRequest("Status can only be Open or Closed");
+            }
+
+            var SemesterDetail = await _semesterDetailsRepository.GetSemesterDetailsAsync(departmentCourseUpdateDto.DepartmentName, departmentCourseUpdateDto.TaughtSemester);
+            if(SemesterDetail == null){
+                return NotFound("Semester Details not found. Either that semester doesn't exist or its info is not posted yet. Failed to Update the Course.");
+            }
+
             var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
 
             if(depCourse == null){
                 return BadRequest();
             }
 
-            if(departmentCourseUpdateDto.CourseName != CourseName || departmentCourseUpdateDto.DepartmentName != DepName){
-                return BadRequest();
-            }
-
             depCourse.TaughtSemester = departmentCourseUpdateDto.TaughtSemester;
+            depCourse.Status = departmentCourseUpdateDto.Status;
             depCourse.CourseDetailsId = departmentCourseUpdateDto.CourseDetailsId;
             
             var updatedDepCourse = await _departmentCourseRepository.UpdateDepsCourseAsync(depCourse);
@@ -129,9 +183,29 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await _departmentCourseRepository.DeleteCourseFromDepAsync(CourseName, DepName);
+            var validCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
+
+            if(validCourse == null){
+                return NotFound();
+            }
+            
+            var SemesterDetail = await _semesterDetailsRepository.GetSemesterDetailsAsync(validCourse.DepartmentName, validCourse.TaughtSemester);
+            if(SemesterDetail == null){
+                return NotFound("Semester Details not found. Either that semester doesn't exist or its info is not posted yet. Failed to Delete the Course.");
+            }
+            // Should not decrese because CourseCode depends on it 
+            /*
+            SemesterDetail.TotalCourses--;
+            var result = await _semesterDetailsRepository.UpdateSemesterDetailsAsync(SemesterDetail);
 
             if(result == null){
+                return StatusCode(500, "Failed to decrease semester courses. Aborting course deletion.");
+            }
+            */
+
+            var deletionResult = await _departmentCourseRepository.DeleteCourseFromDepAsync(CourseName, DepName);
+
+            if(deletionResult == null){
                 return BadRequest();
             }
 

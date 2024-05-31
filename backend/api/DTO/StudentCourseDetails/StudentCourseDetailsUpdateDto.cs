@@ -13,9 +13,11 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public bool AttendanceFulfilled { get; set; }
         [Required]
-        public float? MidTerm { get; set; }
+        public int? MidTerm { get; set; }
         [Required]
-        public float? Final { get; set; }
+        public int? Final { get; set; }
+        [Required]
+        public int? Complement { get; set; }
         [Required]
         public float? Grade { get; set; }
     }

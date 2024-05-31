@@ -64,5 +64,27 @@ namespace api.Repositories
                 return null;
             return studentCourseDetails;
         }
+
+        public async Task<ICollection<StudentCourseDetails>?> GetFailedCoursesAsync(string DepName, string TC, int semType)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Failed" && dd.CourseClass.DepartmentCourse.TaughtSemester % 2 == semType).ToListAsync();
+
+            return studentCoursesDetails;
+        }
+
+        public async Task<ICollection<StudentCourseDetails>?> GetPassedCoursesAsync(string DepName, string TC, int semType)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Passed" && dd.CourseClass.DepartmentCourse.TaughtSemester % 2 == semType).ToListAsync();
+
+            return studentCoursesDetails;
+        }
+
+        public async Task<ICollection<StudentCourseDetails>?> GetPartiallyPassedCoursesAsync(string DepName, string TC, int semType)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Partially Passed" && dd.CourseClass.DepartmentCourse.TaughtSemester % 2 == semType).ToListAsync();
+
+            return studentCoursesDetails;
+        }
+
     }
 }

@@ -55,6 +55,8 @@ namespace api
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     NumberOfSemesters = 8,
                     MaxYears = 7,
+                    CourseSelectionStartDate = DateTime.Now,
+                    CourseSelectionEndDate = new DateTime(2024,06,07,12,00,0),
                     DepCode = "BLM",
                     BuildingNumber = "2. Bina",
                     FloorNumber = 2,
@@ -101,18 +103,218 @@ namespace api
             }
             if(!_context.Courses.Any()){
                 var course = new Course{CourseName = "Math"};
+                var course2 = new Course{CourseName = "Algoritma"};
+                var course3 = new Course{CourseName = "BMG"};
+                var course4 = new Course{CourseName = "Tarih"};
+                var course5 = new Course{CourseName = "Edebiyat"};
+                var course6 = new Course{CourseName = "Muzik"};
+                var course7 = new Course{CourseName = "Diferansiyel Denklemler"};
+                var course8 = new Course{CourseName = "Ayrık Matematik"};
+                var course9 = new Course{CourseName = "Veri Yapıları"};
+                var course10 = new Course{CourseName = "Elektronik"};
+                var course11 = new Course{CourseName = "Nesne Yönelik Programlama"};
+                var course12 = new Course{CourseName = "Analitik Geometri"};
+                var course13 = new Course{CourseName = "Tarih 2"};
+                var course14 = new Course{CourseName = "Bilgisayar Organizasyon"};
+                var course15 = new Course{CourseName = "Ontoloji"};
+                var course16 = new Course{CourseName = "Edebiyat 2"};
+                var course17 = new Course{CourseName = "Sayısal Elektronik"};
+                var course18 = new Course{CourseName = "VYDY"};
+                var course19 = new Course{CourseName = "Math 2"};
+                var course20 = new Course{CourseName = "Programlama Laboratuvarı"};
+                var course21 = new Course{CourseName = "VTYS"};
                 await _context.Courses.AddAsync(course);
+                await _context.Courses.AddAsync(course2);
+                await _context.Courses.AddAsync(course3);
+                await _context.Courses.AddAsync(course4);
+                await _context.Courses.AddAsync(course5);
+                await _context.Courses.AddAsync(course6);
+                await _context.Courses.AddAsync(course7);
+                await _context.Courses.AddAsync(course8);
+                await _context.Courses.AddAsync(course9);
+                await _context.Courses.AddAsync(course10);
+                await _context.Courses.AddAsync(course11);
+                await _context.Courses.AddAsync(course12);
+                await _context.Courses.AddAsync(course13);
+                await _context.Courses.AddAsync(course14);
+                await _context.Courses.AddAsync(course15);
+                await _context.Courses.AddAsync(course16);
+                await _context.Courses.AddAsync(course17);
+                await _context.Courses.AddAsync(course18);
+                await _context.Courses.AddAsync(course19);
+                await _context.Courses.AddAsync(course20);
+                await _context.Courses.AddAsync(course21);
                 await _context.SaveChangesAsync();
             }
             if(!_context.CourseDetails.Any()){
                 var courseDetail = new CourseDetails{
                     CourseName = "Math",
-                    CourseLanguage = "Türkçe",
+                    CourseLanguage = "Turkish",
                     CourseLevel = "Bachelor",
-                    CourseType = "Obligatory",
+                    CourseType = "Mandatory",
                     CourseContent = "Doğrusal denklemler, eşitsizlikler, fonksiyonlar, grafikler."
                 };
+                var courseDetail2 = new CourseDetails{
+                    CourseName = "Algoritma",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail3 = new CourseDetails{
+                    CourseName = "BMG",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail4 = new CourseDetails{
+                    CourseName = "Tarih",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail5 = new CourseDetails{
+                    CourseName = "Edebiyat",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail6 = new CourseDetails{
+                    CourseName = "Muzik",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Optional",
+                    CourseContent = ""
+                };
+                var courseDetail7 = new CourseDetails{
+                    CourseName = "Diferansiyel Denklemler",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail8 = new CourseDetails{
+                    CourseName = "Ayrık Matematik",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail9 = new CourseDetails{
+                    CourseName = "Veri yapıları",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail10 = new CourseDetails{
+                    CourseName = "Elektronik",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail11 = new CourseDetails{
+                    CourseName = "Nesne Yönelik Programlama",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail12 = new CourseDetails{
+                    CourseName = "Analitik Geometri",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail13 = new CourseDetails{
+                    CourseName = "Tarih 2",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail14 = new CourseDetails{
+                    CourseName = "Bilgisayar Organizasyon",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail15 = new CourseDetails{
+                    CourseName = "Ontoloji",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Optional",
+                    CourseContent = ""
+                };
+                var courseDetail16 = new CourseDetails{
+                    CourseName = "Edebiyat 2",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail17 = new CourseDetails{
+                    CourseName = "Sayısal Elektronik",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail18 = new CourseDetails{
+                    CourseName = "VYDY",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail19 = new CourseDetails{
+                    CourseName = "Math 2",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail20 = new CourseDetails{
+                    CourseName = "Programlama Laboratuvarı",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Mandatory",
+                    CourseContent = ""
+                };
+                var courseDetail21 = new CourseDetails{
+                    CourseName = "VTYS",
+                    CourseLanguage = "Turkish",
+                    CourseLevel = "Bachelor",
+                    CourseType = "Optional",
+                    CourseContent = ""
+                };
                 await _context.CourseDetails.AddAsync(courseDetail);
+                await _context.CourseDetails.AddAsync(courseDetail2);
+                await _context.CourseDetails.AddAsync(courseDetail3);
+                await _context.CourseDetails.AddAsync(courseDetail4);
+                await _context.CourseDetails.AddAsync(courseDetail5);
+                await _context.CourseDetails.AddAsync(courseDetail6);
+                await _context.CourseDetails.AddAsync(courseDetail7);
+                await _context.CourseDetails.AddAsync(courseDetail8);
+                await _context.CourseDetails.AddAsync(courseDetail9);
+                await _context.CourseDetails.AddAsync(courseDetail10);
+                await _context.CourseDetails.AddAsync(courseDetail11);
+                await _context.CourseDetails.AddAsync(courseDetail12);
+                await _context.CourseDetails.AddAsync(courseDetail13);
+                await _context.CourseDetails.AddAsync(courseDetail14);
+                await _context.CourseDetails.AddAsync(courseDetail15);
+                await _context.CourseDetails.AddAsync(courseDetail16);
+                await _context.CourseDetails.AddAsync(courseDetail17);
+                await _context.CourseDetails.AddAsync(courseDetail18);
+                await _context.CourseDetails.AddAsync(courseDetail19);
+                await _context.CourseDetails.AddAsync(courseDetail20);
+                await _context.CourseDetails.AddAsync(courseDetail21);
                 await _context.SaveChangesAsync();
             }
             if(!_context.DepartmentCourses.Any()){
@@ -124,7 +326,187 @@ namespace api
                     CourseDetailsId = 1,
                     CourseCode = "BLM-1001"
                 };
+                var depCourse2 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Algoritma",
+                    TaughtSemester = 1,
+                    Status = "Open",
+                    CourseDetailsId = 2,
+                    CourseCode = "BLM-1002"
+                };
+                var depCourse3 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "BMG",
+                    TaughtSemester = 1,
+                    Status = "Open",
+                    CourseDetailsId = 3,
+                    CourseCode = "BLM-1003"
+                };
+                var depCourse4 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Tarih",
+                    TaughtSemester = 1,
+                    Status = "Open",
+                    CourseDetailsId = 4,
+                    CourseCode = "BLM-1004"
+                };
+                var depCourse5 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Edebiyat",
+                    TaughtSemester = 1,
+                    Status = "Open",
+                    CourseDetailsId = 5,
+                    CourseCode = "BLM-1005"
+                };
+                var depCourse6 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Muzik",
+                    TaughtSemester = 1,
+                    Status = "Open",
+                    CourseDetailsId = 6,
+                    CourseCode = "BLM-1006"
+                };
+                var depCourse7 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Diferansiyel Denklemler",
+                    TaughtSemester = 3,
+                    Status = "Open",
+                    CourseDetailsId = 7,
+                    CourseCode = "BLM-2001"
+                };
+                var depCourse8 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Ayrık Matematik",
+                    TaughtSemester = 3,
+                    Status = "Open",
+                    CourseDetailsId = 8,
+                    CourseCode = "BLM-2002"
+                };
+                var depCourse9 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Veri yapıları",
+                    TaughtSemester = 3,
+                    Status = "Open",
+                    CourseDetailsId = 9,
+                    CourseCode = "BLM-2003"
+                };
+                var depCourse10 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Elektronik",
+                    TaughtSemester = 3,
+                    Status = "Open",
+                    CourseDetailsId = 10,
+                    CourseCode = "BLM-2004"
+                };
+                var depCourse11 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Nesne Yönelik Programlama",
+                    TaughtSemester = 3,
+                    Status = "Open",
+                    CourseDetailsId = 11,
+                    CourseCode = "BLM-2005"
+                };
+                var depCourse12 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Analitik Geometri",
+                    TaughtSemester = 3,
+                    Status = "Open",
+                    CourseDetailsId = 12,
+                    CourseCode = "BLM-2006"
+                };
+                var depCourse13 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Tarih 2",
+                    TaughtSemester = 2,
+                    Status = "Open",
+                    CourseDetailsId = 13,
+                    CourseCode = "BLM-1007"
+                };
+                var depCourse14 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Bilgisayar Organizasyon",
+                    TaughtSemester = 4,
+                    Status = "Open",
+                    CourseDetailsId = 14,
+                    CourseCode = "BLM-2007"
+                };
+                var depCourse15 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Ontoloji",
+                    TaughtSemester = 5,
+                    Status = "Open",
+                    CourseDetailsId = 15,
+                    CourseCode = "BLM-3001"
+                };
+                var depCourse16 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Edebiyat 2",
+                    TaughtSemester = 2,
+                    Status = "Open",
+                    CourseDetailsId = 16,
+                    CourseCode = "BLM-1008"
+                };
+                var depCourse17 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Sayısal Elektronik",
+                    TaughtSemester = 4,
+                    Status = "Open",
+                    CourseDetailsId = 17,
+                    CourseCode = "BLM-2008"
+                };
+                var depCourse18 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "VYDY",
+                    TaughtSemester = 5,
+                    Status = "Open",
+                    CourseDetailsId = 17,
+                    CourseCode = "BLM-3002"
+                };
+                var depCourse19 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Math 2",
+                    TaughtSemester = 2,
+                    Status = "Open",
+                    CourseDetailsId = 16,
+                    CourseCode = "BLM-1009"
+                };
+                var depCourse20 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "Programlama Laboratuvarı",
+                    TaughtSemester = 4,
+                    Status = "Open",
+                    CourseDetailsId = 17,
+                    CourseCode = "BLM-2009"
+                };
+                var depCourse21 = new DepartmentCourse{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseName = "VTYS",
+                    TaughtSemester = 5,
+                    Status = "Open",
+                    CourseDetailsId = 17,
+                    CourseCode = "BLM-3003"
+                };
                 await _context.DepartmentCourses.AddAsync(depCourse);
+                await _context.DepartmentCourses.AddAsync(depCourse2);
+                await _context.DepartmentCourses.AddAsync(depCourse3);
+                await _context.DepartmentCourses.AddAsync(depCourse4);
+                await _context.DepartmentCourses.AddAsync(depCourse5);
+                await _context.DepartmentCourses.AddAsync(depCourse6);
+                await _context.DepartmentCourses.AddAsync(depCourse7);
+                await _context.DepartmentCourses.AddAsync(depCourse8);
+                await _context.DepartmentCourses.AddAsync(depCourse9);
+                await _context.DepartmentCourses.AddAsync(depCourse10);
+                await _context.DepartmentCourses.AddAsync(depCourse11);
+                await _context.DepartmentCourses.AddAsync(depCourse12);
+                await _context.DepartmentCourses.AddAsync(depCourse13);
+                await _context.DepartmentCourses.AddAsync(depCourse14);
+                await _context.DepartmentCourses.AddAsync(depCourse15);
+                await _context.DepartmentCourses.AddAsync(depCourse16);
+                await _context.DepartmentCourses.AddAsync(depCourse17);
+                await _context.DepartmentCourses.AddAsync(depCourse18);
+                await _context.DepartmentCourses.AddAsync(depCourse19);
+                await _context.DepartmentCourses.AddAsync(depCourse20);
+                await _context.DepartmentCourses.AddAsync(depCourse21);
                 await _context.SaveChangesAsync();
             }
             if(!_context.LecturerDepDetails.Any()){
@@ -144,10 +526,10 @@ namespace api
                     TC = "10000000001",
                     StudentType = "Bachelor",
                     StudentStatus = "Active",
-                    CurrentSchoolYear = 3,
-                    CurrentSemester = 6,
-                    CurrentAKTS = 30,
-                    TotalAKTS = 151,
+                    CurrentSchoolYear = 1,
+                    CurrentSemester = 1,
+                    CurrentAKTS = 0,
+                    TotalAKTS = 0,
                     Gno = 0,
                 };
                 await _context.StudentsDepDetails.AddAsync(studentDepDetails);
@@ -155,6 +537,126 @@ namespace api
             }
             if(!_context.CourseClasses.Any()){
                 var courseClass = new CourseClass{
+                    CourseCode = "BLM-1001",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass2 = new CourseClass{
+                    CourseCode = "BLM-1002",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass3 = new CourseClass{
+                    CourseCode = "BLM-1003",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass4 = new CourseClass{
+                    CourseCode = "BLM-1004",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass5 = new CourseClass{
+                    CourseCode = "BLM-1005",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass6 = new CourseClass{
+                    CourseCode = "BLM-1006",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 1,
+                    Kredi = 0,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass7 = new CourseClass{
+                    CourseCode = "BLM-2001",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass8 = new CourseClass{
+                    CourseCode = "BLM-2002",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass9 = new CourseClass{
+                    CourseCode = "BLM-2003",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass10 = new CourseClass{
+                    CourseCode = "BLM-2004",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass11 = new CourseClass{
+                    CourseCode = "BLM-2005",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass12 = new CourseClass{
+                    CourseCode = "BLM-2006",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass13 = new CourseClass{
                     CourseCode = "BLM-1001",
                     SchoolYear = 2023,
                     LecturerTC = "10000000003",
@@ -164,9 +666,269 @@ namespace api
                     MidTermValue = 40,
                     FinalValue = 60,
                 };
-                var courseClassTwo = new CourseClass{
-                    CourseCode = "BLM-1001",
-                    SchoolYear = 2021,
+                var courseClass14 = new CourseClass{
+                    CourseCode = "BLM-1002",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass15 = new CourseClass{
+                    CourseCode = "BLM-1003",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass16 = new CourseClass{
+                    CourseCode = "BLM-1004",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass17 = new CourseClass{
+                    CourseCode = "BLM-1005",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass18 = new CourseClass{
+                    CourseCode = "BLM-1006",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 1,
+                    Kredi = 0,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass19 = new CourseClass{
+                    CourseCode = "BLM-1007",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass20 = new CourseClass{
+                    CourseCode = "BLM-2007",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass21 = new CourseClass{
+                    CourseCode = "BLM-3001",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass22 = new CourseClass{
+                    CourseCode = "BLM-1008",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass23 = new CourseClass{
+                    CourseCode = "BLM-1008",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass24 = new CourseClass{
+                    CourseCode = "BLM-2008",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass25 = new CourseClass{
+                    CourseCode = "BLM-2008",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass26 = new CourseClass{
+                    CourseCode = "BLM-3002",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass27 = new CourseClass{
+                    CourseCode = "BLM-3002",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass28 = new CourseClass{
+                    CourseCode = "BLM-1009",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass29 = new CourseClass{
+                    CourseCode = "BLM-1009",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass30 = new CourseClass{
+                    CourseCode = "BLM-2009",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass31 = new CourseClass{
+                    CourseCode = "BLM-2009",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass32 = new CourseClass{
+                    CourseCode = "BLM-3003",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass33 = new CourseClass{
+                    CourseCode = "BLM-3003",
+                    SchoolYear = 2023,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 6,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass35 = new CourseClass{
+                    CourseCode = "BLM-2001",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass36 = new CourseClass{
+                    CourseCode = "BLM-2002",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass37 = new CourseClass{
+                    CourseCode = "BLM-2003",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass38 = new CourseClass{
+                    CourseCode = "BLM-2004",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass39 = new CourseClass{
+                    CourseCode = "BLM-2005",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass40 = new CourseClass{
+                    CourseCode = "BLM-2006",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 5,
+                    Kredi = 3,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
+                var courseClass41 = new CourseClass{
+                    CourseCode = "BLM-2007",
+                    SchoolYear = 2022,
                     LecturerTC = "10000000003",
                     HourPerWeek = 4,
                     AKTS = 6,
@@ -175,7 +937,45 @@ namespace api
                     FinalValue = 60,
                 };
                 await _context.CourseClasses.AddAsync(courseClass);
-                await _context.CourseClasses.AddAsync(courseClassTwo);
+                await _context.CourseClasses.AddAsync(courseClass2);
+                await _context.CourseClasses.AddAsync(courseClass3);
+                await _context.CourseClasses.AddAsync(courseClass4);
+                await _context.CourseClasses.AddAsync(courseClass5);
+                await _context.CourseClasses.AddAsync(courseClass6);
+                await _context.CourseClasses.AddAsync(courseClass7);
+                await _context.CourseClasses.AddAsync(courseClass8);
+                await _context.CourseClasses.AddAsync(courseClass9);
+                await _context.CourseClasses.AddAsync(courseClass10);
+                await _context.CourseClasses.AddAsync(courseClass11);
+                await _context.CourseClasses.AddAsync(courseClass12);
+                await _context.CourseClasses.AddAsync(courseClass13);
+                await _context.CourseClasses.AddAsync(courseClass14);
+                await _context.CourseClasses.AddAsync(courseClass15);
+                await _context.CourseClasses.AddAsync(courseClass16);
+                await _context.CourseClasses.AddAsync(courseClass17);
+                await _context.CourseClasses.AddAsync(courseClass18);
+                await _context.CourseClasses.AddAsync(courseClass19);
+                await _context.CourseClasses.AddAsync(courseClass20);
+                await _context.CourseClasses.AddAsync(courseClass21);
+                await _context.CourseClasses.AddAsync(courseClass22);
+                await _context.CourseClasses.AddAsync(courseClass23);
+                await _context.CourseClasses.AddAsync(courseClass24);
+                await _context.CourseClasses.AddAsync(courseClass25);
+                await _context.CourseClasses.AddAsync(courseClass26);
+                await _context.CourseClasses.AddAsync(courseClass27);
+                await _context.CourseClasses.AddAsync(courseClass28);
+                await _context.CourseClasses.AddAsync(courseClass29);
+                await _context.CourseClasses.AddAsync(courseClass30);
+                await _context.CourseClasses.AddAsync(courseClass31);
+                await _context.CourseClasses.AddAsync(courseClass32);
+                await _context.CourseClasses.AddAsync(courseClass33);
+                await _context.CourseClasses.AddAsync(courseClass35);
+                await _context.CourseClasses.AddAsync(courseClass36);
+                await _context.CourseClasses.AddAsync(courseClass37);
+                await _context.CourseClasses.AddAsync(courseClass38);
+                await _context.CourseClasses.AddAsync(courseClass39);
+                await _context.CourseClasses.AddAsync(courseClass40);
+                await _context.CourseClasses.AddAsync(courseClass31);
                 await _context.SaveChangesAsync();
             }
             if(!_context.ClassDates.Any()){
@@ -200,33 +1000,239 @@ namespace api
                     ClassDateId = 1
                 };
                 var courseClassDateTwo = new CourseClassDate{
-                    CourseCode = "BLM-1001",
+                    CourseCode = "BLM-1002",
                     SchoolYear = 2023,
                     ClassDateId = 2
                 };
-                var courseClassDateThree = new CourseClassDate{
-                    CourseCode = "BLM-1001",
-                    SchoolYear = 2021,
-                    ClassDateId = 1
-                };
                 await _context.CourseClassDates.AddAsync(courseClassDate);
                 await _context.CourseClassDates.AddAsync(courseClassDateTwo);
-                await _context.CourseClassDates.AddAsync(courseClassDateThree);
                 await _context.SaveChangesAsync();
             }
             if(!_context.StudentsCourseDetails.Any()){
                 var studentCourseDetails = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     CourseCode = "BLM-1001",
-                    SchoolYear = 2021,
+                    SchoolYear = 2022,
                     TC = "10000000001",
                     State = "Passed",
                     AttendanceFulfilled = true,
                     MidTerm = 85,
                     Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails2 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1002",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 30,
+                    Final = 40,
+                    ComplementRight = true,
+                    Complement = 60,
+                    Grade = 4,
+                };
+                var studentCourseDetails3 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1003",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Passed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails4 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1004",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 45,
+                    ComplementRight = true,
+                    Complement = 40,
+                    Grade = 4,
+                };
+                var studentCourseDetails5 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1005",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Partially Passed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 50,
+                    Final = 50,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails6 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1006",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = false,
+                    MidTerm = 85,
+                    Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = null
+                };
+                var studentCourseDetails7 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1007",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 45,
+                    ComplementRight = true,
+                    Complement = 40,
+                    Grade = 4,
+                };
+                var studentCourseDetails8 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1008",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Partially Passed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 50,
+                    Final = 50,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails9 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-1009",
+                    SchoolYear = 2022,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = false,
+                    MidTerm = 85,
+                    Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = null
+                };
+                var studentCourseDetails19 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2001",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Passed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails20 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2002",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 30,
+                    Final = 40,
+                    ComplementRight = true,
+                    Complement = 60,
+                    Grade = 4,
+                };
+                var studentCourseDetails21 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2003",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Passed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails22 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2004",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 45,
+                    ComplementRight = true,
+                    Complement = 40,
+                    Grade = 4,
+                };
+                var studentCourseDetails23 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2005",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Partially Passed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 50,
+                    Final = 50,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = 4,
+                };
+                var studentCourseDetails24 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2006",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = false,
+                    MidTerm = 85,
+                    Final = 95,
+                    ComplementRight = false,
+                    Complement = null,
+                    Grade = null
+                };
+                var studentCourseDetails25 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2007",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Failed",
+                    AttendanceFulfilled = true,
+                    MidTerm = 85,
+                    Final = 45,
+                    ComplementRight = true,
+                    Complement = 40,
                     Grade = 4,
                 };
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails2);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails3);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails4);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails5);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails6);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails7);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails8);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails9);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails19);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails20);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails21);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails22);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails23);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails24);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails25);
                 await _context.SaveChangesAsync();
             }
         }

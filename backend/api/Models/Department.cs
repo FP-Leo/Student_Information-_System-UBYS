@@ -23,6 +23,8 @@ namespace api.Models
         public string? HeadOfDepartmentTC { get; set; }
         public int NumberOfSemesters { get; set; }
         public int MaxYears {get; set; }
+        public DateTime CourseSelectionStartDate { get; set; }
+        public DateTime CourseSelectionEndDate { get; set;}
         public String? DepCode { get; set; }
 
         // Navigation Properties

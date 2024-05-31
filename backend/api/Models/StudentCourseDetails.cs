@@ -7,10 +7,12 @@ namespace api.Models
         [Column(Order = 0)]
         public int Id { get; set;}
         public String? State { get; set;}
-        public bool AttendanceFulfilled { get; set; }
-        public float? MidTerm { get; set; }
-        public float? Final { get; set; }
+        public bool? AttendanceFulfilled { get; set; }
+        public int? MidTerm { get; set; }
+        public int? Final { get; set; }
         public float? Grade { get; set; }
+        public bool? ComplementRight { get; set; } // bütünleme hakkı
+        public int? Complement { get; set; }
         // Foreign Key
         [Column(Order = 3)]
         public String? TC { get; set; }

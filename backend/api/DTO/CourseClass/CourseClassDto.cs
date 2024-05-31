@@ -22,8 +22,8 @@ namespace api.DTO.CourseClass
         [Required]
         public int Kredi { get; set; }
         [Required]
-        public float MidTermValue { get; set; }
+        public int MidTermValue { get; set; }
         [Required]
-        public float FinalValue { get; set; }
+        public int FinalValue { get; set; }
     }
 }

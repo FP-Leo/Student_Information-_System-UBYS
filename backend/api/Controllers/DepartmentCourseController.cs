@@ -7,6 +7,7 @@ using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.DependencyResolver;
 
 namespace api.Controllers
 {
@@ -20,10 +21,16 @@ namespace api.Controllers
         private readonly ICourseDetailsRepository _courseDetailsRepository;
         private readonly ISemesterDetailsRepository _semesterDetailsRepository;
         private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
+        private readonly IStudentCourseDetailsRepostiory _studentCourseDetailsRepostiory;
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
         private readonly ICourseClassRepository _courseClassRepository; 
         private readonly IUniversityRepository _universityRepository;   
-        public DepartmentCourseController(IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository, IStudentDepDetailsRepository studentDepDetailsRepository, ILecturerAccountRepository lecturerAccountRepository, ICourseClassRepository courseClassRepository, IUniversityRepository universityRepository){
+        public DepartmentCourseController(
+            IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, 
+            ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, 
+            ISemesterDetailsRepository semesterDetailsRepository, IStudentDepDetailsRepository studentDepDetailsRepository, 
+            ILecturerAccountRepository lecturerAccountRepository, ICourseClassRepository courseClassRepository, 
+            IUniversityRepository universityRepository, IStudentCourseDetailsRepostiory studentCourseDetailsRepostiory){
             _departmentCourseRepository = courseDepRepository;
             _departmentRepository = departmentRepository;
             _courseRepository = courseRepository;
@@ -33,6 +40,7 @@ namespace api.Controllers
             _lecturerAccountRepository = lecturerAccountRepository;
             _courseClassRepository = courseClassRepository;
             _universityRepository = universityRepository;
+            _studentCourseDetailsRepostiory = studentCourseDetailsRepostiory;
         }
 
         [HttpGet("University/Faculty/Department/Course/")]
@@ -234,6 +242,20 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
+            var validDepartment = await _departmentRepository.GetDepartmentAsync(DepName);
+
+            if(validDepartment == null){
+                return NotFound("Department not found!");
+            }
+
+            TimeSpan start = TimeSpan.FromTicks(validDepartment.CourseSelectionStartDate.Ticks);
+            TimeSpan current = TimeSpan.FromTicks(DateTime.Now.Ticks);
+            TimeSpan end = TimeSpan.FromTicks(validDepartment.CourseSelectionEndDate.Ticks);
+
+            if(current < start || current > end){
+                return BadRequest("Course Selection is closed.");
+            }
+
             var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
             var depsDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepName);
@@ -241,16 +263,51 @@ namespace api.Controllers
             if(depsDetails == null){
                 return NotFound("You're not registered on this course");
             }
-            
-            var courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, depsDetails.StudentType, depsDetails.CurrentSemester);
 
-            if(courses == null){
-                return NotFound();
+            CoursesSelectionDto list = await GetAvailableCourseSelectionList(depsDetails);
+
+            return Ok(list);
+        }
+
+        private async Task<CoursesSelectionDto> GetAvailableCourseSelectionList(StudentDepDetails depDetails){
+            CoursesSelectionDto list = new()
+            {
+                PassedCourses = await GetCoursesOfStudent("Passed", depDetails.DepartmentName, depDetails.TC, depDetails.CurrentSemester % 2),
+                FailedCourses = await GetCoursesOfStudent("Failed", depDetails.DepartmentName, depDetails.TC, depDetails.CurrentSemester % 2),
+                PartiallyPassedCourses = await GetCoursesOfStudent("Partially Passed", depDetails.DepartmentName, depDetails.TC, depDetails.CurrentSemester % 2)
+            };
+
+            if (depDetails.Gno != null && depDetails.Gno < 1.8 && depDetails.CurrentSemester > 4){
+                return list;
             }
 
+            list.CurrentSemesterCourses = await GetSemesterSelectionCourses(0, depDetails.DepartmentName, depDetails.StudentType, depDetails.CurrentSemester);
+
+            if(depDetails.Gno > 3.0 && list.FailedCourses == null){
+                list.OverHeadCourses =  await GetSemesterSelectionCourses(1, depDetails.DepartmentName, depDetails.StudentType, depDetails.CurrentSemester);
+            }
+            
+            return list;
+        }
+        private async Task<ICollection<CourseSelectionDto>?> GetSemesterSelectionCourses(int type, String DepName, String StudentType, int Semester){
+            var dep = await _departmentRepository.GetDepartmentAsync(DepName);
+            if(dep == null){
+                return null;
+            }
+
+            ICollection<DepartmentCourse>? courses = null;
+            if(type == 0)
+                courses = await _departmentCourseRepository.GetDepartmentSemesterCoursesAsync(DepName, StudentType, Semester);
+            else
+                courses = await _departmentCourseRepository.GetOverHeadDepCourses(DepName, StudentType, Semester);
+            
+            if(courses == null){
+                return null;
+            }
+            
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
             if(uni == null){
-                return StatusCode(500, "Failed to get university data. Report the error to the administrator.");
+                return null;
             }
 
             ICollection<CourseSelectionDto> courseSelectionList = [];
@@ -269,7 +326,58 @@ namespace api.Controllers
                 courseSelectionList.Add(courseSelectionDto);
             }
 
-            return Ok(courseSelectionList);
+            return courseSelectionList;
+        }
+        private async Task<ICollection<CourseSelectionDto>?> GetCoursesOfStudent(String Type, String DepName, String TC, int semType){
+            if(Type == null){
+                return null;
+            }
+            ICollection<StudentCourseDetails>? coursesDetails = null;
+            if(Type == "Failed"){
+                coursesDetails = await _studentCourseDetailsRepostiory.GetFailedCoursesAsync(DepName, TC, semType);
+            }else if(Type == "Passed")
+                coursesDetails = await _studentCourseDetailsRepostiory.GetPassedCoursesAsync(DepName, TC, semType);
+            else if(Type == "Partially Passed")
+                coursesDetails = await _studentCourseDetailsRepostiory.GetPartiallyPassedCoursesAsync(DepName, TC, semType);
+            else
+                return null;
+
+            if(coursesDetails == null)
+                return null;
+
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return null;
+            }
+
+            ICollection<DepartmentCourse> courses = [];
+
+            foreach(var courseDetail in coursesDetails){
+                var course = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(courseDetail.CourseCode);
+                courses.Add(course);
+            }
+
+            if(courses == null){
+                return null;
+            }
+
+            ICollection<CourseSelectionDto> courseSelectionList = [];
+            foreach(var course in courses){
+                var cc = await _courseClassRepository.GetCourseClassAsync(course.CourseCode, uni.CurrentSchoolYear);
+                var lec = await _lecturerAccountRepository.GetLecturerAccountByTCAsync(cc.LecturerTC);
+                var cd = await _courseDetailsRepository.GetCourseDetailsAsync(course.CourseDetailsId);
+                var courseSelectionDto = new CourseSelectionDto{
+                    CourseName = course.CourseName,
+                    CourseCode = course.CourseCode,
+                    CourseType = cd.CourseType,
+                    AKTS = cc.AKTS,
+                    Kredi = cc.Kredi,
+                    LecturerName = lec.FirstName + lec.LastName
+                };
+                courseSelectionList.Add(courseSelectionDto);
+            }
+
+            return courseSelectionList;
         }
     }
 }

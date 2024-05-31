@@ -12,8 +12,8 @@ namespace api.Models
         public int SchoolYear { get; set; }
         public int AKTS { get; set; }
         public int Kredi { get; set; }
-        public float MidTermValue { get; set; }
-        public float FinalValue { get; set; }
+        public int MidTermValue { get; set; }
+        public int FinalValue { get; set; }
         
         // Foreign Key
         public string? CourseCode { get; set; }

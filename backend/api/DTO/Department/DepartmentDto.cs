@@ -13,6 +13,10 @@ namespace api.DTO.Department
         public int NumberOfSemesters { get; set; }
         [Required] 
         public int MaxYears {get; set; }
+        [Required]
+        public DateTime CourseSelectionStartDate { get; set; }
+        [Required]
+        public DateTime CourseSelectionEndDate { get; set;}
         [Required] 
         public string? DepCode { get; set; }
         [Required] 

@@ -15,6 +15,8 @@ namespace api.Mappers
                 AttendanceFulfilled = studentCourseDetails.AttendanceFulfilled,
                 MidTerm = studentCourseDetails.MidTerm,
                 Final = studentCourseDetails.Final,
+                ComplementRight = studentCourseDetails.ComplementRight,
+                Complement = studentCourseDetails.Complement,
                 Grade = studentCourseDetails.Grade
             };
         }
@@ -24,10 +26,12 @@ namespace api.Mappers
                 CourseCode = studentCourseDetailsPostDto.CourseCode,
                 SchoolYear = SchoolYear,
                 TC = studentCourseDetailsPostDto.TC,
-                State = "Currently Attending",
+                State = "Attending",
                 AttendanceFulfilled = false,
                 MidTerm = null,
                 Final = null,
+                ComplementRight = null,
+                Complement = null,
                 Grade = null
             };
         }

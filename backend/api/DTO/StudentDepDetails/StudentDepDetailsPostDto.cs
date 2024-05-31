@@ -26,6 +26,6 @@ namespace api.DTO.StudentDepDetails
         public int TotalAKTS { get; set; }
         [Required]
         [Range(0, 4.0, ErrorMessage = "GNO must be between 0 and 4.")]
-        public float Gno { get; set; }
+        public float? Gno { get; set; }
     }
 }

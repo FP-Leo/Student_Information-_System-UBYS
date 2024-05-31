@@ -4,6 +4,7 @@ using System.Security.Claims;
 using api.DTO.StudentCourseDetails;
 using api.Interfaces;
 using api.Mappers;
+using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -185,10 +186,17 @@ namespace api.Controllers
                 return BadRequest("Course Class doesn't exist");
             }
 
+            var prevStudentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(studentCourseDetailsPostDto.CourseCode, studentCourseDetailsPostDto.TC);
+
             var studentCourseDetails = await _studentCourseDetailsRepository.CreateStudentCourseDetails(studentCourseDetailsPostDto.ToStudentCourseDetails(uni.CurrentSchoolYear));
             
             if(studentCourseDetails == null){
                 return BadRequest();
+            }
+
+            if(prevStudentCourseDetails != null){
+                studentCourseDetails.AttendanceFulfilled = prevStudentCourseDetails.AttendanceFulfilled;
+                prevStudentCourseDetails.State = "Re-Attended";
             }
 
             return Ok(studentCourseDetails.ToStudentCourseDetailsDto());
@@ -199,6 +207,18 @@ namespace api.Controllers
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            if(studentCourseDetailsUpdateDto.MidTerm != null && (studentCourseDetailsUpdateDto.MidTerm < 0 || studentCourseDetailsUpdateDto.MidTerm > 100 )){
+                return BadRequest("Bad input on Mid Term value.");
+            }
+
+            if(studentCourseDetailsUpdateDto.Final != null && (studentCourseDetailsUpdateDto.Final < 0 || studentCourseDetailsUpdateDto.Final > 100 )){
+                return BadRequest("Bad input on Final value.");
+            }
+
+            if(studentCourseDetailsUpdateDto.Complement != null && (studentCourseDetailsUpdateDto.Complement < 0 || studentCourseDetailsUpdateDto.Complement > 100 )){
+                return BadRequest("Bad input on Complement value.");
             }
 
             var validDep = await _departmentRepository.GetDepartmentAsync(DepName);
@@ -215,11 +235,11 @@ namespace api.Controllers
 
             var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
             if(depCourse == null){
-                return BadRequest();
+                return BadRequest("Course is not given on this department");
             }
 
             if(depCourse.CourseCode != studentCourseDetailsUpdateDto.CourseCode){
-                return BadRequest();
+                return BadRequest("Query CourseCode not the same as the body.");
             }
 
             var validStudent = await _studentAccountRepository.GetStudentAccountByTCAsync(studentCourseDetailsUpdateDto.TC);
@@ -237,7 +257,7 @@ namespace api.Controllers
             var validClass = await _courseClassRepository.GetCourseClassAsync(studentCourseDetailsUpdateDto.CourseCode, uni.CurrentSchoolYear);
             
             if(validClass == null){
-                return BadRequest("Course Class doesn't exist");
+                return BadRequest("Course is not opened.");
             }
 
             var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(studentCourseDetailsUpdateDto.CourseCode, TC);
@@ -246,11 +266,34 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            studentCourseDetails.State = studentCourseDetailsUpdateDto.State;
+            if(studentCourseDetails.ComplementRight == null && studentCourseDetails.Complement != null){
+                return BadRequest("You can't post Complement points without entering Mid Terms and Final first.");
+            }
+
+            if(studentCourseDetails.ComplementRight == false && studentCourseDetails.Complement != null){
+                return BadRequest("This student doesn't have the right to attend the Complement Exam.");
+            }
+
             studentCourseDetails.AttendanceFulfilled = studentCourseDetailsUpdateDto.AttendanceFulfilled;
             studentCourseDetails.MidTerm = studentCourseDetailsUpdateDto.MidTerm;
             studentCourseDetails.Final = studentCourseDetailsUpdateDto.Final;
-            studentCourseDetails.Grade = studentCourseDetailsUpdateDto.Grade;
+            studentCourseDetails.Complement = studentCourseDetailsUpdateDto.Complement;
+
+            if(studentCourseDetails.AttendanceFulfilled != null ){
+                if(studentCourseDetails.AttendanceFulfilled == false){
+                    studentCourseDetails.State = "Failed";
+                    studentCourseDetails.ComplementRight = false;
+                }else if(studentCourseDetails.ComplementRight != null && studentCourseDetails.ComplementRight == true && studentCourseDetails.Complement != null){
+                    CalculateGrade(studentCourseDetails, validClass.MidTermValue, validClass.FinalValue, 1);
+                }else if(studentCourseDetails.Final != null){
+                    if(studentCourseDetails.Final < 50){
+                        studentCourseDetails.State = "Failed";
+                        studentCourseDetails.ComplementRight = true;
+                    }else{
+                        CalculateGrade(studentCourseDetails, validClass.MidTermValue, validClass.FinalValue, 0);
+                    }   
+                }
+            }
             
             var updatedStudentCourseDetails = await _studentCourseDetailsRepository.UpdateStudentCourseDetailsAsync(studentCourseDetails);
             
@@ -280,6 +323,26 @@ namespace api.Controllers
             }
 
             return NoContent();
+        }
+        private void CalculateGrade(StudentCourseDetails studentCourseDetails, int MidTermValue, int FinalValue, int? finalNote){
+            
+            if(finalNote == 0){
+                finalNote = studentCourseDetails.Final;
+            }else{
+                finalNote = studentCourseDetails.Complement;
+            }
+            
+            studentCourseDetails.Grade = finalNote*(FinalValue/100) + studentCourseDetails.MidTerm*(MidTermValue/100);
+            if(studentCourseDetails.Grade < 1){
+                studentCourseDetails.State = "Failed";
+                studentCourseDetails.ComplementRight = true;
+            }else if(studentCourseDetails.Grade > 1 && studentCourseDetails.Grade < 2){
+                studentCourseDetails.State = "Partially Passed";
+                studentCourseDetails.ComplementRight = false;
+            }else{
+                studentCourseDetails.State = "Passed";
+                studentCourseDetails.ComplementRight = false;
+            }
         }
     }
 }

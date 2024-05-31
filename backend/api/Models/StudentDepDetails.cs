@@ -21,7 +21,7 @@ namespace api.Models
         [Range(0, 240, ErrorMessage = "Total AKTS must be between 0 and 240.")]
         public int TotalAKTS { get; set; }
         [Range(0, 4.0, ErrorMessage = "GNO must be between 0 and 4.")]
-        public float Gno { get; set; }
+        public float? Gno { get; set; }
         //Foreign Keys
         [Column(Order = 2)]
         public string? DepartmentName { get; set; }

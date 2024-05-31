@@ -18,8 +18,8 @@ import {
   selectedSubjectsAkts,
 } from "store/ders-secimi/ders-secimi.selector";
 
-const Ders = ({ data }) => {
-  const { subjectName, subjectCode, akts, subeler, aciklama, state } = data;
+const Ders = ({ data, state }) => {
+  const { courseCode, courseName, akts, lecturerName, courseType } = data;
 
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Ders = ({ data }) => {
     if (selectedSubjects === undefined) return isSelected;
     let found = false;
     selectedSubjects.forEach((item) => {
-      if (item.subjectCode === subjectCode) found = true;
+      if (item.courseCode === courseCode) found = true;
     });
     setIsSelected(found);
     // eslint-disable-next-line
@@ -44,7 +44,8 @@ const Ders = ({ data }) => {
     if (selectedAkts + akts > 35) {
       toast.error("35 AKTS'den fazla ders seçemezsiniz!");
       return;
-    } else dispatch(addSubjectToStore(selectedSubjects, data));
+    } else
+      dispatch(addSubjectToStore(selectedSubjects, { ...data, type: state }));
   };
 
   const handleChange = (event) => {
@@ -100,7 +101,7 @@ const Ders = ({ data }) => {
           }}
         >
           <Typography variant="subtitle2" color="info.dark">
-            {subjectCode}
+            {courseCode}
           </Typography>
         </Box>
         <Box
@@ -111,7 +112,7 @@ const Ders = ({ data }) => {
             alignItems: "center",
           }}
         >
-          <Typography variant="subtitle2">{subjectName}</Typography>
+          <Typography variant="subtitle2">{courseName}</Typography>
         </Box>
         <Box
           sx={{
@@ -145,11 +146,7 @@ const Ders = ({ data }) => {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {subeler.map((sube, index) => (
-                <MenuItem key={index} value={sube}>
-                  {sube}
-                </MenuItem>
-              ))}
+              <MenuItem value={lecturerName}>{lecturerName}</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -160,7 +157,7 @@ const Ders = ({ data }) => {
             alignItems: "center",
           }}
         >
-          <Typography variant="subtitle2">{aciklama}</Typography>
+          <Typography variant="subtitle2">Alabilir</Typography>
         </Box>
       </Box>
       <ToastContainer />

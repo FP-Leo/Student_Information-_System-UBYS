@@ -6,8 +6,11 @@ import { Box, Typography } from "@mui/material";
 
 import SelectSubjectsTableHeader from "components/SelectSubjectsTableHeader";
 
-const ZorunluDersler = () => {
+const ZorunluDersler = ({ courses }) => {
   const theme = useTheme();
+  const { required, failed } = courses;
+  console.log("required", required);
+  console.log("failed", failed);
   return (
     <Box
       sx={{
@@ -50,9 +53,25 @@ const ZorunluDersler = () => {
           flexDirection: "column",
         }}
       >
-        {Data.zorunlu.map((item, index) => (
-          <Ders key={index} data={item} />
-        ))}
+        {failed
+          ? failed.map((item, index) => (
+              <Ders state="failed" key={index} data={item} />
+            ))
+          : null}
+        {required ? (
+          required.map((item, index) => (
+            <Ders state="success" key={index} data={item} />
+          ))
+        ) : (
+          <Typography
+            padding={3}
+            color="error"
+            textAlign="center"
+            variant="subtitle2"
+          >
+            Ders bulunamadı.
+          </Typography>
+        )}
       </Box>
     </Box>
   );

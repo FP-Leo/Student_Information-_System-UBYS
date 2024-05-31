@@ -3,7 +3,7 @@ import { createAction } from "../../utils/reducer";
 
 const addSubject = (subjectsSelected, subjectToAdd) => {
   const existingSubject = subjectsSelected.find(
-    (subject) => subject.subjectCode === subjectToAdd.subjectCode
+    (subject) => subject.courseCode === subjectToAdd.courseCode
   );
 
   if (existingSubject) {
@@ -14,7 +14,7 @@ const addSubject = (subjectsSelected, subjectToAdd) => {
 
 const removeSubject = (subjectsSelected, subjectToRemove) => {
   return subjectsSelected.filter(
-    (subject) => subject.subjectCode !== subjectToRemove.subjectCode
+    (subject) => subject.courseCode !== subjectToRemove.courseCode
   );
 };
 

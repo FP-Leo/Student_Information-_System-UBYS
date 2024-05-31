@@ -13,13 +13,27 @@ import UstDonemDersler from "./tab-components/UstDonemDersler";
 import ProgramDisiDersler from "./tab-components/ProgramDisiDersler";
 import BasariliOnunanDersler from "./tab-components/BasariliOnunanDersler";
 
-const SecDersler = () => {
+const SecDersler = ({ data }) => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const {
+    currentSemesterCourses,
+    failedCourses,
+    overHeadCourses,
+    partiallyPassedCourses,
+    passedCourses,
+  } = data;
+  const optionalCourses = currentSemesterCourses?.filter(
+    (course) => course.courseType === "Optional"
+  );
+  const requiredCourses = currentSemesterCourses?.filter(
+    (course) => course.courseType === "Mandatory"
+  );
 
   return (
     <Box
@@ -69,16 +83,18 @@ const SecDersler = () => {
           <Aciklama />
         </CustomTabPanel>{" "}
         <CustomTabPanel value={value} index={1}>
-          <ZorunluDersler />
+          <ZorunluDersler
+            courses={{ required: requiredCourses, failed: failedCourses }}
+          />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          <UstDonemDersler />
+          <UstDonemDersler courses={overHeadCourses} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          <BasariliOnunanDersler />
+          <BasariliOnunanDersler courses={passedCourses} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={4}>
-          <SecmeliDersler />
+          <SecmeliDersler courses={optionalCourses} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={5}>
           <ProgramDisiDersler />

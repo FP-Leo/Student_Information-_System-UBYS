@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 
 import SelectSubjectsTableHeader from "components/SelectSubjectsTableHeader";
 
-const UstDonemDersler = () => {
+const UstDonemDersler = ({ courses }) => {
   const theme = useTheme();
   return (
     <Box
@@ -49,9 +49,20 @@ const UstDonemDersler = () => {
           flexDirection: "column",
         }}
       >
-        {Data.ustDonem.map((item) => (
-          <Ders data={item} />
-        ))}
+        {courses ? (
+          courses.map((item, index) => (
+            <Ders state="success" key={index} data={item} />
+          ))
+        ) : (
+          <Typography
+            padding={3}
+            color="error"
+            textAlign="center"
+            variant="subtitle2"
+          >
+            Ders bulunamadı.
+          </Typography>
+        )}
       </Box>
     </Box>
   );

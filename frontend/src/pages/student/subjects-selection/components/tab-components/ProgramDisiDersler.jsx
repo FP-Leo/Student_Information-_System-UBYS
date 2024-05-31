@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 
 import SelectSubjectsTableHeader from "components/SelectSubjectsTableHeader";
 
-const ProgramDisiDersler = () => {
+const ProgramDisiDersler = ({ courses }) => {
   const theme = useTheme();
   return (
     <Box
@@ -50,9 +50,18 @@ const ProgramDisiDersler = () => {
           flexDirection: "column",
         }}
       >
-        {Data.programDisi.map((item) => (
-          <Ders data={item} />
-        ))}
+        {courses ? (
+          courses.map((item) => <Ders data={item} />)
+        ) : (
+          <Typography
+            padding={3}
+            color="error"
+            textAlign="center"
+            variant="subtitle2"
+          >
+            Ders bulunamadı.
+          </Typography>
+        )}
       </Box>
     </Box>
   );

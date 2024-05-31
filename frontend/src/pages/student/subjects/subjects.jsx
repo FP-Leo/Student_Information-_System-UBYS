@@ -2,24 +2,24 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 
-import { useTheme } from "@mui/material/styles";
-import { Box, Button, Typography } from "@mui/material";
-
-import TableRow from "components/TableRow";
-import TableHeader from "components/TableHeader";
+import { Box, Button, CircularProgress } from "@mui/material";
 
 import { useSelector } from "react-redux";
 import { selectProgram } from "store/program/program.selector";
 
 import { getToken } from "utils/helper-functions";
+import SubjectsTable from "./SubjectsTable";
+import { selectUserToken } from "store/user/user.selector";
 
 const Subjects = () => {
-  const theme = useTheme();
   const program = useSelector(selectProgram);
+  const token = useSelector(selectUserToken);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    const token = getToken();
+    setLoading(true);
     axios
       .get(
         "http://localhost:5158/api/University/Faculty/Departments/Student/Courses/Details",
@@ -32,11 +32,14 @@ const Subjects = () => {
       )
       .then((response) => {
         setSubjects(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [program]);
+
+  const result = Object.groupBy(subjects, ({ schoolYear }) => schoolYear);
 
   return (
     <Box
@@ -49,64 +52,47 @@ const Subjects = () => {
         justifyContent: "center",
       }}
     >
-      <Box
-        sx={{
-          width: "1200px",
-          minWidth: "1200px",
-          marginTop: "50px",
-          borderRadius: "10px",
-          boxShadow: theme.customShadows.card,
-          backgroundColor: "background.neutral",
-          paddingBottom: "30px",
-          marginBottom: "50px",
-        }}
-      >
+      {loading ? (
         <Box
           sx={{
-            marginY: "20px",
-            marginX: "35px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "200px",
           }}
         >
-          <Typography variant="subtitle1">2023 - Bahar</Typography>
+          <CircularProgress />
         </Box>
-        <Box
-          sx={{
-            width: "100%",
-            display: "grid",
-            gridTemplateColumns: "1.5fr 2fr 1fr 1fr 3fr 2fr 2fr 1fr 2fr",
-            borderLeft: "1px solid #B3B3B3",
-            borderRight: "1px solid #B3B3B3",
-          }}
-        >
-          <TableHeader left={false} right={true} title="Ders Kodu" />
-          <TableHeader left={false} right={false} title="Ders Adı" />
-          <TableHeader left={true} right={true} title="Kredi" />
-          <TableHeader left={false} right={true} title="AKTS" />
-          <TableHeader left={false} right={false} title="Dersin Koordinatörü" />
-          <TableHeader left={true} right={true} title="Devam Durumu" />
-          <TableHeader left={false} right={false} title="Geçme Notu" />
-          <TableHeader left={true} right={true} title="HBN" />
-          <TableHeader left={false} right={false} title="Başarı Durumu" />
-        </Box>
-        {subjects.map((subject, index) => (
-          <TableRow key={index} data={subject} />
-        ))}
-      </Box>
-      <Box sx={{ margin: "50px" }}>
-        <Button
-          type="submit"
-          size="large"
-          variant="contained"
-          style={{
-            height: "50px",
-            borderRadius: "12px",
-            marginTop: "60px",
-          }}
-          fullWidth={true}
-        >
-          Geçmiş Dönem Derslerini Göster
-        </Button>
-      </Box>
+      ) : (
+        <>
+          {Object.keys(result).map((year, index) => {
+            const subjectsForYear = result[year];
+            if (index === 0 || open) {
+              return <SubjectsTable subjects={subjectsForYear} />;
+            }
+          })}
+
+          <Box sx={{ margin: "50px" }}>
+            <Button
+              onClick={() => setOpen(!open)}
+              type="submit"
+              size="large"
+              variant="contained"
+              style={{
+                height: "50px",
+                borderRadius: "12px",
+                marginTop: "60px",
+              }}
+              fullWidth={true}
+            >
+              {" "}
+              {open
+                ? "Geçmiş Dönem Derslerini Gizle"
+                : "Geçmiş Dönem Derslerini Göster"}
+            </Button>
+          </Box>
+        </>
+      )}
     </Box>
   );
 };

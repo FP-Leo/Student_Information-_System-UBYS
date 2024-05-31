@@ -1,10 +1,13 @@
 import { Box, Typography, Button } from "@mui/material";
 import SendIcon from "assets/send-icon";
 
-const InfoHeader = () => {
+const InfoHeader = ({ details }) => {
+  //const { currentSemester, currentSchoolYear } = details;
   const handleSend = () => {
     console.log("Send button clicked");
   };
+  const currentSemester = "2021-2022 Bahar";
+  const currentSchoolYear = "4. Sınıf";
 
   return (
     <Box
@@ -57,7 +60,7 @@ const InfoHeader = () => {
             }}
             color={"text.disabled"}
           >
-            2
+            {currentSchoolYear}
           </Typography>
         </Box>
         <Typography
@@ -79,7 +82,7 @@ const InfoHeader = () => {
               marginLeft: "10px",
             }}
           >
-            3
+            {currentSemester}
           </Typography>
         </Box>
         <Typography

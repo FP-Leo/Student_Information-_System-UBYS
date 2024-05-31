@@ -7,7 +7,7 @@ import { removeSubjectFromStore } from "store/ders-secimi/ders-secimi.action";
 import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
 const SecilmisDers = ({ data, index }) => {
-  const { subjectCode, subjectName, akts, state } = data;
+  const { courseCode, courseName, akts, type } = data;
 
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const SecilmisDers = ({ data, index }) => {
   return (
     <Box
       sx={{
-        backgroundColor: state === "success" ? "success.light" : "error.light",
+        backgroundColor: type === "success" ? "success.light" : "error.light",
         height: "50px",
         width: "100%",
         display: "grid",
@@ -34,9 +34,9 @@ const SecilmisDers = ({ data, index }) => {
       {" "}
       <Typography variant="caption">{index + 1}</Typography>
       <Typography color="info.main" variant="caption">
-        {subjectCode}
+        {courseCode}
       </Typography>
-      <Typography variant="caption">{subjectName}</Typography>
+      <Typography variant="caption">{courseName}</Typography>
       <Typography variant="caption">{akts}</Typography>
       <IconButton onClick={handleRemove}>
         <DeleteForeverRoundedIcon fontSize="small" color="error" />

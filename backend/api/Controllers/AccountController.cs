@@ -20,9 +20,9 @@ namespace api.Controllers
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
         private readonly IAdvisorAccountRepository _advisorAccountRepository;
         private readonly IAdministratorAccountRepository _administratorAccountRepository;
-        private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
+        private readonly IStudentCourseDetailsRepository _studentDepDetailsRepository;
         private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
-        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository,IAdvisorAccountRepository advisorAccountRepository,IAdministratorAccountRepository administratorAccountRepository, IStudentDepDetailsRepository studentDepDetailsRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository)
+        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStudentAccountRepository studentAccountRepository, ILecturerAccountRepository lecturerAccountRepository,IAdvisorAccountRepository advisorAccountRepository,IAdministratorAccountRepository administratorAccountRepository, IStudentCourseDetailsRepository studentDepDetailsRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository)
         {
             _userManager = userManager;
             _tokenService = tokenService;

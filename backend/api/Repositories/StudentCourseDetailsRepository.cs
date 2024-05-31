@@ -1,6 +1,7 @@
 using api.Data;
 using api.Interfaces;
 using api.Models;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
@@ -86,5 +87,11 @@ namespace api.Repositories
             return studentCoursesDetails;
         }
 
+        public async Task<ICollection<StudentCourseDetails>?> GetActiveCoursesAsync(string DepName, string TC)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Attending").ToListAsync();
+
+            return studentCoursesDetails;
+        }
     }
 }

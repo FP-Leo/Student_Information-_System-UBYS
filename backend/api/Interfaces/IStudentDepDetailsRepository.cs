@@ -7,7 +7,7 @@ using api.Models;
 
 namespace api.Interfaces
 {
-    public interface IStudentDepDetailsRepository
+    public interface IStudentCourseDetailsRepository
     {
         Task<ICollection<StudentDepDetails>> GetStudentDepDetailsByTCAsync(String TC);
         Task<StudentDepDetails?> GetStudentDepDetailAsync(String TC, String depName);

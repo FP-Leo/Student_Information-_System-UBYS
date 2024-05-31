@@ -12,11 +12,11 @@ namespace api.Controllers
     [ApiController]
     public class StudentDepDetailsController: ControllerBase
     {
-        private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
+        private readonly IStudentCourseDetailsRepository _studentDepDetailsRepository;
         private readonly IStudentAccountRepository _studentAccountRepository;
         private readonly IDepartmentRepository _depRepository;
 
-        public StudentDepDetailsController(IStudentDepDetailsRepository studentDepDetailsRepository, IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository){
+        public StudentDepDetailsController(IStudentCourseDetailsRepository studentDepDetailsRepository, IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository){
             _studentDepDetailsRepository = studentDepDetailsRepository;
             _studentAccountRepository = studentAccountRepository;
             _depRepository = departmentRepository;

@@ -14,7 +14,7 @@ namespace api.Mappers
                 ClassDateId = ClassDateId
             };
         }
-        public static async Task<CourseClassDateDto> ToCourseClassDatesDto(this ICollection<CourseClassDate> courseClassDates, IClassDateRepository classDateRepository){
+        public static async Task<CourseClassDateDto2> ToCourseClassDatesDto(this ICollection<CourseClassDate> courseClassDates, IClassDateRepository classDateRepository, String name){
             var courseDetails = courseClassDates.FirstOrDefault();
             ICollection<ClassDateDto> ClassDates = [];
             foreach(var cls in courseClassDates){
@@ -23,10 +23,8 @@ namespace api.Mappers
                     ClassDates.Add(clsDto.ToClassDateDto());
                 }
             }
-
-            return new CourseClassDateDto{
-                CourseCode = courseDetails.CourseCode,
-                SchoolYear = courseDetails.SchoolYear,
+            return new CourseClassDateDto2{
+                CourseName = name,
                 ClassDates = ClassDates
             };
         }

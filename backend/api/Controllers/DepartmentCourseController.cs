@@ -20,7 +20,7 @@ namespace api.Controllers
         private readonly ICourseRepository _courseRepository;
         private readonly ICourseDetailsRepository _courseDetailsRepository;
         private readonly ISemesterDetailsRepository _semesterDetailsRepository;
-        private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
+        private readonly IStudentCourseDetailsRepository _studentDepDetailsRepository;
         private readonly IStudentCourseDetailsRepostiory _studentCourseDetailsRepostiory;
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
         private readonly ICourseClassRepository _courseClassRepository; 
@@ -28,7 +28,7 @@ namespace api.Controllers
         public DepartmentCourseController(
             IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, 
             ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, 
-            ISemesterDetailsRepository semesterDetailsRepository, IStudentDepDetailsRepository studentDepDetailsRepository, 
+            ISemesterDetailsRepository semesterDetailsRepository, IStudentCourseDetailsRepository studentDepDetailsRepository, 
             ILecturerAccountRepository lecturerAccountRepository, ICourseClassRepository courseClassRepository, 
             IUniversityRepository universityRepository, IStudentCourseDetailsRepostiory studentCourseDetailsRepostiory){
             _departmentCourseRepository = courseDepRepository;

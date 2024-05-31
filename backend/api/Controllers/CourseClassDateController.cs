@@ -1,8 +1,12 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using api.DTO.CourseClassDate;
 using api.Interfaces;
 using api.Mappers;
+using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging;
 
 namespace api.Controllers
 {
@@ -11,12 +15,67 @@ namespace api.Controllers
     public class CourseClassDateController : ControllerBase
     {
         private readonly ICourseClassDateRepository _courseClassDateRepo;
+        private readonly ICourseClassRepository _courseClassRepo;
         private readonly IClassDateRepository _classDateRepo;
         private readonly IDepartmentCourseRepository _departmentCourseRepo;
-        public CourseClassDateController(ICourseClassDateRepository courseClassDateRepository, IClassDateRepository classDateRepository, IDepartmentCourseRepository departmentCourseRepository){
+        private readonly IStudentCourseDetailsRepostiory _studentCourseDetailsRepo;
+        private readonly IUniversityRepository _universityRepo;
+        public CourseClassDateController(ICourseClassDateRepository courseClassDateRepository, IClassDateRepository classDateRepository, IDepartmentCourseRepository departmentCourseRepository, IStudentCourseDetailsRepostiory studentDepDetailsRepository, ICourseClassRepository courseClassRepository, IUniversityRepository universityRepository){
             _courseClassDateRepo = courseClassDateRepository;
             _classDateRepo = classDateRepository;
             _departmentCourseRepo = departmentCourseRepository;
+            _studentCourseDetailsRepo = studentDepDetailsRepository;
+            _courseClassRepo = courseClassRepository;
+            _universityRepo = universityRepository;
+        }
+        [HttpGet("University/Faculty/Department/Student/Dates/")]
+        [Authorize(Roles = "Student")]
+        public async Task<IActionResult> GetStudentDates([FromQuery] String DepartmentName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var attendingClasses = await _studentCourseDetailsRepo.GetActiveCoursesAsync(DepartmentName, CurrentTC);
+            
+            ScheduleDto holder = new();
+            holder.Dates = [];
+            foreach(var cls in attendingClasses){
+                var depCls = await _departmentCourseRepo.GetDeparmentCourseByCourseCodeAsync(cls.CourseCode);
+                var courseClassDates = await _courseClassDateRepo.GetCourseClassDatesAsync(cls.CourseCode);
+                holder.Dates.Add(await courseClassDates.ToCourseClassDatesDto(_classDateRepo, depCls.CourseName));
+            }
+
+            return Ok(holder);
+        }
+        [HttpGet("University/Faculty/Department/Lecturer/Dates/")]
+        [Authorize(Roles = "Lecturer")]
+        public async Task<IActionResult> GetLecturerDates([FromQuery] String DepartmentName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var uni = await _universityRepo.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to fetch university data.");
+            }
+
+            var attendingClasses = await _courseClassRepo.GetLecturersDepClasses(DepartmentName, CurrentTC, uni.CurrentSchoolYear);
+            
+            ScheduleDto holder = new();
+            holder.Dates = [];
+            foreach(var cls in attendingClasses){
+                var depCls = await _departmentCourseRepo.GetDeparmentCourseByCourseCodeAsync(cls.CourseCode);
+                var courseClassDates = await _courseClassDateRepo.GetCourseClassDatesAsync(cls.CourseCode);
+                holder.Dates.Add(await courseClassDates.ToCourseClassDatesDto(_classDateRepo, depCls.CourseName));
+            }
+
+            return Ok(holder);
         }
         [HttpGet("University/Faculty/Department/Course/Class/Dates/")]
         public async Task<IActionResult> GetCourseClassDates([FromQuery] String DepartmentName, String CourseName){
@@ -36,7 +95,7 @@ namespace api.Controllers
                 return BadRequest();
             }
 
-            return Ok(await courseClassDates.ToCourseClassDatesDto(_classDateRepo));
+            return Ok(await courseClassDates.ToCourseClassDatesDto(_classDateRepo, CourseName));
         }
         [HttpPost("University/Faculty/Department/Course/Class/Dates/")]
         [Authorize(Roles = "Admin")]

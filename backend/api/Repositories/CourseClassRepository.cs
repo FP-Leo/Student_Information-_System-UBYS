@@ -43,6 +43,20 @@ namespace api.Repositories
             return courseClass;
         }
 
+        public async Task<ICollection<CourseClass>?> GetLecturersClasses(string TC, int SchoolYear)
+        {
+            var courseClass = await _context.CourseClasses.Where(cc => cc.LecturerTC == TC && cc.SchoolYear == SchoolYear).ToListAsync();
+        
+            return courseClass;
+        }
+
+        public async Task<ICollection<CourseClass>?> GetLecturersDepClasses(string DepartmentName, string TC, int SchoolYear)
+        {
+            var courseClass = await _context.CourseClasses.Where(cc => cc.DepartmentCourse.DepartmentName == DepartmentName && cc.LecturerTC == TC && cc.SchoolYear == SchoolYear).ToListAsync();
+        
+            return courseClass;
+        }
+
         public async Task<CourseClass?> UpdateCourseClassAsync(CourseClass courseClass)
         {
             var result = await _context.SaveChangesAsync();

@@ -1004,8 +1004,26 @@ namespace api
                     SchoolYear = 2023,
                     ClassDateId = 2
                 };
+                var courseClassDate3 = new CourseClassDate{
+                    CourseCode = "BLM-2007",
+                    SchoolYear = 2023,
+                    ClassDateId = 1
+                };
+                var courseClassDate4 = new CourseClassDate{
+                    CourseCode = "BLM-2008",
+                    SchoolYear = 2023,
+                    ClassDateId = 2
+                };
+                var courseClassDate5 = new CourseClassDate{
+                    CourseCode = "BLM-2009",
+                    SchoolYear = 2023,
+                    ClassDateId = 2
+                };
                 await _context.CourseClassDates.AddAsync(courseClassDate);
                 await _context.CourseClassDates.AddAsync(courseClassDateTwo);
+                await _context.CourseClassDates.AddAsync(courseClassDate3);
+                await _context.CourseClassDates.AddAsync(courseClassDate4);
+                await _context.CourseClassDates.AddAsync(courseClassDate5);
                 await _context.SaveChangesAsync();
             }
             if(!_context.StudentsCourseDetails.Any()){
@@ -1209,13 +1227,39 @@ namespace api
                     CourseCode = "BLM-2007",
                     SchoolYear = 2023,
                     TC = "10000000001",
-                    State = "Failed",
-                    AttendanceFulfilled = true,
-                    MidTerm = 85,
-                    Final = 45,
-                    ComplementRight = true,
-                    Complement = 40,
-                    Grade = 4,
+                    State = "Attending",
+                    AttendanceFulfilled = null,
+                    MidTerm = null,
+                    Final = null,
+                    ComplementRight = null,
+                    Complement = null,
+                    Grade = null,
+                };
+                var studentCourseDetails26 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2008",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Attending",
+                    AttendanceFulfilled = null,
+                    MidTerm = null,
+                    Final = null,
+                    ComplementRight = null,
+                    Complement = null,
+                    Grade = null,
+                };
+                var studentCourseDetails27 = new StudentCourseDetails{
+                    DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    CourseCode = "BLM-2009",
+                    SchoolYear = 2023,
+                    TC = "10000000001",
+                    State = "Attending",
+                    AttendanceFulfilled = null,
+                    MidTerm = null,
+                    Final = null,
+                    ComplementRight = null,
+                    Complement = null,
+                    Grade = null,
                 };
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails2);
@@ -1233,6 +1277,8 @@ namespace api
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails23);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails24);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails25);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails26);
+                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails27);
                 await _context.SaveChangesAsync();
             }
         }

@@ -93,7 +93,7 @@ builder.Services.AddScoped<IAdministratorAccountRepository, AdministratorAccount
 builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-builder.Services.AddScoped<IStudentDepDetailsRepository, StudentDepDetailsRepository>();
+builder.Services.AddScoped<IStudentCourseDetailsRepository, StudentDepDetailsRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IDepartmentCourseRepository, DepartmentCourseRepository>();
 builder.Services.AddScoped<ICourseDetailsRepository, CourseDetailsRepository>();

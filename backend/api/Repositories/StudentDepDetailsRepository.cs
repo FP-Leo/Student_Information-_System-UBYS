@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
 {
-    public class StudentDepDetailsRepository : IStudentDepDetailsRepository
+    public class StudentDepDetailsRepository : IStudentCourseDetailsRepository
     {
         private readonly ApplicationDBContext _context;
 

@@ -9,6 +9,10 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public String? CourseCode { get; set;}
         [Required]
+        public String? CourseName { get; set;}
+        [Required]
+        public int? Semester { get; set;}
+        [Required]
         public int SchoolYear { get; set; }
         [Required]
         public String? TC { get; set; }

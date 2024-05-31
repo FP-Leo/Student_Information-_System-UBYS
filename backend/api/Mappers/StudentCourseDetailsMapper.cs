@@ -5,10 +5,12 @@ namespace api.Mappers
 {
     public static class StudentCourseDetailsMapper
     {
-        public static StudentCourseDetailsDto ToStudentCourseDetailsDto(this StudentCourseDetails studentCourseDetails){
+        public static StudentCourseDetailsDto ToStudentCourseDetailsDto(this StudentCourseDetails studentCourseDetails, String name, int semester){
             return new StudentCourseDetailsDto(){
                 Id = studentCourseDetails.Id,
                 CourseCode = studentCourseDetails.CourseCode,
+                CourseName = name,
+                Semester = semester,
                 SchoolYear = studentCourseDetails.SchoolYear,
                 TC = studentCourseDetails.TC,
                 State = studentCourseDetails.State,
@@ -36,10 +38,12 @@ namespace api.Mappers
             };
         }
 
-        public static ICollection<StudentCourseDetailsDto> ToStudentCourseDetailsDto(this ICollection<StudentCourseDetails> studentCoursesDetails){
+        public static ICollection<StudentCourseDetailsDto> ToStudentCourseDetailsDto(this ICollection<StudentCourseDetails> studentCoursesDetails, List<string> names, List<int> semesters){
             ICollection<StudentCourseDetailsDto> studentCoursesDetailsDto = [];
+            int i = 0;
             foreach(var stdCourseDetails in studentCoursesDetails){
-                studentCoursesDetailsDto.Add(stdCourseDetails.ToStudentCourseDetailsDto());
+                studentCoursesDetailsDto.Add(stdCourseDetails.ToStudentCourseDetailsDto(names[i], semesters[i]));
+                i++;
             }
             return studentCoursesDetailsDto;
         }

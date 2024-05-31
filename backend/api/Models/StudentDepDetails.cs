@@ -30,5 +30,6 @@ namespace api.Models
         public Department? Department{ get; set; }
         public StudentAccount? StudentAccount{ get; set; }
         public ICollection<StudentCourseDetails>? StudentCoursesDetails { get; set; }
+        public StudentCourseSelection? StudentCourseSelection{ get; set; }
     }
 }

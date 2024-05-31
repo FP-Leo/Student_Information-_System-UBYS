@@ -54,8 +54,19 @@ namespace api.Controllers
             if(coursesDetails == null){
                 return NotFound();
             }
+
+            List<String> names = [];
+            List<int> semesters = [];
+            Dictionary<string, int> extraDetails = new Dictionary<string, int>();
+            foreach(var courseDetail in coursesDetails){
+                var departmentCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(courseDetail.CourseCode);
+                names.Add(departmentCourse.CourseName);
+                semesters.Add(departmentCourse.TaughtSemester);
+            }
+
+
             
-            return Ok(coursesDetails.ToStudentCourseDetailsDto());
+            return Ok(coursesDetails.ToStudentCourseDetailsDto(names, semesters));
         }
         [HttpGet("University/Faculty/Departments/Course/Student/Details")]
         [Authorize(Roles = "Lecturer, Student")]
@@ -103,7 +114,7 @@ namespace api.Controllers
                 return NotFound();
             }
             
-            return Ok(courseDetails.ToStudentCourseDetailsDto());
+            return Ok(courseDetails.ToStudentCourseDetailsDto(depCourse.CourseName, depCourse.TaughtSemester));
         }
         [HttpGet("University/Faculty/Departments/Course/Students/Details")]
         [Authorize(Roles = "Lecturer")]
@@ -199,7 +210,7 @@ namespace api.Controllers
                 prevStudentCourseDetails.State = "Re-Attended";
             }
 
-            return Ok(studentCourseDetails.ToStudentCourseDetailsDto());
+            return Ok(studentCourseDetails.ToStudentCourseDetailsDto(depCourse.CourseName, depCourse.TaughtSemester));
         }
         [HttpPut("University/Faculty/Department/Course/Student/Details")]
         [Authorize(Roles = "Lecturer")]
@@ -301,7 +312,7 @@ namespace api.Controllers
                 return BadRequest();
             }
 
-            return Ok(updatedStudentCourseDetails.ToStudentCourseDetailsDto());
+            return Ok(updatedStudentCourseDetails.ToStudentCourseDetailsDto(depCourse.CourseName, depCourse.TaughtSemester));
         }
         [HttpDelete("University/Faculty/Department/Course/Student/Details")]
         [Authorize(Roles = "Admin")]

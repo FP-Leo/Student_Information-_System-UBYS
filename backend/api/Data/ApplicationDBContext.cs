@@ -27,6 +27,8 @@ namespace api.Data
         public DbSet<CourseClass> CourseClasses { get; set; }
         public DbSet<ClassDate> ClassDates { get; set; }
         public DbSet<CourseClassDate> CourseClassDates { get; set; }
+        public DbSet<StudentCourseSelection> StudentCourseSelections { get; set; }
+        public DbSet<StudentCourseSelect> StudentSelectedCourses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   
             // List of Roles.
@@ -237,6 +239,21 @@ namespace api.Data
                         .WithMany(d => d.SemestersDetails)
                         .HasForeignKey(sd => sd.DepartmentName)
                         .HasPrincipalKey(d => d.DepartmentName)
+                        .IsRequired();
+            //// StudentCourseSelection
+            // One to One StudentCourseSelection - StudentDepDetails
+             modelBuilder.Entity<StudentCourseSelection>()
+                        .HasOne(sd => sd.StudentDepDetails)
+                        .WithOne(d => d.StudentCourseSelection)
+                        .HasForeignKey<StudentCourseSelection>(scs => new {scs.DepartmentName, scs.TC})
+                        .HasPrincipalKey<StudentDepDetails>(sdd => new {sdd.DepartmentName, sdd.TC})
+                        .IsRequired();
+            // Many to One StudentCourseSelection - Department
+             modelBuilder.Entity<StudentCourseSelect>()
+                        .HasOne(scss => scss.StudentCourseSelection)
+                        .WithMany(scs => scs.SelectedCourses)
+                        .HasForeignKey(scs => new {scs.DepartmentName, scs.TC})
+                        .HasPrincipalKey(scss => new {scss.DepartmentName, scss.TC})
                         .IsRequired();
             base.OnModelCreating(modelBuilder);
         }

@@ -11,7 +11,7 @@ namespace api.DTO.CourseClassDate
         [Required] 
         public string? Day { get; set; }
         [Required]
-        public DateTime Time { get; set; }
+        public TimeOnly Time { get; set; }
         [Required]
         public int NumberOfClasses { get; set; }
     }

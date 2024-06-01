@@ -13,11 +13,11 @@ namespace api.DTO.AccountInfo
         [Required]
         public string? LastName {get; set;}
         [Required]
-        public DateTime BirthDate {get; set;}
+        public DateOnly BirthDate {get; set;}
         [Required]
         public int AdministratorId {get; set;}
         [Required]
-        public DateTime RegisterDate {get; set;}
+        public DateOnly RegisterDate {get; set;}
         [Required]
         public string? SchoolMail {get; set;}
         public string? PersonalMail {get; set;}

@@ -9,7 +9,7 @@ namespace api.DTO.AccountInfo
         [Required]
         public string LastName {get; set;} = string.Empty;
         [Required]
-        public DateTime BirthDate {get; set;}
+        public DateOnly BirthDate {get; set;}
         [Required]
         //[RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")] // conditions to be decided.
         public int LecturerId {get; set;}

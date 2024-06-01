@@ -13,15 +13,15 @@ namespace api.Models
         //Primary Key
         public int Id { get; set; }
         public int TaughtSemester { get; set; }
-        public String? CourseCode { get; set; }
-        public String? Status { get; set; }
+        public string? CourseCode { get; set; }
+        public string? Status { get; set; }
         //Foreign Keys
         [Required]
         [Column(Order = 2)]
-        public String? CourseName { get; set; } 
+        public string? CourseName { get; set; } 
         [Required]
         [Column(Order = 1)]
-        public String? DepartmentName { get; set; }
+        public string? DepartmentName { get; set; }
         public int CourseDetailsId { get; set; }
         //Navigation Property
         public Course? Course{ get; set; }

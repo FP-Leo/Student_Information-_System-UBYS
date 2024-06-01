@@ -24,10 +24,10 @@ namespace api.Models
         public string? LastName {get; set;}
         [Required]
         [Column(Order = 4)]
-        public DateTime BirthDate {get; set;}
+        public DateOnly BirthDate {get; set;}
         [Column(Order = 5)]
         [Required]
-        public DateTime RegisterDate {get; set;}
+        public DateOnly RegisterDate {get; set;}
         [Required]
         public string? SchoolMail {get; set;}
         public string? PersonalMail {get; set;}

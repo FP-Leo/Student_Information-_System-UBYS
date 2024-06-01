@@ -981,12 +981,12 @@ namespace api
             if(!_context.ClassDates.Any()){
                 var classDateOne = new ClassDate{
                     Day = "Monday",
-                    Time = DateTime.ParseExact("12:00", "HH:mm", null),
+                    Time = TimeOnly.FromDateTime(DateTime.ParseExact("12:00", "HH:mm", null)),
                     NumberOfClasses = 2
                 };
                 var classDateTwo = new ClassDate{
                     Day = "Tuesday",
-                    Time = DateTime.ParseExact("12:00", "HH:mm", null),
+                    Time = TimeOnly.FromDateTime(DateTime.ParseExact("12:00", "HH:mm", null)),
                     NumberOfClasses = 2
                 };
                 await _context.ClassDates.AddAsync(classDateOne);
@@ -1300,9 +1300,9 @@ namespace api
                             TC = Username,
                             FirstName = "Erlindi",
                             LastName = "Isaj",
-                            BirthDate = new DateTime(2001,12,04),
+                            BirthDate = DateOnly.FromDateTime(new DateTime(2001,12,04)),
                             SSN = 200401110,
-                            RegisterDate = DateTime.Now,
+                            RegisterDate = DateOnly.FromDateTime(DateTime.Now),
                             CurrentType = "Bachelor",
                             CurrentStatus = "Active",
                             SchoolMail = "200401110@ogr.comu.edu.tr",
@@ -1316,9 +1316,9 @@ namespace api
                             TC = Username,
                             FirstName = "Ayşe Nur",
                             LastName = "Tunç",
-                            BirthDate = DateTime.Now,
+                            BirthDate = DateOnly.FromDateTime(DateTime.Now),
                             LecturerId = 100000000,
-                            RegisterDate = DateTime.Now,
+                            RegisterDate = DateOnly.FromDateTime(DateTime.Now),
                             Title = "Asst. Prof.",
                             CurrentStatus = "Active",
                             SchoolMail = "aysenurtunc@comu.edu.tr",
@@ -1332,9 +1332,9 @@ namespace api
                             TC = Username,
                             FirstName = "Muammer",
                             LastName = "Ceylan",
-                            BirthDate = DateTime.Now,
+                            BirthDate = DateOnly.FromDateTime(DateTime.Now),
                             AdvisorId = 100000000,
-                            RegisterDate = DateTime.Now,
+                            RegisterDate = DateOnly.FromDateTime(DateTime.Now),
                             SchoolMail = "mceylan@comu.edu.tr",
                             PersonalMail = null,
                             Phone = "+90 286 213 9905"
@@ -1346,9 +1346,9 @@ namespace api
                             TC = Username,
                             FirstName = "Safiye Ayşe",
                             LastName = "Göker",
-                            BirthDate = DateTime.Now,
+                            BirthDate = DateOnly.FromDateTime(DateTime.Now),
                             AdministratorId = 100000000,
-                            RegisterDate = DateTime.Now,
+                            RegisterDate = DateOnly.FromDateTime(DateTime.Now),
                             SchoolMail = "safiyeayse.goker@comu.edu.tr",
                             PersonalMail = null,
                             Phone = null

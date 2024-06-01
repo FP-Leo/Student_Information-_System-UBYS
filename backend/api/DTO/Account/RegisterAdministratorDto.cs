@@ -13,7 +13,7 @@ namespace api.DTO.Account
         [Required]
         public string? LastName {get; set;}
         [Required]
-        public DateTime BirthDate {get; set;}
+        public DateOnly BirthDate {get; set;}
         [Required]
         [RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")]
         public int AdministratorId {get; set;}

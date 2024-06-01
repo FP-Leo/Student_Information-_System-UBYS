@@ -25,7 +25,7 @@ namespace api.Models
         public int MaxYears {get; set; }
         public DateTime CourseSelectionStartDate { get; set; }
         public DateTime CourseSelectionEndDate { get; set;}
-        public String? DepCode { get; set; }
+        public string? DepCode { get; set; }
 
         // Navigation Properties
         public Faculty? Faculty { get; set; } 

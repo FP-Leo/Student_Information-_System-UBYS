@@ -9,7 +9,7 @@ namespace api.Models
         public string? DepartmentName { get; set; }
         public string? TC { get; set; }
         public DateTime SentDate { get; set; }
-        public String? State { get; set; }
+        public string? State { get; set; }
         public StudentDepDetails? StudentDepDetails{ get; set; }
         public ICollection<StudentCourseSelect>? SelectedCourses { get; set; }
     }

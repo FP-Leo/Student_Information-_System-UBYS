@@ -25,15 +25,18 @@ export default function Navbar() {
 
   const navigate = useNavigate();
 
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
+    event.preventDefault();
     if (
       event &&
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
-    )
-      setOpen(open);
+    ) {
+      return;
+    }
+    setIsOpen(open);
   };
 
   const list = () => (
@@ -125,7 +128,7 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
       <SwipeableDrawer
-        open={open}
+        open={isOpen}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
       >

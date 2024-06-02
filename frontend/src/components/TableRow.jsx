@@ -8,7 +8,8 @@ import {
 } from "utils/helper-functions";
 
 const TableRow = ({ data }) => {
-  const { courseName, final, midTerm, attendanceFulfilled } = data;
+  const { courseName, courseCode, final, midTerm, attendanceFulfilled, id } =
+    data;
 
   const points = calculateSubjectsPoint(midTerm, final);
   const hbn = calculateSubjectsHBN(points);
@@ -38,7 +39,7 @@ const TableRow = ({ data }) => {
         >
           <Typography
             onClick={() => {
-              navigate("3003BML");
+              navigate(`${id}`);
             }}
             color="primary"
             sx={{
@@ -49,7 +50,7 @@ const TableRow = ({ data }) => {
             }}
             variant="subtitle2"
           >
-            3003BML
+            {courseCode}
           </Typography>
         </Box>
         <Box

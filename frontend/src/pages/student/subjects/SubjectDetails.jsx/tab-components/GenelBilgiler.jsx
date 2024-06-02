@@ -3,7 +3,7 @@ import { Box, Typography, Avatar } from "@mui/material";
 
 import Avatar1 from "assets/avatar1";
 
-const GenelBilgiler = () => {
+const GenelBilgiler = ({ details }) => {
   const theme = useTheme();
 
   return (
@@ -15,14 +15,16 @@ const GenelBilgiler = () => {
     >
       <Box
         sx={{
+          paddingY: 2,
           paddingLeft: 3,
           width: "100%",
-          height: "50px",
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
+          flexDirection: "column",
         }}
       >
-        <Typography variant="subtitle2">Ders Kodu: 3003BML</Typography>
+        <Typography variant="subtitle2">{`Ders Adı: ${details.courseName}`}</Typography>
+        <Typography variant="subtitle2">{` ${details.courseContent}`}</Typography>
       </Box>
       <Box
         sx={{
@@ -81,7 +83,7 @@ const GenelBilgiler = () => {
             marginY: 3,
           }}
         >
-          <Avatar src={Avatar1} />
+          <Avatar src={""} />
           <Typography
             sx={{
               marginLeft: 3,

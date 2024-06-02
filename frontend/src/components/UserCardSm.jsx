@@ -159,8 +159,8 @@ export default function UserCardSm({ ppSize, cardSize, isMenuCard }) {
                   label="Program"
                   onChange={handleChange}
                 >
-                  {departments.map((department) => (
-                    <MenuItem value={department.departmentName}>
+                  {departments.map((department, index) => (
+                    <MenuItem key={index} value={department.departmentName}>
                       {department.departmentName}
                     </MenuItem>
                   ))}

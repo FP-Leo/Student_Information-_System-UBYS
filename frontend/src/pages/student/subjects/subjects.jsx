@@ -68,7 +68,7 @@ const Subjects = () => {
           {Object.keys(result).map((year, index) => {
             const subjectsForYear = result[year];
             if (index === 0 || open) {
-              return <SubjectsTable subjects={subjectsForYear} />;
+              return <SubjectsTable key={index} subjects={subjectsForYear} />;
             }
           })}
 

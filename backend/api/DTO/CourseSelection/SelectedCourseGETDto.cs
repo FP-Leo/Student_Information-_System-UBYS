@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace api.DTO.DeparmentCourse
+namespace api.DTO.CourseSelection
 {
-    public class CourseSelectionDto
+    public class SelectedCourseGETDto
     {
         [Required]
         public String? CourseCode { get; set; }

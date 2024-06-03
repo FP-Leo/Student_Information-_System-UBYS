@@ -1,4 +1,3 @@
-
 using api.DTO.CourseClass;
 using api.Interfaces;
 using api.Mappers;
@@ -13,15 +12,13 @@ namespace api.Controllers
     {
         private readonly ICourseClassRepository _courseClassRepository;
         private readonly IDepartmentCourseRepository _departmentCourseRepository;
-        private readonly IDepartmentRepository _departmentRepository;
         private readonly IUniversityRepository _universityRepository;
         private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
         private readonly ICourseDetailsRepository _courseDetailsRepository;
         private readonly ISemesterDetailsRepository _semesterDetailsRepository;
-        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IDepartmentRepository departmentRepository, IUniversityRepository universityRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository){
+        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IUniversityRepository universityRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository){
             _courseClassRepository = courseClassRepository;
             _departmentCourseRepository = departmentCourseRepository;
-            _departmentRepository = departmentRepository;
             _universityRepository = universityRepository;
             _lecturerDepDetailsRepository = lecturerDepDetailsRepository;
             _courseDetailsRepository = courseDetailsRepository;

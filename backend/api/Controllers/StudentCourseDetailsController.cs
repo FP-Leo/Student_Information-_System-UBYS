@@ -20,10 +20,10 @@ namespace api.Controllers
         private readonly IDepartmentRepository _departmentRepository;
         private readonly ICourseRepository _courseRepository;
         private readonly IUniversityRepository _universityRepository;
-        private readonly IStudentCourseDetailsRepository _studentDepDetailsRepository;
+        private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
         private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
         private readonly IDepartmentCourseRepository _departmentCourseRepository;
-        public StudentCourseDetailsController(IStudentCourseDetailsRepostiory studentCourseDetailsRepostiory, ICourseClassRepository courseClassRepository, IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, IUniversityRepository universityRepository, IStudentCourseDetailsRepository studentDepDetailsRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository, IDepartmentCourseRepository departmentCourseRepository){
+        public StudentCourseDetailsController(IStudentCourseDetailsRepostiory studentCourseDetailsRepostiory, ICourseClassRepository courseClassRepository, IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository, ICourseRepository courseRepository, IUniversityRepository universityRepository, IStudentDepDetailsRepository studentDepDetailsRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository, IDepartmentCourseRepository departmentCourseRepository){
             _studentCourseDetailsRepository = studentCourseDetailsRepostiory;
             _courseClassRepository = courseClassRepository;
             _studentAccountRepository = studentAccountRepository;

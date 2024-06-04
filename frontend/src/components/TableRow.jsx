@@ -8,8 +8,16 @@ import {
 } from "utils/helper-functions";
 
 const TableRow = ({ data }) => {
-  const { courseName, courseCode, final, midTerm, attendanceFulfilled, id } =
-    data;
+  console.log(data);
+  const {
+    courseName,
+    complement,
+    courseCode,
+    final,
+    midTerm,
+    attendanceFulfilled,
+    id,
+  } = data;
 
   const points = calculateSubjectsPoint(midTerm, final);
   const hbn = calculateSubjectsHBN(points);
@@ -39,7 +47,7 @@ const TableRow = ({ data }) => {
         >
           <Typography
             onClick={() => {
-              navigate(`${id}`);
+              navigate(`${courseCode}/${id}`);
             }}
             color="primary"
             sx={{
@@ -229,7 +237,9 @@ const TableRow = ({ data }) => {
               gridColumn: "2/3",
             }}
           >
-            <Typography variant="body2">-</Typography>
+            <Typography variant="body2">
+              {complement ? complement : "-"}
+            </Typography>
           </Box>
         </Box>
       </Box>

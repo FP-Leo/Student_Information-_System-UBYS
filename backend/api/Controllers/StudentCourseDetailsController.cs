@@ -125,7 +125,7 @@ namespace api.Controllers
         }
         [HttpGet("University/Faculty/Departments/Course/Students/Details")]
         [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> GetCoursesStudentsDetails([FromQuery] String DepName, [FromQuery] String Course){
+        public async Task<IActionResult> GetCoursesStudentsDetails([FromQuery] String CourseCode){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -133,15 +133,15 @@ namespace api.Controllers
 
             var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
-            var lecturer = await _lecturerDepDetailsRepository.GetLecturerDepDetailAsync(DepName, CurrentTC);
-            if(lecturer == null){
-                return Unauthorized("You're not registered on this department. If this is a mistake, please contact the support.");
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(DepName, Course);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(CourseCode);
 
             if(depCourse == null){
                 return NotFound();
+            }
+
+            var lecturer = await _lecturerDepDetailsRepository.GetLecturerDepDetailAsync(depCourse.DepartmentName, CurrentTC);
+            if(lecturer == null){
+                return Unauthorized("You're not registered on this department. If this is a mistake, please contact the support.");
             }
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
@@ -154,14 +154,41 @@ namespace api.Controllers
             if(courseClass.LecturerTC != CurrentTC){
                 return Unauthorized();
             }
-            
-            var coursesDetails = await _studentCourseDetailsRepository.GetAllStudentsCourseDetails(depCourse.CourseCode, uni.CurrentSchoolYear);
 
-            if(coursesDetails == null){
+            StudentListDto list = new()
+            {
+                DepartmentName = depCourse.DepartmentName,
+                CourseName = depCourse.CourseName,
+                CourseCode = depCourse.CourseCode,
+                NumberOfStudents = await _studentCourseDetailsRepository.GetStudentCountInCourse(depCourse.CourseCode, uni.CurrentSchoolYear),
+                Students = []
+            };
+
+            var studentListDetails = await _studentCourseDetailsRepository.GetAllStudentsCourseDetails(depCourse.CourseCode, uni.CurrentSchoolYear);
+
+            if(studentListDetails == null){
                 return NotFound();
             }
+
+            foreach(var student in studentListDetails){
+                var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(student.TC);
+                var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(student.TC, depCourse.DepartmentName);
+                StudentDto dto = new()
+                {
+                    StudentName = studentAcc.FirstName + " " + studentAcc.LastName,
+                    SSN = studentAcc.SSN,
+                    Year = (studentDepDetails.CurrentSemester+1)/2,
+                    State = student.State,
+                    AttendanceFulfilled = student.AttendanceFulfilled,
+                    MidTerm = student.MidTerm,
+                    Final = student.Final,
+                    Complement = student.Complement,
+                    Grade = student.Grade
+                };
+                list.Students.Add(dto);
+            }
             
-            return Ok(coursesDetails);
+            return Ok(list);
         }
         [HttpPut("University/Faculty/Department/Course/Student/Details")]
         [Authorize(Roles = "Admin")]

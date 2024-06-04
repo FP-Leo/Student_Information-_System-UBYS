@@ -503,5 +503,37 @@ namespace api.Controllers
 
             return Ok();
         }
+    
+        [HttpGet("University/Faculty/Department/Student/Transcript/")]
+        [Authorize(Roles = "Student")]
+        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var dep = await _departmentRepo.GetDepartmentAsync(DepName);
+            if(dep == null){
+                return NotFound();
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+            
+            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepName);
+
+            if(studentDepDetails == null){
+                return BadRequest("You're not registered on this department.");
+            }
+
+            for(int i = 1; i <= dep.NumberOfSemesters; i++){
+                var failedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(TC, DepName, i);
+                var passedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(TC, DepName, i);
+                var PartiallyPassedCourses = await _studentCourseDetailsRepo.GetSemesterPartiallyPassedCoursesAsync(TC, DepName, i);
+
+                
+            }
+
+            return Ok();
+        }
     }
 }

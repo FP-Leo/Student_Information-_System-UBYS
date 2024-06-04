@@ -99,5 +99,33 @@ namespace api.Repositories
 
             return studentCourseDetails;
         }
+
+        public async Task<ICollection<StudentCourseDetails>?> GetSemesterFailedCoursesAsync(string DepName, string TC, int sem)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Failed" && dd.CourseClass.DepartmentCourse.TaughtSemester == sem).ToListAsync();
+
+            return studentCoursesDetails;
+        }
+
+        public async Task<ICollection<StudentCourseDetails>?> GetSemesterPassedCoursesAsync(string DepName, string TC, int sem)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Passed" && dd.CourseClass.DepartmentCourse.TaughtSemester == sem).ToListAsync();
+
+            return studentCoursesDetails;
+        }
+
+        public async Task<ICollection<StudentCourseDetails>?> GetSemesterPartiallyPassedCoursesAsync(string DepName, string TC, int sem)
+        {
+            var studentCoursesDetails = await _context.StudentsCourseDetails.Where(dd=> dd.DepartmentName == DepName &&  dd.TC == TC && dd.State == "Partially Passed" && dd.CourseClass.DepartmentCourse.TaughtSemester == sem).ToListAsync();
+
+            return studentCoursesDetails;
+        }
+
+        public async Task<int> GetStudentCountInCourse(string CourseCode, int SchoolYear)
+        {
+            var count = await _context.StudentsCourseDetails.CountAsync(dd=> dd.CourseCode == CourseCode && dd.SchoolYear == SchoolYear);
+
+            return count;
+        }
     }
 }

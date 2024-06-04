@@ -1,3 +1,4 @@
+using api.DTO.CourseSelection;
 using api.DTO.StudentDepDetails;
 using api.Models;
 
@@ -32,6 +33,16 @@ namespace api.Mappers
                 DepartmentName = studentDepDetails.DepartmentName,
                 TC = studentDepDetails.TC,
             };
+        }
+        public static DepartmentInfoDto ToDepartmentInfo(this StudentDepDetails studentCourseDetails, String FacultyName){
+            var departmentInfoDto = new DepartmentInfoDto{
+                RegistrationDate = studentCourseDetails.RegistrationDate,
+                DepartmentName = studentCourseDetails.DepartmentName,
+                FacultyName = FacultyName,
+                Type = studentCourseDetails.StudentType,
+                Language = "Turkish"
+            };
+            return departmentInfoDto;
         }
     }
 }

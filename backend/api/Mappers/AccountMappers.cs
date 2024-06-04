@@ -1,6 +1,7 @@
 using api.DTO.AccountInfo;
 using api.DTO.AccountInfo.Lecturer;
 using api.DTO.AccountInfo.Student;
+using api.DTO.CourseSelection;
 using api.Models;
 
 namespace api.Mappers
@@ -69,6 +70,14 @@ namespace api.Mappers
                 PersonalMail = newStudentAcc.PersonalMail,
                 Phone = newStudentAcc.Phone,
                 TC = newStudentAcc.TC
+            };
+        }
+        public static StudentInfoDto ToStudentInfoDto(this StudentAccount studentAcc){
+            return new StudentInfoDto{
+                TC = studentAcc.TC,
+                FirstName = studentAcc.FirstName,
+                LastName = studentAcc.LastName,
+                SSN = studentAcc.SSN,
             };
         }
 

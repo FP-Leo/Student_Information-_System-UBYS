@@ -516,8 +516,12 @@ namespace api.Controllers
             if(dep == null){
                 return NotFound();
             }
-
             var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            if(studentAcc == null){
+                return StatusCode(500, "Couldn't get account info.");
+            }
             
             var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepName);
 
@@ -525,15 +529,72 @@ namespace api.Controllers
                 return BadRequest("You're not registered on this department.");
             }
 
-            for(int i = 1; i <= dep.NumberOfSemesters; i++){
+            Transcript transcript = new()
+            {
+                DepartmentInfo = studentDepDetails.ToDepartmentInfo(dep.FacultyName),
+                StudentInfo = studentAcc.ToStudentInfoDto(),
+                Semesters = []
+            };
+
+            for (int i = 1; i <= dep.NumberOfSemesters; i++){
                 var failedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(TC, DepName, i);
                 var passedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(TC, DepName, i);
                 var PartiallyPassedCourses = await _studentCourseDetailsRepo.GetSemesterPartiallyPassedCoursesAsync(TC, DepName, i);
-
+                SemesterDto semesterDto = new()
+                {
+                    Semester = i,
+                    Courses = []
+                };
                 
+                if(failedCourses != null ){
+                    var failedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, failedCourses);
+                    if(!failedCoursesResult){
+                        StatusCode(500, "Failed to add Failed Courses to Transcript.");
+                    }
+                }
+
+                if(passedCourses != null ){
+                    var passedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, failedCourses);
+                    if(!passedCoursesResult){
+                        StatusCode(500, "Failed to add Passed Courses to Transcript.");
+                    }
+                }
+
+                if(PartiallyPassedCourses != null ){
+                    var PartiallyPassedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, failedCourses);
+                    if(!PartiallyPassedCoursesResult){
+                        StatusCode(500, "Failed to add Partially Passed Courses to Transcript.");
+                    }
+                }
+                transcript.Semesters.Add(semesterDto);
             }
 
-            return Ok();
+            return Ok(transcript);
+        }
+        private async Task<bool> AddSemesterDetailsToTranscript(SemesterDto semesterDto,  ICollection<StudentCourseDetails> courses){
+            foreach(var course in courses){
+                String? Type;
+                var courseDetail = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(course.CourseCode);
+                var courseClass = await _courseClassRepository.GetCourseClassAsync(course.CourseCode, course.SchoolYear);
+                if(courseDetail == null){
+                    return false;
+                }
+                if(courseDetail.TaughtSemester % 2 == 1){
+                    Type = "Güz";
+                }else{
+                    Type = "Bahar";
+                }
+                CourseDto courseDto = new(){
+                    CourseCode = course.CourseCode,
+                    CourseName = courseDetail.CourseName,
+                    AKTS = courseClass.AKTS,
+                    Kredi = courseClass.Kredi,
+                    Grade = course.Grade,
+                    SemesterYear = course.SchoolYear + "/" + course.SchoolYear+1 + Type
+                };
+                semesterDto.Courses.Add(courseDto);
+            }
+            return true;
         }
     }
 }

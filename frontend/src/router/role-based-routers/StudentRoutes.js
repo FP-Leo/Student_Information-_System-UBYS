@@ -19,7 +19,7 @@ const StudentRoutes = [
     element: <Subjects />,
   },
   {
-    path: "derslerim/:id",
+    path: "derslerim/:courseCode/:id",
     element: <SubjectDetails />,
   },
   {

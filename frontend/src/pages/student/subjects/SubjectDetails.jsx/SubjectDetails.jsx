@@ -40,7 +40,7 @@ const SubjectDetails = () => {
         }
       )
       .then((res) => {
-        setCourseDetails(res.data);
+        setCourseDetails({ ...res.data, code: param.courseCode });
       })
       .catch((err) => {
         alert(err.response.data.message);
@@ -111,9 +111,6 @@ const SubjectDetails = () => {
         </Box>
         <Box
           sx={{
-            backgroundColor: "white",
-            boxShadow: theme.customShadows.z4,
-            borderRadius: 1,
             marginTop: 3,
           }}
         >

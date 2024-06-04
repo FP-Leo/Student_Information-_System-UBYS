@@ -15,26 +15,13 @@ namespace api.Mappers
                 TC = studentCourseDetails.TC,
                 State = studentCourseDetails.State,
                 AttendanceFulfilled = studentCourseDetails.AttendanceFulfilled,
+                MidTermAnnouncment = studentCourseDetails.MidTermAnnouncment,
                 MidTerm = studentCourseDetails.MidTerm,
+                FinalAnnouncment = studentCourseDetails.FinalAnnouncment,
                 Final = studentCourseDetails.Final,
                 ComplementRight = studentCourseDetails.ComplementRight,
                 Complement = studentCourseDetails.Complement,
                 Grade = studentCourseDetails.Grade
-            };
-        }
-
-        public static StudentCourseDetails ToStudentCourseDetails(this StudentCourseDetailsPostDto studentCourseDetailsPostDto, int SchoolYear){
-            return new StudentCourseDetails{
-                CourseCode = studentCourseDetailsPostDto.CourseCode,
-                SchoolYear = SchoolYear,
-                TC = studentCourseDetailsPostDto.TC,
-                State = "Attending",
-                AttendanceFulfilled = false,
-                MidTerm = null,
-                Final = null,
-                ComplementRight = null,
-                Complement = null,
-                Grade = null
             };
         }
 
@@ -46,6 +33,45 @@ namespace api.Mappers
                 i++;
             }
             return studentCoursesDetailsDto;
+        }
+
+        public static ExamResultsDto ToExamResultsDto(this StudentCourseDetails studentCourseDetails, String LecturerName, float[] averages){
+            ExamResultsDto examResultsDto= new();
+            examResultsDto.LecturerName = LecturerName;
+            examResultsDto.State = studentCourseDetails.State;
+            examResultsDto.Grade = studentCourseDetails.Grade;
+            examResultsDto.ExamResultDtos  = [];
+            if(studentCourseDetails.MidTerm != null){
+                var midTermResult = new ExamResultDto{
+                    ExamName = "Mid Term",
+                    AnnouncmentDate = studentCourseDetails.MidTermAnnouncment,
+                    Points = studentCourseDetails.MidTerm,
+                    ClassAverage = averages[0]
+                };
+                examResultsDto.ExamResultDtos.Add(midTermResult);
+            }
+
+            if(studentCourseDetails.Final != null){
+                var FinalResult = new ExamResultDto{
+                    ExamName = "Final",
+                    AnnouncmentDate = studentCourseDetails.FinalAnnouncment,
+                    Points = studentCourseDetails.Final,
+                    ClassAverage = averages[1]
+                };
+                examResultsDto.ExamResultDtos.Add(FinalResult);
+            }
+            
+            if(studentCourseDetails.Complement != null){
+                var ComplementResult = new ExamResultDto{
+                    ExamName = "Complement",
+                    AnnouncmentDate = studentCourseDetails.ComplementAnnouncment,
+                    Points = studentCourseDetails.Complement,
+                    ClassAverage = averages[2]
+                };
+                examResultsDto.ExamResultDtos.Add(ComplementResult);
+            }   
+
+            return examResultsDto;
         }
     }
 }

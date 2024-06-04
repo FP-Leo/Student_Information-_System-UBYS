@@ -22,7 +22,7 @@ const SubjectsSelection = () => {
     try {
       axios
         .get(
-          "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses",
+          "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Selected",
           {
             headers: {
               Authorization: `Bearer ${token}`,

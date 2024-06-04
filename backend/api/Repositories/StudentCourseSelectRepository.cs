@@ -28,7 +28,7 @@ namespace api.Repositories
                 return null;
             return selectedCourses;
         }
-        public async Task<ICollection<StudentCourseSelect>?> DeleteSelectedCoursesAsync(ICollection<StudentCourseSelect> selectedCourses)
+        public async Task<ICollection<StudentCourseSelect>?> DeleteSelectedCoursesRangeAsync(ICollection<StudentCourseSelect> selectedCourses)
         {
             _context.RemoveRange(selectedCourses);
             var result = await _context.SaveChangesAsync();
@@ -37,7 +37,7 @@ namespace api.Repositories
             return selectedCourses;
         }
 
-        public async Task<StudentCourseSelect?> DeleteSelectedCoursesAsync(StudentCourseSelect selectedCourse)
+        public async Task<StudentCourseSelect?> DeleteSelectedCourseAsync(StudentCourseSelect selectedCourse)
         {
             _context.Remove(selectedCourse);
             var result = await _context.SaveChangesAsync();

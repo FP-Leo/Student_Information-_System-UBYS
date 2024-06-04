@@ -21,11 +21,17 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public bool? AttendanceFulfilled { get; set; }
         [Required]
+        public DateTime? MidTermAnnouncment { get; set; }
+        [Required]
         public int? MidTerm { get; set; }
+        [Required]
+        public DateTime? FinalAnnouncment { get; set; }
         [Required]
         public int? Final { get; set; }
         [Required]
         public bool? ComplementRight { get; set; }
+        [Required]
+        public DateTime? ComplementAnnouncment { get; set; }
         [Required]
         public int? Complement { get; set; }
         [Required]

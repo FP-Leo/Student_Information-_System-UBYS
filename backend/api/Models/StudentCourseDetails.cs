@@ -8,10 +8,13 @@ namespace api.Models
         public int Id { get; set;}
         public String? State { get; set;}
         public bool? AttendanceFulfilled { get; set; }
+        public DateTime? MidTermAnnouncment { get; set; }
         public int? MidTerm { get; set; }
+        public DateTime? FinalAnnouncment { get; set; }
         public int? Final { get; set; }
         public float? Grade { get; set; }
         public bool? ComplementRight { get; set; } // bütünleme hakkı
+        public DateTime? ComplementAnnouncment { get; set; }
         public int? Complement { get; set; }
         // Foreign Key
         [Column(Order = 3)]

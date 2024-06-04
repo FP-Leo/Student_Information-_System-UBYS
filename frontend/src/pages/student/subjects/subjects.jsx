@@ -39,6 +39,7 @@ const Subjects = () => {
       });
   }, [program]);
 
+  console.log(subjects);
   const result = Object.groupBy(subjects, ({ schoolYear }) => schoolYear);
 
   return (

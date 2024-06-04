@@ -8,6 +8,8 @@ namespace api.DTO.StudentDepDetails
         public string? TC { get; set; }
         public string? DepartmentName { get; set; }
         //Rest
+        [Required]
+        public DateOnly RegistrationDate { get; set; }
         public string? StudentType { get; set; }
         public string? StudentStatus { get; set; }
         [Range(1, 7, ErrorMessage = "Maximum 7 years of study are allowed.")]

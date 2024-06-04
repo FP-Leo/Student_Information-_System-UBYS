@@ -523,6 +523,7 @@ namespace api
             if(!_context.StudentsDepDetails.Any()){
                 var studentDepDetails = new StudentDepDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
+                    RegistrationDate = DateOnly.FromDateTime(DateTime.Now),
                     TC = "10000000001",
                     StudentType = "Bachelor",
                     StudentStatus = "Active",

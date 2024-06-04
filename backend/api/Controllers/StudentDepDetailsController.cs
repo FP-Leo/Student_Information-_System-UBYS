@@ -15,11 +15,15 @@ namespace api.Controllers
         private readonly IStudentDepDetailsRepository _studentDepDetailsRepository;
         private readonly IStudentAccountRepository _studentAccountRepository;
         private readonly IDepartmentRepository _depRepository;
+        private readonly IUniversityRepository _uniRepo;
 
-        public StudentDepDetailsController(IStudentDepDetailsRepository studentDepDetailsRepository, IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository){
+        public StudentDepDetailsController(IStudentDepDetailsRepository studentDepDetailsRepository, 
+        IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository,
+        IUniversityRepository universityRepository){
             _studentDepDetailsRepository = studentDepDetailsRepository;
             _studentAccountRepository = studentAccountRepository;
             _depRepository = departmentRepository;
+            _uniRepo = universityRepository;
         }
         [HttpGet("University/Faculty/Departments/Student/Details")]
         [Authorize(Roles = "Student")]
@@ -146,21 +150,50 @@ namespace api.Controllers
 
             return NoContent();
         }
-        [HttpGet("University/Faculty/Department/Student/Details")]
+        [HttpGet("University/Faculty/Department/Student/Document/")]
         [Authorize(Roles = "Student")]
-        public async Task<IActionResult> GetStudentDocument([FromQuery] String TC, [FromQuery] String DepName){
+        public async Task<IActionResult> GetStudentDocument([FromQuery] String DepName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var uni = await _uniRepo.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to get university data.");
+            }
+
+            var dep = await _depRepository.GetDepartmentAsync(DepName);
+            if(dep == null){
+                return NotFound();
+            }
+
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            if(studentAcc == null){
+                return StatusCode(500, "Error accessing account data");
             }
             
             var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepName);
 
             if(studentDepDetails == null){
-                return NotFound();
+                return BadRequest("You're not registered on this department.");
             }
 
-            return Ok(studentDepDetails.ToStudentDepDetailsDto());
+            StudentDocumentDto ogrBelge = new StudentDocumentDto{
+                TC = TC,
+                Name = studentAcc.FirstName + " " + studentAcc.LastName,
+                Birthday = studentAcc.BirthDate,
+                RegistrationDate = studentDepDetails.RegistrationDate,
+                EducationType = "Normal", // needs to be changed later.
+                TimeOfEducation = dep.NumberOfSemesters/2,
+                StudentStatus = studentDepDetails.StudentStatus,
+                Year = (studentDepDetails.CurrentSemester + 1)/2,
+                Program = uni.Name + "/" + dep.FacultyName + "/" + dep.DepartmentName
+            };
+
+            return Ok(ogrBelge);
         }
     }
 }

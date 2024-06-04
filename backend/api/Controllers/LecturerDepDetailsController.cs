@@ -17,10 +17,19 @@ namespace api.Controllers
         private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
         private readonly IDepartmentRepository _depRepository;
-        public LecturerDepDetailsController(ILecturerDepDetailsRepository lecturerDepDetailRepository, ILecturerAccountRepository lecturerAccountRepository, IDepartmentRepository departmentRepository){
+        private readonly ICourseClassRepository _courseClassRepository;
+        private readonly IUniversityRepository _universityRepository;
+        private readonly IDepartmentCourseRepository _departmentCourseRepository;
+        public LecturerDepDetailsController(ILecturerDepDetailsRepository lecturerDepDetailRepository,
+         ILecturerAccountRepository lecturerAccountRepository, IDepartmentRepository departmentRepository,
+         ICourseClassRepository courseClassRepository, IUniversityRepository universityRepository,
+         IDepartmentCourseRepository departmentCourseRepository){
             _lecturerDepDetailsRepository = lecturerDepDetailRepository;
             _lecturerAccountRepository = lecturerAccountRepository;
             _depRepository = departmentRepository;
+            _courseClassRepository = courseClassRepository;
+            _universityRepository = universityRepository;
+            _departmentCourseRepository = departmentCourseRepository;
         }
         [HttpGet("University/Faculty/Departments/Lecturer/Details")]
         [Authorize(Roles = "Lecturer")]
@@ -121,7 +130,7 @@ namespace api.Controllers
         }
         [HttpDelete("University/Faculty/Departments/Lecturer/Details")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteStudentDepDetails([FromQuery] String TC, [FromQuery] String DepName){
+        public async Task<IActionResult> DeleteLecturerDepDetails([FromQuery] String TC, [FromQuery] String DepName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -134,6 +143,57 @@ namespace api.Controllers
             }
 
             return NoContent();
+        }
+        [HttpGet("University/Faculty/Department/Lecturer/Courses")]
+        [Authorize(Roles = "Lecturer")]
+        public async Task<IActionResult> GetLecturerCourses([FromQuery] String DepartmentName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var dep = await _depRepository.GetDepartmentAsync(DepartmentName);
+            if(dep == null){
+                return BadRequest("Department doesn't exist.");
+            }
+            
+            var depsDetails = await _lecturerDepDetailsRepository.GetLecturerDepDetailAsync(DepartmentName, TC);
+            if(depsDetails == null){
+                return NotFound("You're not registered on that department.");
+            }
+
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to get university data.");
+            }
+
+            LecturerCoursesDto lecturerCoursesDtos = new()
+            {
+                CourseFaculty = dep.FacultyName,
+                CourseDepartment = dep.DepartmentName,
+                Courses = []
+            };
+
+            var classes = await _courseClassRepository.GetLecturersDepClasses(DepartmentName, TC, uni.CurrentSchoolYear);
+            foreach(var cc in classes){
+                var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(cc.CourseCode);
+                string? CourseSemester;
+                if (depCourse.TaughtSemester % 2 == 0){
+                    CourseSemester = "Bahar";
+                }else{
+                    CourseSemester = "Güz";
+                }
+                LecturerCourseDto dto = new LecturerCourseDto{
+                    CourseCode = cc.CourseCode,
+                    CourseName = depCourse.CourseName,
+                    CourseSemester = CourseSemester,
+                    SchoolYear = uni.CurrentSchoolYear
+                };
+                lecturerCoursesDtos.Courses.Add(dto);
+            }
+            
+            return Ok(lecturerCoursesDtos);
         }
     }
 }

@@ -146,5 +146,21 @@ namespace api.Controllers
 
             return NoContent();
         }
+        [HttpGet("University/Faculty/Department/Student/Details")]
+        [Authorize(Roles = "Student")]
+        public async Task<IActionResult> GetStudentDocument([FromQuery] String TC, [FromQuery] String DepName){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepName);
+
+            if(studentDepDetails == null){
+                return NotFound();
+            }
+
+            return Ok(studentDepDetails.ToStudentDepDetailsDto());
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using api.DTO.StudentDepDetails;
 using api.Interfaces;
 using api.Mappers;
+using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +17,16 @@ namespace api.Controllers
         private readonly IStudentAccountRepository _studentAccountRepository;
         private readonly IDepartmentRepository _depRepository;
         private readonly IUniversityRepository _uniRepo;
+        private readonly IDocumentRequestRepository _documentRequestRepository;
 
         public StudentDepDetailsController(IStudentDepDetailsRepository studentDepDetailsRepository, 
         IStudentAccountRepository studentAccountRepository, IDepartmentRepository departmentRepository,
-        IUniversityRepository universityRepository){
+        IUniversityRepository universityRepository, IDocumentRequestRepository documentRequestRepository){
             _studentDepDetailsRepository = studentDepDetailsRepository;
             _studentAccountRepository = studentAccountRepository;
             _depRepository = departmentRepository;
             _uniRepo = universityRepository;
+            _documentRequestRepository = documentRequestRepository;
         }
         [HttpGet("University/Faculty/Departments/Student/Details")]
         [Authorize(Roles = "Student")]
@@ -192,6 +195,19 @@ namespace api.Controllers
                 Year = (studentDepDetails.CurrentSemester + 1)/2,
                 Program = uni.Name + "/" + dep.FacultyName + "/" + dep.DepartmentName
             };
+
+            DocumentRequest documentRequestRecord = new DocumentRequest{
+                TC = TC,
+                DocumentType = "Öğrenci Belgesi",
+                DocumentLanguage = "Turkish",
+                RequestDate = DateOnly.FromDateTime(DateTime.Now),
+                State = "Approved"
+            };
+
+            var result = await _documentRequestRepository.AddDocumentRequestAsync(documentRequestRecord);
+            if(result == null){
+                return StatusCode(500, "Failed to save document request record.");
+            }
 
             return Ok(ogrBelge);
         }

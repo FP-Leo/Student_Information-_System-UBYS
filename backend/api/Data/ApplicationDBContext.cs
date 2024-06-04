@@ -29,6 +29,7 @@ namespace api.Data
         public DbSet<CourseClassDate> CourseClassDates { get; set; }
         public DbSet<StudentCourseSelection> StudentCourseSelections { get; set; }
         public DbSet<StudentCourseSelect> StudentSelectedCourses { get; set; }
+        public DbSet<DocumentRequest> DocumentRequests { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   
             // List of Roles.
@@ -234,7 +235,7 @@ namespace api.Data
                         .IsRequired();
             //// SemesterDetail
             // Many to One SemesterDetail - Department
-             modelBuilder.Entity<SemesterDetail>()
+            modelBuilder.Entity<SemesterDetail>()
                         .HasOne(sd => sd.Department)
                         .WithMany(d => d.SemestersDetails)
                         .HasForeignKey(sd => sd.DepartmentName)
@@ -242,18 +243,26 @@ namespace api.Data
                         .IsRequired();
             //// StudentCourseSelection
             // One to One StudentCourseSelection - StudentDepDetails
-             modelBuilder.Entity<StudentCourseSelection>()
+            modelBuilder.Entity<StudentCourseSelection>()
                         .HasOne(sd => sd.StudentDepDetails)
                         .WithOne(d => d.StudentCourseSelection)
                         .HasForeignKey<StudentCourseSelection>(scs => new {scs.DepartmentName, scs.TC})
                         .HasPrincipalKey<StudentDepDetails>(sdd => new {sdd.DepartmentName, sdd.TC})
                         .IsRequired();
             // Many to One StudentCourseSelection - Department
-             modelBuilder.Entity<StudentCourseSelect>()
+            modelBuilder.Entity<StudentCourseSelect>()
                         .HasOne(scss => scss.StudentCourseSelection)
                         .WithMany(scs => scs.SelectedCourses)
                         .HasForeignKey(scs => new {scs.DepartmentName, scs.TC})
                         .HasPrincipalKey(scss => new {scss.DepartmentName, scss.TC})
+                        .IsRequired();
+            //// DocumentRequest
+            // Many to One DocumentRequest - UserAccout
+            modelBuilder.Entity<DocumentRequest>()
+                        .HasOne(dr => dr.User)
+                        .WithMany(ua => ua.RequestedDocuments)
+                        .HasForeignKey(dr => dr.TC)
+                        .HasPrincipalKey(ua => ua.UserName)
                         .IsRequired();
             base.OnModelCreating(modelBuilder);
         }

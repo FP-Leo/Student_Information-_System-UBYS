@@ -1,6 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using api.DTO.CourseSelection;
 using api.DTO.DeparmentCourse;
 using api.DTO.DepartmentCourse;
 using api.Interfaces;
@@ -8,7 +5,6 @@ using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.DependencyResolver;
 
 namespace api.Controllers
 {

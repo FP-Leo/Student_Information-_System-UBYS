@@ -1058,7 +1058,7 @@ namespace api
                     Final = 40,
                     ComplementRight = true,
                     Complement = 60,
-                    Grade = 4,
+                    Grade = (float?)0.5,
                 };
                 var studentCourseDetails3 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1090,7 +1090,7 @@ namespace api
                     Final = 45,
                     ComplementRight = true,
                     Complement = 40,
-                    Grade = 4,
+                    Grade = 0,
                 };
                 var studentCourseDetails5 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1106,7 +1106,7 @@ namespace api
                     Final = 50,
                     ComplementRight = false,
                     Complement = null,
-                    Grade = 4,
+                    Grade = (float?)1.5,
                 };
                 var studentCourseDetails6 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1122,7 +1122,7 @@ namespace api
                     Final = 95,
                     ComplementRight = false,
                     Complement = null,
-                    Grade = null
+                    Grade = 0
                 };
                 var studentCourseDetails7 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1138,7 +1138,7 @@ namespace api
                     Final = 45,
                     ComplementRight = true,
                     Complement = 40,
-                    Grade = 4,
+                    Grade = 0
                 };
                 var studentCourseDetails8 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1154,7 +1154,7 @@ namespace api
                     Final = 50,
                     ComplementRight = false,
                     Complement = null,
-                    Grade = 4,
+                    Grade = (float?)1.5,
                 };
                 var studentCourseDetails9 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1170,7 +1170,7 @@ namespace api
                     Final = 95,
                     ComplementRight = false,
                     Complement = null,
-                    Grade = null
+                    Grade = 0
                 };
                 var studentCourseDetails19 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1202,7 +1202,7 @@ namespace api
                     Final = 40,
                     ComplementRight = true,
                     Complement = 60,
-                    Grade = 4,
+                    Grade = 1,
                 };
                 var studentCourseDetails21 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1234,7 +1234,7 @@ namespace api
                     Final = 45,
                     ComplementRight = true,
                     Complement = 40,
-                    Grade = 4,
+                    Grade = 0
                 };
                 var studentCourseDetails23 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1250,7 +1250,7 @@ namespace api
                     Final = 50,
                     ComplementRight = false,
                     Complement = null,
-                    Grade = 4,
+                    Grade = (float?)1.5
                 };
                 var studentCourseDetails24 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
@@ -1266,7 +1266,7 @@ namespace api
                     Final = 95,
                     ComplementRight = false,
                     Complement = null,
-                    Grade = null
+                    Grade = 0
                 };
                 var studentCourseDetails25 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",

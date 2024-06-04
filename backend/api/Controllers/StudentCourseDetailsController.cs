@@ -1,4 +1,3 @@
-
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using api.DTO.StudentCourseDetails;
@@ -492,12 +491,14 @@ namespace api.Controllers
             if(studentCourseDetails.AttendanceFulfilled != null ){
                 if(studentCourseDetails.AttendanceFulfilled == false){
                     studentCourseDetails.State = "Failed";
+                    studentCourseDetails.Grade = 0;
                     studentCourseDetails.ComplementRight = false;
                 }else if(studentCourseDetails.ComplementRight != null && studentCourseDetails.ComplementRight == true && studentCourseDetails.Complement != null){
                     CalculateGrade(studentCourseDetails, validClass.MidTermValue, validClass.FinalValue, 1);
                 }else if(studentCourseDetails.Final != null){
                     if(studentCourseDetails.Final < 50){
                         studentCourseDetails.State = "Failed";
+                        studentCourseDetails.Grade = 0;
                         studentCourseDetails.ComplementRight = true;
                     }else{
                         CalculateGrade(studentCourseDetails, validClass.MidTermValue, validClass.FinalValue, 0);
@@ -568,7 +569,6 @@ namespace api.Controllers
 
             return Ok(results);
         }
-
         private float calcAverage(ICollection<StudentCourseDetails> studentsCourseDetails, String Type){
             int totalPoints = 0;
             int totalStudent = 0;

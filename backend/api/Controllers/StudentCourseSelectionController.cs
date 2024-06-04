@@ -25,12 +25,14 @@ namespace api.Controllers
         private readonly ILecturerAccountRepository _lecturerAccountRepository;
         private readonly ISemesterDetailsRepository  _semesterDetails;
         private readonly IStudentAccountRepository _studentAccountRepository;
+        private readonly IDocumentRequestRepository _documentRequestRepository;
         public StudentCourseSelectionController(
             IStudentCourseSelectionRepository studentCourseSelectionRepository, IStudentCourseSelectRepository studentCourseSelectRepository,
             IDepartmentRepository departmentCourseSelectRepository, IDepartmentCourseRepository departmentCourseRepository,
             IStudentDepDetailsRepository studentDepDetailsRepo,  IStudentCourseDetailsRepostiory studentCourseDetailsRepository,
             ICourseClassRepository courseClassRepository, IUniversityRepository universityRepository, ICourseDetailsRepository courseDetailsRepository,
-            ILecturerAccountRepository lecturerAccountRepository, ISemesterDetailsRepository semesterDetailsRepository, IStudentAccountRepository studentAccountRepository
+            ILecturerAccountRepository lecturerAccountRepository, ISemesterDetailsRepository semesterDetailsRepository, IStudentAccountRepository studentAccountRepository,
+            IDocumentRequestRepository documentRequestRepository
         )
         {
             _courseSelectionDetailsRepo = studentCourseSelectionRepository;
@@ -45,6 +47,7 @@ namespace api.Controllers
             _lecturerAccountRepository = lecturerAccountRepository;
             _semesterDetails = semesterDetailsRepository;
             _studentAccountRepository = studentAccountRepository;
+            _documentRequestRepository = documentRequestRepository;
         }
 
         [HttpGet("University/Faculty/Department/Semester/Student/Courses/Selected")]
@@ -502,8 +505,7 @@ namespace api.Controllers
             }
 
             return Ok();
-        }
-    
+        }  
         [HttpGet("University/Faculty/Department/Student/Transcript/")]
         [Authorize(Roles = "Student")]
         public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName){
@@ -537,9 +539,9 @@ namespace api.Controllers
             };
 
             for (int i = 1; i <= dep.NumberOfSemesters; i++){
-                var failedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(TC, DepName, i);
-                var passedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(TC, DepName, i);
-                var PartiallyPassedCourses = await _studentCourseDetailsRepo.GetSemesterPartiallyPassedCoursesAsync(TC, DepName, i);
+                var failedCourses = await _studentCourseDetailsRepo.GetSemesterFailedCoursesAsync(DepName, TC, i);
+                var passedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(DepName, TC, i);
+                var PartiallyPassedCourses = await _studentCourseDetailsRepo.GetSemesterPartiallyPassedCoursesAsync(DepName, TC, i);
                 SemesterDto semesterDto = new()
                 {
                     Semester = i,
@@ -554,19 +556,32 @@ namespace api.Controllers
                 }
 
                 if(passedCourses != null ){
-                    var passedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, failedCourses);
+                    var passedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, passedCourses);
                     if(!passedCoursesResult){
                         StatusCode(500, "Failed to add Passed Courses to Transcript.");
                     }
                 }
 
                 if(PartiallyPassedCourses != null ){
-                    var PartiallyPassedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, failedCourses);
+                    var PartiallyPassedCoursesResult = await AddSemesterDetailsToTranscript(semesterDto, PartiallyPassedCourses);
                     if(!PartiallyPassedCoursesResult){
                         StatusCode(500, "Failed to add Partially Passed Courses to Transcript.");
                     }
                 }
                 transcript.Semesters.Add(semesterDto);
+            }
+
+            DocumentRequest transcriptRequestRecord = new DocumentRequest{
+                TC = TC,
+                DocumentType = "Transcript",
+                DocumentLanguage = "Turkish",
+                RequestDate = DateOnly.FromDateTime(DateTime.Now),
+                State = "Approved"
+            };
+
+            var result = await _documentRequestRepository.AddDocumentRequestAsync(transcriptRequestRecord);
+            if(result == null){
+                return StatusCode(500, "Failed to save document request record.");
             }
 
             return Ok(transcript);
@@ -584,13 +599,14 @@ namespace api.Controllers
                 }else{
                     Type = "Bahar";
                 }
+                var year = course.SchoolYear%2000;
                 CourseDto courseDto = new(){
                     CourseCode = course.CourseCode,
                     CourseName = courseDetail.CourseName,
                     AKTS = courseClass.AKTS,
                     Kredi = courseClass.Kredi,
                     Grade = course.Grade,
-                    SemesterYear = course.SchoolYear + "/" + course.SchoolYear+1 + Type
+                    SemesterYear = year + "/" + (int)(year + 1) + " " + Type
                 };
                 semesterDto.Courses.Add(courseDto);
             }

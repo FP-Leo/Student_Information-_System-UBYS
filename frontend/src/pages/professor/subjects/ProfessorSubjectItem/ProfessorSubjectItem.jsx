@@ -1,9 +1,11 @@
 import { Box, Button, Checkbox, Typography } from "@mui/material";
+import axios from "axios";
 import Islemler from "pages/professor/islemler/Islemler";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-export default function ProfessorSubjectItem({yil,donem,dersAdi,dersBirimi,dersKodu,dersFakulte,course}) {
+export default function ProfessorSubjectItem({yil,dersAdi,dersBirimi,dersKodu,dersFakulte,course}) {
+
     const [selectedSubject ,setSelectedSubject] = useState(false)
 
     const handleSelectedSubject = () =>{
@@ -11,10 +13,27 @@ export default function ProfessorSubjectItem({yil,donem,dersAdi,dersBirimi,dersK
     }
 
     const [islemler,setIslemler] = useState(false);
+    const [courseSize,setCourseSize]= useState(0)
 
     const handleIslemler = () =>{
       setIslemler(!islemler);
     }
+    const PORT = 53675;
+    const handleGetSubjectStudents = async ()  =>{
+      const response = await axios.get(`https://localhost:${PORT}/api/University/Faculty/Departments/Course/Students/Details`,
+        {
+          headers:{
+            Authorization:"Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTAwMDAwMDAwMDMiLCJyb2xlIjoiTGVjdHVyZXIiLCJuYmYiOjE3MTc1MTkyNzAsImV4cCI6MTcxODEyNDA3MCwiaWF0IjoxNzE3NTE5MjcwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYifQ.eu4xmuFF1i0qXNN9O19aUcDAsn4PLBgsx7SEbpSRTc0Q2pR1jrkJ24Qw829eFcrVq9_q7dNit03P8ZrwzQi2Gg"
+          },
+          params:{CourseCode:dersKodu}
+        }
+      ).then(response=>setCourseSize(response.data.students))
+
+    }
+
+    useEffect(()=>{
+      handleGetSubjectStudents()
+    },[])
 
 
     return (
@@ -27,7 +46,7 @@ export default function ProfessorSubjectItem({yil,donem,dersAdi,dersBirimi,dersK
           display: "grid",
           height: "75px",
           gridTemplateRows: "1fr 1fr 1fr 1fr",
-          gridTemplateColumns: "1.25fr 1.75fr 1.5fr 2.5fr 1.5fr 2.5fr 2fr",
+          gridTemplateColumns: "1.25fr 1.75fr 1.5fr 2.5fr 1.5fr 2.5fr",
           borderBottom: "1px solid #B3B3B3",
           borderLeft: "1px solid #B3B3B3",
           borderRight: "1px solid #B3B3B3",
@@ -105,17 +124,6 @@ export default function ProfessorSubjectItem({yil,donem,dersAdi,dersBirimi,dersK
             alignItems: "center",
             gridRow: "1/5",
             borderLeft : "1px solid #B3B3B3",
-          }}
-        >
-          <Typography variant="body2">{donem}</Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gridRow: "1/5",
-            borderLeft : "1px solid #B3B3B3",
             
           }}
         >
@@ -130,7 +138,7 @@ export default function ProfessorSubjectItem({yil,donem,dersAdi,dersBirimi,dersK
       ) 
         :
       (
-        <Islemler show={islemler} setIslemler={setIslemler} course={course} />
+        <Islemler courseSize={courseSize} show={islemler} setIslemler={setIslemler} course={course} faculty={dersFakulte} department={dersBirimi} />
       )
       }
       </>

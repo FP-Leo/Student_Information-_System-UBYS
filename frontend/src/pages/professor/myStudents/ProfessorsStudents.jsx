@@ -6,11 +6,14 @@ import {
   FormControl,
   MenuItem,
   Select,
-  Typography
+  Typography,
 } from "@mui/material";
+import axios from "axios";
 import SearchInput from "components/SearchInput";
-import { useState } from "react";
-import OwnedStudents from "../../../Data/ProfessorStudents.json";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectProgram } from "store/program/program.selector";
+import { selectUserToken } from "store/user/user.selector";
 import MyStudentsItem from "./MyStudentsItem/MyStudentsItem";
 import MyStudentsTableHeader from "./MyStudentsItem/MyStudentsTableHeader";
 
@@ -25,21 +28,17 @@ export default function ProfessorsStudents() {
     setSelectedBolum(event.target.value);
   };
 
+
   const [isFiltered, setIsFiltered] = useState(false);
 
-  const [professorStudents, setProfessorStudents] = useState(
-    OwnedStudents.professorStudents.sort(function (a, b) {
-      return b.ogrenciAd - a.ogrenciAd;
-    })
-  );
+  const [professorStudents, setProfessorStudents] = useState([]);
+  const [professorCourses,setProfessorCourses] = useState([]);
 
   const resetProfessorStudents = () => {
     setSelectedBolum("");
-    setProfessorStudents(
-      OwnedStudents.professorStudents.sort(function (a, b) {
-        return b.ogrenciAd - a.ogrenciAd;
-      })
-    );
+    professorCourses.forEach((course) => {
+      fetchStudents(course)
+    });
     setIsFiltered(false);
   };
   const filterStudents = () => {
@@ -62,7 +61,54 @@ export default function ProfessorsStudents() {
     setIsFiltered(!isFiltered);
   };
 
+  const PORT = 53675;
   const [records, setRecords] = useState(professorStudents);
+
+  const token = useSelector(selectUserToken);
+  const program = useSelector(selectProgram);
+
+  const fetchStudents = (course) =>{
+    axios
+    .get(
+      `https://localhost:${PORT}/api/University/Faculty/Departments/Course/Students/Details`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          CourseCode: course.courseCode,
+        },
+      }
+    )
+    .then((response) => {
+      if (response.data.students.length !== 0) {
+        response.data.students.forEach((student) =>
+          professorStudents.push(student),
+         setProfessorStudents([...professorStudents])
+        );
+      }
+
+  })
+}
+
+  useEffect(() => {
+    const response = axios
+      .get(
+        `https://localhost:${PORT}/api/University/Faculty/Department/Lecturer/Courses`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { DepartmentName: program },
+        }
+      )
+      .then((response) => {
+        setProfessorCourses(response.data.courses)
+        response.data.courses.forEach((course) => {
+              fetchStudents(course)
+            });
+        });
+  },[]);
 
 
   return (
@@ -142,7 +188,10 @@ export default function ProfessorsStudents() {
           <Typography>kayıt göster</Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", marginRight: 5 }}>
-         <SearchInput setSearchInputArray={setRecords} initialArray={professorStudents} />
+          <SearchInput
+            setSearchInputArray={setRecords}
+            initialArray={professorStudents}
+          />
         </Box>
       </Box>
 
@@ -180,7 +229,8 @@ export default function ProfessorsStudents() {
           >
             <MyStudentsTableHeader />
           </Box>
-          {records.map((student) => {
+          {professorStudents.map((student) => {
+            console.log(student);
             return <MyStudentsItem key={student.id} student={student} />;
           })}
         </Box>

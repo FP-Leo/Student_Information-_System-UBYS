@@ -15,6 +15,7 @@ export default function MyStudentsItem({student}) {
   ogrenciDurumDetay,
   GANO
 } = student
+  console.log(student);
 
     return (
         <Box>
@@ -54,7 +55,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-              {ogrenciNumara}
+              {student.ssn}
               </Typography>
             </Box>
 
@@ -69,7 +70,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography >
-                {ogrenciAd} {ogrenciSoyad}
+                {student.studentName}
               </Typography>
             </Box>
 
@@ -83,7 +84,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-                {ogrenciFakulte} - {ogrenciProgram}
+                Mühendislik Fakültesi - Bilgisayar Mühendisliği
               </Typography>
             </Box>
 
@@ -97,7 +98,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-                {kayitlanmaAsamasi}
+               {student.state === "Attending" ? "Kayıt Başarılı" : "Kayıt Süreci Devam Ediyor"}
               </Typography>
             </Box>
 
@@ -111,7 +112,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-                    {ogrenciSinif}
+                    {student.year}.Sınıf
               </Typography>
             </Box>
 
@@ -139,9 +140,9 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography
-              color={ogrenciDurum ? "#22bb33" : "#bb2124"}
+              color={student.attendanceFulfilled !== null? "#22bb33" : "#bb2124"}
               >
-                {ogrenciDurum ? "Başarılı" : "Başarısız"}
+                {student.attendanceFulfilled !== null ? "Başarılı" : "Başarısız"}
               </Typography>
             </Box>
 
@@ -169,7 +170,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-                {GANO}
+                {(((student.midTerm * 0.4) + (student.final * 0.6) + (student.complement*0.6))/30).toFixed(2)}
               </Typography>
             </Box>
 

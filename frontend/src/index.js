@@ -1,15 +1,14 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./store/root";
 
-import ThemeProvider from "theme/theme";
 import { ThemeSettingProvider } from "context/theme-context/theme-settings";
+import ThemeProvider from "theme/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

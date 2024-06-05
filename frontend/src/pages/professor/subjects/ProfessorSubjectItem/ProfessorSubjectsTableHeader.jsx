@@ -36,12 +36,6 @@ export default function ProfessorSubjectsTableHeader({ sortByHeader }) {
       />
       <TableHeader
         left={true}
-        right={false}
-        title="Ders Dönemi"
-        onClick={sortByHeader}
-      />
-      <TableHeader
-        left={true}
         right={true}
         title="Ders İşlemleri"
         onClick={sortByHeader}

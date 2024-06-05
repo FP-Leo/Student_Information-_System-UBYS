@@ -20,13 +20,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch } from "react-redux";
 import { setUserToken, setUserData } from "store/user/user.action";
 import { setProgram } from "store/program/program.action";
+import { ToastContainer, toast } from "react-toastify";
 
 const INITIAL_STATE = {
   username: "",
   password: "",
 };
 
-const PORT = 5158; //!--- Change this to your port number
+const PORT = 53675; //!--- Change this to your port number
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -56,19 +57,24 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:${PORT}/api/System/Account/LogIn`,
+        `https://localhost:${PORT}/api/System/Account/LogIn`,
         userInput
       );
-      console.log(response.data);
+      console.log();
+
       dispatch(setUserToken(response.data.token));
       dispatch(setUserData(response.data.data));
+      dispatch(setProgram(response.data.data.departments[0].departmentName))
       localStorage.setItem("userData", JSON.stringify(response.data.data));
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("program",response.data.data.departments[0].departmentName)
 
       resetInputValue();
       navigate("/home");
     } catch (error) {
-      alert(error);
+      toast.error(error.response.data,{
+        position:"top-right",
+      })
     }
     setLoading(false);
   };
@@ -231,6 +237,7 @@ const Login = () => {
           </Typography>
         </Box>
       </Box>
+      <ToastContainer/>
     </Box>
   );
 };

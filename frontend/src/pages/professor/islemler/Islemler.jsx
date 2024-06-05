@@ -4,7 +4,7 @@ import { useState} from "react";
 import IslemButton from "./islemlerButton/IslemButton";
 import IslemModal from "./islemlerModal/IslemModal";
 
-export default function Islemler({ setIslemler,course,show }) {
+export default function Islemler({ setIslemler,course,show , faculty,department ,courseSize}) {
 
   const [openModal,setOpenModal] = useState(false)
   const [title,setTitle] = useState("")
@@ -21,8 +21,6 @@ export default function Islemler({ setIslemler,course,show }) {
     setTitle(event.target.innerText)
     handleModalOpen()
   }
-
-
 
 
   return (
@@ -43,7 +41,14 @@ export default function Islemler({ setIslemler,course,show }) {
             fontSize:"15px"
         }}
     >
-            <IslemModal title={title} openModal={openModal} handleModalClose={handleModalClose} course={course}/>
+            <IslemModal 
+            courseSize={courseSize}
+            faculty={faculty}
+            department={department}
+            title={title} 
+            openModal={openModal} 
+            handleModalClose={handleModalClose} 
+            course={course}/>
       <Box
           sx={{
             display: "flex",

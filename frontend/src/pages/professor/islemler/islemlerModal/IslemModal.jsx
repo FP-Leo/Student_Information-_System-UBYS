@@ -2,20 +2,20 @@ import { Box, Modal, Typography } from "@mui/material";
 import DetayGoruntule from "./Pages/DetayGoruntule";
 import SinifListeGoruntule from "./Pages/SinifListeGoruntule";
 
-export default function IslemModal({ openModal, handleModalClose , course ,title }) {
+export default function IslemModal({ openModal, handleModalClose , course ,title ,faculty,department,courseSize}) {
 
 
     const allModals = {
-        "Detayları Görüntüle" : <DetayGoruntule course={course}/>,
-        "Sınıf Listesini Görüntüle" : <SinifListeGoruntule type={"Sınıf Görüntüle"}/>,
-        "Vize Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule type={"Vize Sınav"}/>,
-        "Final Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule type={"Final Sınav"}/>,
-        "Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle" : <SinifListeGoruntule type={"Bütünleme Listesi"}/>,
-        "Not Giriş Ekranını Göster" : <SinifListeGoruntule type={"Not Giriş"}/>,
-        "Vize Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule type={"Vize Yoklama"} />,
-        "Final Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule type={"Final Yoklama"} />,
-        "Öğrenci Not Listesi Görüntüle":<SinifListeGoruntule type={"Öğrenci Not Listesi"}/>,
-        "Devam Listesi Görüntüle" : <SinifListeGoruntule type={"Devam Listesi"}/>,
+        "Detayları Görüntüle" : <DetayGoruntule courseSize={courseSize} course={course} faculty={faculty} department={department}/>,
+        "Sınıf Listesini Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Sınıf Görüntüle"}/>,
+        "Vize Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Vize Sınav"}/>,
+        "Final Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule courseSize={courseSize}type={"Final Sınav"}/>,
+        "Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize}  type={"Bütünleme Listesi"}/>,
+        "Not Giriş Ekranını Göster" : <SinifListeGoruntule courseSize={courseSize} type={"Not Giriş"}/>,
+        "Vize Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize}  type={"Vize Yoklama"} />,
+        "Final Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Final Yoklama"} />,
+        "Öğrenci Not Listesi Görüntüle":<SinifListeGoruntule courseSize={courseSize} type={"Öğrenci Not Listesi"}/>,
+        "Devam Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Devam Listesi"}/>,
     }
   return (
     <Modal

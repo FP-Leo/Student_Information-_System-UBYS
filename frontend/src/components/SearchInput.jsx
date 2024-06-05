@@ -12,10 +12,7 @@ export default function SearchInput({setSearchInputArray,initialArray }) {
     setSearchInputArray(
       initialArray.filter(
         (item) =>
-          item.ogrenciAd
-            .toLowerCase()
-            .includes(event.target.value.toLowerCase().trim()) ||
-          item.ogrenciSoyad
+          item.studentName
             .toLowerCase()
             .includes(event.target.value.toLowerCase().trim())
       )

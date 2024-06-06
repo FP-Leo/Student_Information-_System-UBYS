@@ -10,11 +10,22 @@ import { Box, Button, Typography } from "@mui/material";
 import TableRow from "./components/TableRow";
 
 import { DOCUMENTS } from "./documents";
+import axios from "axios";
+import { useSelector } from "react-redux";
+
+import { useRef } from "react";
+import { selectUserToken } from "store/user/user.selector";
+import { selectProgram } from "store/program/program.selector";
+import StudentInfoPdf from "./components/studentInfoPdf";
 
 const BelgeTablebi = () => {
   const theme = useTheme();
+  const targetRef = useRef();
+  const token = useSelector(selectUserToken);
+  const program = useSelector(selectProgram);
   const [document, setDocument] = useState("");
   const [language, setLanguage] = useState("");
+  const [documents, setDocuments] = useState([]);
 
   const handleDocumentChange = (event) => {
     setDocument(event.target.value);
@@ -22,6 +33,44 @@ const BelgeTablebi = () => {
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
+
+  const handleDocumentRequest = async () => {
+    if (!document || !language) alert("Lütfen tüm alanları doldurunuz.");
+    else {
+      document === 10
+        ? console.log("Transcript")
+        : document === 20
+        ? await axios
+            .get(
+              "http://localhost:5158/api/University/Faculty/Department/Student/Document",
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+                params: { DepName: program },
+              }
+            )
+            .then((res) => {
+              setDocuments([
+                ...documents,
+                {
+                  ...res.data,
+                  id: documents.length + 10000000,
+                  date: new Date().toLocaleDateString(),
+                  language: "Turkish",
+                  status: "Onaylandı",
+                  type: "Öğrenci Belgesi",
+                },
+              ]);
+              //generatePdf();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        : console.log(null);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -88,9 +137,10 @@ const BelgeTablebi = () => {
                 value={document}
                 label="Belge Talebi"
                 onChange={handleDocumentChange}
+                required
               >
                 <MenuItem value={10}>Transcript</MenuItem>
-                <MenuItem value={20}>Student Confirmation</MenuItem>
+                <MenuItem value={20}>Öğrenci Belgesi</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -104,10 +154,9 @@ const BelgeTablebi = () => {
                 value={language}
                 label="Dil"
                 onChange={handleLanguageChange}
+                required
               >
                 <MenuItem value={10}>Turkish</MenuItem>
-                <MenuItem value={20}>English</MenuItem>
-                <MenuItem value={30}>Albanian</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -121,7 +170,11 @@ const BelgeTablebi = () => {
             justifyContent: "flex-end",
           }}
         >
-          <Button variant="contained" color="primary">
+          <Button
+            onClick={handleDocumentRequest}
+            variant="contained"
+            color="primary"
+          >
             Belge Talep Et
           </Button>
         </Box>
@@ -141,6 +194,7 @@ const BelgeTablebi = () => {
           >
             <Typography color="white">Talep Edilen Belgeler</Typography>
           </Box>
+
           <Box
             sx={{
               paddingX: 2,
@@ -158,7 +212,7 @@ const BelgeTablebi = () => {
             <Typography variant="subtitle2">Durum</Typography>
             <Typography variant="subtitle2">İşlemler</Typography>
           </Box>
-          {DOCUMENTS.map((data) => (
+          {documents.map((data) => (
             <TableRow key={data.id} data={data} />
           ))}
         </Box>

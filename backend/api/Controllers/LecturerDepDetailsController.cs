@@ -192,7 +192,42 @@ namespace api.Controllers
 
             return Ok(allCourses);
         }
-        
+        [HttpGet("University/Faculty/Administrator/Lecturers")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetAllLecturers(){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var lecturers = await _lecturerAccountRepository.GetLecturerAccounts();
+            ICollection<LectureSchoolDetailsDto> lecturersInfo = [];
+
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to get university data.");
+            }
+
+            foreach(var lecturer in lecturers){
+                var details = new LectureSchoolDetailsDto{
+                    LecturerId = lecturer.LecturerId,
+                    Name = lecturer.FirstName + " " + lecturer.LastName,
+                    Faculties = [],
+                    CurrentState = lecturer.CurrentStatus
+                };
+                var depsDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(lecturer.TC);
+                foreach(var depDetail in depsDetails){
+                    var dep = await _depRepository.GetDepartmentAsync(depDetail.DepartmentName);
+                    var facultyInfo = new LecturerFacultyDetailsDto{
+                        FacultyName = dep.FacultyName,
+                        DepartmentName = dep.DepartmentName
+                    };
+                    details.Faculties.Add(facultyInfo);
+                }
+                lecturersInfo.Add(details);
+            }
+            return Ok(lecturersInfo);
+        }  
         [HttpGet("University/Faculty/Department/Administrator/Lecturer/Courses")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetLecturerCourses([FromQuery] String DepartmentName, [FromQuery] String TC){

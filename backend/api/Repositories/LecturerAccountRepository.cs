@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
-using api.Mappers;
 using api.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
@@ -47,6 +41,13 @@ namespace api.Repositories
             var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.TC == TC);
 
             return account;
+        }
+
+        public async Task<ICollection<LecturerAccount>?> GetLecturerAccounts()
+        {
+            var accounts = await _context.LecturerAccounts.ToListAsync();
+
+            return accounts;
         }
 
         public async Task<LecturerAccount?> UpdateLecturerAccountAsync(LecturerAccount LecturerAccount)

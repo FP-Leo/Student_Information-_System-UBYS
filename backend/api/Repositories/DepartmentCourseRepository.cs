@@ -91,5 +91,12 @@ namespace api.Repositories
 
             return courses;
         }
+
+        public async Task<ICollection<DepartmentCourse>?> GetActiveCourses()
+        {
+            var courses = await _context.DepartmentCourses.Where(c => c.Status == "Open").ToListAsync();
+
+            return courses;
+        }
     }
 }

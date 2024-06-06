@@ -597,6 +597,16 @@ namespace api
                     MidTermValue = 40,
                     FinalValue = 60,
                 };
+                var courseClass41 = new CourseClass{
+                    CourseCode = "BLM-1007",
+                    SchoolYear = 2022,
+                    LecturerTC = "10000000003",
+                    HourPerWeek = 4,
+                    AKTS = 1,
+                    Kredi = 0,
+                    MidTermValue = 40,
+                    FinalValue = 60,
+                };
                 var courseClass7 = new CourseClass{
                     CourseCode = "BLM-2001",
                     SchoolYear = 2023,
@@ -719,7 +729,7 @@ namespace api
                 };
                 var courseClass19 = new CourseClass{
                     CourseCode = "BLM-1007",
-                    SchoolYear = 2022,
+                    SchoolYear = 2023,
                     LecturerTC = "10000000003",
                     HourPerWeek = 4,
                     AKTS = 6,
@@ -927,7 +937,7 @@ namespace api
                     MidTermValue = 40,
                     FinalValue = 60,
                 };
-                var courseClass41 = new CourseClass{
+                var courseClass42 = new CourseClass{
                     CourseCode = "BLM-2007",
                     SchoolYear = 2022,
                     LecturerTC = "10000000003",
@@ -976,7 +986,8 @@ namespace api
                 await _context.CourseClasses.AddAsync(courseClass38);
                 await _context.CourseClasses.AddAsync(courseClass39);
                 await _context.CourseClasses.AddAsync(courseClass40);
-                await _context.CourseClasses.AddAsync(courseClass31);
+                await _context.CourseClasses.AddAsync(courseClass41);
+                await _context.CourseClasses.AddAsync(courseClass42);
                 await _context.SaveChangesAsync();
             }
             if(!_context.ClassDates.Any()){

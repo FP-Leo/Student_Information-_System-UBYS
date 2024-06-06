@@ -17,17 +17,65 @@ namespace api.Controllers
         private readonly ICourseRepository _courseRepository;
         private readonly ICourseDetailsRepository _courseDetailsRepository;
         private readonly ISemesterDetailsRepository _semesterDetailsRepository;
+        private readonly ICourseClassRepository _courseClassRepository;
+        private readonly IUniversityRepository _universityRepository;
         public DepartmentCourseController(
             IDepartmentCourseRepository courseDepRepository, IDepartmentRepository departmentRepository, 
             ICourseRepository courseRepository, ICourseDetailsRepository courseDetailsRepository, 
-            ISemesterDetailsRepository semesterDetailsRepository){
+            ISemesterDetailsRepository semesterDetailsRepository, ICourseClassRepository courseClassRepository,
+             IUniversityRepository universityRepository){
             _departmentCourseRepository = courseDepRepository;
             _departmentRepository = departmentRepository;
             _courseRepository = courseRepository;
             _courseDetailsRepository = courseDetailsRepository;
             _semesterDetailsRepository = semesterDetailsRepository;
+            _courseClassRepository = courseClassRepository;
+            _universityRepository = universityRepository;
         }
+        [HttpGet("University/Courses/Active")]
+        [Authorize(Roles ="Administrator")]
+        public async Task<IActionResult> GetActiveCourses(){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to get university data.");
+            }
+            var courses = await _departmentCourseRepository.GetActiveCourses();
 
+            ICollection<DetailedDepartmentCourseDto> coursesDetails = [];
+            foreach(var course in courses){
+                var courseClass = await _courseClassRepository.GetCourseClassAsync(course.CourseCode, uni.CurrentSchoolYear);
+                if(courseClass == null){
+                    return StatusCode(500, "Failed to get class data.");
+                }
+                var dep = await _departmentRepository.GetDepartmentAsync(course.DepartmentName);
+                if(dep == null){
+                    return StatusCode(500, "Failed to get department data.");
+                }
+                string? semester;
+                if(course.TaughtSemester % 2 == 1){
+                    semester = "Güz";
+                }else{
+                    semester = "Bahar";
+                }
+                var courseDetails = new DetailedDepartmentCourseDto{
+                    CourseCode = course.CourseCode,
+                    CourseName = course.CourseName,
+                    DepartmentName = course.DepartmentName,
+                    FacultyName = dep.FacultyName,
+                    Semester = semester,
+                    Kredi = courseClass.Kredi,
+                    AKTS = courseClass.AKTS
+                };
+                coursesDetails.Add(courseDetails);
+            }
+
+
+            return Ok(coursesDetails);
+        }
         [HttpGet("University/Faculty/Department/Course/")]
         public async Task<IActionResult> GetDepCourseByCourseAndDepName([FromQuery] String DepName, [FromQuery] String CourseName){
             if(!ModelState.IsValid)

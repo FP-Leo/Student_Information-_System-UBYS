@@ -4,6 +4,7 @@ namespace api.Interfaces
 {
     public interface IDepartmentCourseRepository
     {
+        Task<ICollection<DepartmentCourse>?> GetActiveCourses();
         Task<ICollection<DepartmentCourse>?> GetDepartmentsOfCourseByCourseNameAsync(String CourseName);
         Task<ICollection<DepartmentCourse>?> GetDepartmentCoursesAsync(String DepartmentName);
         Task<ICollection<DepartmentCourse>?> GetDepartmentSemesterCoursesAsync(String DepartmentName, String Type, int Semester);

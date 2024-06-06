@@ -34,6 +34,7 @@
     "redux": "^5.0.1",
     "redux-logger": "^3.0.6",
     "toastify": "^2.0.1",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },

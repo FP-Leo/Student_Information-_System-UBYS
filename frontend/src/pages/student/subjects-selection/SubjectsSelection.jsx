@@ -22,7 +22,7 @@ const SubjectsSelection = () => {
     try {
       axios
         .get(
-          "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Selected",
+          "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Available",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -43,6 +43,7 @@ const SubjectsSelection = () => {
           }
         )
         .then((response) => {
+          console.log(response.data);
           setDetails(response.data);
         });
     } catch (err) {

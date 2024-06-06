@@ -1,5 +1,5 @@
 import { DERS_SECIMI_ACTIONS } from "./ders-secimi.types";
-import { createAction } from "../../utils/reducer";
+import { createAction } from "../../reducer";
 
 const addSubject = (subjectsSelected, subjectToAdd) => {
   const existingSubject = subjectsSelected.find(

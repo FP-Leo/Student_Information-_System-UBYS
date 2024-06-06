@@ -4,8 +4,9 @@ import { Box, Typography } from "@mui/material";
 import TableRow from "components/TableRow";
 import TableHeader from "components/TableHeader";
 
-const SubjectsTable = ({ subjects }) => {
+const SubjectsTable = ({ subjects, semester }) => {
   const theme = useTheme();
+  const { yil, donem } = semester;
   return (
     <Box
       sx={{
@@ -25,7 +26,7 @@ const SubjectsTable = ({ subjects }) => {
           marginX: "35px",
         }}
       >
-        <Typography variant="subtitle1">2023 - Bahar</Typography>
+        <Typography variant="subtitle1">{yil + " - " + donem}</Typography>
       </Box>
       <Box
         sx={{

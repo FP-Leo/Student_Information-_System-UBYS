@@ -39,8 +39,24 @@ const Subjects = () => {
       });
   }, [program]);
 
-  console.log(subjects);
   const result = Object.groupBy(subjects, ({ schoolYear }) => schoolYear);
+
+  Object.keys(result).forEach((year) => {
+    const subjectsForYear = result[year];
+    let firstSemester = [];
+    let secondSemester = [];
+    subjectsForYear.forEach((subject) => {
+      if (subject.semester % 2 === 1) {
+        firstSemester.push(subject);
+      } else {
+        secondSemester.push(subject);
+      }
+    });
+    result[year] = {
+      firstSemester,
+      secondSemester,
+    };
+  });
 
   return (
     <Box
@@ -69,7 +85,26 @@ const Subjects = () => {
           {Object.keys(result).map((year, index) => {
             const subjectsForYear = result[year];
             if (index === 0 || open) {
-              return <SubjectsTable key={index} subjects={subjectsForYear} />;
+              return (
+                <>
+                  <SubjectsTable
+                    key={`${year}-2`}
+                    subjects={subjectsForYear.secondSemester}
+                    semester={{
+                      yil: year,
+                      donem: "Bahar",
+                    }}
+                  />
+                  <SubjectsTable
+                    key={`${year}-1`}
+                    subjects={subjectsForYear.firstSemester}
+                    semester={{
+                      yil: year,
+                      donem: "Güz",
+                    }}
+                  />
+                </>
+              );
             }
           })}
 
@@ -88,8 +123,8 @@ const Subjects = () => {
             >
               {" "}
               {open
-                ? "Geçmiş Dönem Derslerini Gizle"
-                : "Geçmiş Dönem Derslerini Göster"}
+                ? "Geçmiş Yıl Derslerini Gizle"
+                : "Geçmiş Yıl Derslerini Göster"}
             </Button>
           </Box>
         </>

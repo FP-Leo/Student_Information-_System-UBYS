@@ -68,9 +68,19 @@ namespace api.Controllers
         [HttpGet("University/Faculty/Department/Semester/Lecturer/Courses/Selected")]
         [Authorize(Roles = "Advisor")]
         public async Task<IActionResult> GetStudentCourseSelectionApi([FromQuery] String DepartmentName, [FromQuery] String TC){
-             if(!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            if(studentAcc == null){
+                return NotFound("Student not found");
+            }
+
+            var dep = await _departmentRepo.GetDepartmentAsync(DepartmentName);
+            if(dep == null){
+                return NotFound("Department not found");
             }
             
             return await GetCourseSelection(DepartmentName, TC);
@@ -135,22 +145,31 @@ namespace api.Controllers
                 return BadRequest();
             }
 
-            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(courseSelectionPostDto.TC, courseSelectionPostDto.DepartmentName);
+            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+
+            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, courseSelectionPostDto.DepartmentName);
             if(studentDepDetails == null){
                 return BadRequest("Student not registered on this course.");
             }
 
+            // Check to see if the a course is selected twice.
+            var selectedCourses = courseSelectionPostDto.SelectedCourses.ToCourseCodeList();
+            if(selectedCourses.Count != selectedCourses.Distinct().Count()){
+                // Duplicates exist
+                return BadRequest("Cannot select a course twice.");
+            }   
+
             var semesterDetail = await _semesterDetails.GetSemesterDetailsAsync(courseSelectionPostDto.DepartmentName, studentDepDetails.CurrentSemester);
-
-            CoursesSelectionGETDto list = await GetAvailableCourseSelectionList(studentDepDetails);
-
-            ICollection<CourseClass> courseClasses = [];
-            ICollection<DepartmentCourse> depCourses = [];
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
             if(uni == null){
                 return StatusCode(500, "Failed to get university data");
             }
+
+            //ICollection<CourseClass> courseClasses = [];
+            //ICollection<DepartmentCourse> depCourses = [];
+
+            int selectedAKTS = 0;
 
             foreach(var selectedCourse in courseSelectionPostDto.SelectedCourses){
                 var depCourse = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(selectedCourse.CourseCode);
@@ -161,32 +180,96 @@ namespace api.Controllers
                 if(courseClass == null){
                     return BadRequest("Course not opened.");
                 }
-                depCourses.Add(depCourse);
-                courseClasses.Add(courseClass);
-            }
-
-            int selectedAKTS = 0;
-            foreach (var cclass in courseClasses){
-                selectedAKTS += cclass.AKTS;
+                //depCourses.Add(depCourse);
+                selectedAKTS += courseClass.AKTS;
             }
 
             if(AKTSExceeded(selectedAKTS, studentDepDetails.CurrentSemester)){
                 return BadRequest("Max AKTS exceeded.");
             }
 
+            CoursesSelectionGETDto list = await GetAvailableCourseSelectionList(studentDepDetails);
 
-            var selectedCourses = courseSelectionPostDto.SelectedCourses.ToCourseCodeList();
-
+            List<string> failedCoursesList = [];
             if(list.FailedCourses != null){
-                var failedCoursesList = list.FailedCourses.ToCourseCodeList();
-                foreach(var failedCourse in failedCoursesList){
-                    if(!selectedCourses.Contains(failedCourse)){
-                        return BadRequest("All failed courses must be taken.");
+                failedCoursesList = list.FailedCourses.ToCourseCodeList();
+            }
+
+            List<string> passedCoursesList = [];
+            if(list.PassedCourses != null){
+                passedCoursesList = list.PassedCourses.ToCourseCodeList();
+            }
+
+            List<string> mandatoryCoursesList = [];
+            List<string> OptionalCoursesList = [];
+            if(list.CurrentSemesterCourses != null){
+                mandatoryCoursesList = list.CurrentSemesterCourses.GetSpecificCourse("Mandatory");
+                OptionalCoursesList = list.CurrentSemesterCourses.GetSpecificCourse("Optional");
+            }
+
+            List<string> PartiallyPassedCourses = [];
+            if(list.PartiallyPassedCourses != null){
+                PartiallyPassedCourses = list.PartiallyPassedCourses.ToCourseCodeList();
+            }
+
+            List<string> OverHeadCoursesList = [];
+            if(list.OverHeadCourses != null){
+                OverHeadCoursesList = list.OverHeadCourses.ToCourseCodeList();
+            }
+
+            // Check to see if the selected courses are in the available pool.
+            foreach(var selectedCourse in selectedCourses){
+                if(failedCoursesList.Contains(selectedCourse) || passedCoursesList.Contains(selectedCourse) || 
+                    mandatoryCoursesList.Contains(selectedCourse) || OptionalCoursesList.Contains(selectedCourse)
+                    || PartiallyPassedCourses.Contains(selectedCourse) || OverHeadCoursesList.Contains(selectedCourse))
+                    continue;
+                return BadRequest("One of the selected courses is not available to you. Please check");
+            }
+
+            // All failed courses have priority.
+            foreach(var failedCourse in failedCoursesList){
+                if(!selectedCourses.Contains(failedCourse)){
+                    return BadRequest("All failed courses must be taken.");
+                }
+            }
+
+            if (studentDepDetails.Gno < 1.8)
+            {
+                foreach (var selectedCourse in selectedCourses){
+                    if (!PartiallyPassedCourses.Contains(selectedCourse) && !failedCoursesList.Contains(selectedCourse))
+                    {
+                        return BadRequest("Only partially passed and failed courses can be taken.");
                     }
                 }
             }
 
-            var OverHeadCoursesList = list.OverHeadCourses.ToCourseCodeList();
+            if (studentDepDetails.Gno < 2.0)
+            {
+                foreach (var partiallyPassedCourse in PartiallyPassedCourses)
+                {
+                    if (!selectedCourses.Contains(partiallyPassedCourse))
+                    {
+                        return BadRequest("All partially passed courses must be taken.");
+                    }
+                }
+            }
+
+            var numOfPartiallyPassedRetakenCourses = 0;
+            foreach(var partiallyPassedCourse in PartiallyPassedCourses){
+                if(selectedCourses.Contains(partiallyPassedCourse)){
+                    numOfPartiallyPassedRetakenCourses++;
+                }
+            }
+
+            var numOfPassedRetakenCourses = 0;
+            foreach(var passedCourses in passedCoursesList){
+                if(selectedCourses.Contains(passedCourses)){
+                    if(studentDepDetails.Gno <= 2.0)
+                        return BadRequest("You can only retake passed courses if GNO > 2.0");
+                    numOfPassedRetakenCourses++;
+                }
+            }
+
             int numOfOVerHeadCourses = 0;
             if(OverHeadCoursesList != null){
                 foreach(var OverHeadCourse in OverHeadCoursesList){
@@ -194,46 +277,59 @@ namespace api.Controllers
                         numOfOVerHeadCourses++;
                 }
             }
+            if ( numOfOVerHeadCourses != 0 && (studentDepDetails.Gno < 3.0 || list.FailedCourses == null ) ){
+                return BadRequest("Overhead courses can only be taken if GNO >= 3.0 and no failed courses.");
+            }
 
-            if(list.CurrentSemesterCourses != null){
-                var mandatoryCoursesList = list.CurrentSemesterCourses.GetSpecificCourse("Mandatory");
-                int selectiveCourseNumber = 0;
-                var selectiveCoursesList = list.CurrentSemesterCourses.GetSpecificCourse("Optional");
-                foreach(var optionalCourse in selectiveCoursesList){
-                    if(selectedCourses.Contains(optionalCourse))
-                        selectiveCourseNumber++;
-                }
-                if(selectiveCourseNumber > semesterDetail.NumberOfSelectiveCourses){
-                    return BadRequest("");   
-                }
-                foreach(var mandatoryCourse in mandatoryCoursesList){
-                    if(!selectedCourses.Contains(mandatoryCourse)){
-                        if(selectiveCourseNumber != 0 || numOfOVerHeadCourses != 0){
-                            return BadRequest("");
-                        }
-                        int courseAKTS = list.CurrentSemesterCourses.GetSpecificCourseAKTS(mandatoryCourse);
-                        if(!AKTSExceeded(selectedAKTS+courseAKTS, studentDepDetails.CurrentSemester)){
-                            return BadRequest("Available Mandatory Courses must be taken");
-                        }
+            int numOfSelectiveCourses = 0;
+            foreach(var optionalCourse in OptionalCoursesList){
+                if(selectedCourses.Contains(optionalCourse))
+                    numOfSelectiveCourses++;
+            }
+            if(numOfSelectiveCourses > semesterDetail.NumberOfSelectiveCourses){
+                return BadRequest("");   
+            }
+
+            foreach(var mandatoryCourse in mandatoryCoursesList){
+                if(!selectedCourses.Contains(mandatoryCourse)){
+                    if(numOfSelectiveCourses != 0 || numOfOVerHeadCourses != 0 || numOfPassedRetakenCourses != 0 || numOfPartiallyPassedRetakenCourses != 0){
+                        return BadRequest("Mandatory courses have priority over other courses except failed ones.");
+                    }
+                    int courseAKTS = list.CurrentSemesterCourses.GetSpecificCourseAKTS(mandatoryCourse);
+                    if(!AKTSExceeded(selectedAKTS+courseAKTS, studentDepDetails.CurrentSemester)){
+                        return BadRequest("Available Mandatory Courses must be taken");
                     }
                 }
-
             }
 
+            var record = new StudentCourseSelection{
+                DepartmentName = courseSelectionPostDto.DepartmentName,
+                TC = TC,
+                SentDate = DateTime.Now,
+                State = "On Review"
+            };
 
-
-            if(studentDepDetails.Gno < 2){
-
+            var createRecord = await _courseSelectionDetailsRepo.AddCourseSelectionDetailsAsync(record);
+            if(createRecord == null){
+                return StatusCode(500, "Failed to store the Course Selection data.");
             }
 
-            
+            foreach(var selectedCourse in selectedCourses){
+                var addCourse = new StudentCourseSelect{
+                    DepartmentName = courseSelectionPostDto.DepartmentName,
+                    TC = TC,
+                    CourseCode = selectedCourse,
+                };
+                var createCourseRecord = await _selectedCoursesRepo.AddSelectedCourseAsync(addCourse);
+                if(createCourseRecord == null){
+                    return StatusCode(500, "Failed to store the Course Selection data.");
+                }
+            }
 
-            
-            
             return Ok();
         }
         private bool AKTSExceeded(int selectedAKTS, int CurrentSemester){
-            if(selectedAKTS < 30 || (CurrentSemester > 6 && selectedAKTS > 48) || (CurrentSemester < 7 && selectedAKTS > 45))
+            if((CurrentSemester > 6 && selectedAKTS > 48) || (CurrentSemester < 7 && selectedAKTS > 45))
                 return true;
             return false;
         }

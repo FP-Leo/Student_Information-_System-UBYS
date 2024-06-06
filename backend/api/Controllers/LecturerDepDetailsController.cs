@@ -146,13 +146,64 @@ namespace api.Controllers
         }
         [HttpGet("University/Faculty/Department/Lecturer/Courses")]
         [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> GetLecturerCourses([FromQuery] String DepartmentName){
+        public async Task<IActionResult> GetOwnCourses([FromQuery] String DepartmentName){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
+            return await LecturerCourses(DepartmentName, TC);
+        }
+        [HttpGet("University/Faculty/Administrator/Lecturer/Courses")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetAllLecturerCourses([FromQuery] String TC){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var depsDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(TC);
+
+            if(depsDetails == null){
+                return NotFound("Lecturer not registered on any department.");
+            }
+
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            if(uni == null){
+                return StatusCode(500, "Failed to get university data.");
+            }
+            ICollection<LecturerDetailedCourseDto> allCourses = [];
+
+            foreach(var depDetail in depsDetails){
+                var classes = await _courseClassRepository.GetLecturersDepClasses(depDetail.DepartmentName, TC, uni.CurrentSchoolYear);
+                foreach(var cc in classes){
+                    var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(cc.CourseCode);
+                    LecturerDetailedCourseDto dto = new LecturerDetailedCourseDto{
+                        CourseCode = cc.CourseCode,
+                        CourseName = depCourse.CourseName,
+                        Department = depCourse.DepartmentName,
+                        Kredi = cc.Kredi,
+                        AKTS = cc.AKTS,
+                    };
+                    allCourses.Add(dto);
+                }
+            }
+
+            return Ok(allCourses);
+        }
+        
+        [HttpGet("University/Faculty/Department/Administrator/Lecturer/Courses")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetLecturerCourses([FromQuery] String DepartmentName, [FromQuery] String TC){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return await LecturerCourses(DepartmentName, TC);
+        }
+        private async Task<IActionResult> LecturerCourses(String DepartmentName, String TC){
             var dep = await _depRepository.GetDepartmentAsync(DepartmentName);
             if(dep == null){
                 return BadRequest("Department doesn't exist.");
@@ -192,7 +243,7 @@ namespace api.Controllers
                 };
                 lecturerCoursesDtos.Courses.Add(dto);
             }
-            
+
             return Ok(lecturerCoursesDtos);
         }
     }

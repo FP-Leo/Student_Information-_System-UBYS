@@ -527,11 +527,11 @@ namespace api
                     TC = "10000000001",
                     StudentType = "Bachelor",
                     StudentStatus = "Active",
-                    CurrentSchoolYear = 1,
-                    CurrentSemester = 1,
+                    CurrentSchoolYear = 2,
+                    CurrentSemester = 3,
                     CurrentAKTS = 0,
                     TotalAKTS = 0,
-                    Gno = 0,
+                    Gno = (float)2.5,
                 };
                 await _context.StudentsDepDetails.AddAsync(studentDepDetails);
                 await _context.SaveChangesAsync();

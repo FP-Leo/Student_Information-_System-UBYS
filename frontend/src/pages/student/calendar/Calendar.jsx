@@ -8,8 +8,13 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserToken } from "store/user/user.selector";
 import { selectProgram } from "store/program/program.selector";
+import { v4 as uuidv4 } from "uuid";
 
 const PORT = 5158;
+
+const createUniqueKey = () => {
+  return uuidv4();
+};
 
 const Calendar = () => {
   const program = useSelector(selectProgram);
@@ -98,6 +103,29 @@ const Calendar = () => {
   };
 
   createEvents();
+  const addExtra = () => {
+    events.map((event, index) => {
+      console.log(event);
+      for (let i = 1; i < 5; i++) {
+        if (i === 4) {
+          events.push({
+            event_id: createUniqueKey(),
+            title: event.title,
+            start: new Date(moment(event.start).subtract("1", "weeks")),
+            end: new Date(moment(event.end).subtract("1", "weeks")),
+          });
+        } else {
+          events.push({
+            event_id: createUniqueKey(),
+            title: event.title,
+            start: new Date(moment(event.start).add(`${i * 1}`, "weeks")),
+            end: new Date(moment(event.end).add(`${i * 1}`, "weeks")),
+          });
+        }
+      }
+    });
+  };
+  addExtra();
 
   return (
     <Box

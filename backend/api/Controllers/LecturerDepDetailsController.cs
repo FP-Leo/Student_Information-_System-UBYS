@@ -157,13 +157,18 @@ namespace api.Controllers
         }
         [HttpGet("University/Faculty/Administrator/Lecturer/Courses")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> GetAllLecturerCourses([FromQuery] String TC){
+        public async Task<IActionResult> GetLecturersAllCourses([FromQuery] int LecturerId){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(LecturerId);
+            if(lecturer == null){
+                return NotFound("There's no lecturer registered with that ID");
+            }
             
-            var depsDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(TC);
+            var depsDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(lecturer.TC);
 
             if(depsDetails == null){
                 return NotFound("Lecturer not registered on any department.");
@@ -176,7 +181,7 @@ namespace api.Controllers
             ICollection<LecturerDetailedCourseDto> allCourses = [];
 
             foreach(var depDetail in depsDetails){
-                var classes = await _courseClassRepository.GetLecturersDepClasses(depDetail.DepartmentName, TC, uni.CurrentSchoolYear);
+                var classes = await _courseClassRepository.GetLecturersDepClasses(depDetail.DepartmentName, lecturer.TC, uni.CurrentSchoolYear);
                 foreach(var cc in classes){
                     var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(cc.CourseCode);
                     LecturerDetailedCourseDto dto = new LecturerDetailedCourseDto{
@@ -230,13 +235,18 @@ namespace api.Controllers
         }  
         [HttpGet("University/Faculty/Department/Administrator/Lecturer/Courses")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> GetLecturerCourses([FromQuery] String DepartmentName, [FromQuery] String TC){
+        public async Task<IActionResult> GetLecturerCoursesByDeparment([FromQuery] String DepartmentName, [FromQuery] int LecturerId){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return await LecturerCourses(DepartmentName, TC);
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(LecturerId);
+            if(lecturer == null){
+                return NotFound("There's no lectuerer registered with that ID");
+            }
+
+            return await LecturerCourses(DepartmentName, lecturer.TC);
         }
         private async Task<IActionResult> LecturerCourses(String DepartmentName, String TC){
             var dep = await _depRepository.GetDepartmentAsync(DepartmentName);

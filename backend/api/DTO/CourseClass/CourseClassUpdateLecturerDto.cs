@@ -5,10 +5,8 @@ namespace api.DTO.CourseClass
     public class CourseClassUpdateLecturerDto
     {
         [Required]
-        public string? CourseCode { get; set; }
+        public int LecturerId { get; set; }
         [Required]
-        public int HourPerWeek { get; set; }
-        [Required]
-        public string? LecturerTC { get; set; }
+        public List<String>? CourseCodes { get; set; }
     }
 }

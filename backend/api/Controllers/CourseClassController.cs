@@ -16,13 +16,18 @@ namespace api.Controllers
         private readonly ILecturerDepDetailsRepository _lecturerDepDetailsRepository;
         private readonly ICourseDetailsRepository _courseDetailsRepository;
         private readonly ISemesterDetailsRepository _semesterDetailsRepository;
-        public CourseClassController(ICourseClassRepository courseClassRepository, IDepartmentCourseRepository departmentCourseRepository, IUniversityRepository universityRepository, ILecturerDepDetailsRepository lecturerDepDetailsRepository, ICourseDetailsRepository courseDetailsRepository, ISemesterDetailsRepository semesterDetailsRepository){
+        private readonly ILecturerAccountRepository _lecturerAccountRepository;
+        public CourseClassController(ICourseClassRepository courseClassRepository, 
+        IDepartmentCourseRepository departmentCourseRepository, IUniversityRepository universityRepository, 
+        ILecturerDepDetailsRepository lecturerDepDetailsRepository, ICourseDetailsRepository courseDetailsRepository, 
+        ISemesterDetailsRepository semesterDetailsRepository, ILecturerAccountRepository lecturerAccountRepository){
             _courseClassRepository = courseClassRepository;
             _departmentCourseRepository = departmentCourseRepository;
             _universityRepository = universityRepository;
             _lecturerDepDetailsRepository = lecturerDepDetailsRepository;
             _courseDetailsRepository = courseDetailsRepository;
             _semesterDetailsRepository = semesterDetailsRepository;
+            _lecturerAccountRepository = lecturerAccountRepository;
         }
         [HttpGet("University/Faculty/Department/Course/Class")]
         public async Task<IActionResult> GetCurrentCourseClass([FromQuery] String DepName, [FromQuery] String CourseName){
@@ -204,49 +209,6 @@ namespace api.Controllers
             courseClass.Kredi = courseClassUpdateDto.Kredi;
             courseClass.MidTermValue = courseClassUpdateDto.MidTermValue;
             courseClass.FinalValue = courseClassUpdateDto.FinalValue;
-            
-            var updatedCourseClass = await _courseClassRepository.UpdateCourseClassAsync(courseClass);
-            
-            if(updatedCourseClass == null){
-                return StatusCode(500);
-            }
-
-            return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
-        }
-        [HttpPut("University/Faculty/Department/Course/Class/Lecturer")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UpdateCourseClassLecturer([FromQuery] String DepName, [FromQuery] String CourseName, [FromBody] CourseClassUpdateLecturerDto courseClassUpdateLecturerDto){
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
-
-            if(depCourse == null){
-                return NotFound();
-            }
-
-            if(depCourse.CourseCode != courseClassUpdateLecturerDto.CourseCode){
-                return BadRequest("");
-            }
-
-            var lectDepDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(courseClassUpdateLecturerDto.LecturerTC);
-
-            if(lectDepDetails == null){
-                return BadRequest("The lecturer is currently not registered at this department.");
-            }
-
-            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
-            var uni = await _universityRepository.GetUniversityByIdAsync(1);
-
-            var courseClass = await _courseClassRepository.GetCourseClassAsync(depCourse.CourseCode, uni.CurrentSchoolYear);
-            
-            if(courseClass == null){
-                return NotFound();
-            }
-            
-            courseClass.LecturerTC = courseClassUpdateLecturerDto.LecturerTC;
             
             var updatedCourseClass = await _courseClassRepository.UpdateCourseClassAsync(courseClass);
             
@@ -440,48 +402,86 @@ namespace api.Controllers
 
             return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
         }
-        [HttpPut("University/Faculty/Department/Course/Class/Code/Lecturer")]
+        [HttpPut("University/Faculty/Department/Courses/Class/Code/Lecturer")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UpdateCourseClassLecturerByCode([FromQuery] String CourseCode, [FromBody] CourseClassUpdateLecturerDto courseClassUpdateLecturerDto){
+        public async Task<IActionResult> UpdateCourseClassesLecturerByCode( [FromBody] CourseClassUpdateLecturerDto courseClassUpdateLecturerDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(CourseCode != courseClassUpdateLecturerDto.CourseCode){
-                return BadRequest(ModelState);
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(courseClassUpdateLecturerDto.CourseCode);
-
-            if(depCourse == null){
-                return NotFound();
-            }
-
-            var lectDepDetails = await _lecturerDepDetailsRepository.GetLecturerDepsDetailsAsync(courseClassUpdateLecturerDto.LecturerTC);
-
-            if(lectDepDetails == null){
-                return BadRequest("The lecturer is currently not registered at this department.");
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(courseClassUpdateLecturerDto.LecturerId);
+            if(lecturer.TotalWorkHours > 20){
+                return BadRequest("Max courses assigned to this lecturer.");
             }
 
             // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
 
-            var courseClass = await _courseClassRepository.GetCourseClassAsync(CourseCode, uni.CurrentSchoolYear);
+            foreach(var CourseCode in courseClassUpdateLecturerDto.CourseCodes){
+                var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(CourseCode);
+
+                if(depCourse == null){
+                    return NotFound();
+                }
+
+                var lectDepDetail = await _lecturerDepDetailsRepository.GetLecturerDepDetailAsync(depCourse.DepartmentName, lecturer.TC);
+                if(lectDepDetail == null){
+                    return BadRequest("The lecturer is currently not registered at this department.");
+                }
+
+                var courseClass = await _courseClassRepository.GetCourseClassAsync(CourseCode, uni.CurrentSchoolYear);
+
+                if(courseClass.LecturerTC == lecturer.TC){
+                    return BadRequest("This course is already assigned to this lecturer.");
+                }
             
-            if(courseClass == null){
-                return NotFound();
-            }
-            
-            courseClass.LecturerTC = courseClassUpdateLecturerDto.LecturerTC;
-            
-            var updatedCourseClass = await _courseClassRepository.UpdateCourseClassAsync(courseClass);
-            
-            if(updatedCourseClass == null){
-                return StatusCode(500);
+                if(courseClass == null){
+                    return NotFound();
+                }
+
+                if(lecturer.TotalWorkHours + courseClass.HourPerWeek > 20){
+                    return BadRequest("Assigning this course to this lecturer exceeds his working hours ( Must be less that 20 )");
+                }
+
+                lectDepDetail.HoursPerWeek += courseClass.HourPerWeek;
+                lecturer.TotalWorkHours += courseClass.HourPerWeek;
+
+                if(courseClass.LecturerTC != null){
+                    var prevLecturer = await _lecturerAccountRepository.GetLecturerAccountByTCAsync(courseClass.LecturerTC);
+                    if(prevLecturer == null){
+                        return StatusCode(500, "Failed to get the previous lecturer's data");
+                    }
+                    var prevLectureDetails = await _lecturerDepDetailsRepository.GetLecturerDepDetailAsync(depCourse.DepartmentName, prevLecturer.TC);
+                    if(prevLectureDetails == null){
+                        return StatusCode(500, "Failed to get the previous lecturer's dep details.");
+                    }
+
+                    prevLecturer.TotalWorkHours -= courseClass.HourPerWeek;
+                    prevLectureDetails.HoursPerWeek -= courseClass.HourPerWeek;
+                }
+
+                courseClass.LecturerTC = lecturer.TC;
+
+                var updatedCourseClass = await _courseClassRepository.UpdateCourseClassAsync(courseClass);
+                
+                if(updatedCourseClass == null){
+                    return StatusCode(500, "Failed to update class");
+                }
+                /*
+                var updatedLecturersData = await _lecturerAccountRepository.UpdateLecturerAccountAsync(lecturer);
+                if(updatedLecturersData == null){
+                    return StatusCode(500, "Failed to Update Lecturers' Department Data");
+                }
+
+                var updatedLecturersDetails = await _lecturerDepDetailsRepository.UpdateLecturerDepDetail(lectDepDetail);
+                if(updatedLecturersDetails == null){
+                    return StatusCode(500, "Failed to Update Lecturers' Department Details");
+                }
+                */ // Because I've written the update functions like a retard there s no need for this.
             }
 
-            return Ok(updatedCourseClass.ToCourseClassDto(depCourse.CourseName));
+            return Ok();
         }
         [HttpDelete("University/Faculty/Department/Course/Class/Code")]
         [Authorize(Roles = "Admin")]

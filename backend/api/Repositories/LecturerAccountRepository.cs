@@ -28,8 +28,7 @@ namespace api.Repositories
                 return null;
             return LecturerAccount;
         }
-
-        public async Task<LecturerAccount?> GetLecturerAccountBySSNAsync(int LecturerId)
+        public async Task<LecturerAccount?> GetLecturerAccountByLecturerIdAsync(int LecturerId)
         {
             var account = await _context.LecturerAccounts.FirstOrDefaultAsync(la => la.LecturerId == LecturerId);
 

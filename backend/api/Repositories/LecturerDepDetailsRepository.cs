@@ -65,5 +65,19 @@ namespace api.Repositories
                 return null;
             return lecturerDepDetail;;
         }
+
+        public async Task<ICollection<LecturerDepDetails>?> GetLecturerDepsDetailsAsync(int LecturerId)
+        {
+            var lecturerDepDetail = await _context.LecturerDepDetails.Where(dd=> dd.Lecturer.LecturerId == LecturerId).ToListAsync();
+
+            return lecturerDepDetail;
+        }
+
+        public async Task<LecturerDepDetails?> GetLecturerDepDetailAsync(string DepName, int LecturerId)
+        {
+            var lecturerDepDetail = await _context.LecturerDepDetails.FirstOrDefaultAsync(dd=> dd.Lecturer.LecturerId == LecturerId && dd.DepartmentName == DepName);
+
+            return lecturerDepDetail;
+        }
     }
 }

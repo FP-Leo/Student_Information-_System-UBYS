@@ -26,15 +26,15 @@ import Image from "../assets/photo.svg";
 
 export default function UserCardSm({ ppSize, cardSize, isMenuCard }) {
   const currentUser = useSelector(selectUserData);
-  const dispatch = useDispatch();
-  const program = useSelector(selectProgram);
-  const { firstName, lastName, role, departments } = currentUser;
-  const theme = useTheme();
-
   const isStudent = currentUser.role === ROLE_TYPES.STUDENT;
 
-  const [open, setOpen] = React.useState(program === null ? true : false);
+  const theme = useTheme();
+  const dispatch = useDispatch();
+  const program = useSelector(selectProgram);
+
   const [userProgram, setUserProgram] = React.useState("");
+  const [open, setOpen] = React.useState(program === null ? true : false);
+  const { firstName, lastName, role, departments } = currentUser;
 
   const handleChange = (event) => {
     setUserProgram(event.target.value);

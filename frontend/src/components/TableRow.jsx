@@ -8,7 +8,6 @@ import {
 } from "utils/helper-functions";
 
 const TableRow = ({ data }) => {
-  console.log(data);
   const {
     courseName,
     complement,

@@ -9,14 +9,12 @@ import { Box, Button, Typography } from "@mui/material";
 
 import TableRow from "./components/TableRow";
 
-import { DOCUMENTS } from "./documents";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
 import { useRef } from "react";
 import { selectUserToken } from "store/user/user.selector";
 import { selectProgram } from "store/program/program.selector";
-import StudentInfoPdf from "./components/studentInfoPdf";
 
 const BelgeTablebi = () => {
   const theme = useTheme();
@@ -38,7 +36,33 @@ const BelgeTablebi = () => {
     if (!document || !language) alert("Lütfen tüm alanları doldurunuz.");
     else {
       document === 10
-        ? console.log("Transcript")
+        ? await axios
+            .get(
+              "http://localhost:5158/api/University/Faculty/Department/Student/Transcript",
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+                params: { DepName: program },
+              }
+            )
+            .then((res) => {
+              setDocuments([
+                ...documents,
+                {
+                  ...res.data,
+                  id: documents.length + 10000000,
+                  date: new Date().toLocaleDateString(),
+                  language: "Turkish",
+                  status: "Onaylandı",
+                  type: "Transcript",
+                },
+              ]);
+              //generatePdf();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
         : document === 20
         ? await axios
             .get(

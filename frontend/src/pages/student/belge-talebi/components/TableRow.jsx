@@ -4,6 +4,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import DownloadIcon from "assets/download-icon";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import StudentInfoPdf from "./studentInfoPdf";
+import TranscriptPdf from "./transcriptPdf";
 
 const studentData = {
   nationality: "Arnavutluk",
@@ -33,16 +34,7 @@ const studentData = {
 const TableRow = ({ data }) => {
   const { id, type, date, language, status } = data;
   const theme = useTheme();
-  const generatePdf = () => {
-    <PDFDownloadLink
-      document={<StudentInfoPdf studentData={studentData} />}
-      fileName="student_document.pdf"
-    >
-      {({ blob, url, loading, error }) =>
-        loading ? "Loading document..." : "Download now!"
-      }
-    </PDFDownloadLink>;
-  };
+  console.log(data);
 
   return (
     <Box
@@ -66,8 +58,16 @@ const TableRow = ({ data }) => {
       </Typography>
       <Box>
         <PDFDownloadLink
-          document={<StudentInfoPdf studentData={data} />}
-          fileName="student_document.pdf"
+          document={
+            type === "Transcript" ? (
+              <TranscriptPdf data={data} />
+            ) : (
+              <StudentInfoPdf studentData={data} />
+            )
+          }
+          fileName={
+            type === "Transcript" ? "transcript.pdf" : "ogrenci-belgesi.pdf"
+          }
         >
           {({ blob, url, loading, error }) =>
             loading ? null : <IconButton>{<DownloadIcon />}</IconButton>

@@ -1,11 +1,37 @@
 import React from "react";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
+
+Font.register({
+  family: "Ubuntu",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/questrial/v13/QdVUSTchPBm7nuUeVf7EuStkm20oJA.ttf",
+    },
+    {
+      src: "https://fonts.gstatic.com/s/questrial/v13/QdVUSTchPBm7nuUeVf7EuStkm20oJA.ttf",
+      fontWeight: "bold",
+    },
+    {
+      src: "https://fonts.gstatic.com/s/questrial/v13/QdVUSTchPBm7nuUeVf7EuStkm20oJA.ttf",
+      fontWeight: "normal",
+      fontStyle: "italic",
+    },
+  ],
+});
 
 const styles = StyleSheet.create({
   page: {
-    padding: 20,
+    paddingVertical: 30,
+    paddingHorizontal: 100,
     fontSize: 12,
-    fontFamily: "Helvetica",
+    fontFamily: "Ubuntu",
   },
   header: {
     fontSize: 14,
@@ -53,11 +79,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   header3: {
+    textAlign: "center",
     fontSize: 14,
     fontWeight: "bold",
     marginBottom: 20,
   },
   container: {
+    marginTop: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -102,7 +130,9 @@ const StudentInfoPdf = ({ studentData }) => {
           <Text style={styles.header2}>{program}</Text>
           <Text style={styles.header2}>{type}</Text>
         </View>
-        <Text style={styles.header3}>İLGİLİ MAKAMA</Text>
+        <View style={styles.headContainer}>
+          <Text style={styles.header3}>İLGİLİ MAKAMA</Text>
+        </View>
         <View style={styles.container}>
           <View style={styles.column1}>
             <Text style={styles.caption}>T.C./Y.U. Numarası:</Text>

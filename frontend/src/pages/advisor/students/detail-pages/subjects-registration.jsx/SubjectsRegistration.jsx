@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
@@ -33,51 +34,62 @@ import InfoCard from "../../components/InfoCard";
 import SelectedSubjects from "./SelectedSubjects";
 
 import SendIcon from "assets/send-icon";
-
-const DataToTest = [
-  {
-    subjectName: "Genel Fizik II",
-    subjectCode: "BMF1002",
-    akts: 5.0,
-    subeler: [
-      "A - Doç. Dr. Eren Nokta",
-      "B - Doç. Dr. Eren Nokta",
-      "C - Doç. Dr. Eren Nokta",
-    ],
-    aciklama: "Alabilir",
-    limit: false,
-    state: "success",
-  },
-  {
-    subjectName: "Lineer Cebir",
-    subjectCode: "BMF1004",
-    akts: 5.0,
-    subeler: [
-      "A - Doç. Dr. Eren Nokta",
-      "B - Doç. Dr. Eren Nokta",
-      "C - Doç. Dr. Eren Nokta",
-    ],
-    aciklama: "Alabilir",
-    limit: false,
-    state: "success",
-  },
-];
+import { useParams } from "react-router-dom";
+import { selectUserToken } from "store/user/user.selector";
+import { selectProgram } from "store/program/program.selector";
 
 const SubjectsRegistration = () => {
   const theme = useTheme();
+  const { id } = useParams();
+  const token = useSelector(selectUserToken);
+  const department = useSelector(selectProgram);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [changed, setChanged] = useState(false);
+  const [tc, setTc] = useState();
 
   const selectedSubjects = useSelector(selectSelectedSubjects);
   const fetchedSubjects = useSelector(selectFetchedSubjects);
 
   useEffect(() => {
-    dispatch(setFetchedSubjects(DataToTest));
-    dispatch(setSelectedSubjects(DataToTest));
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Department/Student/Transcript",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            DepName: department,
+            SSN: id,
+          },
+        }
+      )
+      .then((res) => {
+        setTc(res.data.studentInfo.tc);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Department/Semester/Advisor/Courses/Selected",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            DepName: department,
+            TC: tc,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
     // eslint-disable-next-line
   }, []);
 

@@ -95,6 +95,7 @@ const AdvisorStudents = () => {
       })
       .then((res) => {
         setStudents(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

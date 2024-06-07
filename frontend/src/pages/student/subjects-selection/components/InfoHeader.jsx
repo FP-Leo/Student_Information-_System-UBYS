@@ -1,11 +1,45 @@
 import { Box, Typography, Button } from "@mui/material";
 import SendIcon from "assets/send-icon";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
+import { selectProgram } from "store/program/program.selector";
+import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
 const InfoHeader = ({ details }) => {
   //const { currentSemester, currentSchoolYear } = details;
+  const token = useSelector(selectUserToken);
+  const department = useSelector(selectProgram);
+  const selectedSubjects = useSelector(selectSelectedSubjects);
+
   const handleSend = () => {
-    console.log("Send button clicked");
+    const codes = [];
+    selectedSubjects.map((subject) => {
+      codes.push(subject.courseCode);
+    });
+
+    axios
+      .post(
+        "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Select",
+        {
+          departmentName: department,
+          selectedCoursesCodes: codes,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(err);
+      });
   };
+
   const currentSemester = "2021-2022 Bahar";
   const currentSchoolYear = "4. Sınıf";
 

@@ -603,8 +603,8 @@ namespace api.Controllers
             return Ok();
         }  
         [HttpGet("University/Faculty/Department/Student/Transcript/")]
-        [Authorize(Roles = "Student")]
-        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName){
+        [Authorize(Roles = "Student, Advisor")]
+        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName, [FromQuery] String TC){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -614,7 +614,6 @@ namespace api.Controllers
             if(dep == null){
                 return NotFound();
             }
-            var TC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
             var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
             if(studentAcc == null){
@@ -624,7 +623,7 @@ namespace api.Controllers
             var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepName);
 
             if(studentDepDetails == null){
-                return BadRequest("You're not registered on this department.");
+                return BadRequest("Student not registered on this department.");
             }
 
             Transcript transcript = new()

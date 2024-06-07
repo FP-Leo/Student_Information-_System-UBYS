@@ -211,5 +211,42 @@ namespace api.Controllers
 
             return Ok(ogrBelge);
         }
+        [HttpGet("University/Students")]
+        [Authorize(Roles = "Advisor")]
+        public async Task<IActionResult> GetAllStudents(){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var students = await _studentAccountRepository.GetAllActiveStudents();
+            if(students == null){
+                return StatusCode(500, "Failed to get student's data.");
+            }
+
+            ICollection<StudentAllDepDetails> allStudentsDetails = [];
+            foreach(var student in students){
+                var depsDetails = await _studentDepDetailsRepository.GetStudentDepDetailsByTCAsync(student.TC);
+                if(depsDetails == null)
+                    continue;
+                var studentDetails = new StudentAllDepDetails{
+                    SSN = student.SSN,
+                    Name = student.FirstName + " " + student.LastName,
+                    Departments = []
+                };
+                foreach(var depDetail in depsDetails){
+                    var depDetailDto = new DepDetailDto{
+                        DepartmentName = depDetail.DepartmentName,
+                        Year = (depDetail.CurrentSemester+1)/2,
+                        GNO = depDetail.Gno,
+                        State = depDetail.StudentStatus,
+                    };
+                    studentDetails.Departments.Add(depDetailDto);
+                }
+                allStudentsDetails.Add(studentDetails);
+            }
+
+            return Ok(allStudentsDetails);
+        }
     }
 }

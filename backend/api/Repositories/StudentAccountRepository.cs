@@ -38,6 +38,13 @@ namespace api.Repositories
             return null;
         }
 
+        public async Task<ICollection<StudentAccount>?> GetAllActiveStudents()
+        {
+            var accounts = await _context.StudentAccounts.ToListAsync();
+
+            return accounts;
+        }
+
         public async Task<StudentAccount?> GetStudentAccountBySSNAsync(int SSN)
         {
             var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.SSN == SSN);

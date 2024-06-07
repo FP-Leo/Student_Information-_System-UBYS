@@ -19,36 +19,38 @@ const SubjectsSelection = () => {
   const [details, setDetails] = useState();
 
   useEffect(() => {
-    try {
-      axios
-        .get(
-          "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Available",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            params: { DepName: department },
-          }
-        )
-        .then((response) => {
-          setData(response.data);
-        });
-      axios
-        .get(
-          "http://localhost:5158/api/University/Faculty/Departments/Student/Details",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response.data);
-          setDetails(response.data);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Available",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { DepName: department },
+        }
+      )
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Departments/Student/Details",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setDetails(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   console.log(details);

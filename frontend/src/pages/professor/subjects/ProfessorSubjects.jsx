@@ -24,8 +24,8 @@ export default function ProfessorSubjects() {
   const token = useSelector(selectUserToken);
   const program = useSelector(selectProgram);
 
-  const PORT = 53675;
-  const [professorCourses, setProfessorCourses] = useState([])
+  const PORT = 5158;
+  const [professorCourses, setProfessorCourses] = useState([]);
   const [coursesDepartment, setCoursesDepartment] = useState("");
   const [coursesFaculty, setCoursesFaculty] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,51 +33,52 @@ export default function ProfessorSubjects() {
   const handleGetProfessorCourses = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://localhost:${PORT}/api/University/Faculty/Department/Lecturer/Courses`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: { DepartmentName: program },
-        }
-      ).then(response=>(
-        setProfessorCourses(response.data.courses),
-        response.data.courseFaculty === "M" && setCoursesFaculty("Mühendislik Fakültesi"),
-        response.data.courseDepartment === "BM" && setCoursesDepartment("Bilgisayar Mühendisliği")
-      ))
-      
+      const response = await axios
+        .get(
+          `http://localhost:5158/api/University/Faculty/Department/Lecturer/Courses`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: { DepartmentName: program },
+          }
+        )
+        .then(
+          (response) => (
+            console.log(response.data.courses),
+            setProfessorCourses(response.data.courses),
+            response.data.courseFaculty === "M" && setCoursesFaculty("M"),
+            response.data.courseDepartment === "BM" &&
+              setCoursesDepartment("BM")
+          )
+        );
     } catch (exception) {
       console.log(exception);
     } finally {
       setLoading(false); // Always set loading to false even on errors
     }
   };
-  
+
   useEffect(() => {
     handleGetProfessorCourses();
   }, []);
 
   const [isFiltered, setIsFiltered] = useState(false);
 
-
-
-
-
   const [tabloBaslik, setTabloBaslik] = useState(yil);
 
   const onClickFilter = () => {
     setTabloBaslik(yil);
-    if(!isFiltered){
-      let course = professorCourses.filter((item) => item.schoolYear === yil)
-      setProfessorCourses([...course])
-    }else{
-      handleGetProfessorCourses()
+    if (!isFiltered) {
+      let course = professorCourses.filter((item) => item.schoolYear === yil);
+      setProfessorCourses([...course]);
+    } else {
+      handleGetProfessorCourses();
     }
     setIsFiltered(!isFiltered);
-  
   };
 
+  console.log(professorCourses);
   const sortByHeader = (event) => {
     console.log(event.target.innerText); // Backendden veri gelince burayı dinamik yapacağım
     // Bu sayede tıklayıp direkt sort edebilecekler
@@ -98,7 +99,9 @@ export default function ProfessorSubjects() {
             key={yil}
             value={yil}
             sx={{ fontSize: "12px", fontWeight: "500" }}
-            onChange={(event)=>{setYil(event.target.value)}}
+            onChange={(event) => {
+              setYil(event.target.value);
+            }}
             displayEmpty
             inputProps={{ "aria-label": "Without label" }}
           >
@@ -175,14 +178,17 @@ export default function ProfessorSubjects() {
               <ProfessorSubjectsTableHeader sortByHeader={sortByHeader} />
             </Box>
             {professorCourses.map((course) => {
-              return <ProfessorSubjectItem 
-              course={course}
-              key={course.id}
-              yil={course.schoolYear} 
-              dersKodu={course.courseCode} 
-              dersFakulte={coursesFaculty}
-              dersBirimi ={coursesDepartment}
-              dersAdi={course.courseName}/>
+              return (
+                <ProfessorSubjectItem
+                  course={course}
+                  key={course.id}
+                  yil={course.schoolYear}
+                  dersKodu={course.courseCode}
+                  dersFakulte={coursesFaculty}
+                  dersBirimi={coursesDepartment}
+                  dersAdi={course.courseName}
+                />
+              );
             })}
           </Box>
         </Box>

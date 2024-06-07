@@ -1,14 +1,17 @@
 import { useTheme } from "@emotion/react";
 import { Box, Button } from "@mui/material";
 import SearchInput from "components/SearchInput";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
+import { useEffect, useState } from "react";
 import SınıfListeItem from "./Components/SınıfListeItem";
 import { set } from "lodash";
 import axios from "axios";
 
-export default function SinifListeGoruntule({ type, courseSize,courseCode }) {
+export default function SinifListeGoruntule({ type, courseSize, courseCode }) {
   const [professorStudents, setProfessorStudents] = useState(courseSize);
   const theme = useTheme();
+  const token = useSelector(selectUserToken);
   console.log(professorStudents);
   const [records, setRecords] = useState(courseSize);
   const [butunlemeStudents, setButunlemeStudents] = useState(courseSize);
@@ -16,48 +19,33 @@ export default function SinifListeGoruntule({ type, courseSize,courseCode }) {
   const [finalAvailable, setFinalAvailable] = useState(true);
   const [butAvailable, setButAvailable] = useState(true);
 
-  const [vize,setVize] = useState(0)
-  const [final,setFinal] = useState(0)
-  const [but,setBut] = useState(0)
+  const [deneme, setDeneme] = useState([]);
 
-  const [studentSsn,setStudentSsn] = useState(0)
+  const [vize, setVize] = useState(0);
+  const [final, setFinal] = useState(0);
+  const [but, setBut] = useState(0);
 
-  const handleVizeIlan= async ()  =>{
-    const response = await axios.get(
-      'http://localhost:5158/api/University/Faculty/Department/Course/Student/MidTerm',{CourseCode:dersKodu,tc:studentSsn,points:vize}
-      ,
-      {
-        headers:{
-          Authorization:"Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTAwMDAwMDAwMDMiLCJyb2xlIjoiTGVjdHVyZXIiLCJuYmYiOjE3MTc1MTkyNzAsImV4cCI6MTcxODEyNDA3MCwiaWF0IjoxNzE3NTE5MjcwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYifQ.eu4xmuFF1i0qXNN9O19aUcDAsn4PLBgsx7SEbpSRTc0Q2pR1jrkJ24Qw829eFcrVq9_q7dNit03P8ZrwzQi2Gg"
-        },
-      }
-    ).then(response=>setCourseSize(response.data.students))
+  const [studentSsn, setStudentSsn] = useState(0);
 
-  }
-
-  const handleFinalIlan= async ()  =>{
-    const response = await axios.get(URL,
-      {
-        headers:{
-          Authorization:"Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTAwMDAwMDAwMDMiLCJyb2xlIjoiTGVjdHVyZXIiLCJuYmYiOjE3MTc1MTkyNzAsImV4cCI6MTcxODEyNDA3MCwiaWF0IjoxNzE3NTE5MjcwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYifQ.eu4xmuFF1i0qXNN9O19aUcDAsn4PLBgsx7SEbpSRTc0Q2pR1jrkJ24Qw829eFcrVq9_q7dNit03P8ZrwzQi2Gg"
-        },
-        params:{CourseCode:dersKodu,tc:studentSsn,points:final}
-      }
-    ).then(response=>setCourseSize(response.data.students))
-
-  }
-
-  const handleButIlan= async ()  =>{
-    const response = await axios.get(URL,
-      {
-        headers:{
-          Authorization:"Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTAwMDAwMDAwMDMiLCJyb2xlIjoiTGVjdHVyZXIiLCJuYmYiOjE3MTc1MTkyNzAsImV4cCI6MTcxODEyNDA3MCwiaWF0IjoxNzE3NTE5MjcwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYifQ.eu4xmuFF1i0qXNN9O19aUcDAsn4PLBgsx7SEbpSRTc0Q2pR1jrkJ24Qw829eFcrVq9_q7dNit03P8ZrwzQi2Gg"
-        },
-        params:{CourseCode:dersKodu,tc:studentSsn,points:but}
-      }
-    ).then(response=>setCourseSize(response.data.students))
-
-  }
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Departments/Course/Students/Details",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            CourseCode: "BLM-2001",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setDeneme([...res.data.students]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "50vh" }}>
@@ -106,29 +94,26 @@ export default function SinifListeGoruntule({ type, courseSize,courseCode }) {
         {type === "Not Giriş" && (
           <Box display={"flex"}>
             <Button
-            onClick={()=>{
-              if(vizeAvailable){
-                handleVizeIlan()
-              }
-              setVizeAvailable(!vizeAvailable)
-            }}
-            >Vize İlan Et</Button>
+              onClick={() => {
+                setVizeAvailable(!vizeAvailable);
+              }}
+            >
+              Vize İlan Et
+            </Button>
             <Button
-            onClick={()=>{
-              if(finalAvailable){
-                handleFinalIlan()
-              }
-              setFinalAvailable(!finalAvailable)
-            }}            
-            >Final İlan Et</Button>
+              onClick={() => {
+                setFinalAvailable(!finalAvailable);
+              }}
+            >
+              Final İlan Et
+            </Button>
             <Button
-            onClick={()=>{
-              if(butAvailable){
-                handleButIlan()
-              }
-              setVizeAvailable(!butAvailable)
-            }}            
-            >Büt İlan Et</Button>
+              onClick={() => {
+                setVizeAvailable(!butAvailable);
+              }}
+            >
+              Büt İlan Et
+            </Button>
           </Box>
         )}
       </Box>
@@ -138,19 +123,24 @@ export default function SinifListeGoruntule({ type, courseSize,courseCode }) {
           overflow: "auto",
         }}
       >
-        {records.length !== 0 ? (
-          records.map((item) => {
+        {deneme.length !== 0 ? (
+          deneme.map((item) => {
             return (
               <SınıfListeItem
-                students={type === "Bütünleme Listesi" ? butunlemeStudents : professorStudents}
-                setStudents={type === "Bütünleme Listesi" && setButunlemeStudents}
+                students={
+                  type === "Bütünleme Listesi"
+                    ? butunlemeStudents
+                    : professorStudents
+                }
+                setStudents={
+                  type === "Bütünleme Listesi" && setButunlemeStudents
+                }
                 type={type}
                 key={item}
                 item={item}
                 vizeAvailable={vizeAvailable}
                 finalAvailable={finalAvailable}
                 butAvailable={butAvailable}
-
                 setVize={setVize}
                 setFinal={setFinal}
                 setBut={setBut}

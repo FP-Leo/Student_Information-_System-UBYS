@@ -519,6 +519,10 @@ namespace api.Controllers
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
             foreach(var course in selectedCourses){
+                var validDepCourse = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(course.CourseCode);
+                if(validDepCourse == null){
+                    return BadRequest("Department Course doesn't exist");
+                }
                 var validClass = await _courseClassRepository.GetCourseClassAsync(course.CourseCode, uni.CurrentSchoolYear);
                 if(validClass == null){
                     return BadRequest("Course Class doesn't exist");
@@ -527,10 +531,11 @@ namespace api.Controllers
 
                 var studentCourseDetailsPost = new StudentCourseDetails{
                     CourseCode = course.CourseCode,
+                    DepartmentName = validDepCourse.DepartmentName,
                     SchoolYear = uni.CurrentSchoolYear,
                     TC = TC,
                     State = "Attending",
-                    AttendanceFulfilled = false,
+                    AttendanceFulfilled = null,
                     MidTerm = null,
                     Final = null,
                     ComplementRight = null,
@@ -550,14 +555,14 @@ namespace api.Controllers
                 }
             }
 
-            var firstDeletion = _selectedCoursesRepo.DeleteSelectedCoursesRangeAsync(selectedCourses);
+            var firstDeletion = await _selectedCoursesRepo.DeleteSelectedCoursesRangeAsync(selectedCourses);
             if(firstDeletion == null){
                 return StatusCode(500, "Failed to delete selections after approvement");
             }
 
             var courseSelectionDetails = await _courseSelectionDetailsRepo.GetCourseSelectionDetailsAsync(DepartmentName, TC);
 
-            var secondDeletion = _courseSelectionDetailsRepo.DeleteCourseSelectionDetailsAsync(courseSelectionDetails);
+            var secondDeletion = await _courseSelectionDetailsRepo.DeleteCourseSelectionDetailsAsync(courseSelectionDetails);
             if(secondDeletion == null){
                 return StatusCode(500, "Failed to delete selection details after approvement");
             }

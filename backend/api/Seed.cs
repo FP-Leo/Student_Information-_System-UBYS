@@ -22,6 +22,7 @@ namespace api
                 await Register("10000000001", "Erlindi.1234", "Student");  
                 await Register("10000000002", "Erlindi.1234", "Administrator");
                 await Register("10000000003", "Erlindi.1234", "Lecturer");
+                await Register("10000000004", "Erlindi.1234", "Advisor");
             }
             if(!_context.Universities.Any()){
                 var uni = new University{
@@ -1183,6 +1184,7 @@ namespace api
                     Complement = null,
                     Grade = 0
                 };
+                /*
                 var studentCourseDetails19 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     CourseCode = "BLM-2001",
@@ -1279,6 +1281,7 @@ namespace api
                     Complement = null,
                     Grade = 0
                 };
+                */
                 var studentCourseDetails25 = new StudentCourseDetails{
                     DepartmentName = "BM", //"Bilgisayar Mühendisliği",
                     CourseCode = "BLM-2007",
@@ -1336,12 +1339,12 @@ namespace api
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails7);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails8);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails9);
-                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails19);
-                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails20);
-                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails21);
-                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails22);
-                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails23);
-                await _context.StudentsCourseDetails.AddAsync(studentCourseDetails24);
+                //await _context.StudentsCourseDetails.AddAsync(studentCourseDetails19);
+                //await _context.StudentsCourseDetails.AddAsync(studentCourseDetails20);
+                //await _context.StudentsCourseDetails.AddAsync(studentCourseDetails21);
+                //await _context.StudentsCourseDetails.AddAsync(studentCourseDetails22);
+                //await _context.StudentsCourseDetails.AddAsync(studentCourseDetails23);
+                //await _context.StudentsCourseDetails.AddAsync(studentCourseDetails24);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails25);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails26);
                 await _context.StudentsCourseDetails.AddAsync(studentCourseDetails27);

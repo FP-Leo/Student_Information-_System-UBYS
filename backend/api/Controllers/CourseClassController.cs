@@ -411,6 +411,10 @@ namespace api.Controllers
             }
 
             var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(courseClassUpdateLecturerDto.LecturerId);
+            if(lecturer == null){
+                return BadRequest("There is no lecturer registered with this Id.");
+            }
+            
             if(lecturer.TotalWorkHours > 20){
                 return BadRequest("Max courses assigned to this lecturer.");
             }
@@ -432,12 +436,12 @@ namespace api.Controllers
 
                 var courseClass = await _courseClassRepository.GetCourseClassAsync(CourseCode, uni.CurrentSchoolYear);
 
-                if(courseClass.LecturerTC == lecturer.TC){
-                    return BadRequest("This course is already assigned to this lecturer.");
-                }
-            
                 if(courseClass == null){
                     return NotFound();
+                }
+
+                if(courseClass.LecturerTC == lecturer.TC){
+                    return BadRequest("This course is already assigned to this lecturer.");
                 }
 
                 if(lecturer.TotalWorkHours + courseClass.HourPerWeek > 20){
@@ -482,7 +486,60 @@ namespace api.Controllers
             }
 
             return Ok();
+        }  
+        [HttpPut("University/Faculty/Department/Courses/Class/Code/Lecturer/Remove")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> RemoveCourseClassesLecturerByCode( [FromBody] CourseClassUpdateLecturerDto courseClassUpdateLecturerDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(courseClassUpdateLecturerDto.LecturerId);
+            if(lecturer == null){
+                return BadRequest("There is no lecturer registered with this Id.");
+            }
+
+            // Since the system is for one University only I decided to hard code this instead of losing time. It is not good practice tho :)
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+
+            foreach(var CourseCode in courseClassUpdateLecturerDto.CourseCodes){
+                var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(CourseCode);
+
+                if(depCourse == null){
+                    return NotFound();
+                }
+
+                var lectDepDetail = await _lecturerDepDetailsRepository.GetLecturerDepDetailAsync(depCourse.DepartmentName, lecturer.TC);
+                if(lectDepDetail == null){
+                    return BadRequest("The lecturer is currently not registered at this department.");
+                }
+
+                var courseClass = await _courseClassRepository.GetCourseClassAsync(CourseCode, uni.CurrentSchoolYear);
+
+                if(courseClass == null){
+                    return NotFound();
+                }
+
+                if(courseClass.LecturerTC != lecturer.TC){
+                    return BadRequest("This course is not assigned to this lecturer.");
+                }
+
+                lectDepDetail.HoursPerWeek -= courseClass.HourPerWeek;
+                lecturer.TotalWorkHours -= courseClass.HourPerWeek;
+
+                courseClass.LecturerTC = null;
+
+                var update = await _courseClassRepository.UpdateCourseClassAsync(courseClass);
+                
+                if(update == null){
+                    return StatusCode(500, "Failed to update data");
+                }
+            }
+
+            return Ok();
         }
+
         [HttpDelete("University/Faculty/Department/Course/Class/Code")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourseClassByCode([FromQuery] String CourseCode){

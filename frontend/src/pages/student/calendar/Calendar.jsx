@@ -90,7 +90,6 @@ const Calendar = () => {
               .add(i * 1, "hours")
           );
           endTime = new Date(moment(startTime).add(55, "minutes"));
-          console.log(startTime, endTime);
           events.push({
             event_id: _.uniqueId(),
             title: title,
@@ -105,7 +104,6 @@ const Calendar = () => {
   createEvents();
   const addExtra = () => {
     events.map((event, index) => {
-      console.log(event);
       for (let i = 1; i < 5; i++) {
         if (i === 4) {
           events.push({

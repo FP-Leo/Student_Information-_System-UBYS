@@ -26,6 +26,10 @@ import { setUserData, setUserToken } from "store/user/user.action";
 import Transitions from "components/Transitions";
 
 import avatar1 from "assets/avatar1.png";
+import {
+  setFetchedSubjects,
+  setSelectedSubjects,
+} from "store/ders-secimi/ders-secimi.action";
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -62,8 +66,11 @@ const Profile = () => {
     try {
       dispatch(setUserData(null));
       dispatch(setUserToken(null));
+      dispatch(setSelectedSubjects(null));
+      dispatch(setFetchedSubjects(null));
       localStorage.removeItem("userData"); //Storing User Data in Local Storage
       localStorage.removeItem("token"); //Storing User Data in Local Storage
+
       navigate("/");
     } catch (err) {
       alert(err);

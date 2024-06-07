@@ -7,18 +7,35 @@ import { Box } from "@mui/material";
 import InfoHeader from "./components/InfoHeader";
 import SecDersler from "./components/Secdersler";
 import SeciliDersler from "./components/SeciliDersler";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUserToken } from "store/user/user.selector";
 import { selectProgram } from "store/program/program.selector";
-
+import { setSelectedSubjects } from "store/ders-secimi/ders-secimi.action";
 const SubjectsSelection = () => {
   const token = useSelector(selectUserToken);
   const department = useSelector(selectProgram);
+  const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
   const [details, setDetails] = useState();
 
   useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Selected",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { DepartmentName: department },
+        }
+      )
+      .then((res) => {
+        dispatch(setSelectedSubjects(res.data.selectedCourses));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     axios
       .get(
         "http://localhost:5158/api/University/Faculty/Department/Semester/Student/Courses/Available",
@@ -52,8 +69,6 @@ const SubjectsSelection = () => {
         console.log(err);
       });
   }, []);
-
-  console.log(details);
 
   return (
     <Box sx={{ width: "100%" }}>

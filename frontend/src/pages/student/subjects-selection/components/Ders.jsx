@@ -41,7 +41,7 @@ const Ders = ({ data, state }) => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    if (selectedAkts + akts > 35) {
+    if (selectedAkts + akts > 45) {
       toast.error("35 AKTS'den fazla ders seçemezsiniz!");
       return;
     } else

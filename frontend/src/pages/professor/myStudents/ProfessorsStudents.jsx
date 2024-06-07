@@ -28,16 +28,15 @@ export default function ProfessorsStudents() {
     setSelectedBolum(event.target.value);
   };
 
-
   const [isFiltered, setIsFiltered] = useState(false);
 
   const [professorStudents, setProfessorStudents] = useState([]);
-  const [professorCourses,setProfessorCourses] = useState([]);
+  const [professorCourses, setProfessorCourses] = useState([]);
 
   const resetProfessorStudents = () => {
     setSelectedBolum("");
     professorCourses.forEach((course) => {
-      fetchStudents(course)
+      fetchStudents(course);
     });
     setIsFiltered(false);
   };
@@ -61,40 +60,39 @@ export default function ProfessorsStudents() {
     setIsFiltered(!isFiltered);
   };
 
-  const PORT = 53675;
+  const PORT = 5158;
   const [records, setRecords] = useState(professorStudents);
 
   const token = useSelector(selectUserToken);
   const program = useSelector(selectProgram);
 
-  const fetchStudents = (course) =>{
+  const fetchStudents = (course) => {
     axios
-    .get(
-      `https://localhost:${PORT}/api/University/Faculty/Departments/Course/Students/Details`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          CourseCode: course.courseCode,
-        },
-      }
-    )
-    .then((response) => {
-      if (response.data.students.length !== 0) {
-        response.data.students.forEach((student) =>
-          professorStudents.push(student),
-         setProfessorStudents([...professorStudents])
-        );
-      }
-
-  })
-}
+      .get(
+        `http://localhost:5158/api/University/Faculty/Departments/Course/Students/Details`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            CourseCode: course.courseCode,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.students.length !== 0) {
+          response.data.students.forEach(
+            (student) => professorStudents.push(student),
+            setProfessorStudents([...professorStudents])
+          );
+        }
+      });
+  };
 
   useEffect(() => {
     const response = axios
       .get(
-        `https://localhost:${PORT}/api/University/Faculty/Department/Lecturer/Courses`,
+        `http://localhost:5158/api/University/Faculty/Department/Lecturer/Courses`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -103,13 +101,12 @@ export default function ProfessorsStudents() {
         }
       )
       .then((response) => {
-        setProfessorCourses(response.data.courses)
+        setProfessorCourses(response.data.courses);
         response.data.courses.forEach((course) => {
-              fetchStudents(course)
-            });
+          fetchStudents(course);
         });
-  },[]);
-
+      });
+  }, []);
 
   return (
     <Box

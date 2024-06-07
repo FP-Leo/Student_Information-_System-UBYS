@@ -10,18 +10,21 @@ import {
 } from "@mui/material";
 import Avatar1 from "assets/avatar1.png";
 
-export default function SınıfListeItem({ 
-  setVize,setFinal,setBut,setStudentSsn,
-  type, item, students,setStudents ,vizeAvailable,finalAvailable,butAvailable
+export default function SınıfListeItem({
+  setVize,
+  setFinal,
+  setBut,
+  type,
+  item,
+  students,
+  setStudents,
+  vizeAvailable,
+  finalAvailable,
+  butAvailable,
 }) {
-
-  setStudentSsn(item.ssn)
-
-  const handleFilteringStudents = () =>{
-    setStudents(
-      students.filter((student)=>student.ssn !== item.ssn)
-    )
-  }
+  const handleFilteringStudents = () => {
+    setStudents(students.filter((student) => student.ssn !== item.ssn));
+  };
 
   const typeGridTempColumns = {
     "Sınıf Görüntüle": "0.5fr 1fr 1fr 1fr",
@@ -113,7 +116,7 @@ export default function SınıfListeItem({
               }}
             >
               <TextField
-                onChange={(event)=> setVize(event.target.value)}
+                onChange={(event) => setVize(event.target.value)}
                 disabled={!vizeAvailable}
                 label="Vize"
                 type="number"
@@ -126,8 +129,8 @@ export default function SınıfListeItem({
             </Box>
             <Box sx={{ paddingRight: "20px" }}>
               <TextField
-                              onChange={(event)=> setFinal(event.target.value)}
-              disabled={!finalAvailable}
+                onChange={(event) => setFinal(event.target.value)}
+                disabled={!finalAvailable}
                 label="Final"
                 type="number"
                 InputLabelProps={{
@@ -140,8 +143,8 @@ export default function SınıfListeItem({
 
             <Box sx={{ paddingRight: "10px" }}>
               <TextField
-                              onChange={(event)=> setBut(event.target.value)}
-              disabled={!butAvailable}
+                onChange={(event) => setBut(event.target.value)}
+                disabled={!butAvailable}
                 label="Büt"
                 type="number"
                 InputLabelProps={{
@@ -270,10 +273,14 @@ export default function SınıfListeItem({
           <Box>
             <Typography
               color={
-                item.attendanceFulfilled === true ? theme.palette.success.dark : "error"
+                item.attendanceFulfilled === true
+                  ? theme.palette.success.dark
+                  : "error"
               }
             >
-              {item.attendanceFulfilled === true ? "Devam Ediyor" : "Devamsızlıktan Kaldı"}
+              {item.attendanceFulfilled === true
+                ? "Devam Ediyor"
+                : "Devamsızlıktan Kaldı"}
             </Typography>
           </Box>
         </>

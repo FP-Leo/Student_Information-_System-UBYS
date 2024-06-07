@@ -682,8 +682,11 @@ namespace api.Controllers
                 }
             }
 
-            if(lower != null && upper != null && lower == 0){
-                var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(DepartmentName, TC);
+            if(lower != null && upper != null && lower != 0){
+                var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(TC, DepartmentName);
+                if(studentDepDetails == null){
+                    return false;
+                } 
                 studentDepDetails.Gno = (float) upper/lower;
                 return true;
             }

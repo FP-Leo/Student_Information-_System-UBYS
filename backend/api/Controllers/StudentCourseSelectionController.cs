@@ -65,7 +65,7 @@ namespace api.Controllers
             
             return await GetCourseSelection(DepartmentName, TC);
         }
-        [HttpGet("University/Faculty/Department/Semester/Lecturer/Courses/Selected")]
+        [HttpGet("University/Faculty/Department/Semester/Advisor/Courses/Selected")]
         [Authorize(Roles = "Advisor")]
         public async Task<IActionResult> GetStudentCourseSelectionApi([FromQuery] String DepartmentName, [FromQuery] String TC){
             if(!ModelState.IsValid)
@@ -151,14 +151,7 @@ namespace api.Controllers
             if(studentDepDetails == null){
                 return BadRequest("Student not registered on this course.");
             }
-
-            // Check to see if the a course is selected twice.
-            var selectedCourses = courseSelectionPostDto.SelectedCourses.ToCourseCodeList();
-            if(selectedCourses.Count != selectedCourses.Distinct().Count()){
-                // Duplicates exist
-                return BadRequest("Cannot select a course twice.");
-            }   
-
+            
             var semesterDetail = await _semesterDetails.GetSemesterDetailsAsync(courseSelectionPostDto.DepartmentName, studentDepDetails.CurrentSemester);
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
@@ -170,7 +163,7 @@ namespace api.Controllers
             //ICollection<DepartmentCourse> depCourses = [];
 
             int selectedAKTS = 0;
-
+            List<string> selectedCourses = [];
             foreach(var selectedCourse in courseSelectionPostDto.SelectedCourses){
                 var depCourse = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(selectedCourse.CourseCode);
                 if(depCourse == null){
@@ -182,7 +175,13 @@ namespace api.Controllers
                 }
                 //depCourses.Add(depCourse);
                 selectedAKTS += courseClass.AKTS;
+                selectedCourses.Add(selectedCourse.CourseCode);
             }
+
+            if(selectedCourses.Count != selectedCourses.Distinct().Count()){
+                // Duplicates exist
+                return BadRequest("Cannot select a course twice.");
+            }   
 
             if(AKTSExceeded(selectedAKTS, studentDepDetails.CurrentSemester)){
                 return BadRequest("Max AKTS exceeded.");
@@ -228,9 +227,10 @@ namespace api.Controllers
 
             // All failed courses have priority.
             foreach(var failedCourse in failedCoursesList){
-                if(!selectedCourses.Contains(failedCourse)){
-                    return BadRequest("All failed courses must be taken.");
+                if(selectedCourses.Contains(failedCourse)){
+                    continue;
                 }
+                return BadRequest("All failed courses must be taken.");
             }
 
             if (studentDepDetails.Gno < 1.8)

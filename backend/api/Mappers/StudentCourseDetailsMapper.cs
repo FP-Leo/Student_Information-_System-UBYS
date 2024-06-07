@@ -36,12 +36,14 @@ namespace api.Mappers
         }
 
         public static ExamResultsDto ToExamResultsDto(this StudentCourseDetails studentCourseDetails, String LecturerName, float[] averages){
-            ExamResultsDto examResultsDto= new();
-            examResultsDto.LecturerName = LecturerName;
-            examResultsDto.State = studentCourseDetails.State;
-            examResultsDto.Grade = studentCourseDetails.Grade;
-            examResultsDto.ExamResultDtos  = [];
-            if(studentCourseDetails.MidTerm != null){
+            ExamResultsDto examResultsDto = new()
+            {
+                LecturerName = LecturerName,
+                State = studentCourseDetails.State,
+                Grade = studentCourseDetails.Grade,
+                ExamResultDtos = []
+            };
+            if (studentCourseDetails.MidTerm != null){
                 var midTermResult = new ExamResultDto{
                     ExamName = "Mid Term",
                     AnnouncmentDate = studentCourseDetails.MidTermAnnouncment,

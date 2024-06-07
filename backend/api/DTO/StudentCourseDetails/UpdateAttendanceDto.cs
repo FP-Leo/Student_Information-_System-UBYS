@@ -7,7 +7,7 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public String? CourseCode { get; set;}
         [Required]
-        public String? TC { get; set; }
+        public int SSN { get; set; }
         [Required]
         public bool AttendanceFulfilled { get; set; }
     }

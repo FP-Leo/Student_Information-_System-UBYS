@@ -163,22 +163,20 @@ namespace api.Controllers
             //ICollection<DepartmentCourse> depCourses = [];
 
             int selectedAKTS = 0;
-            List<string> selectedCourses = [];
-            foreach(var selectedCourse in courseSelectionPostDto.SelectedCourses){
-                var depCourse = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(selectedCourse.CourseCode);
+            foreach(var selectedCourse in courseSelectionPostDto.SelectedCoursesCodes){
+                var depCourse = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(selectedCourse);
                 if(depCourse == null){
                     return BadRequest("Wrong Course Code");
                 }
-                var courseClass = await _courseClassRepository.GetCourseClassAsync(selectedCourse.CourseCode, uni.CurrentSchoolYear);
+                var courseClass = await _courseClassRepository.GetCourseClassAsync(selectedCourse, uni.CurrentSchoolYear);
                 if(courseClass == null){
                     return BadRequest("Course not opened.");
                 }
                 //depCourses.Add(depCourse);
                 selectedAKTS += courseClass.AKTS;
-                selectedCourses.Add(selectedCourse.CourseCode);
             }
 
-            if(selectedCourses.Count != selectedCourses.Distinct().Count()){
+            if(courseSelectionPostDto.SelectedCoursesCodes.Count != courseSelectionPostDto.SelectedCoursesCodes.Distinct().Count()){
                 // Duplicates exist
                 return BadRequest("Cannot select a course twice.");
             }   
@@ -217,7 +215,7 @@ namespace api.Controllers
             }
 
             // Check to see if the selected courses are in the available pool.
-            foreach(var selectedCourse in selectedCourses){
+            foreach(var selectedCourse in courseSelectionPostDto.SelectedCoursesCodes){
                 if(failedCoursesList.Contains(selectedCourse) || passedCoursesList.Contains(selectedCourse) || 
                     mandatoryCoursesList.Contains(selectedCourse) || OptionalCoursesList.Contains(selectedCourse)
                     || PartiallyPassedCourses.Contains(selectedCourse) || OverHeadCoursesList.Contains(selectedCourse))
@@ -227,7 +225,7 @@ namespace api.Controllers
 
             // All failed courses have priority.
             foreach(var failedCourse in failedCoursesList){
-                if(selectedCourses.Contains(failedCourse)){
+                if(courseSelectionPostDto.SelectedCoursesCodes.Contains(failedCourse)){
                     continue;
                 }
                 return BadRequest("All failed courses must be taken.");
@@ -235,7 +233,7 @@ namespace api.Controllers
 
             if (studentDepDetails.Gno < 1.8)
             {
-                foreach (var selectedCourse in selectedCourses){
+                foreach (var selectedCourse in courseSelectionPostDto.SelectedCoursesCodes){
                     if (!PartiallyPassedCourses.Contains(selectedCourse) && !failedCoursesList.Contains(selectedCourse))
                     {
                         return BadRequest("Only partially passed and failed courses can be taken.");
@@ -247,7 +245,7 @@ namespace api.Controllers
             {
                 foreach (var partiallyPassedCourse in PartiallyPassedCourses)
                 {
-                    if (!selectedCourses.Contains(partiallyPassedCourse))
+                    if (!courseSelectionPostDto.SelectedCoursesCodes.Contains(partiallyPassedCourse))
                     {
                         return BadRequest("All partially passed courses must be taken.");
                     }
@@ -256,14 +254,14 @@ namespace api.Controllers
 
             var numOfPartiallyPassedRetakenCourses = 0;
             foreach(var partiallyPassedCourse in PartiallyPassedCourses){
-                if(selectedCourses.Contains(partiallyPassedCourse)){
+                if(courseSelectionPostDto.SelectedCoursesCodes.Contains(partiallyPassedCourse)){
                     numOfPartiallyPassedRetakenCourses++;
                 }
             }
 
             var numOfPassedRetakenCourses = 0;
             foreach(var passedCourses in passedCoursesList){
-                if(selectedCourses.Contains(passedCourses)){
+                if(courseSelectionPostDto.SelectedCoursesCodes.Contains(passedCourses)){
                     if(studentDepDetails.Gno <= 2.0)
                         return BadRequest("You can only retake passed courses if GNO > 2.0");
                     numOfPassedRetakenCourses++;
@@ -273,7 +271,7 @@ namespace api.Controllers
             int numOfOVerHeadCourses = 0;
             if(OverHeadCoursesList != null){
                 foreach(var OverHeadCourse in OverHeadCoursesList){
-                    if(selectedCourses.Contains(OverHeadCourse))
+                    if(courseSelectionPostDto.SelectedCoursesCodes.Contains(OverHeadCourse))
                         numOfOVerHeadCourses++;
                 }
             }
@@ -283,7 +281,7 @@ namespace api.Controllers
 
             int numOfSelectiveCourses = 0;
             foreach(var optionalCourse in OptionalCoursesList){
-                if(selectedCourses.Contains(optionalCourse))
+                if(courseSelectionPostDto.SelectedCoursesCodes.Contains(optionalCourse))
                     numOfSelectiveCourses++;
             }
             if(numOfSelectiveCourses > semesterDetail.NumberOfSelectiveCourses){
@@ -291,7 +289,7 @@ namespace api.Controllers
             }
 
             foreach(var mandatoryCourse in mandatoryCoursesList){
-                if(!selectedCourses.Contains(mandatoryCourse)){
+                if(!courseSelectionPostDto.SelectedCoursesCodes.Contains(mandatoryCourse)){
                     if(numOfSelectiveCourses != 0 || numOfOVerHeadCourses != 0 || numOfPassedRetakenCourses != 0 || numOfPartiallyPassedRetakenCourses != 0){
                         return BadRequest("Mandatory courses have priority over other courses except failed ones.");
                     }
@@ -314,7 +312,7 @@ namespace api.Controllers
                 return StatusCode(500, "Failed to store the Course Selection data.");
             }
 
-            foreach(var selectedCourse in selectedCourses){
+            foreach(var selectedCourse in courseSelectionPostDto.SelectedCoursesCodes){
                 var addCourse = new StudentCourseSelect{
                     DepartmentName = courseSelectionPostDto.DepartmentName,
                     TC = TC,

@@ -22,13 +22,6 @@ namespace api.Mappers
             }
             return courseCodes;
         }
-        public static List<String> ToCourseCodeList(this ICollection<SelectedCoursePostDto> selectedCourses){
-            List<String> courseCodes = [];
-            foreach (var course in selectedCourses){
-                courseCodes.Add(course.CourseCode);
-            }
-            return courseCodes;
-        }
 
         public static List<String> GetSpecificCourse(this ICollection<SelectedCourseGETDto> selectedCourses, String CourseType){
             List<String> courseCodes = [];

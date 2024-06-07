@@ -7,6 +7,6 @@ namespace api.DTO.CourseSelection
         [Required]
         public string? DepartmentName { get; set; }
         [Required]
-        public ICollection<SelectedCoursePostDto>? SelectedCourses { get; set; }
+        public List<String>? SelectedCoursesCodes { get; set; }
     }
 }

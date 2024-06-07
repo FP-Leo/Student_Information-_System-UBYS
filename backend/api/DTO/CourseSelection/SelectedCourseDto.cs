@@ -9,7 +9,7 @@ namespace api.DTO.CourseSelection
         [Required]
         public string? CourseType { get; set; }
         [Required]
-        public int ATKS { get; set; }
+        public int AKTS { get; set; }
         [Required]
         public int Kredi { get; set; }
         [Required]

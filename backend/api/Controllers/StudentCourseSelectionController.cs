@@ -116,17 +116,18 @@ namespace api.Controllers
                 courseClasses.Add(cClass);
             }
 
-            ICollection<SelectedCourseDto> selectedCourseDto = [];
+            ICollection<SelectedCourseGETDto> selectedCourseDto = [];
             foreach(var cClass in courseClasses){
                 var depCourse = await _depCourseRepo.GetDeparmentCourseByCourseCodeAsync(cClass.CourseCode);
                 var courseDetails = await _courseDetailsRepository.GetCourseDetailsAsync(depCourse.CourseDetailsId);
-                var selectedCourse = new SelectedCourseDto{
+                var lecturer = await _lecturerAccountRepository.GetLecturerAccountByTCAsync(cClass.LecturerTC);
+                var selectedCourse = new SelectedCourseGETDto{
                     CourseCode = cClass.CourseCode,
-                    ATKS = cClass.AKTS,
+                    CourseName = depCourse.CourseName,
+                    AKTS = cClass.AKTS,
                     Kredi = cClass.Kredi,
-                    LecturerTC = cClass.LecturerTC,
+                    LecturerName = lecturer.FirstName + " " + lecturer.LastName,
                     CourseType = courseDetails.CourseType,
-                    TaughtSemester = depCourse.TaughtSemester
                 };
                 selectedCourseDto.Add(selectedCourse);
             }

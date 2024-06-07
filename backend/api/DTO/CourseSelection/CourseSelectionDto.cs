@@ -14,6 +14,6 @@ namespace api.DTO.CourseSelection
         [Required]
         public string? State { get; set; }
         [Required]
-        public ICollection<SelectedCourseDto>? SelectedCourses { get; set; }
+        public ICollection<SelectedCourseGETDto>? SelectedCourses { get; set; }
     }
 }

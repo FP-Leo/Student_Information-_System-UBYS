@@ -5,7 +5,7 @@ namespace api.Mappers
 {
     public static class CourseSelectionMapper
     {
-        public static CourseSelectionDto ToCourseSelectionDetailsDto(this StudentCourseSelection courseSelection, ICollection<SelectedCourseDto> selectedCourseDtos){
+        public static CourseSelectionDto ToCourseSelectionDetailsDto(this StudentCourseSelection courseSelection, ICollection<SelectedCourseGETDto> selectedCourseDtos){
             return new CourseSelectionDto{
                 TC = courseSelection.TC,
                 DepartmentName = courseSelection.DepartmentName,

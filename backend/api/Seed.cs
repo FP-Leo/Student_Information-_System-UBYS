@@ -57,7 +57,7 @@ namespace api
                     NumberOfSemesters = 8,
                     MaxYears = 7,
                     CourseSelectionStartDate = DateTime.Now,
-                    CourseSelectionEndDate = new DateTime(2024,06,07,12,00,0),
+                    CourseSelectionEndDate = new DateTime(2024,06,14,12,00,0),
                     DepCode = "BLM",
                     BuildingNumber = "2. Bina",
                     FloorNumber = 2,

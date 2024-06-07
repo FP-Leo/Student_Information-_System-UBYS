@@ -60,7 +60,7 @@ const InfoHeader = ({ details }) => {
           display: "flex",
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
           }}
@@ -126,7 +126,7 @@ const InfoHeader = ({ details }) => {
           color={"text.disabled"}
         >
           /
-        </Typography>
+        </Typography> */}
         <Box
           sx={{
             display: "flex",

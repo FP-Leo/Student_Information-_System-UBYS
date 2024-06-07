@@ -39,7 +39,6 @@ const StudentsInformation = () => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         setStudentInfo(res.data.studentInfo);
         setDepInfo(res.data.departmentInfo);
         setSemesters(res.data.semesters);
@@ -101,14 +100,22 @@ const StudentsInformation = () => {
               alignItems: "flex-start",
             }}
           >
-            <Typography variant="caption2">{studentInfo.ssn}</Typography>
             <Typography variant="caption2">
-              {studentInfo.firstName + " " + studentInfo.lastName}
+              {studentInfo ? studentInfo.ssn : ""}
             </Typography>
             <Typography variant="caption2">
-              {depInfo.facultyName + " / " + depInfo.departmentName}
+              {studentInfo
+                ? studentInfo.firstName + " " + studentInfo.lastName
+                : ""}
             </Typography>
-            <Typography variant="caption2">{+studentInfo.tc}</Typography>
+            <Typography variant="caption2">
+              {depInfo
+                ? depInfo.facultyName + " / " + depInfo.departmentName
+                : ""}
+            </Typography>
+            <Typography variant="caption2">
+              {studentInfo ? studentInfo.tc : ""}
+            </Typography>
           </Box>
         </Box>
         {console.log(semesters)}

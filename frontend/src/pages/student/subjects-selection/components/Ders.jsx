@@ -32,7 +32,7 @@ const Ders = ({ data, state }) => {
   useEffect(() => {
     if (selectedSubjects === undefined) return isSelected;
     let found = false;
-    selectedSubjects.forEach((item) => {
+    selectedSubjects?.forEach((item) => {
       if (item.courseCode === courseCode) found = true;
     });
     setIsSelected(found);

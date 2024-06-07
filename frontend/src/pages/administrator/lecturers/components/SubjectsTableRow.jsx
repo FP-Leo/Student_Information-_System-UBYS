@@ -7,7 +7,16 @@ import { addSubjectToStore } from "store/ders-secimi/ders-secimi.action";
 import { selectSelectedSubjects } from "store/ders-secimi/ders-secimi.selector";
 
 const SubjectsTableRow = ({ subject, toControl }) => {
-  const { subjectCode, dersAdı, dönem, kredi, AKTS } = subject;
+  const {
+    courseCode,
+    courseName,
+    semester,
+    departmentName,
+    facultyName,
+    kredi,
+    akts,
+  } = subject;
+  console.log(subject);
 
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -17,7 +26,7 @@ const SubjectsTableRow = ({ subject, toControl }) => {
   useEffect(() => {
     let found = false;
     selectedSubjects.forEach((item) => {
-      if (item.subjectCode === subjectCode) found = true;
+      if (item.courseCode === courseCode) found = true;
     });
     setIsSelected(found);
     // eslint-disable-next-line
@@ -34,12 +43,12 @@ const SubjectsTableRow = ({ subject, toControl }) => {
         backgroundColor: isSelected ? theme.palette.grey[200] : null,
       }}
     >
-      <TableCell size="small">{subjectCode}</TableCell>
-      <TableCell size="small">{dersAdı}</TableCell>
-      <TableCell size="small">Muhendislik</TableCell>
-      <TableCell size="small">{dönem}</TableCell>
+      <TableCell size="small">{courseCode}</TableCell>
+      <TableCell size="small">{courseName}</TableCell>
+      <TableCell size="small">{departmentName + " / " + facultyName}</TableCell>
+      <TableCell size="small">{semester}</TableCell>
       <TableCell size="small">{kredi}</TableCell>
-      <TableCell size="small">{AKTS}</TableCell>
+      <TableCell size="small">{akts}</TableCell>
       <TableCell size="small">
         <Button
           onClick={handleAdd}

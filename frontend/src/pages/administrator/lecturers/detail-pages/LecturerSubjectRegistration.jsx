@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SubjectsTableRow from "../components/SubjectsTableRow";
@@ -44,6 +45,7 @@ import {
   //selectFetchedSubjects,
   selectSelectedSubjects,
 } from "store/ders-secimi/ders-secimi.selector";
+import { selectUserToken } from "store/user/user.selector";
 
 const LecturerSubjectRegistration = () => {
   const theme = useTheme();
@@ -53,6 +55,7 @@ const LecturerSubjectRegistration = () => {
   const FACULTIES = getFaculties();
   //const DEPARTMENTS = getDepartments();
   //const fetchedSubjects = useSelector(selectFetchedSubjects);
+  const token = useSelector(selectUserToken);
   const selectedSubjects = useSelector(selectSelectedSubjects);
 
   const [open, setOpen] = useState(false);
@@ -64,8 +67,20 @@ const LecturerSubjectRegistration = () => {
   const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
-    setSubjects(SUBJECTS);
-  }, [SUBJECTS]);
+    axios
+      .get("http://localhost:5158/api/University/Courses/Active", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setSubjects(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
+  console.log(subjects);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

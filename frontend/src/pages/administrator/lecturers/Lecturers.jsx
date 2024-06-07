@@ -1,7 +1,10 @@
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
-
+import axios from "axios";
 import LecturerTableRow from "./components/LecturerTableRow";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
 
 const LECTURERS = [
   {
@@ -96,6 +99,25 @@ const LECTURERS = [
 
 const Lecturers = () => {
   const theme = useTheme();
+  const token = useSelector(selectUserToken);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Administrator/Lecturers",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
 
   return (
     <Box
@@ -110,7 +132,6 @@ const Lecturers = () => {
       <Box
         sx={{
           overflowY: "scroll",
-          height: "450px",
           borderRadius: 2,
           boxShadow: theme.customShadows.z8,
           backgroundColor: theme.palette.common.white,
@@ -188,7 +209,6 @@ const Lecturers = () => {
           </Box>{" "}
           <Box
             sx={{
-              height: "100%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -197,8 +217,8 @@ const Lecturers = () => {
             <Typography variant="subtitle2">İşlemler</Typography>
           </Box>
         </Box>
-        {LECTURERS.map((lecturer) => (
-          <LecturerTableRow data={lecturer} key={lecturer.id} />
+        {data.map((lecturer, index) => (
+          <LecturerTableRow data={lecturer} key={index} />
         ))}
       </Box>
     </Box>

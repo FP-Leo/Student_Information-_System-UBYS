@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 
 import TranscriptTable from "../../components/TranscriptTable";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
+import { selectProgram } from "store/program/program.selector";
 
 export const data = [
   {
@@ -277,6 +281,30 @@ export const data = [
 
 const StudentTranscript = () => {
   const { id } = useParams();
+  const token = useSelector(selectUserToken);
+  const program = useSelector(selectProgram);
+  const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Department/Student/Transcript",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            DepName: program,
+            SSN: id,
+          },
+        }
+      )
+      .then((res) => {
+        setDatas(res.data.semesters);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Box
       sx={{
@@ -304,7 +332,7 @@ const StudentTranscript = () => {
           {id}
         </Typography>
       </Box>
-      {data.map((transcript, index) => (
+      {datas.map((transcript, index) => (
         <TranscriptTable key={index} data={transcript} />
       ))}
     </Box>

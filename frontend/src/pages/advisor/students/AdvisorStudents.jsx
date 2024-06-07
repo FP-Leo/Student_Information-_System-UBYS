@@ -99,7 +99,6 @@ const AdvisorStudents = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(students);
   return (
     <Box
       sx={{

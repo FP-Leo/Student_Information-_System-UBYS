@@ -54,20 +54,19 @@ const StyledMenu = styled((props) => (
 }));
 
 const LecturerTableRow = ({ data }) => {
+  console.log(data);
   const theme = useTheme();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const { name, number, department, faculty, status } = data;
+  const { name, lecturerId, faculties, currentState } = data;
 
   const handleClick = (event) => {
-    event.preventDefault();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event) => {
-    event.preventDefault();
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
@@ -105,7 +104,7 @@ const LecturerTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">{number}</Typography>
+        <Typography variant="caption">{lecturerId}</Typography>
       </Box>
       <Box
         sx={{
@@ -127,9 +126,13 @@ const LecturerTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">
-          {faculty + " / " + department}
-        </Typography>
+        {faculties.map((faculty, index) => {
+          return (
+            <Typography key={index}>
+              {faculty.facultyName + " / " + faculty.departmentName}
+            </Typography>
+          );
+        })}
       </Box>
       <Box
         sx={{
@@ -141,7 +144,7 @@ const LecturerTableRow = ({ data }) => {
         }}
       >
         <Typography textAlign="center" variant="caption">
-          {status}
+          {currentState}
         </Typography>
       </Box>
 
@@ -176,7 +179,7 @@ const LecturerTableRow = ({ data }) => {
         >
           <MenuItem
             onClick={() => {
-              navigate(`/home/dersler/${number}`);
+              navigate(`/home/dersler/${lecturerId}`);
               handleClose();
             }}
             disableRipple
@@ -186,7 +189,7 @@ const LecturerTableRow = ({ data }) => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              navigate(`/home/ders-atanmasi/${number}`);
+              navigate(`/home/ders-atanmasi/${lecturerId}`);
               handleClose();
             }}
             disableRipple

@@ -1,8 +1,10 @@
 import { TableCell, TableRow } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const LecturerSubjectRow = () => {
+const LecturerSubjectRow = ({ data }) => {
   const theme = useTheme();
+  const { courseCode, courseName, akts, kredi, department } = data;
+
   return (
     <TableRow
       sx={{
@@ -11,11 +13,11 @@ const LecturerSubjectRow = () => {
         },
       }}
     >
-      <TableCell>BLM101</TableCell>
-      <TableCell>Introduction to Computer Science</TableCell>
-      <TableCell>Computer Engineering</TableCell>
-      <TableCell>3</TableCell>
-      <TableCell>5</TableCell>
+      <TableCell>{courseCode}</TableCell>
+      <TableCell>{courseName}</TableCell>
+      <TableCell>{department}</TableCell>
+      <TableCell>{kredi}</TableCell>
+      <TableCell>{akts}</TableCell>
     </TableRow>
   );
 };

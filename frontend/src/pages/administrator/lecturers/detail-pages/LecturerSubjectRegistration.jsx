@@ -40,8 +40,10 @@ import {
   //setFetchedSubjects,
   //setSelectedSubjects,
   removeSubjectFromStore,
+  setSelectedSubjects,
 } from "store/ders-secimi/ders-secimi.action";
 import {
+  selectCourseCodes,
   //selectFetchedSubjects,
   selectSelectedSubjects,
 } from "store/ders-secimi/ders-secimi.selector";
@@ -57,6 +59,8 @@ const LecturerSubjectRegistration = () => {
   //const fetchedSubjects = useSelector(selectFetchedSubjects);
   const token = useSelector(selectUserToken);
   const selectedSubjects = useSelector(selectSelectedSubjects);
+  const courseCodes = useSelector(selectCourseCodes);
+  const [fetchedCodes, setFetchedCodes] = useState([]);
 
   const [open, setOpen] = useState(false);
   const [faculty, setFaulty] = useState("");
@@ -79,8 +83,30 @@ const LecturerSubjectRegistration = () => {
       .catch((err) => {
         alert(err);
       });
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Administrator/Lecturer/Courses",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            LecturerId: params.id,
+          },
+        }
+      )
+      .then((res) => {
+        let codes = [];
+        dispatch(setSelectedSubjects(res.data));
+        res.data.map((data) => {
+          codes.push(data.courseCode);
+        });
+        setFetchedCodes(codes);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }, []);
-  console.log(subjects);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -123,6 +149,28 @@ const LecturerSubjectRegistration = () => {
     setOpen(false);
   };
 
+  const handleAgree = () => {
+    console.log(fetchedCodes, " FetchedCode");
+    console.log(courseCodes, " CourseCode ");
+    const codes = courseCodes.filter((val) => !fetchedCodes.includes(val));
+    axios
+      .put(
+        "http://localhost:5158/api/University/Faculty/Department/Courses/Class/Code/Lecturer",
+        {
+          LecturerId: params.id,
+          courseCodes: codes,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    setOpen(false);
+  };
+
   return (
     <Box
       sx={{
@@ -152,7 +200,7 @@ const LecturerSubjectRegistration = () => {
             }}
             variant="contained"
             color="success"
-            onClick={handleClose}
+            onClick={handleAgree}
             autoFocus
           >
             Agree
@@ -279,7 +327,7 @@ const LecturerSubjectRegistration = () => {
                   </TableCell>
                   <TableCell
                     sx={{
-                      width: "30%",
+                      width: "20%",
                     }}
                   >
                     Fakülte/Bölüm
@@ -357,7 +405,7 @@ const LecturerSubjectRegistration = () => {
                     }}
                     size="small"
                   >
-                    {subject.subjectCode}
+                    {subject.courseCode}
                   </TableCell>
                   <TableCell
                     sx={{
@@ -365,9 +413,9 @@ const LecturerSubjectRegistration = () => {
                     }}
                     size="small"
                   >
-                    {subject.dersAdı}
+                    {subject.courseName}
                   </TableCell>
-                  <TableCell size="small">Mühendislik Fakültesi</TableCell>
+                  <TableCell size="small">{subject.department}</TableCell>
                   <TableCell size="small" align="center">
                     {subject.kredi}
                   </TableCell>

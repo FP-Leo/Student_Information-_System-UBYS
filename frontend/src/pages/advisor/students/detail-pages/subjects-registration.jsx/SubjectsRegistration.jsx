@@ -57,37 +57,19 @@ const SubjectsRegistration = () => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5158/api/University/Faculty/Department/Student/Transcript",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            DepName: department,
-            SSN: id,
-          },
-        }
-      )
-      .then((res) => {
-        setTc(res.data.studentInfo.tc);
-      })
-      .catch((err) => console.log(err));
-
-    axios
-      .get(
         "http://localhost:5158/api/University/Faculty/Department/Semester/Advisor/Courses/Selected",
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            DepName: department,
-            TC: tc,
+            DepartmentName: department ? department : "BM",
+            SSN: id,
           },
         }
       )
       .then((res) => {
-        console.log(res.data);
+        dispatch(setSelectedSubjects(res.data.selectedCourses));
       })
       .catch((err) => console.log(err));
     // eslint-disable-next-line
@@ -106,6 +88,63 @@ const SubjectsRegistration = () => {
   };
   const handleGoBack = () => {
     navigate(-1);
+  };
+
+  const handleAccept = () => {
+    axios
+      .post(
+        "http://localhost:5158/api/University/Faculty/Department/Course/Advisor/Student/Course/Accept/Selected",
+        {
+          DepartmentName: department ? department : "BM",
+          SSN: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            DepartmentName: department ? department : "BM",
+            SSN: id,
+          },
+        }
+      )
+      .then((res) => {
+        alert("Accepted");
+        dispatch(setSelectedSubjects([]));
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error");
+      });
+  };
+
+  const handleReject = () => {
+    axios
+      .post(
+        "http://localhost:5158/api/University/Faculty/Department/Course/Advisor/Student/Course/Reject/Selected",
+        {
+          SSN: id,
+          DepartmentName: department,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            DepartmentName: department ? department : "BM",
+            SSN: id,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        alert("Rejected");
+        dispatch(setSelectedSubjects([]));
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error");
+      });
   };
 
   return (
@@ -155,20 +194,38 @@ const SubjectsRegistration = () => {
         }}
       >
         {changed ? (
-          <Button
-            style={{
-              color: "white",
-              borderRadius: "10px",
-              height: "40px",
-              marginRight: "15px",
-              marginTop: "15px",
-            }}
-            variant="contained"
-            color="success"
-          >
-            Öğrenci Onayına Gönder &nbsp;
-            <SendIcon />
-          </Button>
+          <Box sx={{ display: "flex" }}>
+            <Button
+              style={{
+                color: "white",
+                borderRadius: "10px",
+                height: "40px",
+                marginRight: "15px",
+                marginTop: "15px",
+              }}
+              variant="contained"
+              color="success"
+              onClick={handleAccept}
+            >
+              Accept &nbsp;
+              <SendIcon />
+            </Button>
+            <Button
+              style={{
+                color: "white",
+                borderRadius: "10px",
+                height: "40px",
+                marginRight: "15px",
+                marginTop: "15px",
+              }}
+              variant="contained"
+              color="error"
+              onClick={handleReject}
+            >
+              Reject &nbsp;
+              <SendIcon />
+            </Button>
+          </Box>
         ) : (
           <Button
             style={{

@@ -608,7 +608,7 @@ namespace api.Controllers
         }  
         [HttpGet("University/Faculty/Department/Student/Transcript/")]
         [Authorize(Roles = "Student, Advisor")]
-        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName, [FromQuery] String TC){
+        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName, [FromQuery] int SSN){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -619,12 +619,12 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            var studentAcc = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
             if(studentAcc == null){
                 return StatusCode(500, "Couldn't get account info.");
             }
             
-            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepName);
+            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(studentAcc.TC, DepName);
 
             if(studentDepDetails == null){
                 return BadRequest("Student not registered on this department.");
@@ -638,9 +638,9 @@ namespace api.Controllers
             };
 
             for (int i = 1; i <= dep.NumberOfSemesters; i++){
-                var failedCourses = await _studentCourseDetailsRepo.GetSemesterFailedCoursesAsync(DepName, TC, i);
-                var passedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(DepName, TC, i);
-                var PartiallyPassedCourses = await _studentCourseDetailsRepo.GetSemesterPartiallyPassedCoursesAsync(DepName, TC, i);
+                var failedCourses = await _studentCourseDetailsRepo.GetSemesterFailedCoursesAsync(DepName, studentAcc.TC, i);
+                var passedCourses = await _studentCourseDetailsRepo.GetSemesterPassedCoursesAsync(DepName, studentAcc.TC, i);
+                var PartiallyPassedCourses = await _studentCourseDetailsRepo.GetSemesterPartiallyPassedCoursesAsync(DepName, studentAcc.TC, i);
                 SemesterDto semesterDto = new()
                 {
                     Semester = i,
@@ -671,7 +671,7 @@ namespace api.Controllers
             }
 
             DocumentRequest transcriptRequestRecord = new DocumentRequest{
-                TC = TC,
+                TC = studentAcc.TC,
                 DocumentType = "Transcript",
                 DocumentLanguage = "Turkish",
                 RequestDate = DateOnly.FromDateTime(DateTime.Now),

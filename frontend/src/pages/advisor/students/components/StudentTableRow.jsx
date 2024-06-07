@@ -228,7 +228,7 @@ const StudentTableRow = ({ data, ssn, name }) => {
             <InsertDriveFileRoundedIcon />
             Ders Kayıtlanması
           </MenuItem>
-          <MenuItem
+          {/* <MenuItem
             onClick={() => {
               navigate(`/home/registration-control/${ssn}`);
               handleClose();
@@ -237,7 +237,7 @@ const StudentTableRow = ({ data, ssn, name }) => {
           >
             <AssignmentRoundedIcon />
             Ders Kayıtlanma Kontrol Sayfası
-          </MenuItem>
+          </MenuItem> */}
         </StyledMenu>
       </Box>
     </Box>

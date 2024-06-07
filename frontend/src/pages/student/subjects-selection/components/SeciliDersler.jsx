@@ -69,7 +69,7 @@ const SeciliDersler = () => {
         >
           <Typography variant="caption">Seçili AKTS</Typography>
           <Typography variant="caption" color="red">
-            {selectedAkts.toFixed(2)}
+            {selectedAkts?.toFixed(2)}
           </Typography>
         </Box>
         <Box
@@ -103,8 +103,7 @@ const SeciliDersler = () => {
         <Typography variant="caption">Ders Adı</Typography>
         <Typography variant="caption">AKTS</Typography>
       </Box>
-      {selectedSubjects.map((item, index) => {
-        console.log(item);
+      {selectedSubjects?.map((item, index) => {
         return <SecilmisDers key={index} index={index} data={item} />;
       })}
 

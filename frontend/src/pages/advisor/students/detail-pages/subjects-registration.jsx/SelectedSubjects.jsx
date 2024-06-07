@@ -55,7 +55,7 @@ const SelectedSubjects = () => {
         <Typography variant="caption">Ders Adı</Typography>
         <Typography variant="caption">AKTS</Typography>
       </Box>
-      {selectedSubjects.map((item, index) => (
+      {selectedSubjects?.map((item, index) => (
         <SecilmisDers index={index} key={index} data={item} />
       ))}
       <Box

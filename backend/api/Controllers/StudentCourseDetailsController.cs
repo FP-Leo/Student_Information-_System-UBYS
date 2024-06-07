@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using api.DTO.StudentCourseDetails;
 using api.Interfaces;
@@ -277,30 +278,60 @@ namespace api.Controllers
 
             return Ok(updatedStudentCourseDetails.ToStudentCourseDetailsDto(depCourse.CourseName, depCourse.TaughtSemester));
         }
-        [HttpPut("University/Faculty/Department/Course/Student/MidTerm/")]
+        [HttpPut("University/Faculty/Department/Course/Student/Attendance/")]
         [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> AddStudentMidTerm([FromQuery] String DepName, [FromQuery] String CourseName, [FromQuery] String TC, [FromBody] UpdateExamDto updateExamDto){
+        public async Task<IActionResult> SetStudentAttendance([FromBody] UpdateAttendanceDto updateAttendanceDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
 
-            if(!await ValidConditions(DepName, CourseName, TC, updateExamDto)){
-                return BadRequest(ModelState);
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(updateAttendanceDto.CourseCode);
             if(depCourse == null){
                 return BadRequest("Course is not given on this department");
             }
-
-            if(depCourse.CourseCode != updateExamDto.CourseCode){
-                return BadRequest("Course Code and Department don't match");
+            
+            var uni = await _universityRepository.GetUniversityByIdAsync(1);
+            var validClass = await _courseClassRepository.GetCourseClassAsync(updateAttendanceDto.CourseCode, uni.CurrentSchoolYear);
+            if(validClass == null){
+                return BadRequest("Course is not opened.");
+            }
+            if(validClass.LecturerTC != CurrentTC){
+                return Unauthorized();
             }
 
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateExamDto.TC, DepName);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateAttendanceDto.TC, depCourse.DepartmentName);
             if(studentDepDetails == null){
                 return BadRequest("Student is not registered on this department.");
+            }
+
+            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateAttendanceDto.CourseCode, updateAttendanceDto.TC, uni.CurrentSchoolYear);
+
+            if(studentCourseDetails == null){
+                return NotFound();
+            }
+
+            studentCourseDetails.AttendanceFulfilled = updateAttendanceDto.AttendanceFulfilled;
+            
+            var updatedStudentCourseDetails = await _studentCourseDetailsRepository.UpdateStudentCourseDetailsAsync(studentCourseDetails);
+            
+            if(updatedStudentCourseDetails == null){
+                return BadRequest();
+            }
+
+            return Ok(updatedStudentCourseDetails.ToStudentCourseDetailsDto(depCourse.CourseName, depCourse.TaughtSemester));
+        }
+        [HttpPut("University/Faculty/Department/Course/Student/MidTerm/")]
+        [Authorize(Roles = "Lecturer")]
+        public async Task<IActionResult> AddStudentMidTerm([FromBody] UpdateExamDto updateExamDto){
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(updateExamDto.CourseCode);
+            if(depCourse == null){
+                return BadRequest("Course not found. Bad Course Code.");
             }
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
@@ -309,9 +340,27 @@ namespace api.Controllers
             if(validClass == null){
                 return BadRequest("Course is not opened.");
             }
+            var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+            if(validClass.LecturerTC != CurrentTC){
+                return Unauthorized();
+            }
 
-            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateExamDto.CourseCode, TC, uni.CurrentSchoolYear);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByTCAsync(updateExamDto.TC);
 
+            if(validStudent == null){
+                return NotFound("Student not found");
+            }
+
+            if(updateExamDto.Points != null && (updateExamDto.Points < 0 || updateExamDto.Points > 100 )){
+                return BadRequest("Points must be between 0 and 100.");
+            }
+
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateExamDto.TC, depCourse.DepartmentName);
+            if(studentDepDetails == null){
+                return BadRequest("Student is not registered on this department.");
+            }
+
+            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateExamDto.CourseCode, updateExamDto.TC, uni.CurrentSchoolYear);
             if(studentCourseDetails == null){
                 return NotFound();
             }
@@ -331,28 +380,14 @@ namespace api.Controllers
         }
         [HttpPut("University/Faculty/Department/Course/Student/Final/")]
         [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> AddStudentFinal([FromQuery] String DepName, [FromQuery] String CourseName, [FromQuery] String TC, [FromBody] UpdateExamDto updateExamDto){
+        public async Task<IActionResult> AddStudentFinal([FromBody] UpdateExamDto updateExamDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if(!await ValidConditions(DepName, CourseName, TC, updateExamDto)){
-                return BadRequest(ModelState);
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(updateExamDto.CourseCode);
             if(depCourse == null){
-                return BadRequest("Course is not given on this department");
-            }
-
-            if(depCourse.CourseCode != updateExamDto.CourseCode){
-                return BadRequest("Course Code and Department don't match");
-            }
-
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateExamDto.TC, DepName);
-            if(studentDepDetails == null){
-                return BadRequest("Student is not registered on this department.");
+                return BadRequest("Course not found. Bad Course Code.");
             }
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
@@ -361,11 +396,27 @@ namespace api.Controllers
             if(validClass == null){
                 return BadRequest("Course is not opened.");
             }
+            var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+            if(validClass.LecturerTC != CurrentTC){
+                return Unauthorized();
+            }
 
-            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateExamDto.CourseCode, TC, uni.CurrentSchoolYear);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateExamDto.TC, depCourse.DepartmentName);
+            if(studentDepDetails == null){
+                return BadRequest("Student is not registered on this department.");
+            }
 
+            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateExamDto.CourseCode, updateExamDto.TC, uni.CurrentSchoolYear);
             if(studentCourseDetails == null){
                 return NotFound();
+            }
+
+            if(studentCourseDetails.MidTerm == null){
+                return BadRequest("Cannot enter Final Exam's points without entering MidTerm's first.");
+            }
+
+            if(studentCourseDetails.AttendanceFulfilled == null){
+                return BadRequest("Cannot enter Final Exam's points without entering Attendance first.");
             }
 
             studentCourseDetails.FinalAnnouncment = DateTime.Now;
@@ -383,28 +434,14 @@ namespace api.Controllers
         }
         [HttpPut("University/Faculty/Department/Course/Student/Complement/")]
         [Authorize(Roles = "Lecturer")]
-        public async Task<IActionResult> AddStudentComplement([FromQuery] String DepName, [FromQuery] String CourseName, [FromQuery] String TC, [FromBody] UpdateExamDto updateExamDto){
+        public async Task<IActionResult> AddStudentComplement([FromBody] UpdateExamDto updateExamDto){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if(!await ValidConditions(DepName, CourseName, TC, updateExamDto)){
-                return BadRequest(ModelState);
-            }
-
-            var depCourse = await _departmentCourseRepository.GetDeparmentCourseAsync(CourseName, DepName);
+            var depCourse = await _departmentCourseRepository.GetDeparmentCourseByCourseCodeAsync(updateExamDto.CourseCode);
             if(depCourse == null){
-                return BadRequest("Course is not given on this department");
-            }
-
-            if(depCourse.CourseCode != updateExamDto.CourseCode){
-                return BadRequest("Course Code and Department don't match");
-            }
-
-            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateExamDto.TC, DepName);
-            if(studentDepDetails == null){
-                return BadRequest("Student is not registered on this department.");
+                return BadRequest("Course not found. Bad Course Code.");
             }
 
             var uni = await _universityRepository.GetUniversityByIdAsync(1);
@@ -413,9 +450,17 @@ namespace api.Controllers
             if(validClass == null){
                 return BadRequest("Course is not opened.");
             }
+            var CurrentTC =  User.FindFirstValue(JwtRegisteredClaimNames.Name);
+            if(validClass.LecturerTC != CurrentTC){
+                return Unauthorized();
+            }
 
-            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateExamDto.CourseCode, TC, uni.CurrentSchoolYear);
+            var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(updateExamDto.TC, depCourse.DepartmentName);
+            if(studentDepDetails == null){
+                return BadRequest("Student is not registered on this department.");
+            }
 
+            var studentCourseDetails = await _studentCourseDetailsRepository.GetStudentCourseDetails(updateExamDto.CourseCode, updateExamDto.TC, uni.CurrentSchoolYear);
             if(studentCourseDetails == null){
                 return NotFound();
             }
@@ -467,15 +512,39 @@ namespace api.Controllers
 
             return NoContent();
         }
-        private void CalculateGrade(StudentCourseDetails studentCourseDetails, int MidTermValue, int FinalValue, int? finalNote){
+        private void CalculateGrade(StudentCourseDetails studentCourseDetails, int MidTermValue, int FinalValue, int finalNote){
             
+            float? final;
             if(finalNote == 0){
-                finalNote = studentCourseDetails.Final;
+                final = studentCourseDetails.Final;
             }else{
-                finalNote = studentCourseDetails.Complement;
+                final = studentCourseDetails.Complement;
+            }
+
+            if(final == null || studentCourseDetails.MidTerm == null)
+                return;
+            
+            float? points = finalNote*((float)FinalValue/100) + studentCourseDetails.MidTerm*((float)MidTermValue/100);
+            if(points >= 90){
+                studentCourseDetails.Grade = 4;
+            }else if(points >= 85){
+                studentCourseDetails.Grade = (float)3.5;
+            }else if(points >= 80){
+                studentCourseDetails.Grade = 3;
+            }else if(points >= 70){
+                studentCourseDetails.Grade = (float)2.5;
+            }else if(points >= 60){
+                studentCourseDetails.Grade = 2;
+            }else if(points >= 55){
+                studentCourseDetails.Grade = (float)1.5;
+            }else if(points >= 50){
+                studentCourseDetails.Grade = 1;
+            }else if(points >= 40){
+                studentCourseDetails.Grade = (float)0.5;
+            }else{
+                studentCourseDetails.Grade = 0;
             }
             
-            studentCourseDetails.Grade = finalNote*(FinalValue/100) + studentCourseDetails.MidTerm*(MidTermValue/100);
             if(studentCourseDetails.Grade < 1){
                 studentCourseDetails.State = "Failed";
                 studentCourseDetails.ComplementRight = true;
@@ -487,7 +556,7 @@ namespace api.Controllers
                 studentCourseDetails.ComplementRight = false;
             }
         }
-        private void UpdateGrade(StudentCourseDetails studentCourseDetails, CourseClass validClass){
+        private async void UpdateGrade(StudentCourseDetails studentCourseDetails, CourseClass validClass){
             if(studentCourseDetails.AttendanceFulfilled != null ){
                 if(studentCourseDetails.AttendanceFulfilled == false){
                     studentCourseDetails.State = "Failed";
@@ -495,7 +564,7 @@ namespace api.Controllers
                     studentCourseDetails.ComplementRight = false;
                 }else if(studentCourseDetails.ComplementRight != null && studentCourseDetails.ComplementRight == true && studentCourseDetails.Complement != null){
                     CalculateGrade(studentCourseDetails, validClass.MidTermValue, validClass.FinalValue, 1);
-                }else if(studentCourseDetails.Final != null){
+                }else if(studentCourseDetails.Final != null && studentCourseDetails.MidTerm != null){
                     if(studentCourseDetails.Final < 50){
                         studentCourseDetails.State = "Failed";
                         studentCourseDetails.Grade = 0;
@@ -504,32 +573,8 @@ namespace api.Controllers
                         CalculateGrade(studentCourseDetails, validClass.MidTermValue, validClass.FinalValue, 0);
                     }   
                 }
+                await UpdateGNO(studentCourseDetails.DepartmentName, studentCourseDetails.TC);
             }
-        }
-        private async Task<bool> ValidConditions(String DepName, String CourseName, String TC, UpdateExamDto updateExamDto){
-            if(updateExamDto.Points != null && (updateExamDto.Points < 0 || updateExamDto.Points > 100 )){
-                return false;
-            }
-
-            var validDep = await _departmentRepository.GetDepartmentAsync(DepName);
-
-            if(validDep == null){
-                return false;
-            }
-
-            var validCourse = await _courseRepository.GetCourseAsync(CourseName);
-
-            if(validCourse == null){
-                return false;
-            }
-
-            var validStudent = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
-
-            if(validStudent == null){
-                return false;
-            }
-
-            return true;
         }
         [HttpGet("University/Faculty/Department/Course/Student/Results")]
         [Authorize(Roles = "Student")]
@@ -601,6 +646,27 @@ namespace api.Controllers
                 return 0;
             else
                 return (float)totalPoints/totalStudent;
+        }
+        private async Task<bool> UpdateGNO(String DepartmentName, String TC){
+            float? upper = 0;
+            float? lower = 0;
+            var courseDetails = await _studentCourseDetailsRepository.GetStudentsAllCourseDetails(DepartmentName, TC);
+        
+            foreach(var courseDetail in courseDetails){
+                if(courseDetail.State == "Passed" || courseDetail.State == "Failed" || courseDetail.State == "Partially Passed"){
+                    var courseClass = await _courseClassRepository.GetCourseClassAsync(courseDetail.CourseCode, courseDetail.SchoolYear);
+                    upper += courseDetail.Grade * courseClass.AKTS;
+                    lower += courseClass.AKTS;
+                }
+            }
+
+            if(lower != null && upper != null && lower == 0){
+                var studentDepDetails = await _studentDepDetailsRepository.GetStudentDepDetailAsync(DepartmentName, TC);
+                studentDepDetails.Gno = (float) upper/lower;
+                return true;
+            }
+
+            return false;
         }
     }
 }

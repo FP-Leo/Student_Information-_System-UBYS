@@ -3,3 +3,4 @@ Things to be done if we have time:
 2. Control rector/dean/head of department TCs so one can't work more that one job at a time.
 3. Maybe add CourseState to Course/DepCourse? // Added to DepCourse. Done
 4. Add Class Branches.
+5. Add Student Semester Detail for DNO.

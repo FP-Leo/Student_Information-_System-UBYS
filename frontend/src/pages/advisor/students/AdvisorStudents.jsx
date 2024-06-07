@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 import generatePDF from "react-to-pdf";
 
@@ -11,6 +12,9 @@ import DownloadAsExcel from "./components/DownloadExcelFile";
 import PdfIcon from "assets/pdf-icon";
 
 import { getArrayFromObject } from "utils/helper-functions";
+
+import { selectUserToken } from "store/user/user.selector";
+import { useSelector } from "react-redux";
 
 export const STUDENTS = [
   {
@@ -76,9 +80,26 @@ export const STUDENTS = [
 ];
 
 const AdvisorStudents = () => {
+  const token = useSelector(selectUserToken);
+  const [students, setStudents] = useState([]);
   const theme = useTheme();
   const targetRef = useRef();
   const dataAsArray = getArrayFromObject(STUDENTS);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5158/api/University/Students", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setStudents(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(students);
   return (
     <Box
       sx={{
@@ -117,7 +138,6 @@ const AdvisorStudents = () => {
         ref={targetRef}
         sx={{
           overflowY: "scroll",
-          height: "450px",
           borderRadius: 2,
           boxShadow: theme.customShadows.z8,
           backgroundColor: theme.palette.common.white,
@@ -135,8 +155,7 @@ const AdvisorStudents = () => {
             border: `1px solid ${theme.palette.grey[500]}`,
             justifyContent: "center",
             alignItems: "center",
-            gridTemplateColumns:
-              "0.8fr 1.5fr 2.5fr 3fr 1.2fr 1fr 1fr 1fr 1.2fr 1fr 1fr",
+            gridTemplateColumns: "0.8fr 1.5fr 2.5fr 3fr 1.2fr 1fr  1fr 1fr",
           }}
         >
           <Box
@@ -216,39 +235,6 @@ const AdvisorStudents = () => {
               borderRight: `1px solid ${theme.palette.grey[500]}`,
             }}
           >
-            <Typography variant="subtitle2">Harç Borcu</Typography>
-          </Box>{" "}
-          <Box
-            sx={{
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRight: `1px solid ${theme.palette.grey[500]}`,
-            }}
-          >
-            <Typography variant="subtitle2">Durum</Typography>
-          </Box>{" "}
-          <Box
-            sx={{
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRight: `1px solid ${theme.palette.grey[500]}`,
-            }}
-          >
-            <Typography variant="subtitle2">Detay Durum</Typography>
-          </Box>{" "}
-          <Box
-            sx={{
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRight: `1px solid ${theme.palette.grey[500]}`,
-            }}
-          >
             <Typography variant="subtitle2">GANO</Typography>
           </Box>{" "}
           <Box
@@ -262,9 +248,12 @@ const AdvisorStudents = () => {
             <Typography variant="subtitle2">İşlemler</Typography>
           </Box>
         </Box>
-        {STUDENTS.map((student, index) => (
-          <StudentTableRow key={index} data={student} />
-        ))}
+        {students.map((student, index) => {
+          const { ssn, name, departments } = student;
+          return departments.map((program, index) => (
+            <StudentTableRow key={index} ssn={ssn} name={name} data={program} />
+          ));
+        })}
       </Box>
     </Box>
   );

@@ -1,4 +1,5 @@
 import { useTheme } from "@mui/material/styles";
+
 import { useEffect, useState } from "react";
 import { Button, TableCell, TableRow } from "@mui/material";
 
@@ -16,9 +17,9 @@ const SubjectsTableRow = ({ subject, toControl }) => {
     kredi,
     akts,
   } = subject;
-  console.log(subject);
 
   const theme = useTheme();
+
   const dispatch = useDispatch();
   const [isSelected, setIsSelected] = useState(false);
   const selectedSubjects = useSelector(selectSelectedSubjects);

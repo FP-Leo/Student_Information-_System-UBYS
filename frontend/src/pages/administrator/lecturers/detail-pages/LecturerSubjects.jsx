@@ -11,8 +11,38 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import LecturerSubjectRow from "../components/LecturerSubjectRow";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
+import { useParams } from "react-router-dom";
+
 const LecturerSubjects = () => {
   const theme = useTheme();
+  const params = useParams();
+  const token = useSelector(selectUserToken);
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Administrator/Lecturer/Courses",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            LecturerId: params.id,
+          },
+        }
+      )
+      .then((res) => {
+        setCourses(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
 
   return (
     <Box
@@ -72,11 +102,9 @@ const LecturerSubjects = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <LecturerSubjectRow />
-              <LecturerSubjectRow />
-              <LecturerSubjectRow />
-              <LecturerSubjectRow />
-              <LecturerSubjectRow />
+              {courses.map((course, index) => {
+                return <LecturerSubjectRow data={course} key={index} />;
+              })}
             </TableBody>
           </Table>
         </TableContainer>

@@ -9,3 +9,11 @@ export const selectedSubjectsAkts = (state) =>
     (acc, item) => acc + Math.floor(item.akts),
     0
   );
+
+export const selectCourseCodes = (state) => {
+  const list = [];
+  state.selectedSubjects.selectedSubjects.map((subject) => {
+    list.push(subject.courseCode);
+  });
+  return list;
+};

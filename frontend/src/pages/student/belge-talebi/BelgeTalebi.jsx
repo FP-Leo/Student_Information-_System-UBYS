@@ -13,13 +13,15 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 import { useRef } from "react";
-import { selectUserToken } from "store/user/user.selector";
+import { selectUserToken, selectUserData } from "store/user/user.selector";
+
 import { selectProgram } from "store/program/program.selector";
 
 const BelgeTablebi = () => {
   const theme = useTheme();
   const targetRef = useRef();
   const token = useSelector(selectUserToken);
+  const user = useSelector(selectUserData);
   const program = useSelector(selectProgram);
   const [document, setDocument] = useState("");
   const [language, setLanguage] = useState("");
@@ -43,7 +45,7 @@ const BelgeTablebi = () => {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-                params: { DepName: program },
+                params: { DepName: program, SSN: user.ssn },
               }
             )
             .then((res) => {

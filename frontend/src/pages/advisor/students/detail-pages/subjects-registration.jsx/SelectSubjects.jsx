@@ -62,7 +62,7 @@ const SelectSubjects = () => {
           <Tab label="Program Dışı Dersler" />
         </Tabs>
 
-        <CustomTabPanel value={value} index={0}>
+        {/* <CustomTabPanel value={value} index={0}>
           <ZorunluDersler />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
@@ -76,7 +76,7 @@ const SelectSubjects = () => {
         </CustomTabPanel>
         <CustomTabPanel value={value} index={4}>
           <ProgramDisiDersler />
-        </CustomTabPanel>
+        </CustomTabPanel> */}
       </Box>
     </Box>
   );

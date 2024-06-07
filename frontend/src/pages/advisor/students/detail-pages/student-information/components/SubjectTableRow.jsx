@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material/styles";
 import { Box, TableCell, TableRow, Typography } from "@mui/material";
 
 const SubjectTableRow = ({ subject }) => {
-  const { dersKodu, dersAdi, vize, final, devamDurumu } = subject;
+  const { courseName, courseCode, vize, final, state } = subject;
   const theme = useTheme();
 
   return (
@@ -14,10 +14,10 @@ const SubjectTableRow = ({ subject }) => {
         },
       }}
     >
-      <TableCell size="small">{dersKodu}</TableCell>
-      <TableCell size="small">{dersAdi}</TableCell>
+      <TableCell size="small">{courseCode}</TableCell>
+      <TableCell size="small">{courseName}</TableCell>
       <TableCell size="small" align="center">
-        {devamDurumu}
+        {state}
       </TableCell>
       <TableCell
         size="small"
@@ -27,15 +27,15 @@ const SubjectTableRow = ({ subject }) => {
         }}
       >
         <Box>
-          <Typography variant="caption2">{"Vize: " + vize.puan}</Typography>
+          <Typography variant="caption2">{"Vize: "}</Typography>
           <Typography sx={{ marginLeft: 1 }} variant="caption2">
-            {"Sıralama: " + vize.siralama}
+            {"Sıralama: "}
           </Typography>
         </Box>
         <Box>
-          <Typography variant="caption2">{"Final: " + final.puan}</Typography>
+          <Typography variant="caption2">{"Final: "}</Typography>
           <Typography sx={{ marginLeft: 1 }} variant="caption2">
-            {"Sıralama: " + final.siralama}
+            {"Sıralama: "}
           </Typography>
         </Box>
       </TableCell>

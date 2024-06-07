@@ -9,10 +9,43 @@ import { useTheme, alpha } from "@mui/material/styles";
 
 import SubjectTableRow from "./components/SubjectTableRow";
 import SubjectTableHead from "./components/SubjectTableHead";
-import { data } from "./../student-transcript/StudentTranscript";
-
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
+import { selectProgram } from "store/program/program.selector";
+import axios from "axios";
 const StudentsInformation = () => {
   const theme = useTheme();
+  const { id } = useParams();
+  const [semesters, setSemesters] = useState([]);
+  const [studentInfo, setStudentInfo] = useState();
+  const [depInfo, setDepInfo] = useState();
+  const token = useSelector(selectUserToken);
+  const program = useSelector(selectProgram);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5158/api/University/Faculty/Department/Student/Transcript",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            DepName: program,
+            SSN: id,
+          },
+        }
+      )
+      .then((res) => {
+        setStudentInfo(res.data.studentInfo);
+        setDepInfo(res.data.departmentInfo);
+        setSemesters(res.data.semesters);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Box
       sx={{
@@ -58,7 +91,7 @@ const StudentsInformation = () => {
             <Typography variant="caption">Öğrenci Numerası:</Typography>
             <Typography variant="caption">Adı:</Typography>
             <Typography variant="caption">Programı:</Typography>
-            <Typography variant="caption">Sınıf/Ders Dönemi:</Typography>
+            <Typography variant="caption">TC:</Typography>
           </Box>
           <Box
             sx={{
@@ -67,13 +100,26 @@ const StudentsInformation = () => {
               alignItems: "flex-start",
             }}
           >
-            <Typography variant="caption2">123456</Typography>
-            <Typography variant="caption2">Ali Veli</Typography>
-            <Typography variant="caption2">Bilgisayar Mühendisliği</Typography>
-            <Typography variant="caption2">3. Sınıf/Bahar</Typography>
+            <Typography variant="caption2">
+              {studentInfo ? studentInfo.ssn : ""}
+            </Typography>
+            <Typography variant="caption2">
+              {studentInfo
+                ? studentInfo.firstName + " " + studentInfo.lastName
+                : ""}
+            </Typography>
+            <Typography variant="caption2">
+              {depInfo
+                ? depInfo.facultyName + " / " + depInfo.departmentName
+                : ""}
+            </Typography>
+            <Typography variant="caption2">
+              {studentInfo ? studentInfo.tc : ""}
+            </Typography>
           </Box>
         </Box>
-        {data.map((item, index) => (
+        {console.log(semesters)}
+        {semesters.map((item, index) => (
           <Box
             key={index}
             sx={{
@@ -86,9 +132,7 @@ const StudentsInformation = () => {
                 backgroundColor: theme.palette.grey[200],
               }}
             >
-              <Typography variant="subtitle1">
-                {item.year + " " + item.semester}
-              </Typography>
+              <Typography variant="subtitle1">donem</Typography>
             </Box>
 
             <TableContainer
@@ -106,7 +150,7 @@ const StudentsInformation = () => {
               >
                 <SubjectTableHead />
                 <TableBody>
-                  {item.subjects.map((subject, index) => (
+                  {item.courses.map((subject, index) => (
                     <SubjectTableRow key={index} subject={subject} />
                   ))}
                 </TableBody>

@@ -16,6 +16,7 @@ import { useTheme, alpha } from "@mui/material/styles";
 
 const TranscriptTable = ({ data }) => {
   const theme = useTheme();
+  console.log(data);
 
   return (
     <Box
@@ -39,7 +40,7 @@ const TranscriptTable = ({ data }) => {
           marginY: 1,
         }}
       >
-        <Typography variant="subtitle1">{data.year}</Typography>
+        <Typography variant="subtitle1">Yarıyıl</Typography>
         <Typography
           variant="subtitle1"
           sx={{
@@ -75,7 +76,7 @@ const TranscriptTable = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.subjects.map((row) => (
+            {data.courses.map((row) => (
               <TableRow
                 colSpan={8}
                 sx={{
@@ -83,10 +84,10 @@ const TranscriptTable = ({ data }) => {
                     backgroundColor: theme.palette.background.paper,
                   },
                 }}
-                key={row.dersKodu}
+                key={row.courseCode}
               >
-                <TableCell colSpan={1}>{row.dersKodu}</TableCell>
-                <TableCell colSpan={4}>{row.dersAdi}</TableCell>
+                <TableCell colSpan={1}>{row.courseCode}</TableCell>
+                <TableCell colSpan={4}>{row.courseName}</TableCell>
                 <TableCell colSpan={1}>{row.kredi}</TableCell>
                 <TableCell colSpan={1}>{row.akts}</TableCell>
                 <TableCell colSpan={1}>{row.hbn}</TableCell>
@@ -167,25 +168,25 @@ const TranscriptTable = ({ data }) => {
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
                 align="center"
               >
-                13
+                -
               </TableCell>
               <TableCell
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
                 align="center"
               >
-                13
+                -
               </TableCell>
               <TableCell
                 align="center"
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
               >
-                4.0
+                -
               </TableCell>
               <TableCell
                 align="center"
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
               >
-                4.0
+                -
               </TableCell>
               <TableCell
                 align="center"
@@ -213,19 +214,13 @@ const TranscriptTable = ({ data }) => {
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
                 align="center"
               >
-                13
+                -
               </TableCell>
               <TableCell
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
                 align="center"
               >
-                13
-              </TableCell>
-              <TableCell
-                align="center"
-                sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
-              >
-                4.0
+                -
               </TableCell>
               <TableCell
                 align="center"
@@ -237,7 +232,13 @@ const TranscriptTable = ({ data }) => {
                 align="center"
                 sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
               >
-                4.0
+                -
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
+              >
+                -
               </TableCell>
             </TableRow>
           </TableBody>

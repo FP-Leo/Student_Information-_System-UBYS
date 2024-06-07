@@ -39,6 +39,7 @@ const StudentsInformation = () => {
         }
       )
       .then((res) => {
+        console.log(res.data);
         setStudentInfo(res.data.studentInfo);
         setDepInfo(res.data.departmentInfo);
         setSemesters(res.data.semesters);

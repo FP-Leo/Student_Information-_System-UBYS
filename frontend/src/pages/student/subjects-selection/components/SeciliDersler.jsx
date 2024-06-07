@@ -105,7 +105,7 @@ const SeciliDersler = () => {
       </Box>
       {selectedSubjects.map((item, index) => {
         console.log(item);
-        return <SecilmisDers key={index} data={item} />;
+        return <SecilmisDers key={index} index={index} data={item} />;
       })}
 
       <Box

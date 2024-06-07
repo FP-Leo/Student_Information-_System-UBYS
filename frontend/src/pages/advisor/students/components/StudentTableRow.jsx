@@ -57,22 +57,12 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const StudentTableRow = ({ data }) => {
+const StudentTableRow = ({ data, ssn, name }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const {
-    name,
-    stateDetail,
-    number,
-    program,
-    status,
-    sinif,
-    dept,
-    state,
-    gano,
-  } = data;
+  const { departmentName, year, gno, state } = data;
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -93,8 +83,7 @@ const StudentTableRow = ({ data }) => {
         height: "50px",
         justifyContent: "center",
         alignItems: "center",
-        gridTemplateColumns:
-          "0.8fr 1.5fr 2.5fr 3fr 1.2fr 1fr 1fr 1fr 1.2fr 1fr 1fr",
+        gridTemplateColumns: "0.8fr 1.5fr 2.5fr 3fr 1.2fr 1fr  1fr 1fr",
       }}
     >
       <Box
@@ -117,7 +106,7 @@ const StudentTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">{number}</Typography>
+        <Typography variant="caption">{ssn}</Typography>
       </Box>
       <Box
         sx={{
@@ -139,7 +128,7 @@ const StudentTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">{program}</Typography>
+        <Typography variant="caption">{departmentName}</Typography>
       </Box>
       <Box
         sx={{
@@ -151,7 +140,7 @@ const StudentTableRow = ({ data }) => {
         }}
       >
         <Typography textAlign="center" variant="caption">
-          {status}
+          {state}
         </Typography>
       </Box>
       <Box
@@ -163,8 +152,9 @@ const StudentTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">{sinif}. Sınıf</Typography>
+        <Typography variant="caption">1. Sınıf</Typography>
       </Box>
+
       <Box
         sx={{
           height: "100%",
@@ -174,42 +164,7 @@ const StudentTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">{dept} TL</Typography>
-      </Box>
-      <Box
-        sx={{
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRight: `1px solid ${theme.palette.grey[500]}`,
-        }}
-      >
-        <Typography variant="caption">{state}</Typography>
-      </Box>
-      <Box
-        sx={{
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRight: `1px solid ${theme.palette.grey[500]}`,
-        }}
-      >
-        <Typography textAlign="center" variant="caption">
-          {stateDetail}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRight: `1px solid ${theme.palette.grey[500]}`,
-        }}
-      >
-        <Typography variant="caption">{gano}</Typography>
+        <Typography variant="caption">{gno}</Typography>
       </Box>
       <Box
         sx={{
@@ -242,7 +197,7 @@ const StudentTableRow = ({ data }) => {
         >
           <MenuItem
             onClick={() => {
-              navigate(`/home/transcript/${number}`);
+              navigate(`/home/transcript/${ssn}`);
               handleClose();
             }}
             disableRipple
@@ -253,7 +208,7 @@ const StudentTableRow = ({ data }) => {
 
           <MenuItem
             onClick={() => {
-              navigate(`/home/students-information/${number}`);
+              navigate(`/home/students-information/${ssn}`);
               handleClose();
             }}
             disableRipple
@@ -265,7 +220,7 @@ const StudentTableRow = ({ data }) => {
 
           <MenuItem
             onClick={() => {
-              navigate(`/home/subjects-registration/${number}`);
+              navigate(`/home/subjects-registration/${ssn}`);
               handleClose();
             }}
             disableRipple
@@ -275,7 +230,7 @@ const StudentTableRow = ({ data }) => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              navigate(`/home/registration-control/${number}`);
+              navigate(`/home/registration-control/${ssn}`);
               handleClose();
             }}
             disableRipple

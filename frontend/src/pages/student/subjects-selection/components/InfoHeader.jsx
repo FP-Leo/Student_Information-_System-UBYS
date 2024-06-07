@@ -32,7 +32,7 @@ const InfoHeader = ({ details }) => {
         }
       )
       .then((res) => {
-        console.log(res);
+        alert("Danışmana Gönderildi!");
       })
       .catch((err) => {
         console.log(err);

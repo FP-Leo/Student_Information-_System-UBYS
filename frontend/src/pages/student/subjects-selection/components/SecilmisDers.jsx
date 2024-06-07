@@ -21,7 +21,14 @@ const SecilmisDers = ({ data, index }) => {
   return (
     <Box
       sx={{
-        backgroundColor: type === "success" ? "success.light" : "error.light",
+        backgroundColor:
+          type === "success"
+            ? "success.light"
+            : "Mandatory"
+            ? "success.light"
+            : "failed"
+            ? "error.light"
+            : "success.light",
         height: "50px",
         width: "100%",
         display: "grid",

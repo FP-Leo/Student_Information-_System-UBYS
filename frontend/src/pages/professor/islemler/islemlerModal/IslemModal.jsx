@@ -7,15 +7,23 @@ export default function IslemModal({ openModal, handleModalClose , course ,title
 
     const allModals = {
         "Detayları Görüntüle" : <DetayGoruntule courseSize={courseSize} course={course} faculty={faculty} department={department}/>,
-        "Sınıf Listesini Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Sınıf Görüntüle"}/>,
-        "Vize Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Vize Sınav"}/>,
-        "Final Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule courseSize={courseSize}type={"Final Sınav"}/>,
-        "Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize}  type={"Bütünleme Listesi"}/>,
-        "Not Giriş Ekranını Göster" : <SinifListeGoruntule courseSize={courseSize} type={"Not Giriş"}/>,
-        "Vize Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize}  type={"Vize Yoklama"} />,
-        "Final Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Final Yoklama"} />,
-        "Öğrenci Not Listesi Görüntüle":<SinifListeGoruntule courseSize={courseSize} type={"Öğrenci Not Listesi"}/>,
-        "Devam Listesi Görüntüle" : <SinifListeGoruntule courseSize={courseSize} type={"Devam Listesi"}/>,
+        "Sınıf Listesini Görüntüle" : <SinifListeGoruntule courseCode={course.courseCode} courseSize={courseSize} type={"Sınıf Görüntüle"}/>,
+        "Vize Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize} type={"Vize Sınav"}/>,
+        "Final Sınav Sonuç Raporu Görüntüle" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize}type={"Final Sınav"}/>,
+        "Bütünlemeye Girmek İsteyen Öğrenci Listesi Görüntüle" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize}  type={"Bütünleme Listesi"}/>,
+        "Not Giriş Ekranını Göster" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize} type={"Not Giriş"}/>,
+        "Vize Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize}  type={"Vize Yoklama"} />,
+        "Final Sınav Yoklama Listesi Görüntüle" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize} type={"Final Yoklama"} />,
+        "Öğrenci Not Listesi Görüntüle":<SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize} type={"Öğrenci Not Listesi"}/>,
+        "Devam Listesi Görüntüle" : <SinifListeGoruntule 
+        courseCode={course.courseCode} courseSize={courseSize} type={"Devam Listesi"}/>,
     }
   return (
     <Modal

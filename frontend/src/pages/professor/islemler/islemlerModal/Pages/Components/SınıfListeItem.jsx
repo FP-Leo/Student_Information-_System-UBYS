@@ -10,7 +10,12 @@ import {
 } from "@mui/material";
 import Avatar1 from "assets/avatar1.png";
 
-export default function SınıfListeItem({ type, item, students,setStudents }) {
+export default function SınıfListeItem({ 
+  setVize,setFinal,setBut,setStudentSsn,
+  type, item, students,setStudents ,vizeAvailable,finalAvailable,butAvailable
+}) {
+
+  setStudentSsn(item.ssn)
 
   const handleFilteringStudents = () =>{
     setStudents(
@@ -108,6 +113,8 @@ export default function SınıfListeItem({ type, item, students,setStudents }) {
               }}
             >
               <TextField
+                onChange={(event)=> setVize(event.target.value)}
+                disabled={!vizeAvailable}
                 label="Vize"
                 type="number"
                 InputLabelProps={{
@@ -119,6 +126,8 @@ export default function SınıfListeItem({ type, item, students,setStudents }) {
             </Box>
             <Box sx={{ paddingRight: "20px" }}>
               <TextField
+                              onChange={(event)=> setFinal(event.target.value)}
+              disabled={!finalAvailable}
                 label="Final"
                 type="number"
                 InputLabelProps={{
@@ -131,6 +140,8 @@ export default function SınıfListeItem({ type, item, students,setStudents }) {
 
             <Box sx={{ paddingRight: "10px" }}>
               <TextField
+                              onChange={(event)=> setBut(event.target.value)}
+              disabled={!butAvailable}
                 label="Büt"
                 type="number"
                 InputLabelProps={{

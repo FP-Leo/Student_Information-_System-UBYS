@@ -67,13 +67,13 @@ namespace api.Controllers
         }
         [HttpGet("University/Faculty/Department/Semester/Advisor/Courses/Selected")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> GetStudentCourseSelectionApi([FromQuery] String DepartmentName, [FromQuery] String TC){
+        public async Task<IActionResult> GetStudentCourseSelectionApi([FromQuery] String DepartmentName, [FromQuery] int SSN){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var studentAcc = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            var studentAcc = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
             if(studentAcc == null){
                 return NotFound("Student not found");
             }
@@ -83,7 +83,7 @@ namespace api.Controllers
                 return NotFound("Department not found");
             }
             
-            return await GetCourseSelection(DepartmentName, TC);
+            return await GetCourseSelection(DepartmentName, studentAcc.TC);
         }
         private async Task<IActionResult> GetCourseSelection(String DepartmentName, String TC){
             var depsDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepartmentName);
@@ -488,13 +488,13 @@ namespace api.Controllers
         }
         [HttpPost("University/Faculty/Department/Course/Advisor/Student/Course/Accept/Selected")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> AcceptStudentCourseSelection([FromQuery] String DepartmentName, String TC){
+        public async Task<IActionResult> AcceptStudentCourseSelection([FromQuery] String DepartmentName, [FromQuery] int SSN){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
 
             if(validStudent == null){
                 return BadRequest("Student doesn't exist");
@@ -506,12 +506,12 @@ namespace api.Controllers
                 return BadRequest("Department doesn't exist");
             }
 
-            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepartmentName);
+            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(validStudent.TC, DepartmentName);
             if(studentDepDetails == null){
                 return BadRequest("Student is not registered on this department.");
             }
 
-            var selectedCourses = await _selectedCoursesRepo.GetSelectedCoursesAsync(DepartmentName, TC);
+            var selectedCourses = await _selectedCoursesRepo.GetSelectedCoursesAsync(DepartmentName, validStudent.TC);
             if(selectedCourses == null){
                 return BadRequest();
             }
@@ -526,13 +526,13 @@ namespace api.Controllers
                 if(validClass == null){
                     return BadRequest("Course Class doesn't exist");
                 }
-                var prevStudentCourseDetails = await _studentCourseDetailsRepo.GetStudentCourseDetails(course.CourseCode, TC, uni.CurrentSchoolYear-1);
+                var prevStudentCourseDetails = await _studentCourseDetailsRepo.GetStudentCourseDetails(course.CourseCode, validStudent.TC, uni.CurrentSchoolYear-1);
 
                 var studentCourseDetailsPost = new StudentCourseDetails{
                     CourseCode = course.CourseCode,
                     DepartmentName = validDepCourse.DepartmentName,
                     SchoolYear = uni.CurrentSchoolYear,
-                    TC = TC,
+                    TC = validStudent.TC,
                     State = "Attending",
                     AttendanceFulfilled = null,
                     MidTerm = null,
@@ -559,7 +559,7 @@ namespace api.Controllers
                 return StatusCode(500, "Failed to delete selections after approvement");
             }
 
-            var courseSelectionDetails = await _courseSelectionDetailsRepo.GetCourseSelectionDetailsAsync(DepartmentName, TC);
+            var courseSelectionDetails = await _courseSelectionDetailsRepo.GetCourseSelectionDetailsAsync(DepartmentName, validStudent.TC);
 
             var secondDeletion = await _courseSelectionDetailsRepo.DeleteCourseSelectionDetailsAsync(courseSelectionDetails);
             if(secondDeletion == null){
@@ -570,13 +570,13 @@ namespace api.Controllers
         }
         [HttpPost("University/Faculty/Department/Course/Advisor/Student/Course/Reject/Selected")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> RejectStudentCourseSelection([FromQuery] String DepartmentName, String TC){
+        public async Task<IActionResult> RejectStudentCourseSelection([FromQuery] String DepartmentName, [FromQuery] int SSN){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountByTCAsync(TC);
+            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
 
             if(validStudent == null){
                 return BadRequest("Student doesn't exist");
@@ -588,12 +588,12 @@ namespace api.Controllers
                 return BadRequest("Department doesn't exist");
             }
 
-            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(TC, DepartmentName);
+            var studentDepDetails = await _studentDepDetailsRepo.GetStudentDepDetailAsync(validStudent.TC, DepartmentName);
             if(studentDepDetails == null){
                 return BadRequest("Student is not registered on this department.");
             }
 
-            var courseSelectionDetails = await _courseSelectionDetailsRepo.GetCourseSelectionDetailsAsync(DepartmentName, TC);
+            var courseSelectionDetails = await _courseSelectionDetailsRepo.GetCourseSelectionDetailsAsync(DepartmentName, validStudent.TC);
             if(courseSelectionDetails == null){
                 return BadRequest("No selection made from student!");
             }

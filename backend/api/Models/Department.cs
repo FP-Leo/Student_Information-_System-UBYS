@@ -8,6 +8,19 @@ namespace api.Models
     [Index(nameof(DepCode), IsUnique = true)]
     public class Department
     {
+        public Department(){}
+        public Department(string[] data){
+            FacultyName = data[0];
+            DepartmentName = data[1];
+            NumberOfSemesters = Int32.Parse(data[2]);
+            MaxYears = Int32.Parse(data[3]);
+            CourseSelectionStartDate = DateTime.Parse(data[4]);
+            CourseSelectionEndDate = DateTime.Parse(data[5]);
+            DepCode = data[6];
+            BuildingNumber = data[7];
+            FloorNumber = Int32.Parse(data[8]);
+            HeadOfDepartmentTC = data[9];
+        }
         [Key]
         [Column(Order = 0)]
         public int DepartmentId { get; set; }

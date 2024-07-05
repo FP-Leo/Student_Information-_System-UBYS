@@ -6,6 +6,17 @@ namespace api.Models
     [Index(nameof(CourseCode), nameof(SchoolYear), IsUnique = true)]
     public class CourseClass
     {
+        public CourseClass(){}
+        public CourseClass(string[] data){
+            CourseCode = data[0];
+            SchoolYear = Int32.Parse(data[1]);
+            LecturerTC = data[2];
+            HourPerWeek = Int32.Parse(data[3]);
+            AKTS = Int32.Parse(data[4]);
+            Kredi = Int32.Parse(data[5]);
+            MidTermValue = Int32.Parse(data[6]);
+            FinalValue = Int32.Parse(data[7]);
+        }
         [Key]
         public int CourseClassID { get; set; } // Primary Key
         public int HourPerWeek { get; set; }

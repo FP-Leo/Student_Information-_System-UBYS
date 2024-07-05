@@ -11,6 +11,12 @@ namespace api.Models
     [Index(nameof(SSN), IsUnique = true)]
     public class StudentAccount : UserAccount
     {
+        public StudentAccount(){}
+        public StudentAccount(string[] userAccountData, string[] studentAccData): base(userAccountData){
+            SSN = Int32.Parse(studentAccData[0]);
+            CurrentType = studentAccData[1];
+            CurrentStatus = studentAccData[2];
+        }
         [Required]
         [Column(Order = 6)]
         public int SSN { get; set; }

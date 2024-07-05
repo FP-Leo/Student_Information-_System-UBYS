@@ -7,6 +7,18 @@ namespace api.Models
     [Index(nameof(TC), nameof(DepartmentName), IsUnique = true)]
     public class StudentDepDetails
     {
+        public StudentDepDetails(){}
+        public StudentDepDetails(string[] data){
+            DepartmentName = data[0];
+            RegistrationDate = DateOnly.Parse(data[1]);
+            TC = data[2];
+            StudentType = data[3];
+            StudentStatus = data[4];
+            CurrentSchoolYear = Int32.Parse(data[5]);
+            CurrentSemester = Int32.Parse(data[6]);
+            CurrentAKTS = Int32.Parse(data[7]);
+            Gno = Int32.Parse(data[8]);
+        }
         [Column(Order = 0)]
         public int Id { get; set;}
         [Required]

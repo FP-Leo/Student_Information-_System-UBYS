@@ -14,6 +14,16 @@ namespace api.Models
     [Index(nameof(PhoneNumber), IsUnique = true)]
     public class University
     {
+        public University(){}
+        public University(string[] data){
+            Name = data[0];
+            Address = data[1];
+            WebSite = data[2];
+            Mail = data[3];
+            PhoneNumber = data[4];
+            CurrentSchoolYear = Int32.Parse(data[5]);
+            RectorTC = data[6];
+        }
         [Key]
         public int UniversityId { get; set; }
         [Required]

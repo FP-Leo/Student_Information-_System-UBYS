@@ -1,0 +1,6 @@
+Role|Password|Username|FirstName|LastName|BirthDate|RegisterDate|SchoolMail|PersonalMail|Phone|Extra|
+Admin|12345678|10000000000|
+Student|12345678|10000000001|Erlindi|Isaj|2002-05-03|2024-07-05|200401114@ogr.comu.edu.tr|e.isaj@gmail.com|+905528411587|200401114,Bachelor,Active
+Administrator|12345678|10000000002|Safiye Ayşe|Göker|1970-01-01|2024-07-05|safiyeayse.goker@comu.edu.tr|null|null|100000000,
+Lecturer|12345678|10000000003|Ayşe Nur|Tunç|1970-01-01|2024-07-05|aysenurtunc@comu.edu.tr|null|+902862180018|100000000,Asst. Prof.,20,Active
+Advisor|12345678|10000000004|Muammer|Ceylan|1970-01-01|2024-07-05|mceylan@comu.edu.tr|null|+902862139905|100000000,

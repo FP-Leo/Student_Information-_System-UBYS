@@ -55,11 +55,19 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 });
 
 builder.Services.AddIdentity<User, IdentityRole>(options => {
+    /* //After development is finished.
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 12;
+    options.User.RequireUniqueEmail = false;
+    */
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 8;
     options.User.RequireUniqueEmail = false;
 }).AddEntityFrameworkStores<ApplicationDBContext>();
 

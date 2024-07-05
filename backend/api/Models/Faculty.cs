@@ -16,6 +16,16 @@ namespace api.Models
     [Index(nameof(PhoneNumber), IsUnique = true)]
     public class Faculty
     {
+        public Faculty(){}
+        public Faculty(string[] data){
+            UniName = data[0];
+            FacultyName = data[1];
+            Address = data[2];
+            WebSite = data[3];
+            Mail = data[4];
+            PhoneNumber = data[5];
+            DeanTC = data[6];
+        }
         [Key]
         [Column(Order = 0)]
         public int FacultyID { get; set; }

@@ -9,6 +9,29 @@ namespace api.Models
     [Index(nameof(Phone), IsUnique = true)]
     public class UserAccount
     {
+        public UserAccount(){}
+        public UserAccount(string[] data){
+            TC = data[0];
+            FirstName = data[1];
+            LastName = data[2];
+            BirthDate = DateOnly.Parse(data[3]);
+            RegisterDate = DateOnly.Parse(data[4]);
+            if(data[5] != "null"){
+                SchoolMail = data[5];
+            }else{
+                SchoolMail = null;
+            }
+            if(data[6] != "null"){
+                PersonalMail = data[6];
+            }else{
+                PersonalMail = null;
+            }
+            if(data[7] != "null"){
+                Phone = data[7];
+            }else{
+                Phone = null;
+            }
+        }
         [Column(Order = 0)]
         [Key]
         public int AccountId {get; set;}

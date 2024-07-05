@@ -8,6 +8,15 @@ namespace api.Models
     [Index(nameof(CourseCode), IsUnique = true)]
     public class DepartmentCourse
     {
+        public DepartmentCourse(){}
+        public DepartmentCourse(string[] data){
+            DepartmentName = data[0];
+            CourseName = data[1];
+            TaughtSemester = Int32.Parse(data[2]);
+            Status = data[3];
+            CourseDetailsId = Int32.Parse(data[4]);
+            CourseCode = data[5];
+        }
         [Required]
         [Column(Order = 0)]
         //Primary Key

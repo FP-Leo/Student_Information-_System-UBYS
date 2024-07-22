@@ -97,14 +97,14 @@ namespace api.Controllers
             return Ok(accInfo.ToLecturerAccountDto());
         }
         /*
-        [HttpGet("Lecturer/AccountInfo/SSN/{SSN:int}")]
-        public async Task<IActionResult> GetLecturerBySsn(int SSN){
+        [HttpGet("Lecturer/AccountInfo/ID/{ID:int}")]
+        public async Task<IActionResult> GetLecturerByID(int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var accInfo = await _lecturerAccRepo.GetLecturerAccountBySSNAsync(SSN);
+            var accInfo = await _lecturerAccRepo.GetLecturerAccountByIDAsync(ID);
 
             if(accInfo == null){
                 return NotFound();
@@ -133,7 +133,7 @@ namespace api.Controllers
             accInfo.FirstName = lecturerAccountPOSTDto.FirstName;
             accInfo.LastName = lecturerAccountPOSTDto.LastName;
             accInfo.BirthDate = lecturerAccountPOSTDto.BirthDate;
-            accInfo.LecturerId = lecturerAccountPOSTDto.LecturerId;
+            accInfo.ID = lecturerAccountPOSTDto.ID;
             accInfo.CurrentStatus = lecturerAccountPOSTDto.CurrentStatus;
             accInfo.Title = lecturerAccountPOSTDto.Title;
             accInfo.TotalWorkHours = lecturerAccountPOSTDto.TotalWorkHours;

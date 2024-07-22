@@ -410,7 +410,7 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(courseClassUpdateLecturerDto.LecturerId);
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByIDAsync(courseClassUpdateLecturerDto.ID);
             if(lecturer == null){
                 return BadRequest("There is no lecturer registered with this Id.");
             }
@@ -495,7 +495,7 @@ namespace api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(courseClassUpdateLecturerDto.LecturerId);
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByIDAsync(courseClassUpdateLecturerDto.ID);
             if(lecturer == null){
                 return BadRequest("There is no lecturer registered with this Id.");
             }

@@ -5,7 +5,7 @@ namespace api.DTO.LecturerDepDetails
     public class LectureSchoolDetailsDto
     {
         [Required]
-        public int LecturerId { get; set; }
+        public int ID { get; set; }
         [Required]
         public String? Name { get; set; }
         [Required]

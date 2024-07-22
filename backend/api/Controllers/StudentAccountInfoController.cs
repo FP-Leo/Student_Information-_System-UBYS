@@ -96,14 +96,14 @@ namespace api.Controllers
             return Ok(accInfo.ToStudentAccountDto());
         }
         /*
-        [HttpGet("Student/AccountInfo/SSN/{SSN:int}")]
-        public async Task<IActionResult> GetStudentBySsn(int SSN){
+        [HttpGet("Student/AccountInfo/ID/{ID:int}")]
+        public async Task<IActionResult> GetStudentByID(int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var accInfo = await _studentAccRepo.GetStudentAccountBySSNAsync(SSN); 
+            var accInfo = await _studentAccRepo.GetStudentAccountByIDAsync(ID); 
 
             if(accInfo == null){
                 return NotFound();
@@ -141,7 +141,7 @@ namespace api.Controllers
             accInfo.FirstName = studentAccountPOSTDto.FirstName;
             accInfo.LastName = studentAccountPOSTDto.LastName;
             accInfo.BirthDate = studentAccountPOSTDto.BirthDate;
-            accInfo.SSN = studentAccountPOSTDto.SSN;
+            accInfo.ID = studentAccountPOSTDto.ID;
             accInfo.CurrentType = studentAccountPOSTDto.CurrentType;
             accInfo.CurrentStatus = studentAccountPOSTDto.CurrentStatus;
             accInfo.SchoolMail = studentAccountPOSTDto.SchoolMail;
@@ -170,7 +170,7 @@ namespace api.Controllers
                 return StatusCode(500);
             }
 
-            return CreatedAtAction(nameof(GetBySsn), new { SSN = studentAcc.SSN }, studentAcc.ToStudentAccountDto());
+            return CreatedAtAction(nameof(GetByID), new { ID = studentAcc.ID }, studentAcc.ToStudentAccountDto());
         }
         */
         //Code tested, works as intended.

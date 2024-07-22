@@ -230,7 +230,7 @@ namespace api.Controllers
                 if(depsDetails == null)
                     continue;
                 var studentDetails = new StudentAllDepDetails{
-                    SSN = student.SSN,
+                    ID = student.ID,
                     Name = student.FirstName + " " + student.LastName,
                     Departments = []
                 };

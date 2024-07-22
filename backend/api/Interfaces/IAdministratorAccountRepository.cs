@@ -9,7 +9,7 @@ namespace api.Interfaces
     public interface IAdministratorAccountRepository
     {
         Task<AdministratorAccount?> GetAdministratorAccountByTCAsync(string TC);
-        Task<AdministratorAccount?> GetAdministratorAccountByIdAsync(int AdministratorId);
+        Task<AdministratorAccount?> GetAdministratorAccountByIdAsync(int ID);
         Task<AdministratorAccount?> CreateAdministratorAccountAsync(AdministratorAccount AdministratorAccount);
         Task<AdministratorAccount?> UpdateAdministratorAccountAsync(AdministratorAccount AdministratorAccount);
         Task<AdministratorAccount?> DeleteAdministratorAccountAsync(AdministratorAccount AdministratorAccount);

@@ -66,16 +66,16 @@ namespace api.Repositories
             return lecturerDepDetail;;
         }
 
-        public async Task<ICollection<LecturerDepDetails>?> GetLecturerDepsDetailsAsync(int LecturerId)
+        public async Task<ICollection<LecturerDepDetails>?> GetLecturerDepsDetailsAsync(int ID)
         {
-            var lecturerDepDetail = await _context.LecturerDepDetails.Where(dd=> dd.Lecturer.LecturerId == LecturerId).ToListAsync();
+            var lecturerDepDetail = await _context.LecturerDepDetails.Where(dd=> dd.Lecturer.ID == ID).ToListAsync();
 
             return lecturerDepDetail;
         }
 
-        public async Task<LecturerDepDetails?> GetLecturerDepDetailAsync(string DepName, int LecturerId)
+        public async Task<LecturerDepDetails?> GetLecturerDepDetailAsync(string DepName, int ID)
         {
-            var lecturerDepDetail = await _context.LecturerDepDetails.FirstOrDefaultAsync(dd=> dd.Lecturer.LecturerId == LecturerId && dd.DepartmentName == DepName);
+            var lecturerDepDetail = await _context.LecturerDepDetails.FirstOrDefaultAsync(dd=> dd.Lecturer.ID == ID && dd.DepartmentName == DepName);
 
             return lecturerDepDetail;
         }

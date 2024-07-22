@@ -4,19 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Models
 {
-    [Index(nameof(LecturerId), IsUnique = true)]
     public class LecturerAccount : UserAccount
     {
         public LecturerAccount(){}
         public LecturerAccount(string[] userAccountData, string[] lecAccData): base(userAccountData){
-            LecturerId = Int32.Parse(lecAccData[0]);
-            Title = lecAccData[1];
-            TotalWorkHours = Int32.Parse(lecAccData[2]);
-            CurrentStatus = lecAccData[3];
+            Title = lecAccData[0];
+            TotalWorkHours = Int32.Parse(lecAccData[1]);
+            CurrentStatus = lecAccData[2];
         }
-        [Required]
-        [Column(Order = 6)]
-        public int LecturerId { get; set; }
         [Required]
         public string? Title { get; set; }
         [Required]

@@ -176,7 +176,7 @@ namespace api.Controllers
                 StudentDto dto = new()
                 {
                     StudentName = studentAcc.FirstName + " " + studentAcc.LastName,
-                    SSN = studentAcc.SSN,
+                    ID = studentAcc.ID,
                     Year = (studentDepDetails.CurrentSemester+1)/2,
                     State = student.State,
                     AttendanceFulfilled = student.AttendanceFulfilled,
@@ -301,7 +301,7 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(updateAttendanceDto.SSN);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByIDAsync(updateAttendanceDto.ID);
             if(validStudent == null){
                 return NotFound("Student not found");
             }
@@ -355,7 +355,7 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(updateExamDto.SSN);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByIDAsync(updateExamDto.ID);
 
             if(validStudent == null){
                 return NotFound("Student not found");
@@ -411,7 +411,7 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(updateExamDto.SSN);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByIDAsync(updateExamDto.ID);
 
             if(validStudent == null){
                 return NotFound("Student not found");
@@ -471,7 +471,7 @@ namespace api.Controllers
                 return Unauthorized();
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(updateExamDto.SSN);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByIDAsync(updateExamDto.ID);
 
             if(validStudent == null){
                 return NotFound("Student not found");

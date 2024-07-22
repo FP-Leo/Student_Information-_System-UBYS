@@ -153,19 +153,20 @@ namespace api
                 var roleResult = await _userManager.AddToRoleAsync(appUser, userData[0]);
                 if (roleResult.Succeeded && userData[0] != "Admin")
                 {
-                    var userAccData = new string[8];
-                    var extraData = userData[10].Split(",");
-                    for(int i = 2; i < 10; i++){
+                    var userAccData = new string[9];
+                    for(int i = 2; i < 11; i++){
                         userAccData[i-2] = userData[i];
                     }
                     if(userData[0] == "Student"){
+                        var extraData = userData[11].Split(",");
                         await _context.StudentAccounts.AddAsync(new StudentAccount(userAccData, extraData));
                     }else if(userData[0] == "Lecturer"){
+                        var extraData = userData[11].Split(",");
                         await _context.LecturerAccounts.AddAsync(new LecturerAccount(userAccData, extraData));
                     }else if(userData[0] == "Advisor"){
-                        await _context.AdvisorAccounts.AddAsync(new AdvisorAccount(userAccData, extraData));
+                        await _context.AdvisorAccounts.AddAsync(new AdvisorAccount(userAccData));
                     }else if(userData[0] == "Administrator"){
-                        await _context.AdministratorAccounts.AddAsync(new AdministratorAccount(userAccData, extraData));
+                        await _context.AdministratorAccounts.AddAsync(new AdministratorAccount(userAccData));
                     }
                     await _context.SaveChangesAsync();
                 }

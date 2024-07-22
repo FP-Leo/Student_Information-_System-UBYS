@@ -5,7 +5,7 @@ namespace api.Interfaces
     public interface ILecturerAccountRepository
     {
         Task<LecturerAccount?> GetLecturerAccountByTCAsync(string TC);
-        Task<LecturerAccount?> GetLecturerAccountByLecturerIdAsync(int LecturerId);
+        Task<LecturerAccount?> GetLecturerAccountByIDAsync(int ID);
         Task<ICollection<LecturerAccount>?> GetLecturerAccounts();
         Task<LecturerAccount?> CreateLecturerAccountAsync(LecturerAccount LecturerAccount);
         Task<LecturerAccount?> UpdateLecturerAccountAsync(LecturerAccount LecturerAccount);

@@ -157,13 +157,13 @@ namespace api.Controllers
         }
         [HttpGet("University/Faculty/Administrator/Lecturer/Courses")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> GetLecturersAllCourses([FromQuery] int LecturerId){
+        public async Task<IActionResult> GetLecturersAllCourses([FromQuery] int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(LecturerId);
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByIDAsync(ID);
             if(lecturer == null){
                 return NotFound("There's no lecturer registered with that ID");
             }
@@ -215,7 +215,7 @@ namespace api.Controllers
 
             foreach(var lecturer in lecturers){
                 var details = new LectureSchoolDetailsDto{
-                    LecturerId = lecturer.LecturerId,
+                    ID = lecturer.ID,
                     Name = lecturer.FirstName + " " + lecturer.LastName,
                     Faculties = [],
                     CurrentState = lecturer.CurrentStatus
@@ -235,13 +235,13 @@ namespace api.Controllers
         }  
         [HttpGet("University/Faculty/Department/Administrator/Lecturer/Courses")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> GetLecturerCoursesByDeparment([FromQuery] String DepartmentName, [FromQuery] int LecturerId){
+        public async Task<IActionResult> GetLecturerCoursesByDeparment([FromQuery] String DepartmentName, [FromQuery] int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByLecturerIdAsync(LecturerId);
+            var lecturer = await _lecturerAccountRepository.GetLecturerAccountByIDAsync(ID);
             if(lecturer == null){
                 return NotFound("There's no lectuerer registered with that ID");
             }

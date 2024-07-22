@@ -30,9 +30,9 @@ namespace api.Repositories
             return AdministratorAccount;
         }
 
-        public async Task<AdministratorAccount?> GetAdministratorAccountByIdAsync(int AdministratorId)
+        public async Task<AdministratorAccount?> GetAdministratorAccountByIdAsync(int ID)
         {
-            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.AdministratorId == AdministratorId);
+            var account = await _context.AdministratorAccounts.FirstOrDefaultAsync(a => a.ID == ID);
 
             return account;
         }

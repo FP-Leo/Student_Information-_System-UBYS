@@ -7,6 +7,7 @@ namespace api.Models
     [Index(nameof(SchoolMail), IsUnique = true)]
     [Index(nameof(PersonalMail), IsUnique = true)]
     [Index(nameof(Phone), IsUnique = true)]
+    [Index(nameof(ID), IsUnique = true)]
     public class UserAccount
     {
         public UserAccount(){}
@@ -16,17 +17,18 @@ namespace api.Models
             LastName = data[2];
             BirthDate = DateOnly.Parse(data[3]);
             RegisterDate = DateOnly.Parse(data[4]);
-            if(data[5] != "null"){
+            ID = Int32.Parse(data[5]);
+            if(data[6] != "null"){
                 SchoolMail = data[5];
             }else{
                 SchoolMail = null;
             }
-            if(data[6] != "null"){
+            if(data[7] != "null"){
                 PersonalMail = data[6];
             }else{
                 PersonalMail = null;
             }
-            if(data[7] != "null"){
+            if(data[8] != "null"){
                 Phone = data[7];
             }else{
                 Phone = null;
@@ -47,6 +49,9 @@ namespace api.Models
         [Column(Order = 5)]
         [Required]
         public DateOnly RegisterDate {get; set;}
+        [Column(Order = 6)]
+        [Required]
+        public int ID {get; set;}
         [Required]
         public string? SchoolMail {get; set;}
         public string? PersonalMail {get; set;}

@@ -45,9 +45,9 @@ namespace api.Repositories
             return accounts;
         }
 
-        public async Task<StudentAccount?> GetStudentAccountBySSNAsync(int SSN)
+        public async Task<StudentAccount?> GetStudentAccountByIDAsync(int ID)
         {
-            var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.SSN == SSN);
+            var account = await _context.StudentAccounts.FirstOrDefaultAsync(sa => sa.ID == ID);
 
             return account;
         }

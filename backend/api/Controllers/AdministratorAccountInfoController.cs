@@ -97,14 +97,14 @@ namespace api.Controllers
             return Ok(accInfo.ToAdministratorAccountDto());
         }
         /*
-        [HttpGet("Administrator/AccountInfo/SSN/{SSN:int}")]
-        public async Task<IActionResult> GetAdministratorBySsn(int SSN){
+        [HttpGet("Administrator/AccountInfo/ID/{ID:int}")]
+        public async Task<IActionResult> GetAdministratorByID(int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var accInfo = await _adminAccRepo.GetAdministratorAccountBySSNAsync(SSN);
+            var accInfo = await _adminAccRepo.GetAdministratorAccountByIDAsync(ID);
 
             if(accInfo == null){
                 return NotFound();
@@ -134,7 +134,7 @@ namespace api.Controllers
             accInfo.FirstName = administratorAccountPOSTDto.FirstName;
             accInfo.LastName = administratorAccountPOSTDto.LastName;
             accInfo.BirthDate = administratorAccountPOSTDto.BirthDate;
-            accInfo.AdministratorId = administratorAccountPOSTDto.AdministratorId;
+            accInfo.ID = administratorAccountPOSTDto.ID;
             accInfo.SchoolMail = administratorAccountPOSTDto.SchoolMail;
             accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
             accInfo.Phone = administratorAccountPOSTDto.Phone;

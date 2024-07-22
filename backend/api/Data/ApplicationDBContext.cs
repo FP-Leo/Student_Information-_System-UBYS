@@ -69,6 +69,7 @@ namespace api.Data
             modelBuilder.Entity<User>().HasAlternateKey(u=> u.UserName);
             // Since Ids differ for each type of user account, TC can be used as fk instead.
             modelBuilder.Entity<UserAccount>().HasAlternateKey(ua => ua.TC);
+            modelBuilder.Entity<UserAccount>().HasAlternateKey(ua => ua.ID);
             // For better readability
             modelBuilder.Entity<University>().HasAlternateKey(u => u.Name);
             modelBuilder.Entity<Faculty>().HasAlternateKey(f => f.FacultyName);
@@ -264,6 +265,24 @@ namespace api.Data
                         .HasForeignKey(dr => dr.TC)
                         .HasPrincipalKey(ua => ua.UserName)
                         .IsRequired();
+            //// UserAccount Inheritance
+            /// Changing ID names
+            // Student Account
+            modelBuilder.Entity<StudentAccount>()
+                        .Property(sa => sa.ID)
+                        .HasColumnName("ID");
+            // Lecturer Account
+            modelBuilder.Entity<LecturerAccount>()
+                        .Property(la => la.ID)
+                        .HasColumnName("ID");
+            // Advisor Account
+            modelBuilder.Entity<AdvisorAccount>()
+                        .Property(aa => aa.ID)
+                        .HasColumnName("ID");
+            // Administrator Account
+            modelBuilder.Entity<AdministratorAccount>()
+                        .Property(aa => aa.ID)
+                        .HasColumnName("ID");
             base.OnModelCreating(modelBuilder);
         }
     }

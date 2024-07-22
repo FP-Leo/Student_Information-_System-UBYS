@@ -67,13 +67,13 @@ namespace api.Controllers
         }
         [HttpGet("University/Faculty/Department/Semester/Advisor/Courses/Selected")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> GetStudentCourseSelectionApi([FromQuery] String DepartmentName, [FromQuery] int SSN){
+        public async Task<IActionResult> GetStudentCourseSelectionApi([FromQuery] String DepartmentName, [FromQuery] int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var studentAcc = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
+            var studentAcc = await _studentAccountRepository.GetStudentAccountByIDAsync(ID);
             if(studentAcc == null){
                 return NotFound("Student not found");
             }
@@ -488,13 +488,13 @@ namespace api.Controllers
         }
         [HttpPost("University/Faculty/Department/Course/Advisor/Student/Course/Accept/Selected")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> AcceptStudentCourseSelection([FromQuery] String DepartmentName, [FromQuery] int SSN){
+        public async Task<IActionResult> AcceptStudentCourseSelection([FromQuery] String DepartmentName, [FromQuery] int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByIDAsync(ID);
 
             if(validStudent == null){
                 return BadRequest("Student doesn't exist");
@@ -570,13 +570,13 @@ namespace api.Controllers
         }
         [HttpPost("University/Faculty/Department/Course/Advisor/Student/Course/Reject/Selected")]
         [Authorize(Roles = "Advisor")]
-        public async Task<IActionResult> RejectStudentCourseSelection([FromQuery] String DepartmentName, [FromQuery] int SSN){
+        public async Task<IActionResult> RejectStudentCourseSelection([FromQuery] String DepartmentName, [FromQuery] int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var validStudent = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
+            var validStudent = await _studentAccountRepository.GetStudentAccountByIDAsync(ID);
 
             if(validStudent == null){
                 return BadRequest("Student doesn't exist");
@@ -608,7 +608,7 @@ namespace api.Controllers
         }  
         [HttpGet("University/Faculty/Department/Student/Transcript/")]
         [Authorize(Roles = "Student, Advisor")]
-        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName, [FromQuery] int SSN){
+        public async Task<IActionResult> GetStudentTranscript([FromQuery] String DepName, [FromQuery] int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -619,7 +619,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            var studentAcc = await _studentAccountRepository.GetStudentAccountBySSNAsync(SSN);
+            var studentAcc = await _studentAccountRepository.GetStudentAccountByIDAsync(ID);
             if(studentAcc == null){
                 return StatusCode(500, "Couldn't get account info.");
             }

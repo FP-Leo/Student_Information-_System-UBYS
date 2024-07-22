@@ -99,14 +99,14 @@ namespace api.Controllers
             return Ok(accInfo.ToAdvisorAccountDto());
         }
         /*
-        [HttpGet("Advisor/AccountInfo/SSN/{SSN:int}")]
-        public async Task<IActionResult> GetAdvisorBySsn(int SSN){
+        [HttpGet("Advisor/AccountInfo/ID/{ID:int}")]
+        public async Task<IActionResult> GetAdvisorByID(int ID){
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var accInfo = await _advisorAccRepo.GetAdvisorAccountBySSNAsync(SSN);
+            var accInfo = await _advisorAccRepo.GetAdvisorAccountByIDAsync(ID);
 
             if(accInfo == null){
                 return NotFound();
@@ -136,7 +136,7 @@ namespace api.Controllers
             accInfo.FirstName = advisorAccountPOSTDto.FirstName;
             accInfo.LastName = advisorAccountPOSTDto.LastName;
             accInfo.BirthDate = advisorAccountPOSTDto.BirthDate;
-            accInfo.AdvisorId = advisorAccountPOSTDto.AdvisorId;
+            accInfo.ID = advisorAccountPOSTDto.ID;
             accInfo.SchoolMail = advisorAccountPOSTDto.SchoolMail;
             accInfo.PersonalMail = advisorAccountPOSTDto.PersonalMail;
             accInfo.Phone = advisorAccountPOSTDto.Phone;

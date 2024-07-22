@@ -8,7 +8,7 @@ namespace api.DTO.StudentCourseDetails
         [Required]
         public String? StudentName { get; set; }
         [Required]
-        public int SSN { get; set; }
+        public int ID { get; set; }
         [Required] 
         public int Year { get; set; }
         [Required]

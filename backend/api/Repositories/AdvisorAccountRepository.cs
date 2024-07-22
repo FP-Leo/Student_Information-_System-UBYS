@@ -39,9 +39,9 @@ namespace api.Repositories
             return AdvisorAccount;
         }
 
-        public async Task<AdvisorAccount?> GetAdvisorAccountByIdAsync(int AdvisorId)
+        public async Task<AdvisorAccount?> GetAdvisorAccountByIdAsync(int ID)
         {
-            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(a => a.AdvisorId == AdvisorId);
+            var account = await _context.AdvisorAccounts.FirstOrDefaultAsync(a => a.ID == ID);
 
             return account;
         }

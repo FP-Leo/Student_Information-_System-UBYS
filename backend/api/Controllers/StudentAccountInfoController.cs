@@ -141,7 +141,7 @@ namespace api.Controllers
             accInfo.FirstName = studentAccountPOSTDto.FirstName;
             accInfo.LastName = studentAccountPOSTDto.LastName;
             accInfo.BirthDate = studentAccountPOSTDto.BirthDate;
-            accInfo.ID = studentAccountPOSTDto.ID;
+            accInfo.ID = studentAccountPOSTDto.SSN;
             accInfo.CurrentType = studentAccountPOSTDto.CurrentType;
             accInfo.CurrentStatus = studentAccountPOSTDto.CurrentStatus;
             accInfo.SchoolMail = studentAccountPOSTDto.SchoolMail;

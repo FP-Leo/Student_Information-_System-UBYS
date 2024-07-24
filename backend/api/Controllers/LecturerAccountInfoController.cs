@@ -133,7 +133,7 @@ namespace api.Controllers
             accInfo.FirstName = lecturerAccountPOSTDto.FirstName;
             accInfo.LastName = lecturerAccountPOSTDto.LastName;
             accInfo.BirthDate = lecturerAccountPOSTDto.BirthDate;
-            accInfo.ID = lecturerAccountPOSTDto.ID;
+            accInfo.ID = lecturerAccountPOSTDto.LecturerId;
             accInfo.CurrentStatus = lecturerAccountPOSTDto.CurrentStatus;
             accInfo.Title = lecturerAccountPOSTDto.Title;
             accInfo.TotalWorkHours = lecturerAccountPOSTDto.TotalWorkHours;

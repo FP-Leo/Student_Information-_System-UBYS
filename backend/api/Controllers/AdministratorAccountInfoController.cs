@@ -134,7 +134,7 @@ namespace api.Controllers
             accInfo.FirstName = administratorAccountPOSTDto.FirstName;
             accInfo.LastName = administratorAccountPOSTDto.LastName;
             accInfo.BirthDate = administratorAccountPOSTDto.BirthDate;
-            accInfo.ID = administratorAccountPOSTDto.ID;
+            accInfo.ID = administratorAccountPOSTDto.AdministratorId;
             accInfo.SchoolMail = administratorAccountPOSTDto.SchoolMail;
             accInfo.PersonalMail = administratorAccountPOSTDto.PersonalMail;
             accInfo.Phone = administratorAccountPOSTDto.Phone;

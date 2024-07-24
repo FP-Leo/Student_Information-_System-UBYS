@@ -16,7 +16,7 @@ namespace api.DTO.AccountInfo
         [Required]
         public DateOnly BirthDate {get; set;}
         [Required]
-        public int ID {get; set;}
+        public int SSN {get; set;}
         [Required]
         public DateOnly RegisterDate {get; set;}
         [Required]

@@ -12,7 +12,7 @@ namespace api.DTO.AccountInfo
         public DateOnly BirthDate {get; set;}
         [Required]
         //[RegularExpression("^[0-9]{9}$", ErrorMessage = "Please enter a valid 9-digit number.")] // conditions to be decided.
-        public int ID {get; set;}
+        public int LecturerId {get; set;}
         [Required]
         public string? Title { get; set; }
         [Required]

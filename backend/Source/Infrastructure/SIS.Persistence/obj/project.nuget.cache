@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8m0iiLiIuKQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\baha_\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

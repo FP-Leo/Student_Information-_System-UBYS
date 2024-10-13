@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Soruce\Core\SIS.Application\SIS.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Concretes\" />
+    <Folder Include="Databases\Contexts\" />
+    <Folder Include="Databases\EntityTypeConfigurations\" />
+    <Folder Include="Databases\SeedingData\" />
+  </ItemGroup>
+
+</Project>

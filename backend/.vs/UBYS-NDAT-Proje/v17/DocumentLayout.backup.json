@@ -1,0 +1,437 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{392354D1-ED7E-495C-B601-4F2EF9B1DD42}|Tests\\SIS.UnitTest\\SIS.UnitTest.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\tests\\sis.unittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{392354D1-ED7E-495C-B601-4F2EF9B1DD42}|Tests\\SIS.UnitTest\\SIS.UnitTest.csproj|solutionrelative:tests\\sis.unittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\repositories\\advisoraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\repositories\\advisoraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\seeddata\\departmentcourse.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\seeddata\\departmentcourse.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\service\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\service\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CAC0C4D-5830-4DE4-9E12-B3BB7E452BEE}|Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\infrastructure\\sis.persistence\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CAC0C4D-5830-4DE4-9E12-B3BB7E452BEE}|Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj|solutionrelative:source\\infrastructure\\sis.persistence\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CAC0C4D-5830-4DE4-9E12-B3BB7E452BEE}|Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\infrastructure\\sis.persistence\\databases\\desingtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CAC0C4D-5830-4DE4-9E12-B3BB7E452BEE}|Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj|solutionrelative:source\\infrastructure\\sis.persistence\\databases\\desingtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CAC0C4D-5830-4DE4-9E12-B3BB7E452BEE}|Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\infrastructure\\sis.persistence\\databases\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CAC0C4D-5830-4DE4-9E12-B3BB7E452BEE}|Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj|solutionrelative:source\\infrastructure\\sis.persistence\\databases\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6C877A8-B68A-483D-8F57-AC821F8DFE5A}|Source\\Infrastructure\\SIS.Infrastructure\\SIS.Infrastructure.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\infrastructure\\sis.infrastructure\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6C877A8-B68A-483D-8F57-AC821F8DFE5A}|Source\\Infrastructure\\SIS.Infrastructure\\SIS.Infrastructure.csproj|solutionrelative:source\\infrastructure\\sis.infrastructure\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F7E0FAF-732B-45E6-9A23-6266119FFD80}|Soruce\\Core\\SIS.Application\\SIS.Application.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\soruce\\core\\sis.application\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F7E0FAF-732B-45E6-9A23-6266119FFD80}|Soruce\\Core\\SIS.Application\\SIS.Application.csproj|solutionrelative:soruce\\core\\sis.application\\serviceregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F7E0FAF-732B-45E6-9A23-6266119FFD80}|Soruce\\Core\\SIS.Application\\SIS.Application.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\soruce\\core\\sis.application\\sis.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3F7E0FAF-732B-45E6-9A23-6266119FFD80}|Soruce\\Core\\SIS.Application\\SIS.Application.csproj|solutionrelative:soruce\\core\\sis.application\\sis.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\presentation\\sis.api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|solutionrelative:source\\presentation\\sis.api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\repositories\\courseclassrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\repositories\\courseclassrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\models\\studentdepdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\models\\studentdepdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\models\\university.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\models\\university.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\models\\courseclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\models\\courseclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\repositories\\administratoraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\repositories\\administratoraccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\controllers\\accountinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\controllers\\accountinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\seeddata\\coursedetail.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\seeddata\\coursedetail.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\seeddata\\department.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\seeddata\\department.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\seeddata\\faculty.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\seeddata\\faculty.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\seeddata\\courseclassdate.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\seeddata\\courseclassdate.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\api\\seeddata\\classdate.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0055C316-0D87-43C1-BD65-43D8D7259316}|api\\api.csproj|solutionrelative:api\\seeddata\\classdate.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 256,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Tests\\SIS.UnitTest\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "Tests\\SIS.UnitTest\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Tests\\SIS.UnitTest\\UnitTest1.cs",
+              "RelativeToolTip": "Tests\\SIS.UnitTest\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:08:07.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdvisorAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Repositories\\AdvisorAccountRepository.cs",
+              "RelativeDocumentMoniker": "api\\Repositories\\AdvisorAccountRepository.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Repositories\\AdvisorAccountRepository.cs",
+              "RelativeToolTip": "api\\Repositories\\AdvisorAccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:07:18.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "departmentCourse.csv",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\departmentCourse.csv",
+              "RelativeDocumentMoniker": "api\\SeedData\\departmentCourse.csv",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\departmentCourse.csv",
+              "RelativeToolTip": "api\\SeedData\\departmentCourse.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-10-13T19:07:13.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Service\\TokenService.cs",
+              "RelativeDocumentMoniker": "api\\Service\\TokenService.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Service\\TokenService.cs",
+              "RelativeToolTip": "api\\Service\\TokenService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:07:04.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ServiceRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\ServiceRegistration.cs",
+              "RelativeDocumentMoniker": "Source\\Infrastructure\\SIS.Persistence\\ServiceRegistration.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\ServiceRegistration.cs",
+              "RelativeToolTip": "Source\\Infrastructure\\SIS.Persistence\\ServiceRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:05:27.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DesingTimeDbContextFactory.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\Databases\\DesingTimeDbContextFactory.cs",
+              "RelativeDocumentMoniker": "Source\\Infrastructure\\SIS.Persistence\\Databases\\DesingTimeDbContextFactory.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\Databases\\DesingTimeDbContextFactory.cs",
+              "RelativeToolTip": "Source\\Infrastructure\\SIS.Persistence\\Databases\\DesingTimeDbContextFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:05:16.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\appsettings.json",
+              "RelativeDocumentMoniker": "api\\appsettings.json",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\appsettings.json",
+              "RelativeToolTip": "api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-13T15:53:25.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Configuration.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\Databases\\Configuration.cs",
+              "RelativeDocumentMoniker": "Source\\Infrastructure\\SIS.Persistence\\Databases\\Configuration.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\Databases\\Configuration.cs",
+              "RelativeToolTip": "Source\\Infrastructure\\SIS.Persistence\\Databases\\Configuration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:04:53.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ServiceRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Infrastructure\\ServiceRegistration.cs",
+              "RelativeDocumentMoniker": "Source\\Infrastructure\\SIS.Infrastructure\\ServiceRegistration.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Infrastructure\\ServiceRegistration.cs",
+              "RelativeToolTip": "Source\\Infrastructure\\SIS.Infrastructure\\ServiceRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:03:23.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ServiceRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Soruce\\Core\\SIS.Application\\ServiceRegistration.cs",
+              "RelativeDocumentMoniker": "Soruce\\Core\\SIS.Application\\ServiceRegistration.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Soruce\\Core\\SIS.Application\\ServiceRegistration.cs",
+              "RelativeToolTip": "Soruce\\Core\\SIS.Application\\ServiceRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:02:07.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SIS.Application",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Soruce\\Core\\SIS.Application\\SIS.Application.csproj",
+              "RelativeDocumentMoniker": "Soruce\\Core\\SIS.Application\\SIS.Application.csproj",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Soruce\\Core\\SIS.Application\\SIS.Application.csproj",
+              "RelativeToolTip": "Soruce\\Core\\SIS.Application\\SIS.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-13T18:59:31.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "Source\\Presentation\\SIS.API\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\WeatherForecast.cs",
+              "RelativeToolTip": "Source\\Presentation\\SIS.API\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T18:59:26.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CourseClassRepository.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Repositories\\CourseClassRepository.cs",
+              "RelativeDocumentMoniker": "api\\Repositories\\CourseClassRepository.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Repositories\\CourseClassRepository.cs",
+              "RelativeToolTip": "api\\Repositories\\CourseClassRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:55:33.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "StudentDepDetails.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\StudentDepDetails.cs",
+              "RelativeDocumentMoniker": "api\\Models\\StudentDepDetails.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\StudentDepDetails.cs",
+              "RelativeToolTip": "api\\Models\\StudentDepDetails.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:55:18.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "University.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\University.cs",
+              "RelativeDocumentMoniker": "api\\Models\\University.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\University.cs",
+              "RelativeToolTip": "api\\Models\\University.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:55:17.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\User.cs",
+              "RelativeDocumentMoniker": "api\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\User.cs",
+              "RelativeToolTip": "api\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:55:17.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CourseClass.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\CourseClass.cs",
+              "RelativeDocumentMoniker": "api\\Models\\CourseClass.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Models\\CourseClass.cs",
+              "RelativeToolTip": "api\\Models\\CourseClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:55:01.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AdministratorAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Repositories\\AdministratorAccountRepository.cs",
+              "RelativeDocumentMoniker": "api\\Repositories\\AdministratorAccountRepository.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Repositories\\AdministratorAccountRepository.cs",
+              "RelativeToolTip": "api\\Repositories\\AdministratorAccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:54:44.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "api\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "api\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAFkBAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:53:31.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AccountInfoController.cs",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Controllers\\AccountInfoController.cs",
+              "RelativeDocumentMoniker": "api\\Controllers\\AccountInfoController.cs",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\Controllers\\AccountInfoController.cs",
+              "RelativeToolTip": "api\\Controllers\\AccountInfoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T15:53:29.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "courseDetail.csv",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\courseDetail.csv",
+              "RelativeDocumentMoniker": "api\\SeedData\\courseDetail.csv",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\courseDetail.csv",
+              "RelativeToolTip": "api\\SeedData\\courseDetail.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-10-13T15:53:19.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "faculty.csv",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\faculty.csv",
+              "RelativeDocumentMoniker": "api\\SeedData\\faculty.csv",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\faculty.csv",
+              "RelativeToolTip": "api\\SeedData\\faculty.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-08-22T13:39:33.465Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "department.csv",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\department.csv",
+              "RelativeDocumentMoniker": "api\\SeedData\\department.csv",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\department.csv",
+              "RelativeToolTip": "api\\SeedData\\department.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-08-22T13:39:32.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "courseClassDate.csv",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\courseClassDate.csv",
+              "RelativeDocumentMoniker": "api\\SeedData\\courseClassDate.csv",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\courseClassDate.csv",
+              "RelativeToolTip": "api\\SeedData\\courseClassDate.csv",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-08-22T13:39:31.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "classDate.csv",
+              "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\classDate.csv",
+              "RelativeDocumentMoniker": "api\\SeedData\\classDate.csv",
+              "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\api\\SeedData\\classDate.csv",
+              "RelativeToolTip": "api\\SeedData\\classDate.csv",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-08-22T13:39:29.224Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

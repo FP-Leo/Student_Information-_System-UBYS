@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SIS.API.props" />
+</Project>

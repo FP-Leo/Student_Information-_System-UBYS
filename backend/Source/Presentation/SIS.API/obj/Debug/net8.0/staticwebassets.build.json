@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "a8G2/xKBURTgU8xoH4VjGlSLzPJ+S/wrJo6RwAnYYMQ=",
+  "Source": "SIS.API",
+  "BasePath": "_content/SIS.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

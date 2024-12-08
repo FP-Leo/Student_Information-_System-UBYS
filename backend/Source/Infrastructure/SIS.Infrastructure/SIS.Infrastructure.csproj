@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Soruce\Core\SIS.Application\SIS.Application.csproj" />
+    <Folder Include="Filters\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Filters\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\..\Core\SIS.Application\SIS.Application.csproj" />
   </ItemGroup>
 
 </Project>

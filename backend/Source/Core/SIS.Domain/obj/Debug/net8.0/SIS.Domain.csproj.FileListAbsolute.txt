@@ -1,0 +1,13 @@
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\bin\Debug\net8.0\SIS.Domain.deps.json
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\bin\Debug\net8.0\SIS.Domain.dll
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\bin\Debug\net8.0\SIS.Domain.pdb
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.csproj.AssemblyReference.cache
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.AssemblyInfoInputs.cache
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.AssemblyInfo.cs
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.sourcelink.json
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.dll
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\refint\SIS.Domain.dll
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\SIS.Domain.pdb
+C:\Users\baha_\OneDrive\Belgeler\GitHub\UBYS-NDAT-Proje\backend\Source\Core\SIS.Domain\obj\Debug\net8.0\ref\SIS.Domain.dll

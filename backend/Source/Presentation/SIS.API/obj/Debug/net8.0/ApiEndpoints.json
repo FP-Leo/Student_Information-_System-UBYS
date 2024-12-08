@@ -1,23 +1,2042 @@
 [
   {
-    "ContainingType": "SIS.API.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "ContainingType": "api.Controllers.AdministratorAccountInfoController",
+    "Method": "GetAdministratorByTc",
+    "RelativePath": "api/Admin/Administrator/Account/Details/{TC}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdministratorAccountInfoController",
+    "Method": "UpdateAdministratorAccount",
+    "RelativePath": "api/Admin/Administrator/Account/Details/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "administratorAccountPOSTDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Administrator.AdministratorAccountPOSTDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdvisorAccountInfoController",
+    "Method": "GetAdvisorByTc",
+    "RelativePath": "api/Admin/Advisor/Account/Details/{TC}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdvisorAccountInfoController",
+    "Method": "UpdateAdvisorAccount",
+    "RelativePath": "api/Admin/Advisor/Account/Details/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "advisorAccountPOSTDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Advisor.AdvisorAccountPOSTDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerAccountInfoController",
+    "Method": "UpdateLecturerAccount",
+    "RelativePath": "api/Admin/Lecturer/Account/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerAccountPOSTDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Lecturer.LecturerAccountPOSTDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerAccountInfoController",
+    "Method": "GetLecturerByTc",
+    "RelativePath": "api/Admin/Lecturer/Account/Details/{TC}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentAccountInfoController",
+    "Method": "UpdateStudentAccount",
+    "RelativePath": "api/Admin/Student/Account/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentAccountPOSTDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Student.StudentAccountPOSTDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentAccountInfoController",
+    "Method": "GetStudentByTC",
+    "RelativePath": "api/Admin/Student/Account/Details/{TC}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "api/Admin/System/Account/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerDto",
+        "Type": "SIS.Application.DTOs.Account.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AccountController",
+    "Method": "RegisterAdministrator",
+    "RelativePath": "api/Admin/System/Account/Register/Administrator",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerAdministratorDto",
+        "Type": "SIS.Application.DTOs.Account.RegisterAdministratorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AccountController",
+    "Method": "RegisterAdvisor",
+    "RelativePath": "api/Admin/System/Account/Register/Advisor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerAdvisorDto",
+        "Type": "SIS.Application.DTOs.Account.RegisterAdvisorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AccountController",
+    "Method": "RegisterLecturer",
+    "RelativePath": "api/Admin/System/Account/Register/Lecturer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerLecturerDto",
+        "Type": "SIS.Application.DTOs.Account.RegisterLecturerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AccountController",
+    "Method": "RegisterStudent",
+    "RelativePath": "api/Admin/System/Account/Register/Student",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerStudentDto",
+        "Type": "SIS.Application.DTOs.Account.RegisterStudentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.ClassDateController",
+    "Method": "AddClassDate",
+    "RelativePath": "api/Class/Date",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classDatePostDto",
+        "Type": "SIS.Application.DTOs.ClassDate.ClassDatePostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.ClassDateController",
+    "Method": "GetClassDateById",
+    "RelativePath": "api/Class/Date/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.ClassDateController",
+    "Method": "UpdateClassDate",
+    "RelativePath": "api/Class/Date/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "classDateUpdateDto",
+        "Type": "SIS.Application.DTOs.ClassDate.ClassDateUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.ClassDateController",
+    "Method": "DeleteClassDate",
+    "RelativePath": "api/Class/Date/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseController",
+    "Method": "GetCourses",
+    "RelativePath": "api/Course",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseController",
+    "Method": "AddCourse",
+    "RelativePath": "api/Course",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[SIS.API.WeatherForecast, SIS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "coursePostDto",
+        "Type": "SIS.Application.DTOs.Course.CoursePostDto",
+        "IsRequired": true
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseController",
+    "Method": "GetCourse",
+    "RelativePath": "api/Course/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseController",
+    "Method": "GetCourse",
+    "RelativePath": "api/Course/{Name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseController",
+    "Method": "DeleteCourse",
+    "RelativePath": "api/Course/{Name}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AccountController",
+    "Method": "Login",
+    "RelativePath": "api/System/Account/LogIn",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Administrator.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.UniversityController",
+    "Method": "AddUniversity",
+    "RelativePath": "api/University",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "universityPostDto",
+        "Type": "SIS.Application.DTOs.University.UniversityPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.UniversityController",
+    "Method": "GetUniversityById",
+    "RelativePath": "api/University/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.UniversityController",
+    "Method": "UpdateUniversity",
+    "RelativePath": "api/University/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "universityUpdateDto",
+        "Type": "SIS.Application.DTOs.University.UniversityUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.UniversityController",
+    "Method": "DeleteUniversity",
+    "RelativePath": "api/University/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "GetActiveCourses",
+    "RelativePath": "api/University/Courses/Active",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.FacultyController",
+    "Method": "GetFaculties",
+    "RelativePath": "api/University/Faculties",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UniName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.FacultyController",
+    "Method": "GetFaculty",
+    "RelativePath": "api/University/Faculty",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UniName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.FacultyController",
+    "Method": "AddFaculty",
+    "RelativePath": "api/University/Faculty",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facultyPostDto",
+        "Type": "SIS.Application.DTOs.Faculty.FacultyPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.FacultyController",
+    "Method": "UpdateFaculty",
+    "RelativePath": "api/University/Faculty",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UniName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "facultyUpdateDto",
+        "Type": "SIS.Application.DTOs.Faculty.FacultyUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.FacultyController",
+    "Method": "DeleteFaculty",
+    "RelativePath": "api/University/Faculty",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UniName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacultyName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetLecturersAllCourses",
+    "RelativePath": "api/University/Faculty/Administrator/Lecturer/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetAllLecturers",
+    "RelativePath": "api/University/Faculty/Administrator/Lecturers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "DeleteCourseOfDepartment",
+    "RelativePath": "api/University/Faculty/Deparment/Course",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentController",
+    "Method": "GetDepartment",
+    "RelativePath": "api/University/Faculty/Department",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentController",
+    "Method": "AddDepartment",
+    "RelativePath": "api/University/Faculty/Department",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "departmentPostDto",
+        "Type": "SIS.Application.DTOs.Department.DepartmentPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentController",
+    "Method": "UpdateDepartment",
+    "RelativePath": "api/University/Faculty/Department",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "departmentUpdateDto",
+        "Type": "SIS.Application.DTOs.Department.DepartmentUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentController",
+    "Method": "DeleteDepartment",
+    "RelativePath": "api/University/Faculty/Department",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetLecturerCoursesByDeparment",
+    "RelativePath": "api/University/Faculty/Department/Administrator/Lecturer/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "GetDepCourseByCourseAndDepName",
+    "RelativePath": "api/University/Faculty/Department/Course",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "AddCourseToDepartment",
+    "RelativePath": "api/University/Faculty/Department/Course",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "coursePostDto",
+        "Type": "SIS.Application.DTOs.DeparmentCourse.DepartmentCoursePostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "UpdateCourseOfDepartment",
+    "RelativePath": "api/University/Faculty/Department/Course",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "departmentCourseUpdateDto",
+        "Type": "SIS.Application.DTOs.DeparmentCourse.DepartmentCourseUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "AcceptStudentCourseSelection",
+    "RelativePath": "api/University/Faculty/Department/Course/Advisor/Student/Course/Accept/Selected",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "RejectStudentCourseSelection",
+    "RelativePath": "api/University/Faculty/Department/Course/Advisor/Student/Course/Reject/Selected",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "GetCurrentCourseClass",
+    "RelativePath": "api/University/Faculty/Department/Course/Class",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "AddCourseClass",
+    "RelativePath": "api/University/Faculty/Department/Course/Class",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "courseClassPostDto",
+        "Type": "SIS.Application.DTOs.CourseClass.CourseClassPostWOCodeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "UpdateCourseClass",
+    "RelativePath": "api/University/Faculty/Department/Course/Class",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "courseClassUpdateDto",
+        "Type": "SIS.Application.DTOs.CourseClass.CourseClassUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "DeleteCourseClass",
+    "RelativePath": "api/University/Faculty/Department/Course/Class",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "GetCourseClass",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/{SchoolYear}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SchoolYear",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "GetCurrentCourseClassByCode",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Code",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "AddCourseClassByCode",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Code",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseClassPostDto",
+        "Type": "SIS.Application.DTOs.CourseClass.CourseClassPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "UpdateCourseClassByCode",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Code",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "courseClassUpdateDto",
+        "Type": "SIS.Application.DTOs.CourseClass.CourseClassUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "DeleteCourseClassByCode",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Code",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "GetCourseClassByCode",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Code/{SchoolYear}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SchoolYear",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "CourseCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassDateController",
+    "Method": "DeleteCourseClassDate",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Date",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseClassDateDeleteDto",
+        "Type": "SIS.Application.DTOs.CourseClassDate.CourseClassDateDeleteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassDateController",
+    "Method": "GetCourseClassDates",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Dates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassDateController",
+    "Method": "AddCourseClassDates",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Dates",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseClassDatePostDto",
+        "Type": "SIS.Application.DTOs.CourseClassDate.CourseClassDatePostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassDateController",
+    "Method": "DeleteCourseClassDates",
+    "RelativePath": "api/University/Faculty/Department/Course/Class/Dates",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseDetailsController",
+    "Method": "GetCourseDetails",
+    "RelativePath": "api/University/Faculty/Department/Course/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseDetailsId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseDetailsController",
+    "Method": "AddCourseDetails",
+    "RelativePath": "api/University/Faculty/Department/Course/Details",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseDetailsPostDto",
+        "Type": "SIS.Application.DTOs.CourseDetails.CourseDetailsPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseDetailsController",
+    "Method": "UpdateCourseDetails",
+    "RelativePath": "api/University/Faculty/Department/Course/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseDetailsId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "courseDetailsUpdateDto",
+        "Type": "SIS.Application.DTOs.CourseDetails.CourseDetailsUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseDetailsController",
+    "Method": "DeleteCourseDetails",
+    "RelativePath": "api/University/Faculty/Department/Course/Details",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseDetailsId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "SetStudentAttendance",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/Attendance",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateAttendanceDto",
+        "Type": "SIS.Application.DTOs.StudentCourseDetails.UpdateAttendanceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "AddStudentComplement",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/Complement",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateExamDto",
+        "Type": "SIS.Application.DTOs.StudentCourseDetails.UpdateExamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "UpdateStudentCourseDetails",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "studentCourseDetailsUpdateDto",
+        "Type": "SIS.Application.DTOs.StudentCourseDetails.StudentCourseDetailsUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "DeleteStudentDepDetails",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/Details",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "AddStudentFinal",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/Final",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateExamDto",
+        "Type": "SIS.Application.DTOs.StudentCourseDetails.UpdateExamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "AddStudentMidTerm",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/MidTerm",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updateExamDto",
+        "Type": "SIS.Application.DTOs.StudentCourseDetails.UpdateExamDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "GetResult",
+    "RelativePath": "api/University/Faculty/Department/Course/Student/Results",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "GetCoursesOfDepartment",
+    "RelativePath": "api/University/Faculty/Department/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "UpdateCourseClassesLecturerByCode",
+    "RelativePath": "api/University/Faculty/Department/Courses/Class/Code/Lecturer",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseClassUpdateLecturerDto",
+        "Type": "SIS.Application.DTOs.CourseClass.CourseClassUpdateLecturerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassController",
+    "Method": "RemoveCourseClassesLecturerByCode",
+    "RelativePath": "api/University/Faculty/Department/Courses/Class/Code/Lecturer/Remove",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseClassUpdateLecturerDto",
+        "Type": "SIS.Application.DTOs.CourseClass.CourseClassUpdateLecturerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetOwnCourses",
+    "RelativePath": "api/University/Faculty/Department/Lecturer/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassDateController",
+    "Method": "GetLecturerDates",
+    "RelativePath": "api/University/Faculty/Department/Lecturer/Dates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetLecturerDepDetailByTcAndDepId",
+    "RelativePath": "api/University/Faculty/Department/Lecturer/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "AddLecturerDepDetail",
+    "RelativePath": "api/University/Faculty/Department/Lecturer/Details",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerDepDetailsPostDto",
+        "Type": "SIS.Application.DTOs.LecturerDepDetails.LecturerDepDetailsPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "UpdateLecturerDepDetails",
+    "RelativePath": "api/University/Faculty/Department/Lecturer/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "lecturerDepDetailsUpdateDto",
+        "Type": "SIS.Application.DTOs.LecturerDepDetails.LecturerDepDetailsUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetDepsLecturers",
+    "RelativePath": "api/University/Faculty/Department/Lecturers/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.SemesterDetailsController",
+    "Method": "GetDepSemesterDetails",
+    "RelativePath": "api/University/Faculty/Department/Semester",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Semester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.SemesterDetailsController",
+    "Method": "AddSemesterDetails",
+    "RelativePath": "api/University/Faculty/Department/Semester",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "semesterDetailsPostDto",
+        "Type": "SIS.Application.DTOs.SemesterDetails.SemesterDetailsPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.SemesterDetailsController",
+    "Method": "UpdateemesterDetails",
+    "RelativePath": "api/University/Faculty/Department/Semester",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DeparmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Semester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "semesterDetailsUpdateDto",
+        "Type": "SIS.Application.DTOs.SemesterDetails.SemesterDetailsUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.SemesterDetailsController",
+    "Method": "DeleteSemesterDetails",
+    "RelativePath": "api/University/Faculty/Department/Semester",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DeparmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Semester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "GetStudentCourseSelectionApi",
+    "RelativePath": "api/University/Faculty/Department/Semester/Advisor/Courses/Selected",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "GetActiveDepCoursesBySemester",
+    "RelativePath": "api/University/Faculty/Department/Semester/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Level",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Semester",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "GetAvailableCourseSelection",
+    "RelativePath": "api/University/Faculty/Department/Semester/Student/Courses/Available",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "AddCourseSelection",
+    "RelativePath": "api/University/Faculty/Department/Semester/Student/Courses/Select",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "courseSelectionPostDto",
+        "Type": "SIS.Application.DTOs.CourseSelection.CourseSelectionPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "GetCourseSelectionApi",
+    "RelativePath": "api/University/Faculty/Department/Semester/Student/Courses/Selected",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.CourseClassDateController",
+    "Method": "GetStudentDates",
+    "RelativePath": "api/University/Faculty/Department/Student/Dates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepartmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "GetDepDetailByTcAndDepId",
+    "RelativePath": "api/University/Faculty/Department/Student/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "AddStudentDepDetail",
+    "RelativePath": "api/University/Faculty/Department/Student/Details",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentDepDetailsPostDto",
+        "Type": "SIS.Application.DTOs.StudentDepDetails.StudentDepDetailsPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "UpdateStudentDepDetails",
+    "RelativePath": "api/University/Faculty/Department/Student/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "studentDepDetailsUpdateDto",
+        "Type": "SIS.Application.DTOs.StudentDepDetails.StudentDepDetailsUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "GetStudentDocument",
+    "RelativePath": "api/University/Faculty/Department/Student/Document",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseSelectionController",
+    "Method": "GetStudentTranscript",
+    "RelativePath": "api/University/Faculty/Department/Student/Transcript",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "GetDepsStudents",
+    "RelativePath": "api/University/Faculty/Department/Students/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentController",
+    "Method": "GetDepartmentsOfFaculty",
+    "RelativePath": "api/University/Faculty/Departments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FacultyName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DepartmentCourseController",
+    "Method": "GetDepartmentsOfCourse",
+    "RelativePath": "api/University/Faculty/Departments/Course",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "GetStudentCourseDetails",
+    "RelativePath": "api/University/Faculty/Departments/Course/Student/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Course",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "GetCoursesStudentsDetails",
+    "RelativePath": "api/University/Faculty/Departments/Course/Students/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "GetLecturerDepsDetails",
+    "RelativePath": "api/University/Faculty/Departments/Lecturer/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerDepDetailsController",
+    "Method": "DeleteLecturerDepDetails",
+    "RelativePath": "api/University/Faculty/Departments/Lecturer/Details",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentCourseDetailsController",
+    "Method": "GetStudentCoursesDetails",
+    "RelativePath": "api/University/Faculty/Departments/Student/Courses/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "GetStudentDepsDetails",
+    "RelativePath": "api/University/Faculty/Departments/Student/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "DeleteStudentDepDetails",
+    "RelativePath": "api/University/Faculty/Departments/Student/Details",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DepName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentDepDetailsController",
+    "Method": "GetAllStudents",
+    "RelativePath": "api/University/Students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DocumentRequestController",
+    "Method": "GetRequestedDocuments",
+    "RelativePath": "api/University/User/Document/Requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.DocumentRequestController",
+    "Method": "DeleteRequestedDocuments",
+    "RelativePath": "api/University/User/Document/Requests",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TC",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdministratorAccountInfoController",
+    "Method": "GetAdministratorData",
+    "RelativePath": "api/User/Administrator/Account/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdministratorAccountInfoController",
+    "Method": "UpdateSettingsAdministrator",
+    "RelativePath": "api/User/Administrator/Account/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "administratorAccountPOSTDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Administrator.AdministratorAccountUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdvisorAccountInfoController",
+    "Method": "GetAdvisorData",
+    "RelativePath": "api/User/Advisor/Account/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.AdvisorAccountInfoController",
+    "Method": "UpdateSettingsAdvisor",
+    "RelativePath": "api/User/Advisor/Account/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "advisorAccountPOSTDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Advisor.AdvisorAccountUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerAccountInfoController",
+    "Method": "GetLecturerData",
+    "RelativePath": "api/User/Lecturer/Account/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.LecturerAccountInfoController",
+    "Method": "UpdateSettingsLecturer",
+    "RelativePath": "api/User/Lecturer/Account/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lecturerAccountUpdateDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Lecturer.LecturerAccountUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentAccountInfoController",
+    "Method": "GetStudentData",
+    "RelativePath": "api/User/Student/Account/Details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.StudentAccountInfoController",
+    "Method": "UpdateSettingsStudent",
+    "RelativePath": "api/User/Student/Account/Details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentAccountUpdateDto",
+        "Type": "SIS.Application.DTOs.AccountInfo.Student.StudentAccountUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -1,0 +1,13 @@
+DepartmentName|CourseCode|SchoolYear|TC|State|AttendanceFulfilled|MidTermAnnouncment|FinalAnnouncment|ComplementAnnouncment|MidTerm|Final|ComplementRight|Complement|Grade|
+BM|BLM-1001|2022|10000000001|Passed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|null|85|95|false|null|4|
+BM|BLM-1002|2022|10000000001|Failed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|2024-07-05 12:00:00|30|40|true|60|0.5|
+BM|BLM-1003|2022|10000000001|Passed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|null|85|95|false|null|4|
+BM|BLM-1004|2022|10000000001|Failed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|2024-07-05 12:00:00|85|45|true|40|0|
+BM|BLM-1005|2022|10000000001|Partially Passed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|null|50|50|false|null|1.5|
+BM|BLM-1006|2022|10000000001|Failed|false|2024-07-05 12:00:00|2024-07-05 12:00:00|null|85|95|false|null|0|
+BM|BLM-1007|2022|10000000001|Failed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|2024-07-05 12:00:00|85|45|true|40|0|
+BM|BLM-1008|2022|10000000001|Partially Passed|true|2024-07-05 12:00:00|2024-07-05 12:00:00|null|50|50|false|null|1.5|
+BM|BLM-1009|2022|10000000001|Failed|false|2024-07-05 12:00:00|2024-07-05 12:00:00|null|85|95|false|null|0|
+BM|BLM-2007|2023|10000000001|Attending|null|2024-07-05 12:00:00|null|null|50|null|null|null|null|
+BM|BLM-2008|2023|10000000001|Attending|null|2024-07-05 12:00:00|null|null|50|null|null|null|null|
+BM|BLM-2009|2023|10000000001|Attending|null|null|null|null|null|null|null|null|null|

@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\presentation\\sis.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|solutionrelative:source\\presentation\\sis.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\presentation\\sis.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|solutionrelative:source\\presentation\\sis.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\presentation\\sis.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|solutionrelative:source\\presentation\\sis.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\presentation\\sis.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|solutionrelative:source\\presentation\\sis.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E659A847-272B-4D20-8E1D-6F77425A2768}|Source\\Presentation\\SIS.API\\SIS.API.csproj|c:\\users\\baha_\\onedrive\\belgeler\\github\\ubys-ndat-proje\\backend\\source\\presentation\\sis.api\\seed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -305,7 +305,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 256,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -321,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\appsettings.json",
               "RelativeDocumentMoniker": "Source\\Presentation\\SIS.API\\appsettings.json",
@@ -334,15 +334,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\Program.cs",
               "RelativeDocumentMoniker": "Source\\Presentation\\SIS.API\\Program.cs",
               "ToolTip": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\Program.cs",
               "RelativeToolTip": "Source\\Presentation\\SIS.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAABwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T22:28:59.103Z"
+              "WhenOpened": "2024-12-04T22:28:59.103Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -370,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Source\\Presentation\\SIS.API\\Controllers\\AccountController.cs",

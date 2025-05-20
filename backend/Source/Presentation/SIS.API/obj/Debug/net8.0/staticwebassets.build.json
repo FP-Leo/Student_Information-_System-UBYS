@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "a8G2/xKBURTgU8xoH4VjGlSLzPJ+S/wrJo6RwAnYYMQ=",
+  "Hash": "BR5S4Ia4TlLBzk0nsNTAtRXWjX+FcZ405dtI+Dy3ALI=",
   "Source": "SIS.API",
   "BasePath": "_content/SIS.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

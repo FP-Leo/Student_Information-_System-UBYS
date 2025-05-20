@@ -8,20 +8,23 @@ namespace SIS.Persistence.Databases.SeedingData
     {
         private readonly ApplicationDBContext _context;
         private readonly UserManager<User> _userManager;
-        private readonly string userPath = "./SeedData/user.csv";
-        private readonly string uniPath = "./SeedData/uni.csv";
-        private readonly string facultyPath = "./SeedData/faculty.csv";
-        private readonly string depPath = "./SeedData/department.csv";
-        private readonly string semesterPath = "./SeedData/semester.csv";
-        private readonly string coursePath = "./SeedData/course.csv";
-        private readonly string courseDetailPath = "./SeedData/courseDetail.csv";
-        private readonly string depCoursePath = "./SeedData/departmentCourse.csv";
-        private readonly string lecDepDetailPath = "./SeedData/lecDepDetail.csv";
-        private readonly string studentDepDetailPath = "./SeedData/studentDepDetail.csv";
-        private readonly string courseClassPath = "./SeedData/courseClass.csv";
-        private readonly string classDatePath = "./SeedData/classDate.csv";
-        private readonly string courseClassDatePath = "./SeedData/courseClassDate.csv";
-        private readonly string studentCourseDetailsPath = "./SeedData/studentCourseDetails.csv";
+
+        // Updated to include the SIS.Persistence path
+        private readonly static string basePath = "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Infrastructure\\SIS.Persistence\\Databases\\SeedingData\\SeedData\\";
+        private readonly string userPath = $"{basePath}user.csv";
+        private readonly string uniPath = $"{basePath}uni.csv";
+        private readonly string facultyPath = $"{basePath}faculty.csv";
+        private readonly string depPath = $"{basePath}department.csv";
+        private readonly string semesterPath = $"{basePath}semester.csv";
+        private readonly string coursePath = $"{basePath}course.csv";
+        private readonly string courseDetailPath = $"{basePath}courseDetail.csv";
+        private readonly string depCoursePath = $"{basePath}departmentCourse.csv";
+        private readonly string lecDepDetailPath = $"{basePath}lecDepDetail.csv";
+        private readonly string studentDepDetailPath = $"{basePath}studentDepDetail.csv";
+        private readonly string courseClassPath = $"{basePath}courseClass.csv";
+        private readonly string classDatePath = $"{basePath}classDate.csv";
+        private readonly string courseClassDatePath = $"{basePath}courseClassDate.csv";
+        private readonly string studentCourseDetailsPath = $"{basePath}studentCourseDetails.csv";
         public Seed(ApplicationDBContext context, UserManager<User> userManager)
         {
             _context = context;

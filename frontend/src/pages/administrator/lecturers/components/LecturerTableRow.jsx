@@ -54,13 +54,13 @@ const StyledMenu = styled((props) => (
 }));
 
 const LecturerTableRow = ({ data }) => {
-  console.log(data);
   const theme = useTheme();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const { name, lecturerId, faculties, currentState } = data;
+  const { name, id, faculties, currentState } = data;
+  console.log("lecturer",data);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -104,7 +104,7 @@ const LecturerTableRow = ({ data }) => {
           borderRight: `1px solid ${theme.palette.grey[500]}`,
         }}
       >
-        <Typography variant="caption">{lecturerId}</Typography>
+        <Typography variant="caption">{id}</Typography>
       </Box>
       <Box
         sx={{
@@ -179,7 +179,7 @@ const LecturerTableRow = ({ data }) => {
         >
           <MenuItem
             onClick={() => {
-              navigate(`/home/dersler/${lecturerId}`);
+              navigate(`/home/dersler/${id}`);
               handleClose();
             }}
             disableRipple
@@ -189,7 +189,7 @@ const LecturerTableRow = ({ data }) => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              navigate(`/home/ders-atanmasi/${lecturerId}`);
+              navigate(`/home/ders-atanmasi/${id}`);
               handleClose();
             }}
             disableRipple

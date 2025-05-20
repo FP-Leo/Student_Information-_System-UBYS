@@ -18,7 +18,7 @@ import MyStudentsItem from "./MyStudentsItem/MyStudentsItem";
 import MyStudentsTableHeader from "./MyStudentsItem/MyStudentsTableHeader";
 
 export default function ProfessorsStudents() {
-  const [selectedBolum, setSelectedBolum] = useState("");
+  const [selectedBolum, setSelectedBolum] = useState("BM");
   const bolumler = [
     "Makine Mühendisliği",
     "Bilgisayar Mühendisliği",
@@ -34,12 +34,12 @@ export default function ProfessorsStudents() {
   const [professorCourses, setProfessorCourses] = useState([]);
 
   const resetProfessorStudents = () => {
-    setSelectedBolum("");
     professorCourses.forEach((course) => {
       fetchStudents(course);
     });
     setIsFiltered(false);
   };
+  
   const filterStudents = () => {
     if (selectedBolum !== "") {
       setProfessorStudents([
@@ -82,15 +82,18 @@ export default function ProfessorsStudents() {
       .then((response) => {
         if (response.data.students.length !== 0) {
           response.data.students.forEach(
-            (student) => professorStudents.push(student),
-            setProfessorStudents([...professorStudents])
-          );
+            (student) => professorStudents.push({...student, courseCode: course.courseCode}),
+            
+          ); 
         }
+        setProfessorStudents([...professorStudents])
       });
   };
 
+  console.log("Test DAta",professorStudents);
+
   useEffect(() => {
-    const response = axios
+    axios
       .get(
         `http://localhost:5158/api/University/Faculty/Department/Lecturer/Courses`,
         {
@@ -217,8 +220,7 @@ export default function ProfessorsStudents() {
             sx={{
               width: "100%",
               display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr",
-              borderBottom: "1px solid #B3B3B3",
+              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr",
               borderLeft: "1px solid #B3B3B3",
               borderRight: "1px solid #B3B3B3",
               textAlign: "center",
@@ -227,7 +229,6 @@ export default function ProfessorsStudents() {
             <MyStudentsTableHeader />
           </Box>
           {professorStudents.map((student) => {
-            console.log(student);
             return <MyStudentsItem key={student.id} student={student} />;
           })}
         </Box>

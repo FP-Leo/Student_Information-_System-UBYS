@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SIS.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class mig_1 : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -744,11 +744,11 @@ namespace SIS.Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "19711b04-c998-4039-aff8-70120ca1ea73", null, "Advisor", "ADVISOR" },
-                    { "2c125a95-0b26-4b32-a7d9-968dfc26b5a5", null, "Student", "STUDENT" },
-                    { "42d06818-8cf6-4861-bf0b-deee1bd797c5", null, "Lecturer", "LECTURER" },
-                    { "81c06ef6-9d4e-43c3-9692-b0b010a48da5", null, "Admin", "ADMIN" },
-                    { "9e95ca2e-f17c-42be-8f71-65bef96c142a", null, "Administrator", "ADMINISTRATOR" }
+                    { "640a679e-05b9-4b74-af81-9f6110ee5c3c", null, "Admin", "ADMIN" },
+                    { "806cb1e6-854d-4179-8585-2676d288d1e9", null, "Advisor", "ADVISOR" },
+                    { "8a6a4eca-1d33-4b46-b32b-4292437052a2", null, "Student", "STUDENT" },
+                    { "bff3d5e8-7518-4a75-a34e-9e14fa53e37b", null, "Administrator", "ADMINISTRATOR" },
+                    { "e9b49be3-026a-45f9-9913-a56568cd5f76", null, "Lecturer", "LECTURER" }
                 });
 
             migrationBuilder.CreateIndex(

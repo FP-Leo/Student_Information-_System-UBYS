@@ -10,6 +10,7 @@ using SIS.Application.Services.Token;
 using SIS.Domain.Entities;
 using SIS.Persistence.Concretes.Repositories;
 using SIS.Persistence.Databases.Contexts.Data;
+using SIS.Persistence.Databases.SeedingData;
 
 var builder = WebApplication.CreateBuilder(args);
 

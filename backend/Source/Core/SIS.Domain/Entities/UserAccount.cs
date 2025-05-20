@@ -24,7 +24,7 @@ namespace SIS.Domain.Entities
             ID = int.Parse(data[5]);
             if (data[6] != "null")
             {
-                SchoolMail = data[5];
+                SchoolMail = data[6];
             }
             else
             {
@@ -32,7 +32,7 @@ namespace SIS.Domain.Entities
             }
             if (data[7] != "null")
             {
-                PersonalMail = data[6];
+                PersonalMail = data[7];
             }
             else
             {
@@ -40,7 +40,7 @@ namespace SIS.Domain.Entities
             }
             if (data[8] != "null")
             {
-                Phone = data[7];
+                Phone = data[8];
             }
             else
             {

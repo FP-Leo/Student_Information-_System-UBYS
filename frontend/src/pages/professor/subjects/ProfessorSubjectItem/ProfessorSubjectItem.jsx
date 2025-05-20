@@ -2,6 +2,8 @@ import { Box, Button, Checkbox, Typography } from "@mui/material";
 import axios from "axios";
 import Islemler from "pages/professor/islemler/Islemler";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserToken } from "store/user/user.selector";
 
 export default function ProfessorSubjectItem({
   yil,
@@ -19,20 +21,20 @@ export default function ProfessorSubjectItem({
 
   const [islemler, setIslemler] = useState(false);
   const [courseSize, setCourseSize] = useState(0);
+  const token = useSelector(selectUserToken);
+  
 
   const handleIslemler = () => {
     setIslemler(!islemler);
   };
-  const PORT = 5158;
   const handleGetSubjectStudents = async () => {
     axios
       .get(
         `http://localhost:5158/api/University/Faculty/Departments/Course/Students/Details`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTAwMDAwMDAwMDMiLCJyb2xlIjoiTGVjdHVyZXIiLCJuYmYiOjE3MTc1MTkyNzAsImV4cCI6MTcxODEyNDA3MCwiaWF0IjoxNzE3NTE5MjcwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUyNDYifQ.eu4xmuFF1i0qXNN9O19aUcDAsn4PLBgsx7SEbpSRTc0Q2pR1jrkJ24Qw829eFcrVq9_q7dNit03P8ZrwzQi2Gg",
-          },
+              Authorization: `Bearer ${token}`,
+            },
           params: { CourseCode: dersKodu },
         }
       )

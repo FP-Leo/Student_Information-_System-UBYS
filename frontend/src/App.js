@@ -36,7 +36,7 @@ const App = () => {
           alert(err);
         }
       };
-      //fetchUserData();
+      //  fetchUserData();
 
       if (location.pathname === "/") navigate("/home");
     } else navigate("/");

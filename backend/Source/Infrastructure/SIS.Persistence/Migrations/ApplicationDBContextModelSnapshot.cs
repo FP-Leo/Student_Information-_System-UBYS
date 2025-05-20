@@ -53,31 +53,31 @@ namespace SIS.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2c125a95-0b26-4b32-a7d9-968dfc26b5a5",
+                            Id = "8a6a4eca-1d33-4b46-b32b-4292437052a2",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "42d06818-8cf6-4861-bf0b-deee1bd797c5",
+                            Id = "e9b49be3-026a-45f9-9913-a56568cd5f76",
                             Name = "Lecturer",
                             NormalizedName = "LECTURER"
                         },
                         new
                         {
-                            Id = "19711b04-c998-4039-aff8-70120ca1ea73",
+                            Id = "806cb1e6-854d-4179-8585-2676d288d1e9",
                             Name = "Advisor",
                             NormalizedName = "ADVISOR"
                         },
                         new
                         {
-                            Id = "9e95ca2e-f17c-42be-8f71-65bef96c142a",
+                            Id = "bff3d5e8-7518-4a75-a34e-9e14fa53e37b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "81c06ef6-9d4e-43c3-9692-b0b010a48da5",
+                            Id = "640a679e-05b9-4b74-af81-9f6110ee5c3c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

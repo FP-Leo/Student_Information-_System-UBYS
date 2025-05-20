@@ -1,2 +1,4 @@
 FacultyName|DepartmentName|NumberOfSemesters|MaxYears|CourseSelectionStartDate|CourseSelectionEndDate|DepCode|BuildingNumber|FloorNumber|HeadOfDepartmentTC
-M|BM|8|7|2024-07-02 15:00:00|2025-01-01 00:00:00|BLM|2. Bina|2|10000000002
+M|BM|8|7|2025-05-01 15:00:00|2025-05-30 00:00:00|BLM|2. Bina|2|10000000002
+M|Insaat|8|7|2025-05-01 15:00:00|2025-05-30 00:00:00|INM|2. Bina|2|10000000004
+M|Harita|8|7|2025-05-01 15:00:00|2025-05-30 00:00:00|HAM|2. Bina|2|10000000007

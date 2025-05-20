@@ -5490,26 +5490,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\baha_\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages": {},
+    "C:\\Users\\Leo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\SIS.API.csproj",
+      "projectUniqueName": "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Presentation\\SIS.API\\SIS.API.csproj",
       "projectName": "SIS.API",
-      "projectPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\SIS.API.csproj",
-      "packagesPath": "C:\\Users\\baha_\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Presentation\\SIS.API\\obj\\",
+      "projectPath": "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Presentation\\SIS.API\\SIS.API.csproj",
+      "packagesPath": "C:\\Users\\Leo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Presentation\\SIS.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\baha_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.2.config",
+        "C:\\Users\\Leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5518,22 +5515,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\DevExpress 23.2\\Components\\System\\Components\\Packages": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Core\\SIS.Application\\SIS.Application.csproj": {
-              "projectPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Core\\SIS.Application\\SIS.Application.csproj"
+            "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Core\\SIS.Application\\SIS.Application.csproj": {
+              "projectPath": "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Core\\SIS.Application\\SIS.Application.csproj"
             },
-            "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Infrastructure\\SIS.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Infrastructure\\SIS.Infrastructure.csproj"
+            "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Infrastructure\\SIS.Infrastructure\\SIS.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Infrastructure\\SIS.Infrastructure\\SIS.Infrastructure.csproj"
             },
-            "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj": {
-              "projectPath": "C:\\Users\\baha_\\OneDrive\\Belgeler\\GitHub\\UBYS-NDAT-Proje\\backend\\Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj"
+            "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj": {
+              "projectPath": "C:\\Users\\Leoni\\Desktop\\Student_Information-_System-UBYS\\backend\\Source\\Infrastructure\\SIS.Persistence\\SIS.Persistence.csproj"
             }
           }
         }
@@ -5547,7 +5542,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -5609,7 +5605,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

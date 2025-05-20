@@ -3,19 +3,19 @@ import avatarPhoto from "../../../../assets/avatar1.png";
 
 export default function MyStudentsItem({student}) {
   const {  
-  ogrenciNumara,
-  ogrenciAd,
-  ogrenciSoyad,
-  ogrenciFakulte,
-  ogrenciProgram,
-  kayitlanmaAsamasi,
-  ogrenciSinif,
-  harcBorcu,
-  ogrenciDurum,
-  ogrenciDurumDetay,
-  GANO
+  attendanceFulfilled,
+  complement,
+  final,
+  grade,
+  id,
+  midTerm,
+  state,
+  studentName,
+  year,
+  courseCode,
 } = student
-  console.log(student);
+
+console.log(student)
 
     return (
         <Box>
@@ -26,7 +26,7 @@ export default function MyStudentsItem({student}) {
               display: "grid",
               height: "125px",
               gridTemplateRows: "1fr 1fr 1fr 1fr",
-              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr",
+              gridTemplateColumns: "1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr",
               borderBottom: "1px solid #B3B3B3",
               borderLeft: "1px solid #B3B3B3",
               borderRight: "1px solid #B3B3B3",
@@ -55,7 +55,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-              {student.ssn}
+              {id}
               </Typography>
             </Box>
 
@@ -70,7 +70,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography >
-                {student.studentName}
+                {studentName}
               </Typography>
             </Box>
 
@@ -88,6 +88,8 @@ export default function MyStudentsItem({student}) {
               </Typography>
             </Box>
 
+          
+
             <Box
               sx={{
                 display: "flex",
@@ -98,7 +100,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-               {student.state === "Attending" ? "Kayıt Başarılı" : "Kayıt Süreci Devam Ediyor"}
+                    {year} Year
               </Typography>
             </Box>
 
@@ -112,21 +114,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-                    {student.year}.Sınıf
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gridRow: "1/5",
-                borderRight:"1px solid #B3B3B3"
-              }}
-            >
-              <Typography>
-                {harcBorcu > 0 ? harcBorcu : "-"}
+                {courseCode}
               </Typography>
             </Box>
 
@@ -140,9 +128,9 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography
-              color={student.attendanceFulfilled !== null? "#22bb33" : "#bb2124"}
+              color={state !== null? "#22bb33" : "#bb2124"}
               >
-                {student.attendanceFulfilled !== null ? "Başarılı" : "Başarısız"}
+                {state === "Attending" ? "Devamlı" : "Devamsız"}
               </Typography>
             </Box>
 
@@ -156,7 +144,7 @@ export default function MyStudentsItem({student}) {
               }}
             >
               <Typography>
-                {ogrenciDurumDetay}
+                -
               </Typography>
             </Box>
 
@@ -166,11 +154,10 @@ export default function MyStudentsItem({student}) {
                 justifyContent: "center",
                 alignItems: "center",
                 gridRow: "1/5",
-                borderRight:"1px solid #B3B3B3"
               }}
             >
               <Typography>
-                {(((student.midTerm * 0.4) + (student.final * 0.6) + (student.complement*0.6))/30).toFixed(2)}
+                {(((midTerm * 0.4) + (final * 0.6) + (complement*0.6))/30).toFixed(2)}
               </Typography>
             </Box>
 

@@ -32,7 +32,7 @@ const LecturerSubjects = () => {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            LecturerId: params.id,
+            id: params.id,
           },
         }
       )
